@@ -1,0 +1,13 @@
+# .moon/workspace.yml
+$schema: 'https://moonrepo.dev/schemas/workspace.json'
+
+projects:
+  - 'src/apps/*'
+  - 'src/apis/*'
+  - 'src/shared/*'
+  - 'skills/*' # Adding skills as projects allows moon to manage their builds
+
+vcs:
+  manager: 'git'
+  defaultBranch: 'master'
+  provider: 'github'
