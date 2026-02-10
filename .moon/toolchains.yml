@@ -1,0 +1,21 @@
+# .moon/toolchain.yml
+$schema: 'https://moonrepo.dev/schemas/toolchain.json'
+
+# Bun configuration
+bun:
+  version: '1.3.9'
+  # Set as the primary package manager for the workspace
+  rootPackageOnly: true 
+
+# Node.js configuration
+node:
+  version: '25.6.0'
+  # Since you use Bun, we specify it as the package manager for Node projects
+  packageManager: 'bun'
+  # Syncs project dependencies to the lockfile
+  syncProjectWorkspaceDependencies: true
+
+# TypeScript configuration (Optional but recommended)
+typescript:
+  syncProjectReferences: true
+  routeOutDirToCache: true

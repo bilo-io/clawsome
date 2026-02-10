@@ -5,9 +5,11 @@ projects:
   - 'src/apps/*'
   - 'src/apis/*'
   - 'src/shared/*'
-  - 'skills/*' # Adding skills as projects allows moon to manage their builds
+  - 'skills/*'
 
 vcs:
-  manager: 'git'
+  # 'manager' is removed. Use 'client' if you want to force 'git', 
+  # but moon usually auto-detects this.
+  client: 'git'
   defaultBranch: 'master'
   provider: 'github'

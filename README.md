@@ -1,3 +1,5 @@
+- [Anthropic Skills](https://github.com/anthropics/skills/tree/main/skills)
+- [Antigravity Skills](https://github.dev/rmyndharis/antigravity-skills/blob/main/skills/startup-analyst/SKILL.md)
 ```
 antigravity-template/
 ├── .moon/                    # moon workspace config (root only)
