@@ -19,3 +19,7 @@ node:
 typescript:
   syncProjectReferences: true
   routeOutDirToCache: true
+
+# python:
+#   version: '3.11.0'
+#   installDir: '.python'

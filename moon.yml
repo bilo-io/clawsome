@@ -1,0 +1,19 @@
+layer: 'tool'
+
+project:
+  name: 'maverick-ai'
+  description: 'Moon Monorepo Orchestrator'
+
+tags:
+  - 'moon'
+  - 'toolchain'
+
+tasks:
+  validate-agents:
+    command: 'antigravity check ./agents'
+    inputs:
+      - 'agents/**/*'
+  
+  # Targeted build for the game dev side
+  build-ue5:
+    command: 'moon ue5-extension:build'
