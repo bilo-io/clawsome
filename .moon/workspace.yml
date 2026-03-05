@@ -2,12 +2,8 @@
 $schema: 'https://moonrepo.dev/schemas/workspace.json'
 
 projects:
-  - 'src/apps/*'
-  - 'src/apis/*'
-  - 'src/shared/*'
-  - 'src/mcp-server'
-  - 'src/ue5-plugin'
-  - 'skills/*'
+  - 'apps/*'
+  - 'packages/*'
 
 vcs:
   # 'manager' is removed. Use 'client' if you want to force 'git', 

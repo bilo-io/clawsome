@@ -1,19 +1,22 @@
-layer: 'tool'
+# moon.yml
+$schema: 'https://moonrepo.dev/schemas/project.json'
 
 project:
-  name: 'maverick-ai'
-  description: 'Moon Monorepo Orchestrator'
-
-tags:
-  - 'moon'
-  - 'toolchain'
+  name: 'nightclaw-root'
+  # type: 'library'
 
 tasks:
-  validate-agents:
-    command: 'antigravity check ./agents'
-    inputs:
-      - 'agents/**/*'
-  
-  # Targeted build for the game dev side
-  build-ue5:
-    command: 'moon ue5-extension:build'
+  # Install all dependencies using Bun
+  install:
+    command: 'bun install'
+    local: true
+
+  # Build all projects in the workspace
+  build:
+    command: 'moon run :build'
+    deps:
+      - 'core:build'
+
+  # Run all dev tasks
+  dev:
+    command: 'moon run :dev'

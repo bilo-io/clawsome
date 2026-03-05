@@ -1,0 +1,8 @@
+{
+  "name": "clawsum-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

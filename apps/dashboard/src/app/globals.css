@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Use app theme (html class) for dark mode, not OS preference */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .neon-glow {
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.2), 0 0 5px rgba(99, 102, 241, 0.1);
+  }
+
+  .glass-panel {
+    @apply backdrop-blur-xl border transition-all duration-300;
+    @apply bg-white/70 border-slate-200/60 shadow-sm dark:bg-slate-900/60 dark:border-slate-800/50 dark:shadow-none;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    @apply border-indigo-500/50;
+  }
+  .glow-orange {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    @apply border-amber-500/50;
+  }
+  .glow-red {
+    box-shadow: 0 0 20px rgba(225, 29, 72, 0.3);
+    @apply border-rose-500/50;
+  }
+  .glow-green {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+    @apply border-emerald-500/50;
+  }
+}
+
+:root {
+  --background: #fdfdfe;
+  --foreground: #020617;
+  --card: #ffffff;
+  --border: #e2e8f0;
+}
+
+.dark {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --card: #0f172a;
+  --border: #1e293b;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  letter-spacing: -0.01em;
+  @apply transition-colors duration-300;
+}
+
+/* Headings inherit body color in light mode; explicit white only when .dark */
+h1, h2, h3, h4, h5, h6 {
+  @apply transition-colors duration-300;
+}
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  @apply text-white;
+}
+
+p, span, div {
+  @apply transition-colors duration-300;
+}
+
+/* Custom styles for section headers to ensure readability */
+.section-header {
+  @apply text-[10px] font-black uppercase tracking-[0.4em] text-slate-700 dark:text-slate-500;
+}
+
+.sub-header {
+  @apply text-[11px] font-black uppercase tracking-[0.3em] text-slate-800 dark:text-slate-600;
+}
+
+.card-title {
+  @apply font-black tracking-tight transition-colors;
+}
+.dark .card-title {
+  @apply text-white;
+}
+
+.card-text {
+  @apply text-slate-600 dark:text-slate-400 font-medium transition-colors;
+}
