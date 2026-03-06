@@ -102,7 +102,7 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="mt-20 w-full max-w-4xl mx-auto rounded-3xl border border-slate-200 dark:border-slate-800 p-1.5 bg-white/20 dark:bg-slate-900/50 glass-panel card-glow shadow-2xl"
+        className="mt-20 w-full max-w-xl mx-auto rounded-3xl border border-slate-200 dark:border-slate-800 p-1.5 bg-white/20 dark:bg-slate-900/50 glass-panel card-glow shadow-2xl"
       >
         <div className="w-full aspect-[840/708] bg-slate-50 dark:bg-black rounded-2xl border border-slate-200 dark:border-slate-900 overflow-hidden relative flex flex-col group/window">
           {/* macOS Title Bar */}
