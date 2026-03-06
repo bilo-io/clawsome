@@ -1,0 +1,19 @@
+import { Hero } from "@/components/Hero";
+import { LogoCloud } from "@/components/LogoCloud";
+import { Features } from "@/components/Features";
+import { Testimonials } from "@/components/Testimonials";
+import { Faqs } from "@/components/Faqs";
+import { Donate } from "@/components/Donate";
+
+export default function Home() {
+  return (
+    <div className="flex flex-col w-full">
+      <Hero />
+      <LogoCloud />
+      <Features />
+      <Testimonials />
+      <Faqs />
+      <Donate />
+    </div>
+  );
+}

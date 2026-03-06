@@ -33,6 +33,7 @@ export default function RootLayout({
       <head>
         <title>Nightclaw AI Dashboard</title>
         <meta name="description" content="Advanced Terminal AI Orchestrator" />
+        <link rel="icon" href="/clawsome-icon.svg" type="image/svg+xml" />
       </head>
       <body className={cn(
         geistSans.variable, 

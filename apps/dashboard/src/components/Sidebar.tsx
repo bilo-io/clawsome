@@ -17,8 +17,12 @@ import {
   Cpu,
   BarChart3,
   ListTodo,
-  History,
-  Sparkles
+  Sparkles,
+  Plug,
+  Brain,
+  FolderKanban,
+  Sliders,
+  Settings
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUIStore } from '@/store/useUIStore';
@@ -45,10 +49,9 @@ export const Sidebar = () => {
     theme
   } = useUIStore();
 
-  const [openCategories, setOpenCategories] = useState<string[]>(['Main Hub', 'Agentic', 'Operations']);
+  const [openCategories, setOpenCategories] = useState<string[]>(['AI', 'OPS', 'System']);
 
   const toggleCategory = (title: string) => {
-    if (title === 'Main Hub') return; 
     setOpenCategories(prev => 
       prev.includes(title) 
         ? prev.filter(t => t !== title) 
@@ -58,27 +61,31 @@ export const Sidebar = () => {
 
   const categories: SidebarCategory[] = [
     {
-      title: 'Main Hub',
-      items: [
-        { icon: LayoutDashboard, label: 'Dashboard', href: '/' },
-        { icon: BarChart3, label: 'Usage', href: '/usage' },
-      ]
-    },
-    {
-      title: 'Agentic',
+      title: 'AI',
       items: [
         { icon: Bot, label: 'Agents', href: '/agents' },
         { icon: Sparkles, label: 'Skills', href: '/skills' },
         { icon: BrainCircuit, label: 'Swarms', href: '/swarms' },
+        { icon: Brain, label: 'Memory', href: '/memory' },
+        { icon: FolderKanban, label: 'Projects', href: '/projects' },
       ]
     },
     {
-      title: 'Operations',
+      title: 'OPS',
       items: [
         { icon: MessageCircle, label: 'Chats', status: 'active', href: '/chat' },
         { icon: ListTodo, label: 'Mission Log', href: '/mission-log' },
-        { icon: History, label: 'Smart History', href: '/history' },
+        { icon: BarChart3, label: 'Usage', href: '/usage' },
         { icon: Cpu, label: 'Analytics', href: '/analytics' },
+      ]
+    },
+    {
+      title: 'System',
+      items: [
+        { icon: Cpu, label: 'Analytics', href: '/analytics' },
+        { icon: Sliders, label: 'Config', href: '/config' },
+        { icon: Plug, label: 'Integrations', href: '/integrations' },
+        { icon: Settings, label: 'Settings', href: '/settings' },
         { icon: Shield, label: 'Security', href: '/security' },
       ]
     }
@@ -96,23 +103,31 @@ export const Sidebar = () => {
         "p-6 flex items-center justify-between border-b",
         theme === 'dark' ? "border-slate-900 bg-black/20" : "border-slate-100 bg-slate-50/50"
       )}>
-        <div className="flex items-center gap-3 overflow-hidden">
-          <div className="p-2 bg-indigo-600 rounded-lg shadow-lg shadow-indigo-500/20">
-            <Zap size={20} className="text-white fill-white" />
-          </div>
-          {isSidebarExpanded && (
-            <motion.span 
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className={cn(
-                "font-bold tracking-tighter text-xl",
-                theme === 'dark' ? "text-white" : "text-black"
-              )}
-            >
-              NIGHTCLAW
-            </motion.span>
-          )}
-        </div>
+        <Link href="/" className="flex items-center overflow-hidden group">
+          <AnimatePresence mode="wait">
+            {isSidebarExpanded ? (
+              <motion.img
+                key="full-logo"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                src="/clawsome-logo.svg"
+                alt="Clawsome"
+                className="h-8 w-auto dark:invert"
+              />
+            ) : (
+              <motion.img
+                key="mini-logo"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                src="/clawsome-icon.svg"
+                alt="Clawsome"
+                className="h-8 w-8 dark:invert"
+              />
+            )}
+          </AnimatePresence>
+        </Link>
         <button 
           onClick={toggleSidebar}
           className={cn(
@@ -124,18 +139,51 @@ export const Sidebar = () => {
         </button>
       </div>
 
-      <nav className="flex-1 overflow-y-auto py-6 space-y-6 no-scrollbar px-4">
+      <nav className="flex-1 overflow-y-auto py-4 space-y-4 no-scrollbar px-4">
+        {/* Dashboard - standalone at top, no category */}
+        <div className="flex flex-col">
+          <Link
+            href="/"
+            className={cn(
+              "group relative flex items-center gap-3 py-2 px-3 rounded-xl cursor-pointer transition-all border",
+              pathname === '/' 
+                ? (theme === 'dark' ? "bg-indigo-600/10 border-indigo-500/30 text-white" : "bg-indigo-50 border-indigo-200 shadow-sm text-indigo-700") 
+                : (theme === 'dark' ? "hover:bg-slate-900 border-transparent hover:border-slate-800 text-slate-400 hover:text-white" : "hover:bg-slate-50 border-transparent hover:border-slate-200 text-slate-600 hover:text-slate-950")
+            )}
+          >
+            <LayoutDashboard 
+              size={20} 
+              className={cn(
+                "transition-colors shrink-0",
+                pathname === '/' 
+                  ? "text-indigo-500" 
+                  : (theme === 'dark' ? "text-slate-500 group-hover:text-indigo-400" : "text-slate-500 group-hover:text-indigo-600")
+              )} 
+            />
+            {isSidebarExpanded && (
+              <span className={cn(
+                "text-sm font-semibold transition-colors truncate",
+                pathname === '/' 
+                  ? (theme === 'dark' ? "text-white" : "text-indigo-700") 
+                  : (theme === 'dark' ? "text-slate-400 group-hover:text-white" : "text-slate-700 group-hover:text-black")
+              )}>
+                Dashboard
+              </span>
+            )}
+          </Link>
+        </div>
+
         {categories.map((category) => {
           const isOpen = openCategories.includes(category.title);
           
           return (
             <div key={category.title} className="flex flex-col">
               {/* Category Header */}
-              {isSidebarExpanded && category.title !== 'Main Hub' ? (
+              {isSidebarExpanded && (
                 <button
                   onClick={() => toggleCategory(category.title)}
                   className={cn(
-                    "flex items-center justify-between w-full px-2 py-2 text-xs font-bold uppercase tracking-[0.2em] transition-colors group mb-2 text-left",
+                    "flex items-center justify-between w-full px-2 py-1.5 text-xs font-bold uppercase tracking-[0.2em] transition-colors group mb-1 text-left",
                     theme === 'dark' ? "text-slate-600 hover:text-slate-300" : "text-slate-700 hover:text-black"
                   )}
                 >
@@ -147,15 +195,6 @@ export const Sidebar = () => {
                     <ChevronDown size={14} />
                   </motion.div>
                 </button>
-              ) : (
-                isSidebarExpanded && (
-                  <div className={cn(
-                    "px-2 py-2 text-xs font-bold uppercase tracking-[0.2em] mb-2",
-                    theme === 'dark' ? "text-slate-600" : "text-slate-600"
-                  )}>
-                    {category.title}
-                  </div>
-                )
               )}
 
               {/* Category Items */}
@@ -174,7 +213,7 @@ export const Sidebar = () => {
                           key={item.href}
                           href={item.href}
                           className={cn(
-                            "group relative flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all border",
+                            "group relative flex items-center gap-3 py-2 px-3 rounded-xl cursor-pointer transition-all border",
                             isActive 
                               ? (theme === 'dark' ? "bg-indigo-600/10 border-indigo-500/30 text-white" : "bg-indigo-50 border-indigo-200 shadow-sm text-indigo-700") 
                               : (theme === 'dark' ? "hover:bg-slate-900 border-transparent hover:border-slate-800 text-slate-400 hover:text-white" : "hover:bg-slate-50 border-transparent hover:border-slate-200 text-slate-600 hover:text-slate-950")

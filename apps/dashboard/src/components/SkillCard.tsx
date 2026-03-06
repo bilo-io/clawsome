@@ -19,7 +19,12 @@ import {
   Github,
   Twitter,
   ChevronRight,
-  Zap
+  Zap,
+  FileJson,
+  Scan,
+  Search,
+  Network,
+  FileText
 } from 'lucide-react';
 import { Skill, useSkillStore } from '@/store/useSkillStore';
 import { cn } from '@/lib/utils';
@@ -35,7 +40,12 @@ const iconMap: Record<string, any> = {
   Cpu,
   MessageCircle,
   Github,
-  Twitter
+  Twitter,
+  FileJson,
+  Scan,
+  Search,
+  Network,
+  FileText
 };
 
 interface SkillCardProps {

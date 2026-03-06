@@ -1,0 +1,42 @@
+{
+    "name": "My clawsome assistant",
+    "version": "2026.3.5",
+    "user": {
+        "name": "Maverick",
+        "role": "User"
+    },
+    "agents:": [
+        {
+            "name": "N.O.V.A.",
+            "role": "Orchestrator Agent"
+        }
+    ],
+    "ai": {
+        "providers": [
+            {
+                "name": "OpenAI",
+                "models": [
+                    "gpt-4o",
+                    "gpt-4o-mini"
+                ],
+                "apiKey": "sk-proj-1234567890"
+            },
+            {
+                "name": "Anthropic",
+                "models": [
+                    "claude-3-5-sonnet",
+                    "claude-3-opus"
+                ],
+                "apiKey": "sk-proj-1234567890"
+            },
+            {
+                "name": "Google",
+                "models": [
+                    "gemini-1.5-pro",
+                    "gemini-1.5-flash"
+                ],
+                "apiKey": "sk-proj-1234567890"
+            }
+        ],
+    },
+}
