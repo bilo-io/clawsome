@@ -67,7 +67,7 @@ export const Features = () => {
             className="text-4xl md:text-5xl font-black md:max-w-2xl mb-4 text-slate-900 dark:text-white leading-[1.3] overflow-visible px-12"
             style={{ fontFamily: "'Newton Howard Font', sans-serif" }}
           >
-            <span className="not-italic">Everything you need to</span> <span className="gradient-text">scale your operations</span>
+            <span className="not-italic">All you need to</span> <span className="gradient-text">scale your ops</span>
           </h2>
           <p className="text-lg text-slate-700 dark:text-slate-400 max-w-xl font-medium">
             ClawSome provides the infrastructure to build, deploy, and manage production-grade AI agent networks.

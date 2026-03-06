@@ -3,6 +3,9 @@
 import React from 'react';
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
+
+import { Info } from 'lucide-react';
 
 export type PageHeaderStatusColor = 'indigo' | 'emerald';
 
@@ -14,8 +17,10 @@ const statusColorClasses: Record<PageHeaderStatusColor, string> = {
 export interface PageHeaderProps {
   /** Main title (e.g. "NEURAL MODULES", "SECURITY HUD") */
   title: string;
-  /** Badge after // (e.g. "NC-SKILLS", "NC-SHIELD") */
-  badge: string;
+  /** Badge after // (removed, now description tooltip) */
+  badge?: string;
+  /** Page description for the tooltip */
+  description?: string;
   /** Status line label (e.g. "Capability Status:", "Runtime Integrity:") */
   statusLabel: string;
   /** Status value with pulse dot (e.g. "Local Sync Active", "Verified") */
@@ -31,6 +36,7 @@ export interface PageHeaderProps {
 export function PageHeader({
   title,
   badge,
+  description,
   statusLabel,
   statusValue,
   statusColor = 'indigo',
@@ -39,11 +45,12 @@ export function PageHeader({
 }: PageHeaderProps) {
   const { theme } = useUIStore();
   const [dotClass, valueClass] = statusColorClasses[statusColor].split(' ');
+  const [showTooltip, setShowTooltip] = React.useState(false);
 
   return (
     <header
       className={cn(
-        'flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b transition-colors',
+        'flex flex-col md:flex-row md:items-end justify-between gap-6 pb-4 border-b transition-colors',
         theme === 'dark' ? 'border-slate-800/50' : 'border-slate-200',
         className
       )}
@@ -56,23 +63,53 @@ export function PageHeader({
           )}
         >
           {title}{' '}
-          <span className="font-thin opacity-30 text-slate-500">//</span>{' '}
-          <span className="text-indigo-600 uppercase">{badge}</span>
+          <div className="relative inline-flex items-center">
+            <button
+              onMouseEnter={() => setShowTooltip(true)}
+              onMouseLeave={() => setShowTooltip(false)}
+              onClick={() => setShowTooltip(!showTooltip)}
+              className={cn(
+                "p-2 rounded-full transition-all",
+                theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-500 hover:text-indigo-400" : "bg-white border-slate-100 text-slate-400 hover:text-indigo-600 shadow-sm"
+              )}
+            >
+              <Info size={18} />
+            </button>
+            <AnimatePresence>
+              {showTooltip && description && (
+                <motion.div
+                  initial={{ opacity: 0, x: -10, scale: 0.95 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -10, scale: 0.95 }}
+                  className={cn(
+                    "absolute left-full ml-4 top-1/2 -translate-y-1/2 w-72 p-6 rounded-[24px] border shadow-2xl z-50 pointer-events-none",
+                    theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400" : "bg-white border-slate-100 text-slate-600 shadow-slate-200/50"
+                  )}
+                >
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed">
+                    {description}
+                  </p>
+                  <div className={cn(
+                    "absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 rotate-45 border-l border-b",
+                    theme === 'dark' ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100"
+                  )} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </h1>
-        <div className="flex items-center gap-4 mt-3">
-          <p
+          <div
             className={cn(
-              'text-[10px] font-bold uppercase tracking-[0.25em] flex items-center gap-2',
+              'text-[12px] font-bold uppercase tracking-[0.25em] flex items-center gap-3 mt-2',
               theme === 'dark' ? 'text-slate-500' : 'text-slate-600'
             )}
           >
             {statusLabel}{' '}
-            <span className={cn(valueClass, 'flex items-center gap-2 font-black')}>
-              <span className={cn('w-2 h-2 rounded-full animate-pulse', dotClass)} />
+            <span className={cn(valueClass, 'flex items-center gap-2 font-black text-lg uppercase tracking-tighter')}>
+              <span className={cn('w-2.5 h-2.5 rounded-full animate-pulse', dotClass)} />
               {statusValue}
             </span>
-          </p>
-        </div>
+          </div>
       </div>
       {children ? <div className="flex items-center gap-4">{children}</div> : null}
     </header>

@@ -17,12 +17,12 @@ import {
   Cpu,
   BarChart3,
   ListTodo,
-  Sparkles,
   Plug,
   Brain,
   FolderKanban,
   Sliders,
-  Settings
+  Settings,
+  Blocks
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUIStore } from '@/store/useUIStore';
@@ -64,8 +64,8 @@ export const Sidebar = () => {
       title: 'AI',
       items: [
         { icon: Bot, label: 'Agents', href: '/agents' },
-        { icon: Sparkles, label: 'Skills', href: '/skills' },
         { icon: BrainCircuit, label: 'Swarms', href: '/swarms' },
+        { icon: Blocks, label: 'Skills', href: '/skills' },
         { icon: Brain, label: 'Memories', href: '/memory' },
         { icon: FolderKanban, label: 'Projects', href: '/projects' },
       ]
@@ -74,7 +74,7 @@ export const Sidebar = () => {
       title: 'OPS',
       items: [
         { icon: MessageCircle, label: 'Chats', status: 'active', href: '/chat' },
-        { icon: ListTodo, label: 'Mission Log', href: '/mission-log' },
+        { icon: ListTodo, label: 'Logs', href: '/logs' },
         { icon: BarChart3, label: 'Usage', href: '/usage' },
         { icon: Cpu, label: 'Analytics', href: '/analytics' },
       ]
@@ -247,10 +247,13 @@ export const Sidebar = () => {
                           {/* Glow Overlay */}
                           <div 
                             className={cn(
-                              "absolute inset-0 rounded-xl opacity-0 transition-opacity bg-indigo-500 blur-md -z-10",
-                              isActive ? "opacity-10" : "group-hover:opacity-10"
+                              "absolute inset-0 rounded-xl opacity-0 transition-opacity blur-md -z-10",
+                              isActive ? "opacity-10" : "group-hover:opacity-10",
+                              theme === 'dark' ? "bg-indigo-500" : "bg-indigo-400"
                             )}
-                            style={{ filter: `blur(${glowIntensity / 10}px)` }}
+                            style={{ 
+                              filter: `blur(calc(var(--glow-blur) / 10))` 
+                            }}
                           />
                         </Link>
                       );

@@ -19,11 +19,11 @@ export const Hero = () => {
         transition={{ duration: 0.5 }}
         className="mb-8 p-1 px-4 bg-indigo-500/10 border border-indigo-500/20 rounded-full flex items-center gap-2 group"
       >
-        <Sparkles size={14} className="text-indigo-500 group-hover:animate-spin-slow" />
+        {/* <Sparkles size={14} className="text-indigo-500 group-hover:animate-spin-slow" /> */}
         <span className="text-xs font-black uppercase tracking-[0.2em] text-indigo-500">
-          <strong>v1.0</strong> live
+          <strong>v2026.3.1</strong>
         </span>
-        <ChevronRight size={14} className="text-indigo-400 group-hover:translate-x-1 transition-transform" />
+        {/* <ChevronRight size={14} className="text-indigo-400 group-hover:translate-x-1 transition-transform" /> */}
       </motion.div>
 
       {/* Logo */}
@@ -48,7 +48,7 @@ export const Hero = () => {
         className="text-4xl md:text-6xl lg:text-7xl font-black md:max-w-5xl mb-12 leading-[1.3] text-slate-900 dark:text-white px-4 overflow-visible text-center"
         style={{ fontFamily: "'Newton Howard Font', sans-serif" }}
       >
-        <span className="not-italic inline-block mb-2">Automate the web with</span> <span className="gradient-text">autonomous swarms</span>
+        <span className="not-italic inline-block mb-2">Scale with</span><br /><span className="gradient-text">ai agent swarms</span>
       </motion.h1>
 
       {/* Subheadline */}
@@ -73,7 +73,7 @@ export const Hero = () => {
           className="group flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-3xl font-black text-lg shadow-2xl shadow-indigo-500/30 transition-all hover:scale-105 active:scale-95"
         >
           <Terminal size={20} className="group-hover:rotate-12 transition-transform" />
-          Get Clawsome Free
+          That's Clawsome
         </Link>
         <button className="flex items-center gap-3 px-8 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-3xl font-black text-lg transition-all hover:border-indigo-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 active:scale-95 group">
           <div className="p-1 px-1 bg-indigo-500/10 rounded-full group-hover:bg-indigo-500/20 transition-colors">

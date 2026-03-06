@@ -35,7 +35,8 @@ export default function SkillsPage() {
   return (
     <div className="max-w-[1600px] mx-auto space-y-10 pb-20">
       <DashboardResourceHeader
-        title="NEURAL MODULES"
+        title="Skills"
+        description="Modular neural capabilities and toolsets for autonomous agents. Expand the operational efficiency of your workforce with production-ready skill modules."
         badge="NC-SKILLS"
         statusLabel="Capability Status:"
         statusValue="Local Sync Active"

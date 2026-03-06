@@ -35,6 +35,7 @@ import {
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 
 const USAGE_DATA = {
   '1h': [
@@ -100,55 +101,47 @@ export default function UsagePage() {
 
   return (
     <div className="max-w-[1600px] mx-auto space-y-10 pb-20">
-      <header className={cn(
-        "flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b transition-colors",
-        theme === "dark" ? "border-slate-800/50" : "border-slate-200"
-      )}>
-        <div>
-          <div className="flex items-center gap-4 mb-3">
-             <div className="p-3 bg-indigo-600 rounded-2xl shadow-lg shadow-indigo-600/20 text-white">
-                <BarChart3 size={28} />
-             </div>
-             <h1 className="text-4xl font-extrabold tracking-tighter text-black dark:text-white">
-               USAGE ANALYTICS
-             </h1>
+      <DashboardResourceHeader
+        title="Usage"
+        description="Real-time monitoring of token consumption and operational expenditures. Track the fiscal impact of your neural operations across different model tiers and agent deployments."
+        badge="NC-TELEMETRY"
+        statusLabel="Monthly Quota:"
+        statusValue="82% REACHED"
+        statusColor="indigo"
+        isCollection={false}
+        renderRight={
+          <div className="flex items-center gap-4">
+            <div className={cn(
+              "p-1.5 rounded-2xl border flex items-center shadow-xl transition-all",
+              theme === 'dark' ? "bg-slate-900/60 border-slate-800 shadow-none" : "bg-white border-slate-100 shadow-slate-200/40"
+            )}>
+              {(['1h', '24h', '7d', '30d', '90d'] as const).map((r) => (
+                <button
+                  key={r}
+                  onClick={() => setRange(r)}
+                  className={cn(
+                    "px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all",
+                    range === r
+                      ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/20"
+                      : (theme === 'dark' ? "text-slate-500 hover:text-slate-300" : "text-slate-500 hover:text-slate-950")
+                  )}
+                >
+                  {r}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={refreshUsage}
+              className={cn(
+                "p-4 rounded-xl border transition-all shadow-sm active:scale-95 group",
+                theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-500 hover:text-white" : "bg-white border-slate-100 text-slate-600 hover:text-indigo-600"
+              )}
+            >
+              <RefreshCw size={20} className={cn("transition-transform duration-500", isRefreshing && "animate-spin")} />
+            </button>
           </div>
-          <p className={cn("text-sm font-medium tracking-tight", theme === 'dark' ? "text-slate-500" : "text-slate-600")}>
-            Comprehensive telemetry of neural token throughput and economic expenditure.
-          </p>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className={cn(
-            "p-1.5 rounded-2xl border flex items-center shadow-xl transition-all",
-            theme === 'dark' ? "bg-slate-900/60 border-slate-800 shadow-none" : "bg-white border-slate-100 shadow-slate-200/40"
-          )}>
-            {(['1h', '24h', '7d', '30d', '90d'] as const).map((r) => (
-              <button
-                key={r}
-                onClick={() => setRange(r)}
-                className={cn(
-                  "px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all",
-                  range === r 
-                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/20" 
-                    : (theme === 'dark' ? "text-slate-500 hover:text-slate-300" : "text-slate-500 hover:text-slate-950")
-                )}
-              >
-                {r}
-              </button>
-            ))}
-          </div>
-          <button 
-            onClick={refreshUsage}
-            className={cn(
-              "p-4 rounded-xl border transition-all shadow-sm active:scale-95 group",
-              theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-500 hover:text-white" : "bg-white border-slate-100 text-slate-600 hover:text-indigo-600"
-            )}
-          >
-            <RefreshCw size={20} className={cn("transition-transform duration-500", isRefreshing && "animate-spin")} />
-          </button>
-        </div>
-      </header>
+        }
+      />
 
       {/* Top Stats Cards - Smaller */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

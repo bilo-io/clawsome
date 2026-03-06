@@ -26,10 +26,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { theme } = useUIStore();
+  const { theme, glowIntensity } = useUIStore();
 
   return (
-    <html lang="en" className={theme}>
+    <html 
+      lang="en" 
+      className={theme}
+      style={{ 
+        '--glow-opacity': glowIntensity / 100,
+        '--glow-blur': `${glowIntensity * 1.5}px`,
+        '--glow-spread': `${glowIntensity / 2}px`,
+        '--glow-primary': theme === 'dark' ? 'rgba(99, 102, 241, 1)' : 'rgba(79, 70, 229, 1)',
+      } as React.CSSProperties}
+    >
       <head>
         <title>Clawsome AI Dashboard</title>
         <meta name="description" content="Advanced Terminal AI Orchestrator" />

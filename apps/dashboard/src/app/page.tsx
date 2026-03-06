@@ -1,4 +1,3 @@
-// apps/dashboard/src/app/page.tsx
 'use client';
 
 import { useSocket } from '@/hooks/useSocket';
@@ -10,6 +9,7 @@ import { ProjectPulse } from '@/components/ProjectPulse';
 import { ActivityHeatmap } from '@/components/ActivityHeatmap';
 import { QuickActions } from '@/components/QuickActions';
 import { CostTracker } from '@/components/CostTracker';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 import { useUIStore } from '@/store/useUIStore';
 import { 
   LayoutDashboard, 
@@ -31,47 +31,31 @@ export default function Dashboard() {
   const { theme } = useUIStore();
 
   return (
-    <main className="space-y-12 pb-20 max-w-[1600px] mx-auto transition-colors duration-300">
-      <header className={cn(
-        "flex flex-col md:flex-row md:items-end justify-between gap-8 pb-10 border-b transition-colors",
-        theme === "dark" ? "border-slate-800/50" : "border-slate-200"
-      )}>
-        <div>
-          <h1 className="text-5xl font-black tracking-tighter flex items-center gap-4 text-black dark:text-white">
-             DASHBOARD <span className="font-thin opacity-30 text-slate-500">//</span> <span className="text-indigo-600 uppercase">NC-01</span>
-          </h1>
-          <div className="flex items-center gap-6 mt-4">
-            <p className={cn(
-              "text-[10px] font-bold uppercase tracking-[0.25em] flex items-center gap-2",
-              theme === "dark" ? "text-slate-500" : "text-slate-600"
-            )}>
-              Operational Status: <span className="text-emerald-500 flex items-center gap-2 font-black"><div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" /> Optimal</span>
-            </p>
-            <div className={cn("w-1 h-3", theme === "dark" ? "bg-slate-800" : "bg-slate-300")} />
-            <p className={cn(
-              "text-[10px] font-bold uppercase tracking-[0.25em] flex items-center gap-2",
-              theme === "dark" ? "text-slate-500" : "text-slate-600"
-            )}>
-              Neural Link: <span className={cn("font-black", isConnected ? "text-indigo-500" : "text-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.3)]")}>{isConnected ? 'Active' : 'Disconnected'}</span>
-            </p>
+    <main className="space-y-10 pb-20 max-w-[1600px] mx-auto transition-colors duration-300">
+      <DashboardResourceHeader
+        title="Dashboard"
+        description="Unified neural command center providing real-time telemetry on resource allocation, agent activity, and system integrity."
+        badge="NC-01"
+        statusLabel="Operational Status:"
+        statusValue="Optimal"
+        statusColor="emerald"
+        isCollection={false}
+        renderRight={
+          <div className="flex items-center gap-4">
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className={cn(
+                "px-5 py-2.5 rounded-[20px] border shadow-xl flex flex-col items-end min-w-[150px] transition-all relative overflow-hidden",
+                theme === "dark" ? "bg-slate-900/40 border-slate-800/60" : "bg-white border-slate-100 shadow-slate-200/50"
+              )}
+            >
+              <span className={cn("text-[8px] font-black uppercase tracking-[0.2em] mb-1 relative z-10", theme === "dark" ? "text-slate-600" : "text-slate-500")}>Interface Latency</span>
+              <span className="text-xl font-mono font-black text-indigo-600 tracking-tighter relative z-10">12ms</span>
+              <div className="absolute -right-4 -bottom-4 w-12 h-12 bg-indigo-500/5 blur-2xl rounded-full" />
+            </motion.div>
           </div>
-        </div>
-        
-        <div className="flex items-center gap-4">
-           {/* Quick Stats Header */}
-           <motion.div 
-             whileHover={{ scale: 1.02 }}
-             className={cn(
-               "px-6 py-4 rounded-[24px] border shadow-2xl flex flex-col items-end min-w-[200px] transition-all relative overflow-hidden",
-               theme === "dark" ? "bg-slate-900/40 border-slate-800/60" : "bg-white border-slate-100 shadow-slate-200/50"
-             )}
-           >
-              <span className={cn("text-[9px] font-black uppercase tracking-[0.3em] mb-2 relative z-10", theme === "dark" ? "text-slate-600" : "text-slate-500")}>Interface Latency</span>
-              <span className="text-3xl font-mono font-black text-indigo-600 tracking-tighter relative z-10">12ms</span>
-              <div className="absolute -right-4 -bottom-4 w-16 h-16 bg-indigo-500/5 blur-2xl rounded-full" />
-           </motion.div>
-        </div>
-      </header>
+        }
+      />
 
       {/* Main Grid Layout */}
       <div className="grid grid-cols-1 xl:grid-cols-4 gap-12">

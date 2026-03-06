@@ -36,7 +36,10 @@ const marketplaceWithStatus: Integration[] = MARKETPLACE_INTEGRATIONS.map((i) =>
 export const useIntegrationStore = create<IntegrationState>()(
   persist(
     (set, get) => ({
-      myIntegrations: [],
+      myIntegrations: [
+        { id: 'discord-default', name: 'Discord', icon: 'MessageCircle', description: 'Send and receive messages on Discord.', status: 'active', isMarketplace: false },
+        { id: 'github-default', name: 'GitHub', icon: 'Github', description: 'Repos, issues, PRs, and workflows.', status: 'active', isMarketplace: false },
+      ],
       marketplaceIntegrations: marketplaceWithStatus,
       addIntegration: (id) => {
         const entry = get().marketplaceIntegrations.find((i) => i.id === id);

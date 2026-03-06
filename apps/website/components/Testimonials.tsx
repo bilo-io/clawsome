@@ -3,9 +3,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Quote, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 
 export const Testimonials = () => {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const testimonials = [
     {
       name: 'Alex Rivera',
@@ -69,25 +77,8 @@ export const Testimonials = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 500 : -500,
-      opacity: 0,
-      scale: 0.9,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 500 : -500,
-      opacity: 0,
-      scale: 0.9,
-    }),
-  };
+
+  if (!mounted) return null;
 
   return (
     <section className="py-24 px-8 bg-white dark:bg-slate-950 relative overflow-hidden transition-colors flex flex-col items-center">
@@ -110,60 +101,78 @@ export const Testimonials = () => {
           </p>
         </div>
 
-        <div className="relative w-full max-w-4xl h-[450px] md:h-[350px] flex items-center justify-center">
-          <AnimatePresence initial={false} custom={direction}>
-            <motion.div
-              key={currentIndex}
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.3 },
-                scale: { duration: 0.4 }
-              }}
-              className="absolute w-full p-8 md:p-12 glass-panel card-glow rounded-[3rem] border border-slate-100 dark:border-slate-800 bg-white/90 dark:bg-slate-900/50 shadow-2xl shadow-slate-200/50 dark:shadow-none flex flex-col items-center text-center"
-            >
-              <Quote className="text-indigo-500 mb-8 opacity-20" size={48} />
-              
-              <div className="flex items-center gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    size={16} 
-                    className={i < testimonials[currentIndex].rating ? "text-amber-500 fill-amber-500" : "text-slate-200 dark:text-slate-800"} 
-                  />
-                ))}
-              </div>
+        <div className="relative w-full overflow-visible py-10">
+          <div className="flex items-center justify-center gap-8 md:gap-12 overflow-visible">
+            {[-1, 0, 1].map((offset) => {
+              const index = (currentIndex + offset + testimonials.length) % testimonials.length;
+              const testimonial = testimonials[index];
+              const isActive = offset === 0;
 
-              <p className="text-xl md:text-2xl text-slate-900 dark:text-slate-200 font-bold leading-relaxed mb-10 italic max-w-2xl">
-                "{testimonials[currentIndex].text}"
-              </p>
+              return (
+                <motion.div
+                  key={`${index}-${offset}`}
+                  initial={{ opacity: 0, scale: 0.8, x: offset * 100 }}
+                  animate={{ 
+                    opacity: isActive ? 1 : 0.4, 
+                    scale: isActive ? 1 : 0.85,
+                    x: 0,
+                    zIndex: isActive ? 10 : 0
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className={cn(
+                    "relative w-full max-w-[380px] p-1 rounded-[3rem] transition-all duration-500 shrink-0",
+                    isActive ? "bg-gradient-to-tr from-indigo-500 via-purple-500 to-blue-500 shadow-[0_0_60px_rgba(99,102,241,0.4)]" : "bg-transparent"
+                  )}
+                >
+                  <div className={cn(
+                    "w-full h-full p-8 md:p-10 rounded-[2.9rem] flex flex-col items-center text-center",
+                    theme === 'dark' ? "bg-slate-900/90" : "bg-white",
+                    !isActive && "grayscale opacity-50"
+                  )}>
+                    <Quote className="text-indigo-500 mb-6 opacity-20" size={32} />
+                    
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star 
+                          key={i} 
+                          size={14} 
+                          className={i < testimonial.rating ? "text-amber-500 fill-amber-500" : "text-slate-200 dark:text-slate-800"} 
+                        />
+                      ))}
+                    </div>
 
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-black text-lg border-2 border-white dark:border-slate-800 shadow-xl">
-                  {testimonials[currentIndex].avatar}
-                </div>
-                <div className="flex flex-col items-start">
-                  <span className="text-slate-900 dark:text-white font-black text-base">{testimonials[currentIndex].name}</span>
-                  <span className="text-slate-500 dark:text-slate-500 font-bold text-[10px] uppercase tracking-widest">{testimonials[currentIndex].role}</span>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                    <p className={cn(
+                      "text-sm md:text-base font-bold leading-relaxed mb-8 italic flex-1",
+                      theme === 'dark' ? "text-slate-200" : "text-slate-700"
+                    )}>
+                      "{testimonial.text}"
+                    </p>
+
+                    <div className="flex items-center gap-4 mt-auto">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-black text-sm border-2 border-white dark:border-slate-800 shadow-lg">
+                        {testimonial.avatar}
+                      </div>
+                      <div className="flex flex-col items-start">
+                        <span className="text-slate-900 dark:text-white font-black text-sm">{testimonial.name}</span>
+                        <span className="text-slate-500 dark:text-slate-500 font-bold text-[9px] uppercase tracking-widest">{testimonial.role}</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
 
           {/* Navigation Buttons */}
           <button 
             onClick={prevSlide}
-            className="absolute left-0 md:-left-12 p-4 rounded-full bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition-all shadow-xl z-20 hover:scale-110 active:scale-95"
+            className="absolute left-4 md:-left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition-all shadow-2xl z-20 hover:scale-110 active:scale-95"
           >
             <ChevronLeft size={24} />
           </button>
           <button 
             onClick={nextSlide}
-            className="absolute right-0 md:-right-12 p-4 rounded-full bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition-all shadow-xl z-20 hover:scale-110 active:scale-95"
+            className="absolute right-4 md:-right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition-all shadow-2xl z-20 hover:scale-110 active:scale-95"
           >
             <ChevronRight size={24} />
           </button>

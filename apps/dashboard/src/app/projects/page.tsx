@@ -111,10 +111,11 @@ export default function ProjectsPage() {
   return (
     <div className="space-y-10 max-w-[1600px] mx-auto">
       <DashboardResourceHeader
-        title="OPERATIONAL PROJECTS"
+        title="Projects"
+        description="Unified workspace for mission orchestration and tactical objective tracking. Monitor the progress of active campaigns and resource allocation across different sectors."
         badge="NC-PROJECTS"
-        statusLabel="Project Success Rate:"
-        statusValue="94.2% (OPTIMAL)"
+        statusLabel="Project Matrix:"
+        statusValue="SYNCED"
         statusColor="indigo"
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
@@ -164,7 +165,7 @@ export default function ProjectsPage() {
                              {project.type}
                           </span>
                           <h3 className={cn(
-                            "text-2xl font-black group-hover:text-indigo-500 transition-colors uppercase tracking-tight",
+                            "text-2xl font-black group-hover:text-indigo-500 transition-colors uppercase tracking-tight truncate whitespace-nowrap",
                             theme === 'dark' ? "text-white" : "text-slate-900"
                           )}>
                              {project.name}
@@ -192,12 +193,12 @@ export default function ProjectsPage() {
                                    <div 
                                       key={i} 
                                       className={cn(
-                                        "w-10 h-10 rounded-2xl border-4 transition-transform group-hover:scale-110",
+                                        "w-10 h-10 rounded-full border-4 transition-transform group-hover:scale-110",
                                         theme === 'dark' ? "bg-slate-800 border-slate-950" : "bg-white border-white shadow-sm"
                                       )}
                                       title={agent.name}
                                    >
-                                      <div className="w-full h-full rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-[10px] font-black text-white">
+                                      <div className="w-full h-full rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-[10px] font-black text-white">
                                          {agent.name.charAt(0)}
                                       </div>
                                    </div>
@@ -247,7 +248,7 @@ export default function ProjectsPage() {
 
                     {/* Industrial background accent */}
                     <div className="absolute top-0 right-0 p-8 opacity-5">
-                       <FolderKanban size={120} />
+                       <FolderKanban size={60} />
                     </div>
                   </div>
                 ) : (
@@ -262,7 +263,7 @@ export default function ProjectsPage() {
                      </div>
                      <div className="flex-1">
                         <div className="flex items-center gap-3 mb-1">
-                           <h3 className={cn("text-lg font-black uppercase tracking-tight", theme === 'dark' ? "text-white" : "text-slate-900 text-slate-900")}>
+                           <h3 className={cn("text-lg font-black uppercase tracking-tight truncate max-w-md", theme === 'dark' ? "text-white" : "text-slate-900")}>
                               {project.name}
                            </h3>
                             <span className={cn(
@@ -278,7 +279,7 @@ export default function ProjectsPage() {
                      </div>
                      <div className="flex -space-x-3">
                         {project.agents.map((agent, i) => (
-                           <div key={i} className="w-8 h-8 rounded-xl border-2 border-slate-950 bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-[8px] font-black text-white">
+                           <div key={i} className="w-8 h-8 rounded-full border-2 border-slate-950 bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-[8px] font-black text-white">
                               {agent.name.charAt(0)}
                            </div>
                         ))}

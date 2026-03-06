@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils';
 
 const workspaces = [
   { id: 'default', title: 'Local', type: 'system' },
-  { id: 'frontend', title: 'Cloud 1', type: 'app' },
-  { id: 'backend', title: 'Cloud 2', type: 'app' },
+  { id: 'sandbox1', title: 'Sandbox 1', type: 'app' },
+  { id: 'sandbox2', title: 'Sandbox 2', type: 'app' },
 ];
 
 export const WorkspaceTabs = () => {

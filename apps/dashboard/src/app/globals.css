@@ -14,7 +14,8 @@
   }
 
   .neon-glow {
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.2), 0 0 5px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 0 var(--glow-blur, 15px) var(--glow-spread, 0px) color-mix(in srgb, var(--glow-primary, #6366f1) calc(var(--glow-opacity, 0.2) * 100%), transparent), 
+                0 0 50px color-mix(in srgb, var(--glow-primary, #6366f1) calc(var(--glow-opacity, 0.2) * 50%), transparent);
   }
 
   .glass-panel {
@@ -23,19 +24,19 @@
   }
 
   .glow-blue {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 0 var(--glow-blur, 20px) var(--glow-spread, 2px) color-mix(in srgb, var(--glow-primary, #6366f1) calc(var(--glow-opacity, 0.3) * 100%), transparent);
     @apply border-indigo-500/50;
   }
   .glow-orange {
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    box-shadow: 0 0 var(--glow-blur, 20px) var(--glow-spread, 2px) color-mix(in srgb, #f59e0b calc(var(--glow-opacity, 0.3) * 100%), transparent);
     @apply border-amber-500/50;
   }
   .glow-red {
-    box-shadow: 0 0 20px rgba(225, 29, 72, 0.3);
+    box-shadow: 0 0 var(--glow-blur, 20px) var(--glow-spread, 2px) color-mix(in srgb, #e11d48 calc(var(--glow-opacity, 0.3) * 100%), transparent);
     @apply border-rose-500/50;
   }
   .glow-green {
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 var(--glow-blur, 20px) var(--glow-spread, 2px) color-mix(in srgb, #10b981 calc(var(--glow-opacity, 0.3) * 100%), transparent);
     @apply border-emerald-500/50;
   }
 }

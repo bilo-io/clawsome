@@ -1,17 +1,14 @@
-// apps/dashboard/src/app/chat/page.tsx
 'use client';
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { MessageSquare, ChevronRight } from 'lucide-react';
+import { MessageSquare, ChevronRight, Plus, LayoutGrid, List, Search, Filter } from 'lucide-react';
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
-import { PageHeader } from '@/components/PageHeader';
+import { motion, AnimatePresence } from 'framer-motion';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 
 const CHAT_TRANSITION = { duration: 0.35, ease: [0.32, 0.72, 0, 1] as const };
-const LIST_EXIT_X = -80;
-const LIST_ENTER_X = -80;
 
 const MOCK_CHATS = [
   { id: '1', title: 'Workspace analysis & security audit', preview: 'NC-01 on-line. Scanning workspace...', updatedAt: '2m ago' },
@@ -21,9 +18,11 @@ const MOCK_CHATS = [
   { id: '5', title: 'Dashboard refactor scope', preview: 'Proposed scope: Sidebar, Usage charts...', updatedAt: '2 days ago' },
 ];
 
-export default function ChatListPage() {
+export default function ChatsPage() {
   const router = useRouter();
   const { theme } = useUIStore();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [exitingId, setExitingId] = useState<string | null>(null);
 
   const handleSelectChat = (id: string) => {
@@ -33,112 +32,112 @@ export default function ChatListPage() {
   const handleListExitComplete = () => {
     if (exitingId) {
       router.push(`/chat/${exitingId}`);
-      /* Do not clear exitingId: keep list in exit state until unmount to avoid flash */
     }
   };
 
+  const filteredChats = MOCK_CHATS.filter(chat => 
+    chat.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    chat.preview.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <main className="h-[calc(100vh-120px)] flex flex-col relative overflow-hidden">
-      <PageHeader
-        title="AGENT TERMINAL"
+    <main className="max-w-[1200px] mx-auto space-y-10 pb-20">
+      <DashboardResourceHeader
+        title="Chats"
+        description="Encrypted communication channels and thought-stream archives. Review past missions or initiate new neural dialogues with your agent collective."
         badge="MISSION_CONTROL"
         statusLabel="Active Protocol:"
         statusValue="NC-CORE-7"
         statusColor="indigo"
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        viewMode={viewMode}
+        onViewModeChange={setViewMode}
+        searchPlaceholder="SEARCH THREADS..."
+        renderRight={
+          <button
+            onClick={() => router.push('/chat/new')}
+            className="flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-[20px] font-bold shadow-xl shadow-indigo-600/20 transition-all active:translate-y-1"
+          >
+            <Plus size={20} />
+            <span className="text-[10px] font-bold uppercase tracking-widest">+ New Chat</span>
+          </button>
+        }
       />
 
-      <div className="flex-1 flex min-h-0 pt-6">
-        <motion.div
-          className="w-full max-w-md shrink-0 pr-6"
-          initial={{ opacity: 0, x: LIST_ENTER_X }}
-          animate={
-            exitingId
-              ? { opacity: 0, x: LIST_EXIT_X }
-              : { opacity: 1, x: 0 }
-          }
-          transition={CHAT_TRANSITION}
-          onAnimationComplete={() => {
-            if (exitingId) handleListExitComplete();
-          }}
-        >
-          <div className={cn(
-            "rounded-[32px] border overflow-hidden shadow-xl transition-colors",
-            theme === 'dark' ? "bg-slate-900/40 border-slate-800" : "bg-white border-slate-100 shadow-slate-200/40"
-          )}>
-            <div className={cn(
-              "px-6 py-4 border-b",
-              theme === 'dark' ? "border-slate-800" : "border-slate-100"
-            )}>
-              <h2 className={cn("text-[10px] font-black uppercase tracking-[0.25em]", theme === 'dark' ? "text-slate-500" : "text-slate-400")}>
-                Recent threads
-              </h2>
-            </div>
-            <ul className="divide-y divide-slate-200 dark:divide-slate-800">
-              {MOCK_CHATS.map((chat) => (
-                <li key={chat.id}>
-                  <button
-                    type="button"
-                    onClick={() => handleSelectChat(chat.id)}
-                    disabled={!!exitingId}
-                    className={cn(
-                      "w-full flex items-center gap-4 px-6 py-5 text-left transition-colors disabled:pointer-events-none",
-                      theme === 'dark' ? "hover:bg-slate-800/60" : "hover:bg-slate-50"
-                    )}
-                  >
-                    <div className={cn(
-                      "w-12 h-12 rounded-2xl flex items-center justify-center shrink-0",
-                      theme === 'dark' ? "bg-slate-800 text-indigo-400" : "bg-slate-100 text-indigo-600"
-                    )}>
-                      <MessageSquare size={22} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className={cn(
-                        "text-sm font-bold truncate",
-                        theme === 'dark' ? "text-slate-200" : "text-slate-900"
+      <div className="relative">
+        <AnimatePresence mode="popLayout" onExitComplete={handleListExitComplete}>
+          {exitingId ? null : (
+            <motion.div
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={CHAT_TRANSITION}
+              className={cn(
+                "grid gap-6",
+                viewMode === 'grid' ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1"
+              )}
+            >
+              {filteredChats.map((chat) => (
+                <motion.div
+                  layout
+                  key={chat.id}
+                  onClick={() => handleSelectChat(chat.id)}
+                  className={cn(
+                    "group relative rounded-[32px] border p-6 transition-all cursor-pointer overflow-hidden",
+                    theme === 'dark' 
+                      ? "bg-slate-900/40 border-slate-800 hover:border-indigo-500/50 hover:bg-slate-900/60" 
+                      : "bg-white border-slate-100 hover:border-indigo-200 hover:shadow-2xl shadow-slate-200/40 shadow-xl",
+                    viewMode === 'list' && "flex items-center gap-6"
+                  )}
+                >
+                  <div className={cn(
+                    "w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 mb-4 transition-transform group-hover:scale-110",
+                    theme === 'dark' ? "bg-slate-800 text-indigo-400" : "bg-slate-100 text-indigo-600",
+                    viewMode === 'list' && "mb-0"
+                  )}>
+                    <MessageSquare size={26} />
+                  </div>
+                  
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className={cn(
+                        "text-lg font-black tracking-tight truncate",
+                        theme === 'dark' ? "text-white" : "text-slate-900"
                       )}>
                         {chat.title}
-                      </p>
-                      <p className={cn(
-                        "text-[11px] truncate mt-0.5",
-                        theme === 'dark' ? "text-slate-500" : "text-slate-400"
-                      )}>
-                        {chat.preview}
-                      </p>
-                      <p className={cn(
-                        "text-[10px] font-bold uppercase tracking-widest mt-1",
-                        theme === 'dark' ? "text-slate-600" : "text-slate-400"
+                      </h3>
+                      <ChevronRight size={18} className={cn(
+                        "transition-transform group-hover:translate-x-1",
+                        theme === 'dark' ? "text-slate-600" : "text-slate-300"
+                      )} />
+                    </div>
+                    <p className={cn(
+                      "text-xs font-medium mt-1 line-clamp-2",
+                      theme === 'dark' ? "text-slate-500" : "text-slate-500"
+                    )}>
+                      {chat.preview}
+                    </p>
+                    <div className="flex items-center justify-between mt-6">
+                      <span className={cn(
+                        "px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest",
+                        theme === 'dark' ? "bg-slate-800 text-slate-500" : "bg-slate-50 text-slate-400"
                       )}>
                         {chat.updatedAt}
-                      </p>
+                      </span>
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <ChevronRight size={20} className={cn("shrink-0", theme === 'dark' ? "text-slate-500" : "text-slate-400")} />
-                  </button>
-                </li>
+                  </div>
+
+                  {/* Glass Reflection */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                </motion.div>
               ))}
-            </ul>
-          </div>
-        </motion.div>
-
-        {!exitingId && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.15, duration: 0.25 }}
-            className={cn(
-              "flex-1 flex items-center justify-center rounded-[32px] border border-dashed",
-              theme === 'dark' ? "border-slate-800/50 bg-slate-950/20" : "border-slate-200 bg-slate-50/50"
-            )}
-          >
-            <p className={cn(
-              "text-[10px] font-black uppercase tracking-[0.3em]",
-              theme === 'dark' ? "text-slate-600" : "text-slate-400"
-            )}>
-              Select a thread
-            </p>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-
     </main>
   );
 }

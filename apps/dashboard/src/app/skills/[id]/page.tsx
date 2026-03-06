@@ -3,11 +3,10 @@
 
 import React, { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
-import { 
-  ArrowLeft, 
-  Save, 
-  Copy, 
-  Check, 
+import {
+  Save,
+  Copy,
+  Check,
   FileText,
   Sparkles,
   RefreshCw,
@@ -30,6 +29,7 @@ import { useSkillStore, Skill } from '@/store/useSkillStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useUIStore } from '@/store/useUIStore';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 
 const iconMap: Record<string, any> = {
   Terminal,
@@ -49,7 +49,7 @@ export default function SkillDetailView({ params }: { params: Promise<{ id: stri
   const { id } = use(params);
   const { theme } = useUIStore();
   const { getSkillById, updateSkill } = useSkillStore();
-  
+
   const skill = getSkillById(id);
   const [content, setContent] = useState(skill?.content || '');
   const [isSaving, setIsSaving] = useState(false);
@@ -80,116 +80,94 @@ export default function SkillDetailView({ params }: { params: Promise<{ id: stri
   const Icon = iconMap[skill.icon] || Code2;
 
   return (
-    <div className="flex flex-col h-[calc(100vh-140px)] max-w-7xl mx-auto space-y-8">
-      {/* Header Panel */}
-      <div className={cn(
-        "flex items-center justify-between p-8 rounded-[40px] border shadow-2xl transition-all",
-        theme === 'dark' ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100 shadow-slate-200/50"
-      )}>
-        <div className="flex items-center gap-8">
-          <button 
-            onClick={() => router.push('/skills')}
-            className={cn(
-              "p-4 rounded-[20px] transition-all border",
-              theme === 'dark' 
-                ? "bg-slate-950 text-slate-500 border-slate-800 hover:text-white" 
-                : "bg-slate-50 text-slate-400 border-slate-100 shadow-sm hover:text-slate-900"
-            )}
-          >
-            <ArrowLeft size={24} />
-          </button>
-          <div className="flex items-center gap-6">
-            <div className="w-16 h-16 rounded-[24px] bg-indigo-600 flex items-center justify-center text-white shadow-xl shadow-indigo-600/20">
-              <Icon size={36} />
+    <div className="flex flex-col h-[calc(100vh-140px)] max-w-7xl mx-auto space-y-12">
+      <DashboardResourceHeader
+        title={skill.name}
+        description="Low-level capability synthesis and logic orchestration. Modify the neural sub-routines and operational parameters of this specific skill module."
+        badge="NC-SKILLS"
+        statusLabel="Capability Status:"
+        statusValue="Active"
+        statusColor="emerald"
+        isCollection={false}
+        backLink={{ label: 'Back to Skills', href: '/skills' }}
+        renderRight={
+          <div className="flex items-center gap-4">
+            <div className={cn(
+              "rounded-2xl p-1.5 flex mr-2 border shadow-sm",
+              theme === 'dark' ? "bg-slate-950 border-slate-800" : "bg-slate-50 border-slate-200"
+            )}>
+              <button
+                onClick={() => setViewMode('editor')}
+                className={cn(
+                  "p-3 rounded-xl transition-all",
+                  viewMode === 'editor'
+                    ? (theme === 'dark' ? "bg-slate-800 text-indigo-400 shadow-inner" : "bg-white text-indigo-600 shadow-sm border border-slate-100")
+                    : "text-slate-500 hover:text-indigo-500"
+                )}
+              >
+                <Code2 size={20} />
+              </button>
+              <button
+                onClick={() => setViewMode('split')}
+                className={cn(
+                  "p-3 rounded-xl transition-all",
+                  viewMode === 'split'
+                    ? (theme === 'dark' ? "bg-slate-800 text-indigo-400 shadow-inner" : "bg-white text-indigo-600 shadow-sm border border-slate-100")
+                    : "text-slate-500 hover:text-indigo-500"
+                )}
+              >
+                <div className="flex gap-1.5 justify-center">
+                  <div className="w-2.5 h-5 bg-current rounded-[3px] opacity-40" />
+                  <div className="w-2.5 h-5 bg-current rounded-[3px]" />
+                </div>
+              </button>
+              <button
+                onClick={() => setViewMode('preview')}
+                className={cn(
+                  "p-3 rounded-xl transition-all",
+                  viewMode === 'preview'
+                    ? (theme === 'dark' ? "bg-slate-800 text-indigo-400 shadow-inner" : "bg-white text-indigo-600 shadow-sm border border-slate-100")
+                    : "text-slate-500 hover:text-indigo-500"
+                )}
+              >
+                <Eye size={20} />
+              </button>
             </div>
-            <div className="space-y-1">
-              <div className="flex items-center gap-3">
-                <h1 className={cn("text-3xl font-extrabold tracking-tight", theme === 'dark' ? "text-white" : "text-slate-900")}>{skill.name}</h1>
-                <span className="px-3 py-1 rounded-full bg-indigo-500/10 text-[10px] font-bold text-indigo-500 uppercase tracking-widest border border-indigo-500/20">
-                  Neural Active
-                </span>
-              </div>
-              <p className={cn("text-sm font-medium", theme === 'dark' ? "text-slate-500" : "text-slate-400")}>{skill.description}</p>
-            </div>
-          </div>
-        </div>
 
-        <div className="flex items-center gap-4">
-          <div className={cn(
-            "rounded-2xl p-1.5 flex mr-2 border shadow-sm",
-            theme === 'dark' ? "bg-slate-950 border-slate-800" : "bg-slate-50 border-slate-200"
-          )}>
-            <button 
-              onClick={() => setViewMode('editor')}
+            <button
+              onClick={handleCopy}
               className={cn(
-                "p-3 rounded-xl transition-all", 
-                viewMode === 'editor' 
-                  ? (theme === 'dark' ? "bg-slate-800 text-indigo-400 shadow-inner" : "bg-white text-indigo-600 shadow-sm border border-slate-100") 
-                  : "text-slate-500 hover:text-indigo-500"
+                "p-4 rounded-[20px] transition-all border shadow-sm",
+                theme === 'dark'
+                  ? "bg-slate-800 text-slate-500 border-slate-700 hover:text-white"
+                  : "bg-white text-slate-400 border-slate-100 hover:text-indigo-600"
               )}
             >
-              <Code2 size={20} />
+              {copied ? <Check size={22} className="text-emerald-500" /> : <Copy size={22} />}
             </button>
-            <button 
-              onClick={() => setViewMode('split')}
+
+            <button
+              onClick={handleSave}
+              disabled={isSaving || skill.isMarketplace}
               className={cn(
-                "p-3 rounded-xl transition-all", 
-                viewMode === 'split' 
-                  ? (theme === 'dark' ? "bg-slate-800 text-indigo-400 shadow-inner" : "bg-white text-indigo-600 shadow-sm border border-slate-100") 
-                  : "text-slate-500 hover:text-indigo-500"
+                 "flex items-center gap-4 px-10 py-4 rounded-[24px] font-bold uppercase tracking-widest text-[11px] transition-all shadow-xl",
+                 skill.isMarketplace
+                  ? "bg-slate-200 text-slate-400 border border-slate-300 cursor-not-allowed dark:bg-slate-800 dark:text-slate-600 dark:border-slate-700"
+                  : "bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-600/30 active:translate-y-1"
               )}
             >
-              <div className="flex gap-1.5 justify-center">
-                <div className="w-2.5 h-5 bg-current rounded-[3px] opacity-40" />
-                <div className="w-2.5 h-5 bg-current rounded-[3px]" />
-              </div>
-            </button>
-            <button 
-              onClick={() => setViewMode('preview')}
-              className={cn(
-                "p-3 rounded-xl transition-all", 
-                viewMode === 'preview' 
-                  ? (theme === 'dark' ? "bg-slate-800 text-indigo-400 shadow-inner" : "bg-white text-indigo-600 shadow-sm border border-slate-100") 
-                  : "text-slate-500 hover:text-indigo-500"
-              )}
-            >
-              <Eye size={20} />
+              {isSaving ? <RefreshCw size={20} className="animate-spin" /> : <Save size={20} />}
+              <span>{isSaving ? 'Syncing...' : 'Commit Change'}</span>
             </button>
           </div>
-
-          <button 
-            onClick={handleCopy}
-            className={cn(
-              "p-4 rounded-[20px] transition-all border shadow-sm",
-              theme === 'dark' 
-                ? "bg-slate-800 text-slate-500 border-slate-700 hover:text-white" 
-                : "bg-white text-slate-400 border-slate-100 hover:text-indigo-600"
-            )}
-          >
-            {copied ? <Check size={22} className="text-emerald-500" /> : <Copy size={22} />}
-          </button>
-
-          <button 
-            onClick={handleSave}
-            disabled={isSaving || skill.isMarketplace}
-            className={cn(
-               "flex items-center gap-4 px-10 py-4 rounded-[24px] font-bold uppercase tracking-widest text-[11px] transition-all shadow-xl",
-               skill.isMarketplace 
-                ? "bg-slate-200 text-slate-400 border border-slate-300 cursor-not-allowed dark:bg-slate-800 dark:text-slate-600 dark:border-slate-700"
-                : "bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-600/30 active:translate-y-1"
-            )}
-          >
-            {isSaving ? <RefreshCw size={20} className="animate-spin" /> : <Save size={20} />}
-            <span>{isSaving ? 'Syncing...' : 'Commit Change'}</span>
-          </button>
-        </div>
-      </div>
+        }
+      />
 
       {/* Workspace Area */}
       <div className="flex-1 flex gap-8 min-h-0 overflow-hidden">
         <AnimatePresence mode="wait">
           {(viewMode === 'editor' || viewMode === 'split') && (
-            <motion.div 
+            <motion.div
               key="editor"
               layout
               initial={{ opacity: 0, x: -30 }}

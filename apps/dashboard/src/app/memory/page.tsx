@@ -119,7 +119,8 @@ export default function MemoriesPage() {
   return (
     <main className="space-y-12 pb-20 max-w-[1600px] mx-auto transition-colors duration-300">
       <DashboardResourceHeader
-        title="MEMORIES"
+        title="Memories"
+        description="Persistent neural context and cognitive archives. Store and retrieve multi-modal data points to provide agents with extensive background knowledge and situational awareness."
         badge="NC-NEURAL CONTEXT"
         statusLabel="Context Capacity:"
         statusValue={`${memories.length} Clusters ACTIVE`}

@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Search, List, Plus, Filter, LayoutGrid, ChevronLeft } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { Search, List, Plus, Filter, LayoutGrid, ChevronLeft, Home, ChevronRight } from 'lucide-react';
 import { PageHeader, PageHeaderStatusColor } from './PageHeader';
 import { cn } from '@/lib/utils';
 import { useUIStore } from '@/store/useUIStore';
@@ -21,8 +22,14 @@ export interface DashboardResourceHeaderProps {
     href: string;
   };
 
+  // Breadcrumb Override (e.g. for resource name in ID slot)
+  breadcrumbTitle?: string;
+
   // Visibility control for collection-specific toolbar
   isCollection?: boolean;
+
+  // Page description for tooltip
+  description?: string;
 
   // Level 2: Toolbar & Controls (Only if isCollection is true)
   searchQuery?: string;
@@ -45,10 +52,12 @@ export interface DashboardResourceHeaderProps {
 export function DashboardResourceHeader({
   title,
   badge,
+  description,
   statusLabel,
   statusValue,
   statusColor = 'indigo',
   backLink,
+  breadcrumbTitle,
   isCollection = true,
   searchQuery = '',
   onSearchChange,
@@ -61,26 +70,70 @@ export function DashboardResourceHeader({
   toolbarActions,
 }: DashboardResourceHeaderProps) {
   const { theme } = useUIStore();
+  const pathname = usePathname();
 
   const renderedRight = typeof renderRight === 'function' ? renderRight() : renderRight;
 
+  // Breadcrumb Logic
+  const segments = pathname.split('/').filter(Boolean);
+  const breadcrumbs = segments.map((segment, index) => {
+    const href = '/' + segments.slice(0, index + 1).join('/');
+    const isLast = index === segments.length - 1;
+    
+    // Smart label replacement
+    let label = segment.replace(/-/g, ' ');
+    
+    // If it's an ID-like segment or the last segment and we have a breadcrumbTitle/title
+    const idParentSegments = ['chat', 'projects', 'skills', 'agents', 'swarms', 'logs', 'integrations'];
+    const isId = /^[0-9a-fA-F-]+$/.test(segment) || idParentSegments.includes(segments[index-1]);
+    
+    if (isLast) {
+      label = title;
+    } else if (isId) {
+      label = breadcrumbTitle || label;
+    }
+
+    return { label, href, isLast };
+  });
+
   return (
-    <div className="space-y-10">
-      {/* Back Link if available */}
-      {backLink && (
-        <Link 
-          href={backLink.href} 
-          className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 hover:text-indigo-500 transition-colors w-fit mb-[-24px]"
-        >
-          <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-          {backLink.label}
-        </Link>
-      )}
+    <div className="space-y-6">
+      {/* Breadcrumbs & Back Link Row */}
+      <div className="flex items-center justify-between">
+        <nav className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em]">
+          <Link href="/" className="text-slate-500 hover:text-indigo-500 transition-colors flex items-center gap-1.5">
+            <Home size={13} className="mb-0.5" />
+          </Link>
+          {breadcrumbs.map((bc, i) => (
+            <React.Fragment key={bc.href}>
+              <ChevronRight size={10} className="text-slate-700 opacity-20" />
+              {bc.isLast ? (
+                <span className="text-indigo-500 truncate max-w-[200px]">{bc.label}</span>
+              ) : (
+                <Link href={bc.href} className="text-slate-500 hover:text-indigo-500 transition-colors truncate max-w-[150px]">
+                  {bc.label}
+                </Link>
+              )}
+            </React.Fragment>
+          ))}
+        </nav>
+
+        {backLink && (
+          <Link 
+            href={backLink.href} 
+            className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 hover:text-indigo-500 transition-colors w-fit"
+          >
+            <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+            {backLink.label}
+          </Link>
+        )}
+      </div>
 
       {/* Level 1: Page Identity & Primary Actions */}
       <PageHeader
         title={title}
         badge={badge}
+        description={description}
         statusLabel={statusLabel}
         statusValue={statusValue}
         statusColor={statusColor}
@@ -94,25 +147,27 @@ export function DashboardResourceHeader({
       {isCollection && (
         <div className="flex flex-col md:flex-row gap-6 items-center">
           {/* Search Bar - Fancy Styled */}
-          <div className="relative flex-1 group w-full">
-            <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-[40px] blur-2xl opacity-0 group-focus-within:opacity-20 transition duration-700 pointer-events-none" />
-            
-            <div className="relative p-[1px] rounded-[24px] bg-slate-200 dark:bg-slate-800 transition-all duration-500 group-focus-within:bg-gradient-to-r group-focus-within:from-indigo-500 group-focus-within:via-purple-500 group-focus-within:to-pink-500 group-focus-within:shadow-2xl">
+          <div className="relative flex-1 group w-full perspective-1000">
+            <div className={cn(
+              "relative p-[2px] rounded-[32px] transition-all duration-300 shadow-sm",
+              theme === 'dark' ? "bg-slate-800/40 shadow-none" : "bg-slate-200/50 shadow-slate-200/20",
+              "focus-within:bg-gradient-to-tr from-indigo-500 via-purple-500 to-blue-500 focus-within:scale-[1.01] focus-within:shadow-[0_48px_100px_rgba(99,102,241,0.25)]"
+            )}>
               <div className={cn(
-                "relative rounded-[23px] flex items-center transition-all duration-300",
-                theme === 'dark' ? "bg-slate-950 px-1" : "bg-white"
+                "relative rounded-[30px] flex items-center transition-all duration-700 px-6 py-1",
+                theme === 'dark' ? "bg-slate-950/95" : "bg-white/95"
               )}>
-                <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none text-slate-400 group-focus-within:text-indigo-500 transition-colors">
-                  <Search size={20} />
+                <div className="flex items-center justify-center p-3 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 group-focus-within:text-indigo-500 transition-colors">
+                  <Search size={22} />
                 </div>
                 <input
                   type="text"
                   placeholder={searchPlaceholder.toUpperCase()}
                   className={cn(
-                    "w-full py-5 pl-16 pr-6 rounded-[23px] border-none focus:ring-0 font-mono text-sm tracking-widest uppercase transition-all bg-transparent",
+                    "w-full py-5 px-6 rounded-[23px] border-none focus:ring-0 font-bold text-sm tracking-widest uppercase transition-all bg-transparent",
                     theme === 'dark' 
-                      ? "text-indigo-100 placeholder:text-slate-700" 
-                      : "text-indigo-900 placeholder:text-slate-300"
+                      ? "text-white placeholder:text-slate-700" 
+                      : "text-black placeholder:text-slate-300"
                   )}
                   value={searchQuery}
                   onChange={(e) => onSearchChange?.(e.target.value)}

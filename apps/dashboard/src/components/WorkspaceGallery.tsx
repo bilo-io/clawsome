@@ -25,8 +25,64 @@ const getColorClasses = (color: string, theme: 'light' | 'dark') => {
   }
 };
 
-export const WorkspaceGallery = () => {
+export const WorkspaceGallery = ({ viewMode = 'grid' }: { viewMode?: 'grid' | 'list' }) => {
   const { theme } = useUIStore();
+
+  if (viewMode === 'list') {
+    return (
+      <div className="space-y-4">
+        {workspaces.map((ws, i) => (
+          <motion.div
+            key={ws.id}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.05 }}
+            className={cn(
+              "group p-4 pr-8 rounded-[24px] border transition-all cursor-pointer flex items-center justify-between shadow-sm",
+              theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 hover:bg-slate-900" : "bg-white border-slate-100 hover:border-indigo-100 shadow-slate-200/20"
+            )}
+          >
+            <div className="flex items-center gap-6">
+              <div className={cn("p-3 rounded-xl border transition-transform group-hover:scale-110", getColorClasses(ws.color, theme))}>
+                <ws.icon size={18} />
+              </div>
+              <div>
+                <h4 className={cn("text-sm font-black tracking-tight", theme === 'dark' ? "text-slate-200" : "text-slate-950")}>{ws.name}</h4>
+                <div className="flex items-center gap-2">
+                  <p className={cn("text-[9px] font-mono font-bold uppercase tracking-tight", theme === 'dark' ? "text-slate-600" : "text-slate-400")}>{ws.path}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-8">
+              <span className={cn(
+                "text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full border shadow-sm",
+                ws.status === 'Active' 
+                  ? (theme === 'dark' ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" : "text-emerald-600 bg-emerald-50 border-emerald-200") 
+                  : (theme === 'dark' ? "text-slate-500 bg-slate-950 border-slate-800" : "text-slate-400 bg-slate-50 border-slate-200")
+              )}>
+                {ws.status}
+              </span>
+              <ChevronRight size={18} className={theme === 'dark' ? "text-slate-700" : "text-slate-200"} />
+            </div>
+          </motion.div>
+        ))}
+        
+        <motion.button
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: workspaces.length * 0.05 }}
+          className={cn(
+            "w-full p-4 rounded-[24px] border-2 border-dashed border-slate-200 dark:border-slate-800/50 hover:border-indigo-500/50 hover:bg-white dark:hover:bg-slate-950/50 transition-all flex items-center justify-center gap-4 group active:scale-95 shadow-inner",
+            theme === 'light' && "bg-slate-50/50"
+          )}
+        >
+          <Plus size={18} className={theme === 'dark' ? "text-slate-700 group-hover:text-indigo-400" : "text-slate-300 group-hover:text-indigo-600"} />
+          <span className={cn("text-[10px] font-black uppercase tracking-[0.2em]", theme === 'dark' ? "text-slate-600 group-hover:text-indigo-400" : "text-slate-500 group-hover:text-indigo-600")}>Initialize Workspace</span>
+        </motion.button>
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

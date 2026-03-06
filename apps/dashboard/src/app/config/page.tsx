@@ -1,4 +1,3 @@
-// apps/dashboard/src/app/config/page.tsx
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -20,6 +19,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 
 interface Config {
   name: string;
@@ -127,40 +127,34 @@ export default function ConfigPage() {
 
   return (
     <main className="space-y-12 pb-20 max-w-[1200px] mx-auto transition-colors duration-300">
-      <header className={cn(
-        "flex flex-col md:flex-row md:items-end justify-between gap-8 pb-10 border-b transition-colors",
-        theme === "dark" ? "border-slate-800/50" : "border-slate-200"
-      )}>
-        <div>
-          <h1 className="text-5xl font-black tracking-tighter flex items-center gap-4 text-black dark:text-white">
-             CONFIG <span className="font-thin opacity-30 text-slate-500">//</span> <span className="text-indigo-600 uppercase">SYS-01</span>
-          </h1>
-          <p className={cn(
-            "text-[10px] font-bold uppercase tracking-[0.25em] mt-4 flex items-center gap-2",
-            theme === "dark" ? "text-slate-500" : "text-slate-600"
-          )}>
-            Global Neural Blueprint: <span className="text-indigo-500 font-black">clawsome.json</span>
-          </p>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={() => handleSave()}
-            className={cn(
-              "px-6 py-3 rounded-2xl border font-bold uppercase tracking-widest text-[11px] flex items-center gap-2 transition-all active:scale-95",
-              theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400 hover:text-white" : "bg-white border-slate-200 text-slate-500 hover:text-indigo-600 shadow-sm"
-            )}
-          >
-            <Save size={16} /> Save Changes
-          </button>
-          <button 
-            onClick={handlePublish}
-            className="px-6 py-3 bg-indigo-600 text-white rounded-2xl font-bold uppercase tracking-widest text-[11px] flex items-center gap-2 shadow-xl shadow-indigo-600/20 active:scale-95 transition-all"
-          >
-            <Send size={16} /> Publish to Dist
-          </button>
-        </div>
-      </header>
+      <DashboardResourceHeader
+        title="Config"
+        description="Low-level system blueprint and neural architecture definitions. Modify the core JSON configuration to define gateways, swarm roles, and intelligence provider parameters."
+        badge="SYS-01"
+        statusLabel="Global Neural Blueprint:"
+        statusValue="clawsome.json"
+        statusColor="indigo"
+        isCollection={false}
+        renderRight={
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => handleSave()}
+              className={cn(
+                "px-6 py-3 rounded-2xl border font-bold uppercase tracking-widest text-[11px] flex items-center gap-2 transition-all active:scale-95",
+                theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400 hover:text-white" : "bg-white border-slate-200 text-slate-500 hover:text-indigo-600 shadow-sm"
+              )}
+            >
+              <Save size={16} /> Save Changes
+            </button>
+            <button 
+              onClick={handlePublish}
+              className="px-6 py-3 bg-indigo-600 text-white rounded-2xl font-bold uppercase tracking-widest text-[11px] flex items-center gap-2 shadow-xl shadow-indigo-600/20 active:scale-95 transition-all"
+            >
+              <Send size={16} /> Publish to Dist
+            </button>
+          </div>
+        }
+      />
 
       {/* Control Bar */}
       <div className="flex items-center justify-between">

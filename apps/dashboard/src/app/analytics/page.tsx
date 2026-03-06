@@ -1,4 +1,3 @@
-// apps/dashboard/src/app/analytics/page.tsx
 'use client';
 
 import React from 'react';
@@ -7,10 +6,10 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   AreaChart, Area
 } from 'recharts';
-import { PageHeader } from '@/components/PageHeader';
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 
 const resourceData = [
   { name: '00:00', cpu: 45, mem: 60, cost: 2.1 },
@@ -26,23 +25,26 @@ export default function AnalyticsPage() {
   
   return (
     <main className="space-y-10 pb-20 max-w-[1600px] mx-auto">
-      <PageHeader
-        title="ANALYTICS"
+      <DashboardResourceHeader
+        title="Analytics"
+        description="High-precision telemetry and resource utilization metrics. Monitor the efficiency, cost distribution, and operational load of your global neural network."
         badge="NC-TELEMETRY"
         statusLabel="Data Sampling:"
         statusValue="High Precision"
         statusColor="indigo"
-      >
-        <div className="flex items-center gap-4">
-           <div className={cn(
-             "px-6 py-3 rounded-2xl border flex flex-col items-end shadow-xl",
-             theme === 'dark' ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100 shadow-slate-200/40"
-           )}>
-              <span className={cn("text-[10px] font-black uppercase tracking-widest", theme === 'dark' ? "text-slate-500" : "text-slate-400")}>Efficiency Rating</span>
-              <span className="text-2xl font-black text-emerald-500 tracking-tighter">92.4%</span>
-           </div>
-        </div>
-      </PageHeader>
+        isCollection={false}
+        renderRight={
+          <div className="flex items-center gap-4">
+            <div className={cn(
+              "px-6 py-3 rounded-2xl border flex flex-col items-end shadow-xl",
+              theme === 'dark' ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100 shadow-slate-200/40"
+            )}>
+                <span className={cn("text-[10px] font-black uppercase tracking-widest", theme === 'dark' ? "text-slate-500" : "text-slate-400")}>Efficiency Rating</span>
+                <span className="text-2xl font-black text-emerald-500 tracking-tighter">92.4%</span>
+            </div>
+          </div>
+        }
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
          <motion.section 

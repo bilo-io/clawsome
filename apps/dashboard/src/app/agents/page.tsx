@@ -24,10 +24,11 @@ export default function AgentsPage() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto space-y-10 pb-20">
+    <div className="max-w-[1600px] mx-auto space-y-10 pb-20">
       <DashboardResourceHeader
-        title="Agent Registry"
-        badge="NC-AGENTS"
+        title="Agents"
+        description="Management and maintenance of autonomous neural entities. Orchestrate your workforce of specialized agents for complex mission fulfillment."
+        badge="NC-PROJECTS"
         statusLabel="Agent Workforce:"
         statusValue={`${agents.length} ACTIVE SOULS`}
         statusColor="indigo"

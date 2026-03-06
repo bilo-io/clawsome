@@ -1,38 +1,40 @@
-// apps/dashboard/src/app/history/page.tsx
 'use client';
 
 import React from 'react';
 import { SmartHistorySearch } from '@/components/SmartHistorySearch';
-import { PageHeader } from '@/components/PageHeader';
 import { History, ListTodo, Download, Share2, Target } from 'lucide-react';
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 
 export default function HistoryPage() {
   const { theme } = useUIStore();
 
   return (
     <main className="space-y-10 pb-20 max-w-[1400px] mx-auto">
-      <PageHeader
-        title="MISSION HISTORY"
+      <DashboardResourceHeader
+        title="History"
+        description="Comprehensive audit trail and semantic search for historical operations. Trace the lifecycle of agent decisions, tool executions, and system-wide state transitions over time."
         badge="NC-AUDIT"
         statusLabel="Archival Status:"
         statusValue="Indexed"
         statusColor="emerald"
-      >
-        <div className="flex items-center gap-4">
-           <button className={cn(
-             "px-6 py-3 rounded-2xl border text-[10px] font-bold uppercase tracking-widest transition-all flex items-center gap-2 shadow-sm active:scale-95",
-             theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400 hover:text-white" : "bg-white border-slate-200 text-slate-600 hover:text-slate-950 hover:border-slate-300"
-           )}>
-              <Download size={16} /> EXPORT LOGS
-           </button>
-           <button className="px-6 py-3 bg-indigo-600 rounded-2xl text-[10px] font-bold text-white uppercase tracking-widest transition-all hover:bg-indigo-500 shadow-lg shadow-indigo-600/20 active:scale-95 flex items-center gap-2">
-              <Share2 size={16} /> SHARE TRACE
-           </button>
-        </div>
-      </PageHeader>
+        isCollection={false}
+        renderRight={
+          <div className="flex items-center gap-4">
+            <button className={cn(
+              "px-6 py-3 rounded-2xl border text-[10px] font-bold uppercase tracking-widest transition-all flex items-center gap-2 shadow-sm active:scale-95",
+              theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400 hover:text-white" : "bg-white border-slate-200 text-slate-600 hover:text-slate-950 hover:border-slate-300"
+            )}>
+                <Download size={16} /> EXPORT LOGS
+            </button>
+            <button className="px-6 py-3 bg-indigo-600 rounded-2xl text-[10px] font-bold text-white uppercase tracking-widest transition-all hover:bg-indigo-500 shadow-lg shadow-indigo-600/20 active:scale-95 flex items-center gap-2">
+                <Share2 size={16} /> SHARE TRACE
+            </button>
+          </div>
+        }
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
          <div className="lg:col-span-3 space-y-10">

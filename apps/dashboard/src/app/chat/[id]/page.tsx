@@ -1,4 +1,3 @@
-// apps/dashboard/src/app/chat/[id]/page.tsx
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -13,16 +12,15 @@ import {
   Cpu,
   Globe,
   Brain,
-  ChevronLeft,
 } from 'lucide-react';
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { CodeBlock } from '@/components/CodeBlock';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 
 const CHAT_TRANSITION = { duration: 0.35, ease: [0.32, 0.72, 0, 1] as const };
-const DETAIL_ENTER_X = 80;
 
 interface Message {
   id: string;
@@ -86,19 +84,38 @@ function TypewriterText({ text, delay = 15, onComplete }: { text: string; delay?
   );
 }
 
+const dotVariants: Variants = {
+  dot: (i: number) => ({
+    y: [0, -12, 0],
+    scaleY: [1, 3, 1],
+    transition: {
+      duration: 0.8,
+      repeat: Infinity,
+      delay: i * 0.1,
+      ease: "easeInOut" as const,
+    },
+  }),
+};
+
 function ThinkingAnimation() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex items-center gap-3 py-4 px-6 rounded-3xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-fit"
+      className="flex items-center gap-4 py-4 px-8 rounded-[32px] bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-fit shadow-lg"
     >
-      <div className="flex gap-1.5">
-        <div className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce" style={{ animationDelay: '0ms' }} />
-        <div className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce" style={{ animationDelay: '200ms' }} />
-        <div className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce" style={{ animationDelay: '400ms' }} />
+      <div className="flex gap-2 items-center h-8">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <motion.div
+            key={i}
+            custom={i}
+            variants={dotVariants}
+            animate="dot"
+            className="w-1.5 h-3 rounded-full bg-indigo-500 origin-center"
+          />
+        ))}
       </div>
-      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Processing Neural Traces...</span>
+      <span className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400 ml-2">Neural Synthesis in Progress...</span>
     </motion.div>
   );
 }
@@ -110,7 +127,6 @@ export default function ChatDetailPage() {
   const [messages, setMessages] = useState<Message[]>(INITIAL_CONVERSATION);
   const [inputValue, setInputValue] = useState('');
   const [isThinking, setIsThinking] = useState(false);
-  const [isExiting, setIsExiting] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -139,57 +155,18 @@ export default function ChatDetailPage() {
     }, 1500);
   };
 
-  const handleBack = () => {
-    setIsExiting(true);
-  };
-
-  const handleDetailExitComplete = () => {
-    if (isExiting) router.back();
-  };
-
   return (
-    <motion.main
-      className="h-[calc(100vh-120px)] flex flex-col relative"
-      initial={{ opacity: 0, x: DETAIL_ENTER_X }}
-      animate={
-        isExiting
-          ? { opacity: 0, x: DETAIL_ENTER_X }
-          : { opacity: 1, x: 0 }
-      }
-      transition={CHAT_TRANSITION}
-      onAnimationComplete={() => {
-        if (isExiting) handleDetailExitComplete();
-      }}
-    >
-      {/* Header with back button */}
-      <header className={cn(
-        "flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b shrink-0 px-4",
-        theme === 'dark' ? "border-slate-800/50" : "border-slate-200"
-      )}>
-        <div className="flex items-center gap-4">
-          <button
-            type="button"
-            onClick={handleBack}
-            aria-label="Back to chats"
-            className={cn(
-              "p-3 rounded-2xl border flex items-center justify-center transition-all hover:scale-105 active:scale-95 shrink-0",
-              theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400 hover:text-white" : "bg-white border-slate-100 text-slate-500 hover:text-slate-900 shadow-sm"
-            )}
-          >
-            <ChevronLeft size={28} strokeWidth={2.5} />
-          </button>
-          <div>
-            <h1 className="text-3xl font-black tracking-tighter flex items-center gap-4 text-black dark:text-white">
-              AGENT TERMINAL <span className="font-thin opacity-30 text-slate-500">//</span> <span className="text-indigo-600">MISSION_CONTROL</span>
-            </h1>
-            <div className="flex items-center gap-4 mt-2">
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] flex items-center gap-2 text-slate-600 dark:text-slate-500">
-                Active Protocol: <span className="text-indigo-500 flex items-center gap-2 font-black"><span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" /> NC-CORE-7</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="flex items-center gap-3 mb-1">
+    <main className="max-w-[1200px] mx-auto h-[calc(100vh-120px)] flex flex-col relative px-4">
+      <DashboardResourceHeader
+        title="Agent Terminal"
+        description="Direct neural link to your autonomous operative. Execute complex logic via natural language and monitor real-time synthesis of task outcomes."
+        badge="MISSION_CONTROL"
+        statusLabel="Active Protocol:"
+        statusValue="NC-CORE-7"
+        statusColor="indigo"
+        isCollection={false}
+        backLink={{ label: "BACK TO CHATS", href: "/chat" }}
+        renderRight={
           <button className={cn(
             "p-3 rounded-2xl border flex items-center gap-2 transition-all hover:scale-105 active:scale-95",
             theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-500 hover:text-white" : "bg-white border-slate-100 text-slate-400 hover:text-black shadow-sm"
@@ -197,13 +174,13 @@ export default function ChatDetailPage() {
             <Trash2 size={18} />
             <span className="text-[10px] font-black uppercase tracking-widest hidden sm:inline">Flush Logs</span>
           </button>
-        </div>
-      </header>
+        }
+      />
 
       {/* Message Area */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto pt-10 pb-40 space-y-10 px-4 no-scrollbar scroll-smooth"
+        className="flex-1 overflow-y-auto pt-10 pb-40 space-y-10 no-scrollbar scroll-smooth"
       >
         <div className="max-w-4xl mx-auto space-y-10">
           <AnimatePresence initial={false}>
@@ -216,7 +193,7 @@ export default function ChatDetailPage() {
               >
                 {msg.role === 'assistant' && (
                   <div className={cn(
-                    "w-12 h-12 rounded-3xl flex items-center justify-center shrink-0 border-2 shadow-xl",
+                    "w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 shadow-xl",
                     theme === 'dark' ? "bg-slate-900 border-indigo-500/30 text-indigo-400" : "bg-white border-indigo-100 text-indigo-600"
                   )}>
                     <Bot size={24} />
@@ -265,7 +242,7 @@ export default function ChatDetailPage() {
                 </div>
                 {msg.role === 'user' && (
                   <div className={cn(
-                    "w-12 h-12 rounded-3xl flex items-center justify-center shrink-0 border-2 shadow-xl",
+                    "w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 shadow-xl",
                     theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400" : "bg-white border-slate-100 text-slate-400 shadow-slate-200/40"
                   )}>
                     <User size={24} />
@@ -277,7 +254,7 @@ export default function ChatDetailPage() {
           {isThinking && (
             <div className="flex gap-6 items-start">
               <div className={cn(
-                "w-12 h-12 rounded-3xl flex items-center justify-center shrink-0 border-2 shadow-xl",
+                "w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 shadow-xl",
                 theme === 'dark' ? "bg-slate-900 border-indigo-500/30 text-indigo-400" : "bg-white border-indigo-100 text-indigo-600"
               )}>
                 <Bot size={24} />
@@ -350,6 +327,6 @@ export default function ChatDetailPage() {
           </div>
         </div>
       </div>
-    </motion.main>
+    </main>
   );
 }

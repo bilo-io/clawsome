@@ -54,16 +54,17 @@ export const PermissionToggle = () => {
              <button 
                onClick={() => p.setter(!p.state)}
                className={cn(
-                 "w-12 h-6 rounded-full relative transition-all shadow-inner border border-transparent",
+                 "w-12 h-6 rounded-full relative transition-all shadow-inner border border-transparent flex items-center px-1",
                  p.state 
-                  ? (p.color === 'indigo' ? 'bg-indigo-600 shadow-indigo-500/20' : 'bg-emerald-600 shadow-emerald-500/20') 
-                  : (theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-slate-200 border-slate-300')
+                  ? (p.color === 'indigo' ? 'bg-indigo-600 shadow-indigo-500/20 justify-end' : 'bg-emerald-600 shadow-emerald-500/20 justify-end') 
+                  : (theme === 'dark' ? 'bg-slate-800 border-slate-700 justify-start' : 'bg-slate-200 border-slate-300 justify-start')
                )}
              >
-                <div className={cn(
-                  "absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all shadow-md",
-                  p.state ? 'left-7' : 'left-1'
-                )} />
+                <motion.div 
+                  layout
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  className="w-4 h-4 rounded-full bg-white shadow-md" 
+                />
              </button>
           </div>
         ))}
