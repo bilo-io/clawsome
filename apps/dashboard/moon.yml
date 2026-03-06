@@ -12,7 +12,7 @@ dependsOn:
 
 tasks:
   dev:
-    command: 'next dev'
+    command: 'next dev -p 3000'
   build:
     command: 'next build'
     inputs:
