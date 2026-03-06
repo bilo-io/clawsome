@@ -24,7 +24,7 @@ export const QuickActions = () => {
             "group p-8 rounded-2xl border transition-all hover:scale-105 active:scale-95 space-y-5 text-left shadow-xl overflow-hidden relative",
             theme === 'dark' 
               ? "bg-slate-900/40 border-slate-800/60 shadow-none hover:bg-slate-900 hover:border-indigo-500/30" 
-              : "bg-white border-slate-100 shadow-slate-200/40 hover:border-indigo-200 hover:shadow-2xl"
+              : "bg-slate-50/20 backdrop-blur-md border-slate-100/50 shadow-slate-200/20 hover:border-indigo-200 hover:bg-white/60 hover:shadow-2xl"
           )}
         >
           <div className={cn(

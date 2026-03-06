@@ -38,8 +38,8 @@ export default function InstallationPage() {
         
         <LanguagePreview 
           blocks={[
-             { label: 'Scaffold Project', language: 'bash', code: 'clawsome-turbo init my-agent-swarm\ncd my-agent-swarm\n\n# Start development servers\npnpm dev' },
-             { label: 'Configure Secrets', language: 'bash', code: '# Generate a secure environment and bind to vault\nclawsome-turbo link-vault --staging' }
+             { label: 'Scaffold Project', language: 'bash', code: 'clawsome init my-agent-swarm\ncd my-agent-swarm\n\n# Start development servers\npnpm dev' },
+             { label: 'Configure Secrets', language: 'bash', code: '# Generate a secure environment and bind to vault\nclawsome link-vault --staging' }
           ]} 
         />
       </section>

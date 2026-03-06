@@ -7,6 +7,7 @@ import * as p from '@clack/prompts';
 import pc from 'picocolors';
 import { startServer } from './server';
 import { DEFAULT_PORT } from '@antigravity/core';
+import { CLAWSOME_ASCII, clawsomeGradient, clearConsole } from '../../cli/src/utils/branding';
 
 const program = new Command();
 
@@ -138,19 +139,13 @@ const formatMessage = (msg: string) => {
 };
 
 const displayBranding = () => {
-  const ascii = figlet.textSync('nyteclaw', {
-    font: 'Slant',
-    horizontalLayout: 'default',
-    verticalLayout: 'default',
-  });
-
-  const nyteGradient = gradient(['#6366f1', '#a855f7', '#06b6d4']); // Indigo to Purple to Cyan
-  console.log('\n' + nyteGradient.multiline(ascii) + '\n');
+  clearConsole();
+  console.log(clawsomeGradient.multiline(CLAWSOME_ASCII));
 };
 
 program
-  .name('nyte')
-  .description('Nyteclaw Gateway CLI')
+  .name('clawsome')
+  .description('Clawsome Gateway CLI')
   .version('0.1.0');
 
 program
@@ -159,7 +154,7 @@ program
   .action(async () => {
     displayBranding();
 
-    p.intro(gradient(['#6366f1', '#a855f7'])(' Welcome to Nyteclaw Gateway Setup '));
+    p.intro(clawsomeGradient(' Welcome to Clawsome Gateway Setup '));
 
     const project = await p.group(
       {

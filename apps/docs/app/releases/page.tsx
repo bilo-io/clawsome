@@ -1,9 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useUI, cn } from "@clawsome/ui";
 
 export default function ReleasesPage() {
+  const { theme } = useUI();
   const releases = [
-    { version: "v0.1.0", date: "March 2026", features: ["Initial Monorepo Architecture", "@clawsome/ui shared package", "Nightclaw OS Dashboard MVP", "Developer Documentation App"] },
+    { version: "v0.1.0", date: "March 2026", features: ["Initial Monorepo Architecture", "Clawsome CLI Command Hub", "@clawsome/ui shared package", "Nightclaw OS Dashboard MVP", "Developer Documentation App"] },
     { version: "v0.0.1", date: "February 2026", features: ["Proof of concept AI swarm implementation", "Basic command line structure"] },
   ];
 
@@ -25,8 +27,16 @@ export default function ReleasesPage() {
                   {release.date}
                 </div>
                 
-                <div className="flex-1 p-8 rounded-[40px] border dark:border-slate-800 border-slate-200 bg-white dark:bg-slate-900 shadow-sm relative group hover:border-indigo-500/30 transition-colors">
-                  <div className="absolute -left-3 top-6 w-6 h-6 rounded-full bg-slate-950 border-4 border-slate-800 dark:border-slate-900 group-hover:border-indigo-500 transition-colors hidden md:block" />
+                <div className={cn(
+                  "flex-1 p-8 rounded-[40px] border transition-colors relative group",
+                  theme === 'dark' 
+                    ? "border-slate-800 bg-slate-900 hover:border-indigo-500/30 shadow-none" 
+                    : "border-slate-100 bg-slate-50/30 backdrop-blur-sm hover:border-indigo-200 shadow-xl shadow-slate-200/40"
+                )}>
+                  <div className={cn(
+                    "absolute -left-3 top-6 w-6 h-6 rounded-full border-4 transition-colors hidden md:block",
+                    theme === 'dark' ? "bg-slate-950 border-slate-800" : "bg-white border-slate-200 group-hover:border-indigo-500"
+                  )} />
                   <h3 className="text-2xl font-black tracking-tighter mb-6 flex items-center gap-3">
                     <span className="text-indigo-500">{release.version}</span>
                   </h3>

@@ -35,7 +35,7 @@ async function startGateway() {
   }
 
   console.log(pc.cyan('\n🚀 Launching Clawsome Gateway...'));
-  
+
   gatewayProcess = spawn(['bun', 'run', 'src/index.ts', 'start'], {
     cwd: join(import.meta.dir, '..'),
     stdout: 'inherit',
@@ -47,14 +47,24 @@ async function startGateway() {
 
 async function stopGateway() {
   if (!gatewayProcess) {
-    console.log(pc.yellow('\nℹ️  No active gateway process found.'));
+    console.log(pc.yellow('\n🔍    No active gateway process found.'));
     return;
   }
 
   console.log(pc.red('\n🛑 Stopping Gateway...'));
-  gatewayProcess.kill();
-  await gatewayProcess.exited;
-  gatewayProcess = null;
+
+  if (gatewayProcess) {
+    gatewayProcess.kill();
+    await gatewayProcess.exited;
+    gatewayProcess = null;
+  } else {
+    // If we don't have a tracked process, use the kill script
+    try {
+      const result = spawn(['bun', 'run', 'kill:gateway'], { cwd: ROOT_DIR, stdout: 'pipe' });
+      await result.exited;
+    } catch { }
+  }
+
   console.log(pc.green('✅ Gateway stopped.'));
 }
 
@@ -72,15 +82,15 @@ async function runDoctor() {
   // Check Port
   let portFree = false;
   try {
-    const server = Bun.listen({ 
-      port: PORT, 
+    const server = Bun.listen({
+      port: PORT,
       hostname: '0.0.0.0',
       socket: {
-        data() {},
-        open() {},
-        close() {},
-        drain() {},
-        error() {},
+        data() { },
+        open() { },
+        close() { },
+        drain() { },
+        error() { },
       }
     });
     server.stop();
@@ -99,7 +109,7 @@ async function runDoctor() {
 }
 
 async function runSetup() {
-  console.log(pc.cyan('\n🛠️  Entering Setup Wizard...'));
+  console.log(pc.cyan('\n⚙️    Entering Setup Wizard...'));
   const setup = spawn(['bun', 'run', 'src/index.ts', 'setup'], {
     cwd: join(import.meta.dir, '..'),
     stdin: 'inherit',
@@ -124,12 +134,12 @@ async function mainMenu() {
         message: 'Select an action:',
         pageSize: 10,
         choices: [
-          { name: '🚀 Start Gateway', value: 'start' },
-          { name: '🛠️ Setup', value: 'setup' },
-          { name: '🩺 Doctor', value: 'doctor' },
-          { name: 'ℹ️ Version', value: 'version' },
-          { name: '🛑 Stop Gateway', value: 'stop' },
-          { name: '🚪 Exit', value: 'exit' },
+          { name: '🚀   Start Gateway', value: 'start' },
+          { name: '🛑   Stop Gateway', value: 'stop' },
+          { name: '⚙️   Setup', value: 'setup' },
+          { name: '🩺   Doctor', value: 'doctor' },
+          { name: '🔍   Version', value: 'version' },
+          { name: '❌   Exit', value: 'exit' },
         ],
       },
     ]);
@@ -146,9 +156,11 @@ async function mainMenu() {
         await pressEnter();
         break;
       case 'version':
-        console.log(pc.cyan(`\nClawsome Gateway ${pc.bold(getVersion())}`));
-        console.log(pc.dim(`Binary: ${import.meta.filename}`));
-        console.log(pc.dim(`Runtime: Bun ${process.versions.bun} (${process.platform})\n`));
+        await showBranding();
+        console.log(pc.cyan(`  Detailed Version Info:`));
+        console.log(pc.white(`  Clawsome Hub:   ${pc.bold(getVersion())}`));
+        console.log(pc.dim(`  Binary:         ${import.meta.filename}`));
+        console.log(pc.dim(`  Runtime:        Bun ${process.versions.bun} (${process.platform})\n`));
         await pressEnter();
         break;
       case 'stop':
@@ -159,8 +171,9 @@ async function mainMenu() {
         // Also kill dashboard if we can find it
         console.log(pc.dim('Ensuring all processes are terminated...'));
         try {
-          spawn(['bun', 'run', 'kill:all'], { cwd: ROOT_DIR, stdout: 'pipe' });
-        } catch {}
+          const killer = spawn(['bun', 'run', 'kill:all'], { cwd: ROOT_DIR, stdout: 'pipe' });
+          await killer.exited;
+        } catch { }
         console.log(pc.cyan('👋 Goodbye!'));
         process.exit(0);
     }

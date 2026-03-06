@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Command, Terminal, Sparkles, ChevronRight, Play } from 'lucide-react';
+import { Command, Terminal, Sparkles, ChevronRight, Play, Copy } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { PrimaryButton } from '@/components/PrimaryButton';
@@ -102,16 +102,45 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="mt-20 w-full max-w-5xl rounded-2xl border border-slate-200 dark:border-slate-800 p-3 bg-slate-100/50 dark:bg-slate-900/50 glass-panel card-glow shadow-2xl"
+        className="mt-20 w-full max-w-4xl mx-auto rounded-3xl border border-slate-200 dark:border-slate-800 p-1.5 bg-white/20 dark:bg-slate-900/50 glass-panel card-glow shadow-2xl"
       >
-        <div className="w-full h-80 md:h-[500px] bg-slate-50 dark:bg-black rounded-3xl border border-slate-200 dark:border-slate-900 flex items-center justify-center overflow-hidden relative">
-          {/* Dashboard Screenshot Mockup */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 to-purple-500/5" />
-          <div className="flex flex-col items-center gap-4 z-10">
-            <Command size={48} className="text-slate-300 dark:text-slate-800" />
-            <span className="text-xs font-black uppercase tracking-[0.5em] text-slate-300 dark:text-slate-800">
-              [ OS PREVIEW INTERFACE ]
-            </span>
+        <div className="w-full aspect-[840/708] bg-slate-50 dark:bg-black rounded-2xl border border-slate-200 dark:border-slate-900 overflow-hidden relative flex flex-col group/window">
+          {/* macOS Title Bar */}
+          <div className="h-10 px-4 flex items-center justify-between bg-slate-100 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 shrink-0 select-none">
+            <div className="flex gap-2 w-20">
+              <div className="w-3.5 h-3.5 rounded-full bg-[#FF5F56] shadow-inner shadow-black/10" />
+              <div className="w-3.5 h-3.5 rounded-full bg-[#FFBD2E] shadow-inner shadow-black/10" />
+              <div className="w-3.5 h-3.5 rounded-full bg-[#27C93F] shadow-inner shadow-black/10" />
+            </div>
+            
+            <div className="flex-1 flex justify-center">
+               <div className="px-5 py-1.5 rounded-lg bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/5 flex items-center gap-3 scale-90 md:scale-100">
+                  <Terminal size={12} className="text-indigo-500" />
+                  <span className="text-[11px] font-mono font-bold tracking-tight text-slate-500 dark:text-slate-400">
+                    npm install -g @clawsome/cli
+                  </span>
+               </div>
+            </div>
+
+            <div className="w-20 flex justify-end">
+               <button className="p-2 hover:bg-slate-200 dark:hover:bg-white/10 rounded-lg transition-colors group/copy">
+                 <Copy size={14} className="text-slate-400 group-hover/copy:text-indigo-500 transition-colors" />
+               </button>
+            </div>
+          </div>
+
+          <div className="flex-1 relative overflow-hidden bg-black flex items-center justify-center">
+             <video 
+               src="/videos/vid-clawsome-cli.mov" 
+               autoPlay 
+               loop 
+               muted 
+               playsInline 
+               className="w-full aspect-[840/708] object-cover"
+             />
+             
+             {/* Subtle overlay gradient */}
+             <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 to-transparent" />
           </div>
         </div>
       </motion.div>

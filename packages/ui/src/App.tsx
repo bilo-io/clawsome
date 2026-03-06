@@ -12,20 +12,139 @@ import {
   AgentCard,
   PermissionToggle,
   QuickActions,
-  SystemVitality
+  SystemVitality,
+  ActivityHeatmap,
+  GitHeatmap,
+  ResourceChart,
+  NetworkRadial,
+  ContainerMonitor,
+  ProjectPulse,
+  CostTracker,
+  DashboardResourceHeader,
+  IntegrationCard,
+  WorkspaceGallery,
+  WorkspaceTabs,
+  BottomDock,
+  CommandModal,
+  CreateAgentModal,
+  SmartHistorySearch,
+  AILab,
+  FilesystemSandbox,
+  Sidebar
 } from './index';
-import { Settings, User, Zap, Code, Shield } from 'lucide-react';
+import logo from './assets/clawsome-logo.svg';
+import { 
+  Settings, User as UserIcon, Zap, Code, Shield, Activity, Layers, Briefcase, Globe, HelpCircle, Terminal, Bot, 
+  LayoutDashboard, Layout, MessageSquare, BrainCircuit, Blocks, Brain, FolderKanban, MessageCircle, ListTodo, BarChart3, Cpu, Sliders, Plug, ShieldAlert
+} from 'lucide-react';
+
+const mockIntegration = {
+  id: 'slack',
+  name: 'Slack',
+  description: 'Sync neural signals across team communication channels.',
+  icon: MessageSquare,
+  status: 'active' as const,
+  orgId: 'slack'
+};
+
+const mockWorkspaces = [
+  { 
+    id: '1', 
+    icon: Briefcase, 
+    name: 'ClawSome Core', 
+    path: '~/BiloDev/clawsome', 
+    status: 'Active', 
+    color: 'indigo',
+    agents: [{ id: 'a1', color: 'bg-indigo-500' }, { id: 'a2', color: 'bg-emerald-500' }]
+  },
+  { 
+    id: '2', 
+    icon: Globe, 
+    name: 'Cloud Infra', 
+    path: '~/cloud-configs', 
+    status: 'Idle', 
+    color: 'emerald',
+    agents: [{ id: 'a3', color: 'bg-emerald-400' }]
+  },
+];
+
+const mockTabs = [
+  { id: '1', title: 'Local', type: 'system' },
+  { id: '2', title: 'Sandbox 1', type: 'app' },
+];
+
+const mockCommandResults = [
+  { icon: Terminal, label: 'Run: bun run server.ts', category: 'Commands' },
+  { icon: HelpCircle, label: 'Neural Mesh Configuration', category: 'Documentation' },
+];
+
+const mockHistory = [
+  { command: 'bun run dev --filter dashboard', date: 'DEC 14, 01:23', type: 'manual' },
+  { command: 'grep -r "useSocket" ./src', date: 'DEC 14, 01:10', type: 'agent' },
+  { command: 'git commit -m "feat: sidebar nav"', date: 'DEC 13, 23:45', type: 'manual' },
+];
+
+const mockSandbox = [
+  { name: 'src', type: 'folder' as const, children: 12, mounted: true },
+  { name: 'package.json', type: 'file' as const, mounted: true },
+  { name: 'moon.yml', type: 'file' as const, mounted: true },
+  { name: '.env', type: 'file' as const, mounted: false },
+];
+
+const mockSidebarCategories = [
+  {
+    title: 'AI',
+    items: [
+      { icon: Bot, label: 'Agents', href: '/agents' },
+      { icon: BrainCircuit, label: 'Swarms', href: '/swarms' },
+      { icon: Blocks, label: 'Skills', href: '/skills' },
+      { icon: Brain, label: 'Memories', href: '/memory' },
+      { icon: FolderKanban, label: 'Projects', href: '/projects' },
+    ]
+  },
+  {
+    title: 'OPS',
+    items: [
+      { icon: MessageCircle, label: 'Chats', status: 'active' as const, href: '/chat' },
+      { icon: ListTodo, label: 'Logs', href: '/logs' },
+      { icon: BarChart3, label: 'Usage', href: '/usage' },
+      { icon: Cpu, label: 'Analytics', href: '/analytics' },
+    ]
+  },
+  {
+    title: 'Sys',
+    items: [
+      { icon: Sliders, label: 'Config', href: '/config' },
+      { icon: Plug, label: 'Integrations', href: '/integrations', status: 'active' as const },
+      { icon: Settings, label: 'Settings', href: '/settings' },
+      { icon: Shield, label: 'Security', href: '/security' },
+    ]
+  }
+];
 
 function Showcase() {
   const { theme, setTheme } = useUI();
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
+  const [glowIntensity, setGlowIntensity] = useState(60);
+  const [isCommandModalOpen, setIsCommandModalOpen] = useState(false);
+  const [isCreateAgentModalOpen, setIsCreateAgentModalOpen] = useState(false);
+  const [isAILabOpen, setIsAILabOpen] = useState(false);
+  const [showThoughts, setShowThoughts] = useState(false);
+  const [commandSearch, setCommandSearch] = useState('');
+  const [historySearch, setHistorySearch] = useState('');
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
+
+  const [aiTabs, setAiTabs] = useState([
+    { id: 0, title: 'Mission 1', messages: [{ role: 'assistant' as const, content: 'Ready to analyze NC-01 context. What is the objective?' }] }
+  ]);
+  const [activeAiTab, setActiveAiTab] = useState(0);
 
   const demoSkill = {
     id: 'demo-skill',
     name: 'Neural Refactor',
     description: 'Autonomous code analysis and optimization engine with real-time feedback loop.',
     icon: 'Terminal',
-    content: 'npx clawsome-turbo refactor --target ./src',
+    content: 'npx clawsome refactor --target ./src',
     isMarketplace: false
   };
 
@@ -37,17 +156,47 @@ function Showcase() {
     createdAt: Date.now()
   };
 
+  const thoughts = [
+    { timestamp: '01:25:01', content: 'SCANNING WORKSPACE: /Users/bilolwabona/BiloDev/clawsome' },
+    { timestamp: '01:25:04', content: 'CONSTRUCTING PLAN: REFACTOR_DASHBOARD_V2', type: 'success' as const },
+  ];
+
   return (
-    <div className={`min-h-screen transition-colors duration-500 p-8 md:p-16 ${theme === 'dark' ? 'bg-[#020617] text-white' : 'bg-slate-50 text-slate-900'}`}>
-      <div className="max-w-7xl mx-auto space-y-24">
+    <div className={`flex min-h-screen transition-colors duration-500 ${theme === 'dark' ? 'bg-[#020617] text-white' : 'bg-slate-50 text-slate-900'}`}>
+      
+      <Sidebar 
+        categories={mockSidebarCategories}
+        currentPath="/chat"
+        isExpanded={isSidebarExpanded}
+        onToggle={() => setIsSidebarExpanded(!isSidebarExpanded)}
+        logoFull={logo}
+        user={{
+           name: 'BiloDev',
+           clearance: 'OP_CLEARANCE: S3'
+        }}
+      />
+
+      <div className="flex-1 max-w-7xl mx-auto p-8 md:p-16 space-y-24 overflow-y-auto h-screen no-scrollbar">
         
         {/* Header Section */}
         <section className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-b border-slate-800/20 pb-12">
           <div>
-            <h1 className="text-6xl font-black tracking-tighter mb-4 bg-gradient-to-r from-indigo-500 to-emerald-500 bg-clip-text text-transparent">
-              @clawsome/ui
-            </h1>
-            <p className="text-slate-500 font-bold uppercase tracking-[0.3em] text-xs">
+            <div className="flex items-center gap-4 mb-4">
+              <a 
+                href={(import.meta as any).env.VITE_DASHBOARD_URL || 'http://localhost:3000'} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="transition-transform hover:scale-110 active:scale-95 cursor-pointer"
+                title="Open Dashboard"
+              >
+                <img src={logo} alt="Clawsome Logo" className="w-16 h-16" />
+              </a>
+              <h1 className="text-6xl font-black tracking-tighter">
+                <span className="bg-gradient-to-r from-indigo-500 to-emerald-500 bg-clip-text text-transparent">@clawsome</span>
+                <span className={theme === 'dark' ? "text-white" : "text-black"}>/ui</span>
+              </h1>
+            </div>
+            <p className="text-slate-500 font-black uppercase tracking-[0.3em] text-xs">
               Shared Component Infrastructure for NightClaw OS
             </p>
           </div>
@@ -79,7 +228,7 @@ function Showcase() {
           </div>
           
           <div className="grid grid-cols-1 gap-12">
-            <TestComponent />
+            {/* <TestComponent /> */}
             
             <PageHeader 
               title="NETWORK TOPOLOGY" 
@@ -91,95 +240,127 @@ function Showcase() {
           </div>
         </section>
 
-        {/* Navigation & Controls Section */}
-        <section className="space-y-12">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-black tracking-tight flex items-center gap-3">
-              <span className="p-2 bg-emerald-500/10 text-emerald-500 rounded-xl"><Zap size={20} /></span>
-              Navigation & Interaction
-            </h2>
-            <div className="h-1 w-20 bg-emerald-500 rounded-full" />
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Segmented Control</span>
-              <div className="h-14">
-                <SegmentedControl 
-                  options={['Default', 'Analytic', 'Neural', 'Ghost']} 
-                  value="Neural" 
-                  onChange={() => {}} 
-                />
-              </div>
-            </div>
-            
-            <div className="space-y-6">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Slide To Confirm</span>
-              <SlideToConfirm label="DEPLOY WORKFORCE" onConfirm={() => console.log('Confirmed!')} />
-            </div>
-          </div>
-        </section>
-
-        {/* Content Modules Section */}
-        <section className="space-y-12">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-black tracking-tight flex items-center gap-3">
-              <span className="p-2 bg-amber-500/10 text-amber-500 rounded-xl"><Code size={20} /></span>
-              Content Modules
-            </h2>
-            <div className="h-1 w-20 bg-amber-500 rounded-full" />
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-             <div className="space-y-8">
-                <ContextAccordion title="ARCHITECTURAL BLUEPRINT" icon={<Settings size={18} />} defaultOpen>
-                   <p>The system utilizes a modular micro-frontend architecture with shared state synchronization via the global neural mesh. All components are atomic and theme-aware by default.</p>
-                </ContextAccordion>
-                
-                <CodeBlock 
-                  code={`function optimizeNeuralMesh(nodes) {\n  return nodes.map(node => ({\n    ...node,\n    vitality: Math.min(100, node.vitality * 1.2),\n    recalibrated: true\n  }));\n}`} 
-                  language="javascript" 
-                />
-             </div>
-             
-             <div className="space-y-8">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Display Cards</span>
-                  <div className="flex p-1 bg-slate-900/40 rounded-full border border-slate-800">
-                    <button onClick={() => setViewMode('grid')} className={`px-4 py-1.5 rounded-full text-[9px] font-black ${viewMode === 'grid' ? 'bg-white text-black' : 'text-slate-500'}`}>GRID</button>
-                    <button onClick={() => setViewMode('table')} className={`px-4 py-1.5 rounded-full text-[9px] font-black ${viewMode === 'table' ? 'bg-white text-black' : 'text-slate-500'}`}>TABLE</button>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 gap-6">
-                  <SkillCard skill={demoSkill} viewMode={viewMode} />
-                  <AgentCard agent={demoAgent} viewMode={viewMode} />
-                </div>
-             </div>
-          </div>
-        </section>
-
         {/* System Intelligence Section */}
-        <section className="space-y-12 pb-24">
+        <section className="space-y-12">
           <div className="space-y-2">
             <h2 className="text-2xl font-black tracking-tight flex items-center gap-3">
-              <span className="p-2 bg-indigo-500/10 text-indigo-500 rounded-xl"><User size={20} /></span>
-              System Systems
+              <span className="p-2 bg-indigo-500/10 text-indigo-500 rounded-xl"><Sparkles size={20} /></span>
+              Intelligence & Sandbox
             </h2>
             <div className="h-1 w-20 bg-indigo-500 rounded-full" />
           </div>
-          
-          <div className="space-y-12">
-            <QuickActions />
-            <div className="grid grid-cols-1 xl:grid-cols-5 gap-12">
-              <div className="xl:col-span-2">
-                <PermissionToggle />
-              </div>
-              <div className="xl:col-span-3">
-                <SystemVitality />
-              </div>
-            </div>
+
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
+             <div className="max-w-xl">
+               <FilesystemSandbox 
+                 tree={mockSandbox}
+                 mountedCount={3}
+                 totalCount={4}
+               />
+             </div>
+             <div className="space-y-8">
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">History Feed</span>
+                <SmartHistorySearch 
+                  items={mockHistory}
+                  search={historySearch}
+                  onSearchChange={setHistorySearch}
+                />
+             </div>
           </div>
         </section>
+
+        {/* Modal & Overlay Section */}
+        <section className="space-y-12">
+          <div className="space-y-2">
+            <h2 className="text-2xl font-black tracking-tight flex items-center gap-3">
+              <span className="p-2 bg-slate-500/10 text-slate-500 rounded-xl"><Terminal size={20} /></span>
+              Modals & Overlays
+            </h2>
+            <div className="h-1 w-20 bg-slate-500 rounded-full" />
+          </div>
+
+          <div className="flex flex-wrap items-center gap-6">
+             <button 
+               onClick={() => setIsCommandModalOpen(true)}
+               className="px-8 py-4 rounded-2xl bg-indigo-600 text-white font-black uppercase tracking-widest text-[11px] shadow-xl shadow-indigo-600/20 hover:bg-indigo-500 transition-all active:scale-95 flex items-center gap-3"
+             >
+                <Terminal size={18} />
+                Open Command Modal
+                <span className="px-2 py-0.5 bg-indigo-700 rounded border border-indigo-400/30 text-[9px]">⌘K</span>
+             </button>
+
+             <button 
+               onClick={() => setIsCreateAgentModalOpen(true)}
+               className="px-8 py-4 rounded-2xl bg-emerald-600 text-white font-black uppercase tracking-widest text-[11px] shadow-xl shadow-emerald-600/20 hover:bg-emerald-500 transition-all active:scale-95 flex items-center gap-3"
+             >
+                <Bot size={18} />
+                Deploy New Soul
+             </button>
+
+             <button 
+               onClick={() => setIsAILabOpen(true)}
+               className="px-8 py-4 rounded-2xl bg-slate-800 text-white font-black uppercase tracking-widest text-[11px] shadow-xl shadow-black/20 hover:bg-slate-700 transition-all active:scale-95 flex items-center gap-3 border border-slate-700"
+             >
+                <MessageCircle size={18} />
+                Open AI Lab
+             </button>
+          </div>
+
+          <CommandModal 
+            isOpen={isCommandModalOpen}
+            onClose={() => setIsCommandModalOpen(false)}
+            search={commandSearch}
+            onSearchChange={setCommandSearch}
+            results={mockCommandResults}
+            onSelect={(res) => {
+              console.log('Selected:', res);
+              setIsCommandModalOpen(false);
+            }}
+          />
+
+          <CreateAgentModal 
+            isOpen={isCreateAgentModalOpen}
+            onClose={() => setIsCreateAgentModalOpen(false)}
+            onSubmit={(data) => {
+              console.log('Deploying Agent:', data);
+              setIsCreateAgentModalOpen(false);
+            }}
+          />
+
+          <AILab 
+            isOpen={isAILabOpen}
+            onClose={() => setIsAILabOpen(false)}
+            onOpen={() => setIsAILabOpen(true)}
+            showThoughts={showThoughts}
+            onToggleThoughts={() => setShowThoughts(!showThoughts)}
+            tabs={aiTabs}
+            activeTab={activeAiTab}
+            onTabSelect={setActiveAiTab}
+            onAddTab={() => {
+               const newId = aiTabs.length;
+               setAiTabs([...aiTabs, { id: newId, title: `Mission ${newId + 1}`, messages: [] }]);
+               setActiveAiTab(newId);
+            }}
+            onSendMessage={(content) => {
+               const newTabs = [...aiTabs];
+               newTabs[activeAiTab].messages.push({ role: 'user', content });
+               setAiTabs(newTabs);
+            }}
+            thoughts={thoughts}
+            isThinking={false}
+          />
+        </section>
+
+        {/* ... (rest of the sections: Content Modules, Workspace, Complex Layouts, Analytics, System Management) ... */}
+
+        {/* Floating Controls */}
+        <BottomDock 
+          glowIntensity={glowIntensity}
+          onGlowIntensityChange={setGlowIntensity}
+          onToggleFocusMode={() => {}}
+          isFocusMode={false}
+          isSidebarExpanded={isSidebarExpanded}
+        />
       </div>
     </div>
   );

@@ -47,12 +47,12 @@ async function interactiveRoot() {
         message: 'Clawsome Interactive Hub',
         pageSize: 10,
         choices: [
-          { name: '🚀 Start Gateway', value: 'start' },
-          { name: '🛠️ Setup', value: 'setup' },
-          { name: '🩺 Doctor', value: 'doctor' },
-          { name: 'ℹ️ Version', value: 'version' },
-          { name: '🛑 Stop Gateway', value: 'stop' },
-          { name: '🚪 Exit', value: 'exit' },
+          { name: '🚀   Start Gateway', value: 'start' },
+          { name: '🛑   Stop Gateway', value: 'stop' },
+          { name: '⚙️   Setup', value: 'setup' },
+          { name: '🩺   Doctor', value: 'doctor' },
+          { name: '🔍   Version', value: 'version' },
+          { name: '❌   Exit', value: 'exit' },
         ],
       },
     ]);

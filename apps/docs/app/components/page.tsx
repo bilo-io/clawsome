@@ -21,7 +21,7 @@ export default function ComponentsPage() {
   };
 
   return (
-    <div className="space-y-12 animate-in fade-in duration-500 pb-32">
+    <div className="space-y-24 animate-in fade-in duration-500 pb-32">
       <header className="space-y-4">
         <h1 className="text-4xl font-black tracking-tight">Component Library</h1>
         <p className="text-lg text-slate-500 max-w-2xl">
@@ -67,7 +67,7 @@ export default function ComponentsPage() {
         <h2 className="text-2xl font-black tracking-tight border-b border-slate-200 dark:border-slate-800 pb-4">
           Interaction Elements
         </h2>
-        <div className="grid grid-cols-1 items-start md:grid-cols-2 gap-8 bg-slate-50 dark:bg-slate-900 border dark:border-slate-800 p-8 rounded-[40px]">
+        <div className="grid grid-cols-1 items-start md:grid-cols-2 gap-12 bg-slate-50/20 backdrop-blur-sm dark:bg-slate-900/40 border border-slate-100 dark:border-slate-800 p-12 rounded-[40px]">
           <div className="space-y-4">
             <span className="text-[10px] uppercase font-black tracking-[0.2em] text-slate-400">Controls</span>
             <SegmentedControl options={['Active', 'Archived', 'All']} value="Active" onChange={() => {}} />

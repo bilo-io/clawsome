@@ -3,25 +3,25 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="space-y-16 animate-in fade-in duration-700">
-      <div className="space-y-6">
+    <div className="space-y-24 animate-in fade-in duration-700">
+      <div className="space-y-8">
         <h1 className="text-5xl md:text-6xl font-black tracking-tighter bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 text-transparent bg-clip-text">
           <span style={{ fontFamily: "'Newton Howard Font', sans-serif", fontStyle: 'italic' }}>Clawsome</span>
           <span className="text">&nbsp;Documentation</span>
         </h1>
-        <p className="text-xl dark:text-slate-400 text-slate-600 max-w-2xl leading-relaxed">
+        <p className="text-xl dark:text-slate-400 text-slate-600 max-w-2xl leading-relaxed font-medium">
           The ultimate decentralized workflow manager and neural AI swarm architecture. Learn how to launch, configure, and scale your autonomous agents.
         </p>
       </div>
 
-      <div className="p-8 md:p-12 rounded-[40px] border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30">
+      <div className="p-8 md:p-12 rounded-[40px] border transition-all glass-panel border-slate-200/50 bg-slate-50/20 dark:border-slate-800 dark:bg-slate-900/30">
         <div className="flex items-center gap-4 mb-6">
           <div className="p-3 bg-indigo-500/10 text-indigo-500 rounded-2xl">
             <Terminal size={24} />
           </div>
           <h2 className="text-2xl font-black tracking-tight">Quick Start</h2>
         </div>
-        <p className="dark:text-slate-400 text-slate-600 mb-8 max-w-xl">
+        <p className="dark:text-slate-400 text-slate-600 mb-8 max-w-xl font-medium">
           Get up and running with Clawsome in seconds. Initialize a new project and fire up your first AI swarm.
         </p>
         
@@ -30,7 +30,7 @@ export default function Home() {
           <div className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between p-6 bg-slate-950 rounded-2xl border border-slate-800 shadow-2xl gap-4">
             <code className="font-mono text-sm md:text-base text-emerald-400">
               <span className="text-slate-600 select-none mr-4">$</span>
-              npx clawsome-turbo init my-agent-swarm
+              npx clawsome
             </code>
             <button className="px-5 py-2.5 bg-white/10 hover:bg-white/20 text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-colors active:scale-95 shrink-0">
               Copy
@@ -39,19 +39,19 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {[
           { icon: <BookOpen className="text-blue-500" />, title: 'Core Concepts', desc: 'Understand the architecture of neural swarms and how agents communicate.', link: '/architecture' },
           { icon: <Layers className="text-amber-500" />, title: 'UI Components', desc: 'Browse the shared @clawsome/ui component library for your dashboards.', link: '/components' },
-          { icon: <Terminal className="text-emerald-500" />, title: 'CLI Reference', desc: 'Master the clawsome-turbo CLI to manage your entire monorepo.', link: '/installation' },
+          { icon: <Terminal className="text-emerald-500" />, title: 'CLI Reference', desc: 'Master the clawsome CLI to manage your entire monorepo.', link: '/cli' },
           { icon: <Lightbulb className="text-purple-500" />, title: 'Resources', desc: 'Explore helpful guides, integrations, and the MCP ecosystem.', link: '/resources' }
         ].map(card => (
-          <Link href={card.link} key={card.title} className="group p-8 rounded-[32px] border dark:border-slate-800 border-slate-200 dark:bg-slate-900/20 bg-white hover:dark:bg-slate-900/60 hover:border-indigo-500/30 transition-all hover:shadow-2xl hover:-translate-y-1">
-            <div className="mb-6 p-4 rounded-2xl bg-slate-100 dark:bg-slate-950 w-fit group-hover:scale-110 transition-transform shadow-inner">
+          <Link href={card.link} key={card.title} className="group p-10 rounded-[40px] border transition-all glass-panel border-slate-200/50 bg-slate-50/10 dark:border-slate-800 dark:bg-slate-900/20 hover:dark:bg-slate-900/60 hover:dark:border-indigo-500/30 hover:bg-white/80 hover:border-indigo-500/20 hover:shadow-2xl hover:-translate-y-1">
+            <div className="mb-8 p-5 rounded-3xl bg-white dark:bg-slate-950 w-fit group-hover:scale-110 transition-transform shadow-inner border border-slate-100 dark:border-slate-800">
               {card.icon}
             </div>
-            <h3 className="text-xl font-bold tracking-tight mb-3 group-hover:text-indigo-500 transition-colors">{card.title}</h3>
-            <p className="dark:text-slate-400 text-slate-600 leading-relaxed text-sm">{card.desc}</p>
+            <h3 className="text-2xl font-black tracking-tight mb-4 group-hover:text-indigo-500 transition-colors uppercase">{card.title}</h3>
+            <p className="dark:text-slate-400 text-slate-600 leading-relaxed font-medium">{card.desc}</p>
           </Link>
         ))}
       </div>

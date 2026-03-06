@@ -12,6 +12,7 @@ export function LeftSidebar() {
   const links = [
     { href: '/', label: 'Introduction' },
     { href: '/installation', label: 'Installation' },
+    { href: '/cli', label: 'CLI Reference' },
     { href: '/architecture', label: 'Architecture' },
     { href: '/components', label: 'Components' },
     { href: '/resources', label: 'Resources & MCPs' },

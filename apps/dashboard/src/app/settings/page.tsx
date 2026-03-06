@@ -186,7 +186,7 @@ export default function SettingsPage() {
               </div>
            </div>
 
-           <TestComponent />
+           {/* <TestComponent /> */}
         </div>
       </div>
     </main>

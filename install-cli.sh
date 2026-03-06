@@ -7,9 +7,8 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLI_DIR="$SCRIPT_DIR/apps/cli"
 
-echo ""
-echo "🐾  Clawsome CLI — Global Install"
-echo "──────────────────────────────────"
+# 0. Display Splash
+bun run scripts/install-splash.ts
 
 # 1. Install deps
 echo "📦  Installing dependencies..."

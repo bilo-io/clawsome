@@ -14,7 +14,7 @@ export function DocsLayout({ children }: { children: React.ReactNode }) {
       <div className="flex max-w-[90rem] mx-auto w-full flex-1">
         <LeftSidebar />
         <main className="flex-1 w-full min-w-0 pb-16 pt-8 md:pl-64">
-          <article className="max-w-4xl mx-auto px-6 xl:px-12 w-full">
+          <article className="max-w-4xl mx-auto px-8 xl:px-16 w-full">
              {children}
           </article>
         </main>
