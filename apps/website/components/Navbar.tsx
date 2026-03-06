@@ -29,8 +29,13 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const docsUrl =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3001'
+      : 'https://clawsome-docs.vercel.app';
+
   const navLinks = [
-    { name: 'Features', href: '/#features' },
+    { name: 'Docs', href: docsUrl, external: true },
     { name: 'Marketplace', href: '/marketplace' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'Download', href: '/download' },
@@ -62,18 +67,30 @@ export const Navbar = () => {
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href}
-              className={cn(
-                "text-sm font-semibold transition-colors hover:text-indigo-500",
-                pathname === link.href ? "text-indigo-500" : "text-slate-600 dark:text-slate-400"
-              )}
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) =>
+            link.external ? (
+              <a
+                key={link.name}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold transition-colors hover:text-indigo-500 text-slate-600 dark:text-slate-400"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "text-sm font-semibold transition-colors hover:text-indigo-500",
+                  pathname === link.href ? "text-indigo-500" : "text-slate-600 dark:text-slate-400"
+                )}
+              >
+                {link.name}
+              </Link>
+            )
+          )}
         </div>
 
         {/* CTA Buttons */}
@@ -117,16 +134,29 @@ export const Navbar = () => {
             exit={{ opacity: 0, y: -20 }}
             className="absolute top-24 left-6 right-6 p-6 glass-panel rounded-3xl md:hidden flex flex-col gap-6"
           >
-            {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href}
-                className="text-lg font-bold"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg font-bold"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-lg font-bold"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              )
+            )}
             <div className="flex items-center justify-between">
               <span className="text-sm font-bold text-slate-500 uppercase tracking-widest">Appearance</span>
               <button

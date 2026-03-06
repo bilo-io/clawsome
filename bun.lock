@@ -40,6 +40,7 @@
       "name": "@clawsome/docs",
       "version": "0.1.0",
       "dependencies": {
+        "@antigravity/core": "workspace:*",
         "@clawsome/ui": "workspace:*",
         "highlight.js": "^11.11.1",
         "lucide-react": "^0.577.0",
