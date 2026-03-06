@@ -111,8 +111,8 @@ export async function setup(): Promise<void> {
       gatewayPort: () =>
         p.text({
           message: bullet('Gateway port'),
-          placeholder: '3000',
-          defaultValue: '3000',
+          placeholder: '17879',
+          defaultValue: '17879',
         }),
 
       apiKey: () =>
@@ -143,7 +143,7 @@ export async function setup(): Promise<void> {
     provider: project.provider,
     model: project.model,
     enableRag: project.enableRag,
-    gatewayPort: parseInt(project.gatewayPort ?? '3000'),
+    gatewayPort: parseInt(project.gatewayPort ?? '17879'),
     createdAt: new Date().toISOString(),
   };
   writeFileSync(

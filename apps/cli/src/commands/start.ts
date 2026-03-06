@@ -1,6 +1,6 @@
 import * as p from '@clack/prompts';
 import pc from 'picocolors';
-import { execSync, spawn } from 'child_process';
+import { execSync } from 'child_process';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import { displayBranding, clawsomeGradient } from '../utils/branding.js';
@@ -35,7 +35,7 @@ export async function start(options: StartOptions): Promise<void> {
     try {
       process.kill(parseInt(existingPid), 0); // Test if process exists
       p.log.warn(pc.yellow(`Gateway is already running (PID ${existingPid}). Run ${pc.bold('clawsome stop')} first.`));
-      process.exit(1);
+      return;
     } catch {
       // PID file stale — clean it up
     }
@@ -45,12 +45,11 @@ export async function start(options: StartOptions): Promise<void> {
   s.start('Spawning gateway process...');
 
   // Spawn the gateway as a detached background process
-  const child = spawn('node', ['apps/gateway/dist/index.js', 'start', '--port', gatewayPort.toString()], {
-    detached: true,
-    stdio: 'ignore',
-    cwd: process.cwd(),
+  const child = Bun.spawn(['bun', 'run', 'src/index.ts', 'start', '--port', gatewayPort.toString()], {
+    cwd: path.join(process.cwd(), 'apps/gateway'),
+    stdout: 'inherit',
+    stderr: 'inherit',
   });
-  child.unref();
 
   // Write PID file
   writeFileSync(PID_FILE, child.pid!.toString());

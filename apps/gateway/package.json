@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "bin": {
-    "nyte": "./src/index.ts"
+    "nyte": "./src/index.ts",
+    "clawsome": "./bin/clawsome.ts"
   },
   "scripts": {
     "dev": "bun run src/index.ts dev",
@@ -13,9 +14,11 @@
   "dependencies": {
     "@antigravity/core": "workspace:*",
     "@clack/prompts": "^1.1.0",
+    "@types/inquirer": "^9.0.9",
     "commander": "^12.0.0",
     "figlet": "^1.10.0",
     "gradient-string": "^3.0.0",
+    "inquirer": "^13.3.0",
     "picocolors": "^1.1.1"
   },
   "devDependencies": {
