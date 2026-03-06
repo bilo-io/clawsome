@@ -8,7 +8,7 @@ export default function InstallationPage() {
       <header className="space-y-4">
         <h1 className="text-4xl font-black tracking-tight">Installation</h1>
         <p className="text-lg text-slate-500 max-w-2xl font-medium leading-relaxed">
-          Get started with Clawsome by setting up the global CLI or initializing a dedicated monorepo workspace for your neural agents.
+          Get started with Clawesome by setting up the global CLI or initializing a dedicated monorepo workspace for your neural agents.
         </p>
       </header>
       
@@ -18,14 +18,14 @@ export default function InstallationPage() {
           <h2 className="text-2xl font-black tracking-tight">Global CLI Setup</h2>
         </div>
         <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-          The `clawsome` binary is the entry point for all orchestrations. Install it globally to manage gateways from any project directory.
+          The `clawesome` binary is the entry point for all orchestrations. Install it globally to manage gateways from any project directory.
         </p>
         <CommandPreview 
           commands={{
-            npm: "npm install -g @clawsome/cli",
-            pnpm: "pnpm add -g @clawsome/cli",
-            yarn: "yarn global add @clawsome/cli",
-            bun: "bun add -g @clawsome/cli"
+            npm: "npm install -g @clawesome/cli",
+            pnpm: "pnpm add -g @clawesome/cli",
+            yarn: "yarn global add @clawesome/cli",
+            bun: "bun add -g @clawesome/cli"
           }} 
         />
       </section>
@@ -44,12 +44,12 @@ export default function InstallationPage() {
              { 
                label: 'Quick Start', 
                language: 'bash', 
-               code: '# Create a new swarm project\nclawsome init my-agent-swarm\n\n# Navigate to your new workspace\ncd my-agent-swarm\n\n# Start the development stack\nbun dev' 
+               code: '# Create a new swarm project\nclawesome init my-agent-swarm\n\n# Navigate to your new workspace\ncd my-agent-swarm\n\n# Start the development stack\nbun dev' 
              },
              { 
                label: 'Manual Link', 
                language: 'bash', 
-               code: '# Link an existing project to your Clawsome license\nclawsome link-license --env production' 
+               code: '# Link an existing project to your Clawesome license\nclawesome link-license --env production' 
              }
           ]} 
         />
@@ -66,7 +66,7 @@ export default function InstallationPage() {
                  <Shield size={20} />
               </div>
               <h3 className="text-lg font-black uppercase tracking-tight">Environment Audit</h3>
-              <p className="text-xs text-slate-500 leading-relaxed font-medium">Run `clawsome doctor` to ensure your system meets the minimum requirements for neural orchestration.</p>
+              <p className="text-xs text-slate-500 leading-relaxed font-medium">Run `clawesome doctor` to ensure your system meets the minimum requirements for neural orchestration.</p>
            </div>
            
            <div className="p-8 rounded-[32px] border border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/40 space-y-4">
@@ -74,7 +74,7 @@ export default function InstallationPage() {
                  <Terminal size={20} />
               </div>
               <h3 className="text-lg font-black uppercase tracking-tight">Configure Models</h3>
-              <p className="text-xs text-slate-500 leading-relaxed font-medium">Head to the `clawsome setup` wizard to securely bind your LLM provider API keys to the gateway.</p>
+              <p className="text-xs text-slate-500 leading-relaxed font-medium">Head to the `clawesome setup` wizard to securely bind your LLM provider API keys to the gateway.</p>
            </div>
         </div>
       </section>

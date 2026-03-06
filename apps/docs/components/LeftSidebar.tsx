@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Search } from 'lucide-react';
-import { useUI } from '@clawsome/ui';
+import { useUI } from '@clawesome/ui';
 
 export function LeftSidebar() {
   const { theme } = useUI();

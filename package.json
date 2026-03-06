@@ -1,5 +1,5 @@
 {
-  "name": "@clawsome/monorepo",
+  "name": "@clawesome/monorepo",
   "private": true,
   "workspaces": [
     "apps/*",

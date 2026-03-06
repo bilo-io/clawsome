@@ -1,5 +1,5 @@
 {
-  "name": "@clawsome/dashboard",
+  "name": "@clawesome/dashboard",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clawsome/ui": "workspace:*",
+    "@clawesome/ui": "workspace:*",
     "@antigravity/core": "workspace:*",
     "@monaco-editor/react": "^4.7.0",
     "@tailwindcss/typography": "^0.5.19",

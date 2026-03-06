@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { CodePreview } from './CodePreview';
-import { useUI, cn } from '@clawsome/ui';
+import { useUI, cn } from '@clawesome/ui';
 
 interface LanguageBlock {
   language: string;

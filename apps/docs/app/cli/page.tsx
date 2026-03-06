@@ -1,6 +1,6 @@
 'use client';
 
-import { CodeBlock, PageHeader } from "@clawsome/ui";
+import { CodeBlock, PageHeader } from "@clawesome/ui";
 import { Terminal, Cpu, ShieldCheck, Zap, Info, Layers, Layout, Share2, HelpCircle } from 'lucide-react';
 
 export default function CLIPage() {
@@ -9,14 +9,14 @@ export default function CLIPage() {
       <header className="space-y-4">
         <h1 className="text-4xl font-black tracking-tight">CLI Reference</h1>
         <p className="text-lg text-slate-500 max-w-2xl font-medium leading-relaxed">
-          The Clawsome CLI (`clawsome`) is the primary orchestration tool for the monorepo. It handles everything from gateway lifecycle management to AI agent diagnostics.
+          The Clawesome CLI (`clawesome`) is the primary orchestration tool for the monorepo. It handles everything from gateway lifecycle management to AI agent diagnostics.
         </p>
       </header>
 
       <PageHeader 
         title="Interactive Hub" 
         statusLabel="Main Entry:"
-        statusValue="clawsome"
+        statusValue="clawesome"
         statusColor="indigo"
         description="The hub provides a branded, interactive menu for managing all system processes without memorizing flags."
       />
@@ -29,7 +29,7 @@ export default function CLIPage() {
           <div className="space-y-2">
             <h3 className="text-lg font-black uppercase tracking-tight">Pro Tip: Interactive Mode</h3>
             <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-              Simply run `clawsome` without any arguments to enter the Interactive Hub. It features a beautiful ASCII interface, clear-screen transitions, and full keyboard navigation for common tasks.
+              Simply run `clawesome` without any arguments to enter the Interactive Hub. It features a beautiful ASCII interface, clear-screen transitions, and full keyboard navigation for common tasks.
             </p>
           </div>
         </div>
@@ -49,12 +49,12 @@ export default function CLIPage() {
                  <Zap size={20} />
                </div>
                <div>
-                  <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawsome start</code></h3>
+                  <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawesome start</code></h3>
                   <p className="text-xs font-bold text-slate-400 tracking-wider">LIFECYCLE MANAGEMENT</p>
                </div>
             </div>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-3xl">
-              Launches the Clawsome Gateway server and the background agent swarm. By default, it looks for an active `apps/gateway` build and initializes the websocket bridge for the dashboard.
+              Launches the Clawesome Gateway server and the background agent swarm. By default, it looks for an active `apps/gateway` build and initializes the websocket bridge for the dashboard.
             </p>
             <div className="space-y-4">
                <span className="text-[10px] uppercase font-black tracking-[0.2em] text-slate-400">Options</span>
@@ -73,7 +73,7 @@ export default function CLIPage() {
                   </li>
                </ul>
             </div>
-            <CodeBlock code="clawsome start --port 3000" language="bash" />
+            <CodeBlock code="clawesome start --port 3000" language="bash" />
           </div>
 
           {/* Doctor Command */}
@@ -83,12 +83,12 @@ export default function CLIPage() {
                  <ShieldCheck size={20} />
                </div>
                <div>
-                <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawsome doctor</code></h3>
+                <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawesome doctor</code></h3>
                   <p className="text-xs font-bold text-slate-400 tracking-wider">SYSTEM DIAGNOSTICS</p>
                </div>
             </div>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-3xl">
-              The doctor command performs a deep scan of your environment to ensure all dependencies and system configurations satisfy Clawsome's architecture requirements.
+              The doctor command performs a deep scan of your environment to ensure all dependencies and system configurations satisfy Clawesome's architecture requirements.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                {[
@@ -105,7 +105,7 @@ export default function CLIPage() {
                  </div>
                ))}
             </div>
-            <CodeBlock code="clawsome doctor" language="bash" />
+            <CodeBlock code="clawesome doctor" language="bash" />
           </div>
 
           {/* Setup Command */}
@@ -115,14 +115,14 @@ export default function CLIPage() {
                  <Cpu size={20} />
                </div>
                <div>
-                <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawsome setup</code></h3>
+                <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawesome setup</code></h3>
                   <p className="text-xs font-bold text-slate-400 tracking-wider">CONFIGURATION WIZARD</p>
                </div>
             </div>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-3xl">
               Use this wizard to securely configure your LLM provider credentials and RAG preferences. Supports OpenAI, Anthropic, Gemini, and Local (Ollama) providers.
             </p>
-            <CodeBlock code="clawsome setup" language="bash" />
+            <CodeBlock code="clawesome setup" language="bash" />
           </div>
 
           {/* Stop Command */}
@@ -132,14 +132,14 @@ export default function CLIPage() {
                  <Terminal size={20} />
                </div>
                <div>
-                <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawsome stop</code></h3>
+                <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawesome stop</code></h3>
                   <p className="text-xs font-bold text-slate-400 tracking-wider">CLEAN SHUTDOWN</p>
                </div>
             </div>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-3xl">
               Safely terminates all background agent processes, clears cached session data, and releases occupied network ports.
             </p>
-            <CodeBlock code="clawsome stop" language="bash" />
+            <CodeBlock code="clawesome stop" language="bash" />
           </div>
 
           {/* Version Command */}
@@ -149,14 +149,14 @@ export default function CLIPage() {
                  <Info size={20} />
                </div>
                <div>
-                  <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawsome version</code></h3>
+                  <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawesome version</code></h3>
                   <p className="text-xs font-bold text-slate-400 tracking-wider">VERSION INFO</p>
                </div>
             </div>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-3xl">
-              Displays the current installed version of the Clawsome CLI and its associated core dependencies (Gateway engine, Swarm protocol).
+              Displays the current installed version of the Clawesome CLI and its associated core dependencies (Gateway engine, Swarm protocol).
             </p>
-            <CodeBlock code="clawsome version" language="bash" />
+            <CodeBlock code="clawesome version" language="bash" />
           </div>
 
           {/* Help Command */}
@@ -166,14 +166,14 @@ export default function CLIPage() {
                  <HelpCircle size={20} />
                </div>
                <div>
-                  <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawsome --help</code></h3>
+                  <h3 className="text-xl font-black lowercase tracking-tighter"><code>clawesome --help</code></h3>
                   <p className="text-xs font-bold text-slate-400 tracking-wider">USAGE ASSISTANCE</p>
                </div>
             </div>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-3xl">
               Outputs a comprehensive list of all available commands, options, and global flags. Useful for quick reference of parameter syntax.
             </p>
-            <CodeBlock code="clawsome --help" language="bash" />
+            <CodeBlock code="clawesome --help" language="bash" />
           </div>
         </div>
       </section>
@@ -185,7 +185,7 @@ export default function CLIPage() {
         <p className="text-slate-600 dark:text-slate-400 text-sm font-medium">
           Installing the CLI globally allows you to run orchestrations from any directory within your filesystem.
         </p>
-        <CodeBlock code="bun add -g @clawsome/cli" language="bash" />
+        <CodeBlock code="bun add -g @clawesome/cli" language="bash" />
       </section>
     </div>
   );

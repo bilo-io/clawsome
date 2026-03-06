@@ -63,7 +63,7 @@ const MOCK_LOGS: LogEntry[] = [
     module: 'OS', 
     message: 'Memory pressure detected - clearing buffers',
     details: {
-      environment: 'clawsome-main-node',
+      environment: 'clawesome-main-node',
       rawOutput: 'Mem: 94% utilized. Triggering GC sweep...\n[OK] Reclaimed 452MB.'
     }
   },
@@ -109,7 +109,7 @@ const MOCK_LOGS: LogEntry[] = [
     message: 'Container night-claw-worker-09 provisioned',
     details: {
       environment: 'k8s-neural-fleet',
-      rawOutput: 'Image: clawsome/worker:latest\nStatus: Running\nPort mapping: 8080->80'
+      rawOutput: 'Image: clawesome/worker:latest\nStatus: Running\nPort mapping: 8080->80'
     }
   },
 ];

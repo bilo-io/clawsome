@@ -1,19 +1,19 @@
-# Clawsome OS
+# Clawesome OS
 
 > **Neural Agent Orchestration Platform** — a decentralised AI swarm workspace.
 
 ## Monorepo Structure
 
 ```
-clawsome/
+clawesome/
 ├── apps/
-│   ├── cli/           # @clawsome/cli    — Clawsome command-line interface
-│   ├── dashboard/     # @clawsome/dashboard — Nightclaw OS web dashboard (port 3000)
-│   ├── docs/          # @clawsome/docs   — Developer documentation (port 3002)
-│   ├── gateway/       # @clawsome/gateway — AI gateway server
-│   └── website/       # @clawsome/website — Marketing website (port 3001)
+│   ├── cli/           # @clawesome/cli    — Clawesome command-line interface
+│   ├── dashboard/     # @clawesome/dashboard — Nightclaw OS web dashboard (port 3000)
+│   ├── docs/          # @clawesome/docs   — Developer documentation (port 3002)
+│   ├── gateway/       # @clawesome/gateway — AI gateway server
+│   └── website/       # @clawesome/website — Marketing website (port 3001)
 ├── packages/
-│   └── ui/            # @clawsome/ui     — Shared component library
+│   └── ui/            # @clawesome/ui     — Shared component library
 └── bunfig.toml
 ```
 
@@ -33,8 +33,8 @@ clawsome/
 ### 1. Clone & install
 
 ```bash
-git clone https://github.com/bilo-io/clawsome.git
-cd clawsome
+git clone https://github.com/bilo-io/clawesome.git
+cd clawesome
 bun install
 ```
 
@@ -62,9 +62,9 @@ moon run :dev
 
 ---
 
-## CLI (`clawsome`)
+## CLI (`clawesome`)
 
-The `@clawsome/cli` package provides the `clawsome` command for managing your local gateway and stepping through the setup wizard.
+The `@clawesome/cli` package provides the `clawesome` command for managing your local gateway and stepping through the setup wizard.
 
 ### Local development setup
 
@@ -78,55 +78,55 @@ bun install
 # 3. Run directly without a build step
 bun run src/index.ts --help
 
-# 4. Or link it globally for the real `clawsome` command experience:
+# 4. Or link it globally for the real `clawesome` command experience:
 bun link
-clawsome --help
+clawesome --help
 ```
 
-> After `bun link`, the `clawsome` binary resolves to the built `dist/index.js`.
+> After `bun link`, the `clawesome` binary resolves to the built `dist/index.js`.
 > To rebuild after changes: `bun run build` inside `apps/cli`.
 
 ### Available commands
 
 | Command | Description |
 |---------|-------------|
-| `clawsome --help` / `-h` | Display help for all commands |
-| `clawsome --version` / `-v` | Print the current CLI version |
-| `clawsome setup` | Interactive wizard — configure agent, LLM provider, API key, and ports. Writes `.clawsome.json`. |
-| `clawsome start` | Starts the gateway server, logs the gateway and dashboard URLs, and opens the dashboard in your browser |
-| `clawsome start --port 4000` | Start gateway on a custom port |
-| `clawsome start --no-open` | Start gateway without auto-opening the browser |
-| `clawsome stop` | Gracefully stops the gateway process (reads the PID from `.clawsome.pid`) |
-| `clawsome doctor` | Diagnoses your environment — checks Node, pnpm, Bun, workspace files, Git, and TypeScript |
+| `clawesome --help` / `-h` | Display help for all commands |
+| `clawesome --version` / `-v` | Print the current CLI version |
+| `clawesome setup` | Interactive wizard — configure agent, LLM provider, API key, and ports. Writes `.clawesome.json`. |
+| `clawesome start` | Starts the gateway server, logs the gateway and dashboard URLs, and opens the dashboard in your browser |
+| `clawesome start --port 4000` | Start gateway on a custom port |
+| `clawesome start --no-open` | Start gateway without auto-opening the browser |
+| `clawesome stop` | Gracefully stops the gateway process (reads the PID from `.clawesome.pid`) |
+| `clawesome doctor` | Diagnoses your environment — checks Node, pnpm, Bun, workspace files, Git, and TypeScript |
 
 ### Typical dev workflow
 
 ```bash
 # First time — run setup wizard
-clawsome setup
+clawesome setup
 
 # Day-to-day
-clawsome start
+clawesome start
 # → Gateway running at http://localhost:3000
 # → Dashboard at  http://localhost:3000 (opens automatically)
 
 # When done
-clawsome stop
+clawesome stop
 
 # Something wrong?
-clawsome doctor
+clawesome doctor
 ```
 
 ---
 
 ## Packages
 
-### `@clawsome/ui`
+### `@clawesome/ui`
 
 Shared React component library. Import in any app:
 
 ```ts
-import { ThemeProvider, PageHeader, AgentCard } from '@clawsome/ui';
+import { ThemeProvider, PageHeader, AgentCard } from '@clawesome/ui';
 ```
 
 Components: `PageHeader`, `SegmentedControl`, `SlideToConfirm`, `ContextAccordion`, `CodeBlock`, `SkillCard`, `AgentCard`, `PermissionToggle`, `QuickActions`, `SystemVitality`.

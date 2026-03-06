@@ -3,10 +3,10 @@ import pc from 'picocolors';
 import { execSync } from 'child_process';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
-import { displayBranding, clawsomeGradient } from '../utils/branding.js';
+import { displayBranding, clawesomeGradient } from '../utils/branding.js';
 
-const PID_FILE = path.join(process.cwd(), '.clawsome.pid');
-const CONFIG_FILE = path.join(process.cwd(), '.clawsome.json');
+const PID_FILE = path.join(process.cwd(), '.clawesome.pid');
+const CONFIG_FILE = path.join(process.cwd(), '.clawesome.json');
 const DASHBOARD_PORT = 3000;
 
 interface StartOptions {
@@ -27,14 +27,14 @@ export async function start(options: StartOptions): Promise<void> {
   const dashboardUrl = `http://localhost:${DASHBOARD_PORT}`;
   const gatewayUrl = `http://localhost:${gatewayPort}`;
 
-  p.intro(clawsomeGradient(' 🚀  Clawsome — Starting Gateway '));
+  p.intro(clawesomeGradient(' 🚀  Clawesome — Starting Gateway '));
 
   // Check if already running
   if (existsSync(PID_FILE)) {
     const existingPid = readFileSync(PID_FILE, 'utf-8').trim();
     try {
       process.kill(parseInt(existingPid), 0); // Test if process exists
-      p.log.warn(pc.yellow(`Gateway is already running (PID ${existingPid}). Run ${pc.bold('clawsome stop')} first.`));
+      p.log.warn(pc.yellow(`Gateway is already running (PID ${existingPid}). Run ${pc.bold('clawesome stop')} first.`));
       return;
     } catch {
       // PID file stale — clean it up
@@ -60,7 +60,7 @@ export async function start(options: StartOptions): Promise<void> {
   p.log.success(
     [
       '',
-      pc.bold('  Clawsome is running!'),
+      pc.bold('  Clawesome is running!'),
       '',
       `  ${pc.dim('Gateway')}    ${pc.cyan(pc.bold(gatewayUrl))}`,
       `  ${pc.dim('Dashboard')}  ${pc.cyan(pc.bold(dashboardUrl))}`,
@@ -80,5 +80,5 @@ export async function start(options: StartOptions): Promise<void> {
     }
   }
 
-  p.outro(clawsomeGradient(`  Run ${pc.bold('clawsome stop')} to shut down the gateway.`));
+  p.outro(clawesomeGradient(`  Run ${pc.bold('clawesome stop')} to shut down the gateway.`));
 }

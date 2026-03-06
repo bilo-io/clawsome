@@ -32,7 +32,7 @@ import {
   FilesystemSandbox,
   Sidebar
 } from './index';
-import logo from './assets/clawsome-logo.svg';
+import logo from './assets/clawesome-logo.svg';
 import { 
   Settings, User as UserIcon, Zap, Code, Shield, Activity, Layers, Briefcase, Globe, HelpCircle, Terminal, Bot, 
   LayoutDashboard, Layout, MessageSquare, BrainCircuit, Blocks, Brain, FolderKanban, MessageCircle, ListTodo, BarChart3, Cpu, Sliders, Plug, ShieldAlert
@@ -51,8 +51,8 @@ const mockWorkspaces = [
   { 
     id: '1', 
     icon: Briefcase, 
-    name: 'ClawSome Core', 
-    path: '~/BiloDev/clawsome', 
+    name: 'clawesome Core', 
+    path: '~/BiloDev/clawesome', 
     status: 'Active', 
     color: 'indigo',
     agents: [{ id: 'a1', color: 'bg-indigo-500' }, { id: 'a2', color: 'bg-emerald-500' }]
@@ -144,7 +144,7 @@ function Showcase() {
     name: 'Neural Refactor',
     description: 'Autonomous code analysis and optimization engine with real-time feedback loop.',
     icon: 'Terminal',
-    content: 'npx clawsome refactor --target ./src',
+    content: 'npx clawesome refactor --target ./src',
     isMarketplace: false
   };
 
@@ -157,7 +157,7 @@ function Showcase() {
   };
 
   const thoughts = [
-    { timestamp: '01:25:01', content: 'SCANNING WORKSPACE: /Users/bilolwabona/BiloDev/clawsome' },
+    { timestamp: '01:25:01', content: 'SCANNING WORKSPACE: /Users/bilolwabona/BiloDev/clawesome' },
     { timestamp: '01:25:04', content: 'CONSTRUCTING PLAN: REFACTOR_DASHBOARD_V2', type: 'success' as const },
   ];
 
@@ -189,10 +189,10 @@ function Showcase() {
                 className="transition-transform hover:scale-110 active:scale-95 cursor-pointer"
                 title="Open Dashboard"
               >
-                <img src={logo} alt="Clawsome Logo" className="w-16 h-16" />
+                <img src={logo} alt="Clawesome Logo" className="w-16 h-16" />
               </a>
               <h1 className="text-6xl font-black tracking-tighter">
-                <span className="bg-gradient-to-r from-indigo-500 to-emerald-500 bg-clip-text text-transparent">@clawsome</span>
+                <span className="bg-gradient-to-r from-indigo-500 to-emerald-500 bg-clip-text text-transparent">@clawesome</span>
                 <span className={theme === 'dark' ? "text-white" : "text-black"}>/ui</span>
               </h1>
             </div>

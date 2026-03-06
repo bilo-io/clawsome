@@ -11,8 +11,8 @@ const workspaces = [
   { 
     id: '1', 
     icon: Briefcase, 
-    name: 'ClawSome Core', 
-    path: '~/BiloDev/clawsome', 
+    name: 'clawesome Core', 
+    path: '~/BiloDev/clawesome', 
     status: 'Active', 
     color: 'indigo',
     agents: [

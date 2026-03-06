@@ -1,5 +1,5 @@
 {
-  "name": "@clawsome/website",
+  "name": "@clawesome/website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@clawsome/ui": "workspace:*",
+    "@clawesome/ui": "workspace:*",
     "@antigravity/core": "workspace:*",
     "clsx": "^2.1.1",
     "framer-motion": "^12.35.0",

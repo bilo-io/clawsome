@@ -1,6 +1,6 @@
 import * as p from '@clack/prompts';
 import pc from 'picocolors';
-import { displayBranding, clawsomeGradient } from '../utils/branding.js';
+import { displayBranding, clawesomeGradient } from '../utils/branding.js';
 import gradient from 'gradient-string';
 import { writeFileSync } from 'fs';
 import path from 'path';
@@ -62,7 +62,7 @@ const bullet = (msg: string) => pc.bold(pc.cyan(`◆  ${msg}`));
 export async function setup(): Promise<void> {
   await displayBranding();
 
-  p.intro(clawsomeGradient(' 🐾  Welcome to Clawsome Setup Wizard '));
+  p.intro(clawesomeGradient(' 🐾  Welcome to Clawesome Setup Wizard '));
 
   const project = await p.group(
     {
@@ -78,7 +78,7 @@ export async function setup(): Promise<void> {
       projectName: () =>
         p.text({
           message: bullet('What is your project name?'),
-          placeholder: 'clawsome-monorepo',
+          placeholder: 'clawesome-monorepo',
           validate: (val) => {
             if (!val) return 'Project name is required.';
             if (val.length < 3) return 'Must be at least 3 characters.';
@@ -136,7 +136,7 @@ export async function setup(): Promise<void> {
   s.start('Synchronizing neural configuration...');
   await new Promise((r) => setTimeout(r, 2000));
 
-  // Write a local .clawsome.json config
+  // Write a local .clawesome.json config
   const config = {
     agentName: project.agentName,
     projectName: project.projectName,
@@ -147,15 +147,15 @@ export async function setup(): Promise<void> {
     createdAt: new Date().toISOString(),
   };
   writeFileSync(
-    path.join(process.cwd(), '.clawsome.json'),
+    path.join(process.cwd(), '.clawesome.json'),
     JSON.stringify(config, null, 2)
   );
 
-  s.stop('Configuration written to ' + pc.cyan('.clawsome.json'));
+  s.stop('Configuration written to ' + pc.cyan('.clawesome.json'));
 
   p.outro(
     gradient(['#06b6d4', '#10b981'])(
-      `\n  ✅  All systems ready!\n\n  Agent:    ${pc.bold(project.agentName)}\n  Project:  ${pc.bold(project.projectName)}\n  Model:    ${pc.bold(project.model as string)}\n\n  Run ${pc.bold(pc.cyan('clawsome start'))} to launch the gateway.\n`
+      `\n  ✅  All systems ready!\n\n  Agent:    ${pc.bold(project.agentName)}\n  Project:  ${pc.bold(project.projectName)}\n  Model:    ${pc.bold(project.model as string)}\n\n  Run ${pc.bold(pc.cyan('clawesome start'))} to launch the gateway.\n`
     )
   );
 }

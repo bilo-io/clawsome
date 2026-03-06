@@ -1,0 +1,9 @@
+{
+  "agentName": "Nova",
+  "projectName": "yesterday",
+  "provider": "mistral",
+  "model": "codestral-latest",
+  "enableRag": true,
+  "gatewayPort": 17879,
+  "createdAt": "2026-03-06T21:06:24.097Z"
+}

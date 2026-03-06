@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install-cli.sh — builds and globally links @clawsome/cli
+# install-cli.sh — builds and globally links @clawesome/cli
 # Run from the monorepo root: bun run cli:install
 
 set -e
@@ -20,9 +20,9 @@ echo "🔨  Building..."
 bun run build
 
 # 3. Link globally
-echo "🔗  Linking 'clawsome' globally..."
+echo "🔗  Linking 'clawesome' globally..."
 bun link
 
 echo ""
-echo "✅  Done! Run 'clawsome --help' to verify."
+echo "✅  Done! Run 'clawesome --help' to verify."
 echo ""

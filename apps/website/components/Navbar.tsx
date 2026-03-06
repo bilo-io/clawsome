@@ -29,7 +29,7 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const docsUrl = process.env.NEXT_PUBLIC_DOCS_URL ?? 'https://clawsome-docs.vercel.app';
+  const docsUrl = process.env.NEXT_PUBLIC_DOCS_URL ?? 'https://clawesome-docs.vercel.app';
 
   const navLinks = [
     { name: 'Docs', href: docsUrl, external: true },
@@ -55,8 +55,8 @@ export const Navbar = () => {
       >
         <Link href="/" className="flex items-center group">
           <img 
-            src="/clawsome-logo.svg" 
-            alt="Clawsome" 
+            src="/clawesome-logo.svg" 
+            alt="Clawesome" 
             className="h-8 w-auto transition-transform group-hover:scale-105 active:scale-95" 
           />
         </Link>

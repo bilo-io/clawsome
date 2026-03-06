@@ -1,11 +1,11 @@
 {
-  "name": "@clawsome/gateway",
+  "name": "@clawesome/gateway",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "bin": {
     "nyte": "./src/index.ts",
-    "clawsome": "./bin/clawsome.ts"
+    "clawesome": "./bin/clawesome.ts"
   },
   "scripts": {
     "dev": "bun run src/index.ts dev",

@@ -28,7 +28,7 @@ interface Config {
     name: string;
     role: string;
   };
-  'agents:': Array<{ name: string; role: string }>; // Shape matches clawsome.json
+  'agents:': Array<{ name: string; role: string }>; // Shape matches clawesome.json
   connections: Array<{ name: string; code: string; apiKey: string }>;
   ai: {
     providers: Array<{
@@ -76,7 +76,7 @@ export default function ConfigPage() {
         body: JSON.stringify({ config, action: 'save' })
       });
       if (resp.ok && showStatus) {
-        setStatusMessage({ text: 'Sync Complete: Data persisted to clawsome.json', type: 'success' });
+        setStatusMessage({ text: 'Sync Complete: Data persisted to clawesome.json', type: 'success' });
         setTimeout(() => setStatusMessage(null), 3000);
       }
     } catch (error) {
@@ -132,7 +132,7 @@ export default function ConfigPage() {
         description="Low-level system blueprint and neural architecture definitions. Modify the core JSON configuration to define gateways, swarm roles, and intelligence provider parameters."
         badge="SYS-01"
         statusLabel="Global Neural Blueprint:"
-        statusValue="clawsome.json"
+        statusValue="clawesome.json"
         statusColor="indigo"
         isCollection={false}
         renderRight={

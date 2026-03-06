@@ -45,8 +45,8 @@ export const Footer = () => {
         <div className="flex flex-col gap-6 md:max-w-xs">
           <Link href="/" className="flex items-center group">
             <img 
-              src="/clawsome-logo.svg" 
-              alt="Clawsome" 
+              src="/clawesome-logo.svg" 
+              alt="Clawesome" 
               className="h-10 w-auto" 
             />
           </Link>
@@ -55,8 +55,8 @@ export const Footer = () => {
           </p>
           <div className="flex items-center gap-4">
             {[
-              { id: 'github', href: 'https://github.com/clawsome' },
-              { id: 'linkedin', href: 'https://linkedin.com/company/clawsome' }
+              { id: 'github', href: 'https://github.com/clawesome' },
+              { id: 'linkedin', href: 'https://linkedin.com/company/clawesome' }
             ].map((social) => (
               <a 
                 key={social.id} 
@@ -106,11 +106,11 @@ export const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-slate-200 dark:border-slate-900 flex flex-col md:flex-row gap-4 items-center justify-between text-sm text-slate-500">
-        <p>© {currentYear} Clawsome AI, Inc. All rights reserved.</p>
+        <p>© {currentYear} Clawesome AI, Inc. All rights reserved.</p>
         <div className="flex items-center gap-1.5">
           <span>Built with</span>
           <Heart size={14} className="text-rose-500 fill-rose-500 animate-pulse" />
-          <span>by the Clawsome Team</span>
+          <span>by the Clawesome Team</span>
         </div>
       </div>
     </footer>

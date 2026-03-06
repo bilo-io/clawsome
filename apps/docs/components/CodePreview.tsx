@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
 import { Copy, Check } from 'lucide-react';
-import { useUI, cn } from '@clawsome/ui';
+import { useUI, cn } from '@clawesome/ui';
 
 interface CodePreviewProps {
   code: string;

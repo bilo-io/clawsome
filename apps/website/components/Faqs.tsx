@@ -11,11 +11,11 @@ export const Faqs = () => {
 
   const faqs = [
     {
-      question: "How is Clawsome different from a browser automation library like Playwright?",
-      answer: "Playwright is a tool for developers to write scripts. Clawsome is an OS that uses LLMs and vision agents to 'see' and 'interact' with websites autonomously. You don't need to write selectors or handle cookies; the agents figure it out for you based on simple English goals."
+      question: "How is Clawesome different from a browser automation library like Playwright?",
+      answer: "Playwright is a tool for developers to write scripts. Clawesome is an OS that uses LLMs and vision agents to 'see' and 'interact' with websites autonomously. You don't need to write selectors or handle cookies; the agents figure it out for you based on simple English goals."
     },
     {
-      question: "Is it safe to use my real logins with Clawsome?",
+      question: "Is it safe to use my real logins with Clawesome?",
       answer: "Security is built-in. Credentials are never shared with LLMs. We use a secure vault and a headless environment to execute actions. You can also define granular permissions for what each agent is allowed to click or see."
     },
     {
@@ -24,10 +24,10 @@ export const Faqs = () => {
     },
     {
       question: "Does it support sites with heavy CAPTCHA protection?",
-      answer: "Yes. Clawsome includes advanced human-emulation and integrated CAPTCHA solvers. If a site is particularly difficult, you can enable human-in-the-loop triggers to handle the challenge manually while the agent waits."
+      answer: "Yes. Clawesome includes advanced human-emulation and integrated CAPTCHA solvers. If a site is particularly difficult, you can enable human-in-the-loop triggers to handle the challenge manually while the agent waits."
     },
     {
-      question: "Can I self-host Clawsome for high-security environments?",
+      question: "Can I self-host Clawesome for high-security environments?",
       answer: "Absolutely. We offer a self-hosted enterprise version that runs entirely within your VPC. No data ever leaves your network."
     }
   ];
@@ -98,7 +98,7 @@ export const Faqs = () => {
         <div className="mt-16 p-8 glass-panel card-glow rounded-2xl bg-[#8C00FF] text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-indigo-500/30">
            <div className="flex flex-col gap-2">
               <h3 className="text-xl font-black tracking-tight">Still have questions?</h3>
-              <p className="text-indigo-100 font-medium">Our team is always here to help you get started with Clawsome.</p>
+              <p className="text-indigo-100 font-medium">Our team is always here to help you get started with Clawesome.</p>
            </div>
            <Link href="#" className="flex items-center gap-2 group text-white font-black tracking-widest uppercase text-xs bg-white/10 hover:bg-white/20 p-4 px-6 rounded-2xl transition-all">
               Chat with support

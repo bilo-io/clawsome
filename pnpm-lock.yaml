@@ -59,7 +59,7 @@ importers:
       '@antigravity/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@clawsome/ui':
+      '@clawesome/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       '@monaco-editor/react':
@@ -132,7 +132,7 @@ importers:
       '@antigravity/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@clawsome/ui':
+      '@clawesome/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       highlight.js:
@@ -215,7 +215,7 @@ importers:
       '@antigravity/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@clawsome/ui':
+      '@clawesome/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       clsx:

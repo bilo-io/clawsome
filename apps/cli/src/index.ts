@@ -7,7 +7,7 @@ import pc from 'picocolors';
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { spawn, type Subprocess } from 'bun';
-import { CLAWSOME_ASCII, clawsomeGradient, clearConsole, displayBranding, displayBrandingSync } from './utils/branding.js';
+import { CLAWESOME_ASCII, clawesomeGradient, clearConsole, displayBranding, displayBrandingSync } from './utils/branding.js';
 
 // Legacy commands (Subcommands)
 import { setup } from './commands/setup.js';
@@ -44,7 +44,7 @@ async function interactiveRoot() {
       {
         type: 'select',
         name: 'action',
-        message: 'Clawsome Interactive Hub',
+        message: 'Clawesome Interactive Hub',
         pageSize: 10,
         choices: [
           { name: '🚀   Start Gateway', value: 'start' },
@@ -74,7 +74,7 @@ async function interactiveRoot() {
         await pressEnter();
         break;
       case 'version':
-        console.log(pc.cyan(`\nClawsome OS — ${pc.bold(getVersion())}`));
+        console.log(pc.cyan(`\nClawesome OS — ${pc.bold(getVersion())}`));
         console.log(pc.dim(`Runtime: Bun ${process.versions.bun} (${process.platform})`));
         console.log(pc.dim(`Workdir: ${process.cwd()}\n`));
         await pressEnter();
@@ -98,8 +98,8 @@ async function interactiveRoot() {
 
 // ─── Programme Meta ────────────────────────────────────────────────────────────
 program
-  .name('clawsome')
-  .description(pc.cyan('Clawsome OS — Neural Agent Orchestration Platform'))
+  .name('clawesome')
+  .description(pc.cyan('Clawesome OS — Neural Agent Orchestration Platform'))
   .version(getVersion(), '-v, --version', 'Print the current version')
   .addHelpText('beforeAll', () => {
     displayBrandingSync(getVersion());
@@ -112,30 +112,30 @@ program
     }
   });
 
-// ─── clawsome setup ───────────────────────────────────────────────────────────
+// ─── clawesome setup ───────────────────────────────────────────────────────────
 program
   .command('setup')
   .description('Run the interactive setup wizard')
   .action(setup);
 
-// ─── clawsome start ───────────────────────────────────────────────────────────
+// ─── clawesome start ───────────────────────────────────────────────────────────
 program
   .command('start')
-  .description('Start the Clawsome Gateway')
+  .description('Start the Clawesome Gateway')
   .option('-p, --port <number>', 'Port to run the gateway on', '17871')
   .option('--no-open', 'Do not automatically open the Dashboard')
   .action(start);
 
-// ─── clawsome stop ────────────────────────────────────────────────────────────
+// ─── clawesome stop ────────────────────────────────────────────────────────────
 program
   .command('stop')
-  .description('Stop the running Clawsome Gateway process')
+  .description('Stop the running Clawesome Gateway process')
   .action(stop);
 
-// ─── clawsome doctor ──────────────────────────────────────────────────────────
+// ─── clawesome doctor ──────────────────────────────────────────────────────────
 program
   .command('doctor')
-  .description('Diagnose your Clawsome environment')
+  .description('Diagnose your Clawesome environment')
   .action(doctor);
 
 // ─── Parse ────────────────────────────────────────────────────────────────────

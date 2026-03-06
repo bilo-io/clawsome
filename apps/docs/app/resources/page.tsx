@@ -6,7 +6,7 @@ export default function ResourcesPage() {
       <header className="space-y-4">
         <h1 className="text-4xl font-black tracking-tight">Resources & MCPs</h1>
         <p className="text-lg text-slate-500 max-w-2xl">
-          Extend Clawsome with built-in integrations, Model Context Protocol (MCP) definitions, and official plugins.
+          Extend Clawesome with built-in integrations, Model Context Protocol (MCP) definitions, and official plugins.
         </p>
       </header>
       
@@ -18,7 +18,7 @@ export default function ResourcesPage() {
           MCP Registry
         </h2>
         <p className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-md">
-          The official repository of verified MCP implementations for Clawsome OS is currently being finalized. Check back in the next minor version.
+          The official repository of verified MCP implementations for Clawesome OS is currently being finalized. Check back in the next minor version.
         </p>
       </section>
     </div>

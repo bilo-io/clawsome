@@ -18,7 +18,7 @@ export const Testimonials = () => {
     {
       name: 'Alex Rivera',
       role: 'Head of Growth, ScaleAI',
-      text: 'Clawsome transformed our lead generation. What used to take a team of 10 people weeks now happens in minutes with a single swarm.',
+      text: 'Clawesome transformed our lead generation. What used to take a team of 10 people weeks now happens in minutes with a single swarm.',
       avatar: 'AR',
       rating: 5,
     },
@@ -32,7 +32,7 @@ export const Testimonials = () => {
     {
       name: 'Leo James',
       role: 'Independent Researcher',
-      text: 'Clawsome is the missing piece for automated data research. The swarms are incredibly robust even on the most difficult websites.',
+      text: 'Clawesome is the missing piece for automated data research. The swarms are incredibly robust even on the most difficult websites.',
       avatar: 'LJ',
       rating: 4,
     },
@@ -46,7 +46,7 @@ export const Testimonials = () => {
     {
       name: 'Michael Wright',
       role: 'Founder, AutoBiz',
-      text: 'Clawsome is literally the backbone of my automated agencies. Minimal overhead, massive output.',
+      text: 'Clawesome is literally the backbone of my automated agencies. Minimal overhead, massive output.',
       avatar: 'MW',
       rating: 5,
     },
@@ -97,7 +97,7 @@ export const Testimonials = () => {
             <span className="not-italic">Built for you to</span> <span className="gradient-text">move fast</span>
           </h2>
           <p className="text-lg text-slate-700 dark:text-slate-400 max-w-xl font-medium">
-            Join 5,000+ companies and innovators scaling their operations with Clawsome.
+            Join 5,000+ companies and innovators scaling their operations with Clawesome.
           </p>
         </div>
 

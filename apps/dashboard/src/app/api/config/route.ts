@@ -4,16 +4,16 @@ import fs from 'fs/promises';
 import path from 'path';
 
 const rootPath = path.join(process.cwd(), '../..'); // Assuming we're in apps/dashboard
-const jsonPath = path.join(rootPath, 'clawsome.json');
+const jsonPath = path.join(rootPath, 'clawesome.json');
 const distDir = path.join(rootPath, 'dist');
-const distPath = path.join(distDir, 'clawsome.json');
+const distPath = path.join(distDir, 'clawesome.json');
 
 export async function GET() {
   try {
     const data = await fs.readFile(jsonPath, 'utf8');
     return NextResponse.json(JSON.parse(data));
   } catch (error) {
-    console.error('Error reading clawsome.json:', error);
+    console.error('Error reading clawesome.json:', error);
     return NextResponse.json({ error: 'Failed to read config' }, { status: 500 });
   }
 }

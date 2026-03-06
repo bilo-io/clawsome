@@ -3,8 +3,8 @@ $schema: 'https://moonrepo.dev/schemas/project.json'
 stack: 'frontend'
 
 project:
-  name: 'ClawSome Dashboard'
-  description: 'ClawSome Dashboard to manage your AI swarm'
+  name: 'Clawesome Dashboard'
+  description: 'Clawesome Dashboard to manage your AI swarm'
 dependsOn:
   - 'core'
   - 'ui'

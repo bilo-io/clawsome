@@ -18,7 +18,7 @@ import {
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
 import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
-import { TestComponent } from "@clawsome/ui";
+import { TestComponent } from "@clawesome/ui";
 
 export default function SettingsPage() {
   const { theme, setTheme, glowIntensity, setGlowIntensity } = useUIStore();

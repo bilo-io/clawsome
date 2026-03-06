@@ -1,11 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useUI, cn } from "@clawsome/ui";
+import { useUI, cn } from "@clawesome/ui";
 
 export default function ReleasesPage() {
   const { theme } = useUI();
   const releases = [
-    { version: "v0.1.0", date: "March 2026", features: ["Initial Monorepo Architecture", "Clawsome CLI Command Hub", "@clawsome/ui shared package", "Nightclaw OS Dashboard MVP", "Developer Documentation App"] },
+    { version: "v0.1.0", date: "March 2026", features: ["Initial Monorepo Architecture", "Clawesome CLI Command Hub", "@clawesome/ui shared package", "Nightclaw OS Dashboard MVP", "Developer Documentation App"] },
     { version: "v0.0.1", date: "February 2026", features: ["Proof of concept AI swarm implementation", "Basic command line structure"] },
   ];
 
@@ -14,7 +14,7 @@ export default function ReleasesPage() {
       <header className="space-y-4">
         <h1 className="text-4xl font-black tracking-tight">Release Notes</h1>
         <p className="text-lg text-slate-500 max-w-2xl">
-          Track the evolution of the Clawsome monorepo and system architecture.
+          Track the evolution of the Clawesome monorepo and system architecture.
         </p>
       </header>
       

@@ -3,7 +3,7 @@
 import React from 'react';
 import { TopBar } from './TopBar';
 import { LeftSidebar } from './LeftSidebar';
-import { useUI } from '@clawsome/ui';
+import { useUI } from '@clawesome/ui';
 
 export function DocsLayout({ children }: { children: React.ReactNode }) {
   const { theme } = useUI();

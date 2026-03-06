@@ -159,7 +159,7 @@ export default function DownloadPage() {
                </div>
                <div className="flex flex-col gap-2">
                    <h3 className="text-xl font-black text-slate-900 dark:text-white">Cloud IDE</h3>
-              <p className="text-slate-600 dark:text-slate-400 font-medium">Run Clawsome in our managed cloud environment. No installation required.</p>
+              <p className="text-slate-600 dark:text-slate-400 font-medium">Run Clawesome in our managed cloud environment. No installation required.</p>
                   <Link href="/login" className="mt-2 flex items-center gap-2 text-indigo-500 font-bold text-sm group">
                      Open in Browser
                      <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -172,8 +172,8 @@ export default function DownloadPage() {
                   <Zap size={24} className="text-emerald-500" />
                </div>
                <div className="flex flex-col gap-2">
-                   <h3 className="text-xl font-black text-slate-900 dark:text-white">Clawsome CLI</h3>
-                  <p className="text-slate-600 dark:text-slate-400 font-medium font-mono text-sm px-3 py-1 bg-slate-100 dark:bg-black rounded-lg w-fit">npm i -g @clawsome/cli</p>
+                   <h3 className="text-xl font-black text-slate-900 dark:text-white">Clawesome CLI</h3>
+                  <p className="text-slate-600 dark:text-slate-400 font-medium font-mono text-sm px-3 py-1 bg-slate-100 dark:bg-black rounded-lg w-fit">npm i -g @clawesome/cli</p>
                   <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">FOR POWER OPERATORS</p>
                </div>
             </div>

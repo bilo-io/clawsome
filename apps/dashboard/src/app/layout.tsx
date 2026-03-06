@@ -40,28 +40,28 @@ export default function RootLayout({
       } as React.CSSProperties}
     >
       <head>
-        <title>Clawsome Dashboard | Command Your AI Swarm</title>
-        <meta name="description" content="The Clawsome OS control panel — orchestrate autonomous AI agents, monitor swarm activity, manage memories, and configure your neural workspace." />
+        <title>Clawesome Dashboard | Command Your AI Swarm</title>
+        <meta name="description" content="The Clawesome OS control panel — orchestrate autonomous AI agents, monitor swarm activity, manage memories, and configure your neural workspace." />
 
         {/* Favicon / App Icon */}
-        <link rel="icon" href="/clawsome-icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/clawsome-icon.svg" />
-        <link rel="shortcut icon" href="/clawsome-icon.svg" />
+        <link rel="icon" href="/clawesome-icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/clawesome-icon.svg" />
+        <link rel="shortcut icon" href="/clawesome-icon.svg" />
 
         {/* OpenGraph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://app.clawsome.app" />
-        <meta property="og:site_name" content="Clawsome Dashboard" />
-        <meta property="og:title" content="Clawsome Dashboard | Command Your AI Swarm" />
+        <meta property="og:url" content="https://app.clawesome.app" />
+        <meta property="og:site_name" content="Clawesome Dashboard" />
+        <meta property="og:title" content="Clawesome Dashboard | Command Your AI Swarm" />
         <meta property="og:description" content="Orchestrate autonomous AI agents, monitor swarm activity, and manage your neural workspace — all from one control panel." />
         <meta property="og:image" content="/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Clawsome Dashboard — AI Swarm Command Center" />
+        <meta property="og:image:alt" content="Clawesome Dashboard — AI Swarm Command Center" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Clawsome Dashboard | Command Your AI Swarm" />
+        <meta name="twitter:title" content="Clawesome Dashboard | Command Your AI Swarm" />
         <meta name="twitter:description" content="Orchestrate autonomous AI agents, monitor swarm activity, and manage your neural workspace." />
         <meta name="twitter:image" content="/og-image.png" />
       </head>

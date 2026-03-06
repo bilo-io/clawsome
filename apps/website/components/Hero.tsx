@@ -49,8 +49,8 @@ export const Hero = () => {
         className="mb-8"
       >
         <img 
-          src="/clawsome-logo.svg" 
-          alt="Clawsome Logo" 
+          src="/clawesome-logo.svg" 
+          alt="Clawesome Logo" 
           className="h-16 md:h-20 w-auto"
         />
       </motion.div>
@@ -73,7 +73,7 @@ export const Hero = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mb-12 font-medium"
       >
-        Deploy intelligent agents that browse, click, and process information. Clawsome is the first OS built for agentic workflows at scale.
+        Deploy intelligent agents that browse, click, and process information. Clawesome is the first OS built for agentic workflows at scale.
       </motion.p>
 
       {/* CTAs */}
@@ -87,7 +87,7 @@ export const Hero = () => {
           href="/download" 
           icon={<Terminal size={20} />}
         >
-          It's ClawSome
+          It's clawesome
         </PrimaryButton>
         <button className="flex items-center gap-3 px-8 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-full font-black text-lg transition-all hover:border-indigo-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 active:scale-95 group">
           <div className="p-1 px-1 bg-indigo-500/10 rounded-full group-hover:bg-indigo-500/20 transition-colors">
@@ -117,7 +117,7 @@ export const Hero = () => {
                <div className="px-5 py-1.5 rounded-lg bg-slate-200/50 dark:bg-white/5 border border-slate-300/50 dark:border-white/5 flex items-center gap-3 scale-90 md:scale-100">
                   <Terminal size={12} className="text-indigo-500" />
                   <span className="text-[11px] font-mono font-bold tracking-tight text-slate-500 dark:text-slate-400">
-                    npm install -g @clawsome/cli
+                    npm install -g @clawesome/cli
                   </span>
                </div>
             </div>
@@ -131,7 +131,7 @@ export const Hero = () => {
 
           <div className="flex-1 relative overflow-hidden bg-black flex items-center justify-center">
              <video 
-               src="/videos/vid-clawsome-cli.mov" 
+               src="/videos/vid-clawesome-cli.mov" 
                autoPlay 
                loop 
                muted 

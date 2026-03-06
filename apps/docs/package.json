@@ -1,5 +1,5 @@
 {
-  "name": "@clawsome/docs",
+  "name": "@clawesome/docs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@clawsome/ui": "workspace:*",
+    "@clawesome/ui": "workspace:*",
     "highlight.js": "^11.11.1",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",

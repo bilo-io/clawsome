@@ -10,7 +10,7 @@ const INDIGO = "\x1b[38;5;63m";
 const PURPLE = "\x1b[38;5;135m";
 const CYAN = "\x1b[38;2;6;182;212m";
 
-const CLAWSOME_ASCII = `
+const CLAWESOME_ASCII = `
      ╓╗▒R╜╜╜╝Dφ╖_
   _╗╩\`       ╔▒╣╙D╖                               [
  ╔╩        _#╬╬╜\` ╙▒                              ╬H                            ╠▒
@@ -42,12 +42,12 @@ function run() {
   
   // Simple "gradient" simulation using ANSI colors for the ASCII art
   // We'll just print it in INDIGO for now to keep it clean and dependency-free
-  process.stdout.write(INDIGO + CLAWSOME_ASCII + RESET);
+  process.stdout.write(INDIGO + CLAWESOME_ASCII + RESET);
   
   const version = getVersion();
   
   process.stdout.write('\n' + INDIGO + '  ────────────────────────────────────────────────────────────' + RESET + '\n');
-  process.stdout.write(`  ${BOLD}${WHITE}installing ${RESET}${INDIGO}clawsome@${version}${RESET}${BOLD}${WHITE} ...${RESET}\n`);
+  process.stdout.write(`  ${BOLD}${WHITE}installing ${RESET}${INDIGO}clawesome@${version}${RESET}${BOLD}${WHITE} ...${RESET}\n`);
   process.stdout.write(INDIGO + '  ────────────────────────────────────────────────────────────' + RESET + '\n\n');
 }
 

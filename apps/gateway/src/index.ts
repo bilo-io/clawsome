@@ -7,7 +7,7 @@ import * as p from '@clack/prompts';
 import pc from 'picocolors';
 import { startServer } from './server';
 import { DEFAULT_PORT } from '@antigravity/core';
-import { CLAWSOME_ASCII, clawsomeGradient, clearConsole } from '../../cli/src/utils/branding';
+import { CLAWESOME_ASCII, clawesomeGradient, clearConsole } from '../../cli/src/utils/branding';
 
 const program = new Command();
 
@@ -140,12 +140,12 @@ const formatMessage = (msg: string) => {
 
 const displayBranding = () => {
   clearConsole();
-  console.log(clawsomeGradient.multiline(CLAWSOME_ASCII));
+  console.log(clawesomeGradient.multiline(CLAWESOME_ASCII));
 };
 
 program
-  .name('clawsome')
-  .description('Clawsome Gateway CLI')
+  .name('clawesome')
+  .description('Clawesome Gateway CLI')
   .version('0.1.0');
 
 program
@@ -154,7 +154,7 @@ program
   .action(async () => {
     displayBranding();
 
-    p.intro(clawsomeGradient(' Welcome to Clawsome Gateway Setup '));
+    p.intro(clawesomeGradient(' Welcome to Clawesome Gateway Setup '));
 
     const project = await p.group(
       {

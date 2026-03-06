@@ -21,7 +21,7 @@ export default function ArchitecturePage() {
           </div>
           <div className="p-8 rounded-[32px] border border-slate-200 dark:border-slate-800 space-y-3">
              <h3 className="text-xl font-bold tracking-tight">Unified UI</h3>
-             <p className="text-sm leading-relaxed text-slate-500">Instead of rewriting UI logic across instances, the <code>@clawsome/ui</code> package enforces design language system-wide.</p>
+             <p className="text-sm leading-relaxed text-slate-500">Instead of rewriting UI logic across instances, the <code>@clawesome/ui</code> package enforces design language system-wide.</p>
           </div>
         </div>
       </section>
@@ -35,7 +35,7 @@ export default function ArchitecturePage() {
         </p>
         <CodePreview 
           language="typescript"
-          code={`// Global Theme Injection in Next.js\nimport { ThemeProvider } from '@clawsome/ui';\n\nexport default function RootLayout({ children }) {\n  return (\n    <ThemeProvider>\n      {children}\n    </ThemeProvider>\n  );\n}`} 
+          code={`// Global Theme Injection in Next.js\nimport { ThemeProvider } from '@clawesome/ui';\n\nexport default function RootLayout({ children }) {\n  return (\n    <ThemeProvider>\n      {children}\n    </ThemeProvider>\n  );\n}`} 
         />
       </section>
     </div>

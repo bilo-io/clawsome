@@ -1,6 +1,6 @@
 'use client';
 
-import { PageHeader, ContextAccordion, SkillCard, AgentCard, CodeBlock, SegmentedControl, SlideToConfirm, PermissionToggle, QuickActions, SystemVitality } from "@clawsome/ui";
+import { PageHeader, ContextAccordion, SkillCard, AgentCard, CodeBlock, SegmentedControl, SlideToConfirm, PermissionToggle, QuickActions, SystemVitality } from "@clawesome/ui";
 
 export default function ComponentsPage() {
   const demoSkill = {
@@ -25,7 +25,7 @@ export default function ComponentsPage() {
       <header className="space-y-4">
         <h1 className="text-4xl font-black tracking-tight">Component Library</h1>
         <p className="text-lg text-slate-500 max-w-2xl">
-          The central atomic design system for Clawsome UI. All visual components below are imported from `packages/ui`.
+          The central atomic design system for Clawesome UI. All visual components below are imported from `packages/ui`.
         </p>
       </header>
 
@@ -38,7 +38,7 @@ export default function ComponentsPage() {
           statusLabel="Stability Index:"
           statusValue="Stable 1.0"
           statusColor="emerald"
-          description="A standard PageHeader used across Clawsome interfaces."
+          description="A standard PageHeader used across Clawesome interfaces."
         />
       </section>
 

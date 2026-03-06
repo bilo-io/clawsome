@@ -1,5 +1,9 @@
 Docs should somewhat mimic normal developer docs.
 
+Core:
+- theme switching just like in the other apps/sites
+- copy the app icon and logo from the website over to this repo.
+
 Layout:
 - Left sidebar with search input at the top
 - Top bar with links to other pages relevant to the docs

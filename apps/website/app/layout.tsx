@@ -10,35 +10,35 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "ClawSome | Autonomous AI Operating System",
+  title: "clawesome | Autonomous AI Operating System",
   description:
-    "Next-gen AI swarms and agentic workflows for modern operators. Build, deploy, and scale autonomous agent networks with Clawsome OS.",
+    "Next-gen AI swarms and agentic workflows for modern operators. Build, deploy, and scale autonomous agent networks with Clawesome OS.",
   icons: {
     icon: [
-      { url: "/clawsome-icon.svg", type: "image/svg+xml" },
+      { url: "/clawesome-icon.svg", type: "image/svg+xml" },
     ],
-    apple: "/clawsome-icon.svg",
-    shortcut: "/clawsome-icon.svg",
+    apple: "/clawesome-icon.svg",
+    shortcut: "/clawesome-icon.svg",
   },
   openGraph: {
     type: "website",
-    url: "https://clawsome.app",
-    title: "ClawSome | Autonomous AI Operating System",
+    url: "https://clawesome.app",
+    title: "clawesome | Autonomous AI Operating System",
     description:
       "Next-gen AI swarms and agentic workflows for modern operators. Build, deploy, and scale autonomous agent networks.",
-    siteName: "ClawSome",
+    siteName: "clawesome",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ClawSome — Autonomous AI Operating System",
+        alt: "clawesome — Autonomous AI Operating System",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ClawSome | Autonomous AI Operating System",
+    title: "clawesome | Autonomous AI Operating System",
     description: "Next-gen AI swarms and agentic workflows for modern operators.",
     images: ["/og-image.png"],
   },

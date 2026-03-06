@@ -31,7 +31,7 @@ interface Message {
 
 const INITIAL_CONVERSATION: Message[] = [
   { id: '1', role: 'user', content: "Hello NC-01, can you analyze the current workspace?" },
-  { id: '2', role: 'assistant', content: "NC-01 on-line. Scanning workspace: `/Users/bilolwabona/BiloDev/clawsome`... I detected 3 apps and 2 libraries. The core project uses Bun and Moon v2 for orchestration." },
+  { id: '2', role: 'assistant', content: "NC-01 on-line. Scanning workspace: `/Users/bilolwabona/BiloDev/clawesome`... I detected 3 apps and 2 libraries. The core project uses Bun and Moon v2 for orchestration." },
   { id: '3', role: 'user', content: "Great. Can you breakdown the security protocols currently active?" },
   { id: '4', role: 'assistant', content: "Initiating security audit. Current sandbox depth: **level 3**. Filesystem access: Restricted to current project root. Container isolation: Virtualized via `NC-SandBox`. Neural Link encryption: AES-256." },
   { id: '5', role: 'user', content: "How is the token consumption looking for the last 24h?" },
@@ -248,11 +248,11 @@ export default function ChatDetailPage() {
                     <div 
                       className={cn("w-6 h-6", theme === 'dark' ? "bg-white" : "bg-slate-900")} 
                       style={{ 
-                        maskImage: 'url(/clawsome-icon.svg)', 
+                        maskImage: 'url(/clawesome-icon.svg)', 
                         maskSize: 'contain', 
                         maskRepeat: 'no-repeat', 
                         maskPosition: 'center',
-                        WebkitMaskImage: 'url(/clawsome-icon.svg)',
+                        WebkitMaskImage: 'url(/clawesome-icon.svg)',
                         WebkitMaskSize: 'contain',
                         WebkitMaskRepeat: 'no-repeat',
                         WebkitMaskPosition: 'center'
@@ -293,11 +293,11 @@ export default function ChatDetailPage() {
                     <div 
                       className={cn("w-6 h-6", theme === 'dark' ? "bg-slate-500" : "bg-slate-400", "group-focus-within:bg-indigo-500 transition-colors")} 
                       style={{ 
-                        maskImage: 'url(/clawsome-icon.svg)', 
+                        maskImage: 'url(/clawesome-icon.svg)', 
                         maskSize: 'contain', 
                         maskRepeat: 'no-repeat', 
                         maskPosition: 'center',
-                        WebkitMaskImage: 'url(/clawsome-icon.svg)',
+                        WebkitMaskImage: 'url(/clawesome-icon.svg)',
                         WebkitMaskSize: 'contain',
                         WebkitMaskRepeat: 'no-repeat',
                         WebkitMaskPosition: 'center'

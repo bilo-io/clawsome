@@ -28,7 +28,7 @@ export const Donate = () => {
         </h2>
         
         <p className="text-xl text-slate-400 max-w-2xl mb-16 font-medium leading-relaxed">
-          Clawsome is built by a small team of engineers dedicated to the future of autonomous agents. Every contribution helps us maintain the core OS and keep it free for everyone.
+          Clawesome is built by a small team of engineers dedicated to the future of autonomous agents. Every contribution helps us maintain the core OS and keep it free for everyone.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-3xl">
@@ -46,7 +46,7 @@ export const Donate = () => {
               amount: "Monthly",
               color: "text-indigo-400",
               bgColor: "bg-indigo-400/10",
-              link: "https://github.com/sponsors/clawsome",
+              link: "https://github.com/sponsors/clawesome",
             },
             {
               icon: Github,
@@ -54,7 +54,7 @@ export const Donate = () => {
               amount: "Free",
               color: "text-white",
               bgColor: "bg-white/10",
-              link: "https://github.com/clawsome/clawsome",
+              link: "https://github.com/clawesome/clawesome",
             }
           ].map((item, idx) => (
             <motion.a

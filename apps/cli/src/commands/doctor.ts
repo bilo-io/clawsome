@@ -3,7 +3,7 @@ import pc from 'picocolors';
 import { execSync } from 'child_process';
 import { existsSync } from 'fs';
 import path from 'path';
-import { displayBranding, clawsomeGradient } from '../utils/branding.js';
+import { displayBranding, clawesomeGradient } from '../utils/branding.js';
 
 interface CheckResult {
   label: string;
@@ -36,7 +36,7 @@ function checkMinVersion(version: string, min: number[]): boolean {
 export async function doctor(): Promise<void> {
   await displayBranding();
 
-  p.intro(clawsomeGradient(' 🩺  Clawsome Doctor — Environment Diagnostics '));
+  p.intro(clawesomeGradient(' 🩺  Clawesome Doctor — Environment Diagnostics '));
 
   const s = p.spinner();
   s.start('Running diagnostics...');
@@ -64,9 +64,9 @@ export async function doctor(): Promise<void> {
       if (!existsSync(f)) throw new Error('Missing');
       return 'Found';
     }),
-    check('.clawsome.json config', () => {
-      const f = path.join(process.cwd(), '.clawsome.json');
-      if (!existsSync(f)) throw new Error('Not found — run clawsome setup');
+    check('.clawesome.json config', () => {
+      const f = path.join(process.cwd(), '.clawesome.json');
+      if (!existsSync(f)) throw new Error('Not found — run clawesome setup');
       return 'Found';
     }),
     check('apps/gateway present', () => {
@@ -104,14 +104,14 @@ export async function doctor(): Promise<void> {
 
   // ─── Summary ──────────────────────────────────────────────────────────────
   const summary = failed === 0
-    ? pc.green(`  ✅  All ${passed} checks passed — your Clawsome environment looks healthy!`)
+    ? pc.green(`  ✅  All ${passed} checks passed — your Clawesome environment looks healthy!`)
     : pc.yellow(`  ⚠️   ${passed} passed, ${pc.red(failed.toString())} failed — see issues above.`);
 
   console.log(summary + '\n');
 
   if (failed > 0) {
-    p.log.info(`Run ${pc.cyan(pc.bold('clawsome setup'))} to initialise missing configuration.`);
+    p.log.info(`Run ${pc.cyan(pc.bold('clawesome setup'))} to initialise missing configuration.`);
   }
 
-  p.outro(clawsomeGradient('  Doctor out. 🩺'));
+  p.outro(clawesomeGradient('  Doctor out. 🩺'));
 }

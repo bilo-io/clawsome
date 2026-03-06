@@ -70,7 +70,7 @@ export const Features = () => {
             <span className="not-italic">All you need to</span> <span className="gradient-text">scale your ops</span>
           </h2>
           <p className="text-lg text-slate-700 dark:text-slate-400 max-w-xl font-medium">
-            ClawSome provides the infrastructure to build, deploy, and manage production-grade AI agent networks.
+            clawesome provides the infrastructure to build, deploy, and manage production-grade AI agent networks.
           </p>
         </div>
 

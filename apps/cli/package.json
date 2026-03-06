@@ -1,18 +1,18 @@
 {
-  "name": "@clawsome/cli",
+  "name": "@clawesome/cli",
   "version": "0.1.0",
-  "description": "Clawsome OS — Command Line Interface",
+  "description": "Clawesome OS — Command Line Interface",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "clawsome": "dist/index.js"
+    "clawesome": "dist/index.js"
   },
   "scripts": {
     "dev": "bun src/index.ts",
     "build": "tsc",
     "start": "bun dist/index.js"
   },
-  "keywords": ["clawsome", "cli", "ai", "agents"],
+  "keywords": ["clawesome", "cli", "ai", "agents"],
   "author": "",
   "license": "ISC",
   "dependencies": {

@@ -83,9 +83,9 @@ export const Sidebar = ({
                 className="h-8 w-full flex items-center justify-start overflow-hidden"
               >
                 {logoFull ? (
-                   <img src={logoFull} alt="Clawsome" className="h-full w-auto" />
+                   <img src={logoFull} alt="Clawesome" className="h-full w-auto" />
                 ) : (
-                  <span className="font-black text-xl tracking-tighter uppercase whitespace-nowrap">Clawsome</span>
+                  <span className="font-black text-xl tracking-tighter uppercase whitespace-nowrap">Clawesome</span>
                 )}
               </motion.div>
             ) : (
@@ -94,7 +94,7 @@ export const Sidebar = ({
                 className="w-full flex justify-center"
               >
                 {logoMini ? (
-                   <img src={logoMini} alt="Clawsome" className="h-8 w-8" />
+                   <img src={logoMini} alt="Clawesome" className="h-8 w-8" />
                 ) : (
                   <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-black">C</div>
                 )}

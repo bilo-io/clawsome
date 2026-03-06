@@ -2,14 +2,14 @@ import * as p from '@clack/prompts';
 import pc from 'picocolors';
 import { existsSync, readFileSync, unlinkSync } from 'fs';
 import path from 'path';
-import { displayBranding, clawsomeGradient } from '../utils/branding.js';
+import { displayBranding, clawesomeGradient } from '../utils/branding.js';
 
-const PID_FILE = path.join(process.cwd(), '.clawsome.pid');
+const PID_FILE = path.join(process.cwd(), '.clawesome.pid');
 
 export async function stop(): Promise<void> {
   await displayBranding();
 
-  p.intro(clawsomeGradient(' 🛑  Clawsome — Stopping Gateway '));
+  p.intro(clawesomeGradient(' 🛑  Clawesome — Stopping Gateway '));
 
   if (!existsSync(PID_FILE)) {
     p.log.warn(pc.yellow('No running gateway detected. Nothing to stop.'));
@@ -50,5 +50,5 @@ export async function stop(): Promise<void> {
     }
   }
 
-  p.outro(clawsomeGradient(`  All clear. Run ${pc.bold('clawsome start')} to restart.`));
+  p.outro(clawesomeGradient(`  All clear. Run ${pc.bold('clawesome start')} to restart.`));
 }

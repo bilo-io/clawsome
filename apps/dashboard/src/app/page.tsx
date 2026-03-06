@@ -209,7 +209,7 @@ export default function Dashboard() {
                <div className="pt-4 space-y-10">
                  <div className="shadow-2xl rounded-[32px] overflow-hidden border border-slate-800/10">
                     <CodeBlock 
-                      code={`# Monitoring event stream...\nnpx clawsome-monitor --port 17871\ngrep -E "(ERROR|WARNING)" ./logs/trace.log`} 
+                      code={`# Monitoring event stream...\nnpx clawesome-monitor --port 17871\ngrep -E "(ERROR|WARNING)" ./logs/trace.log`} 
                       language="shell"
                     />
                  </div>
