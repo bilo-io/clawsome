@@ -66,7 +66,7 @@ export const Sidebar = () => {
         { icon: Bot, label: 'Agents', href: '/agents' },
         { icon: Sparkles, label: 'Skills', href: '/skills' },
         { icon: BrainCircuit, label: 'Swarms', href: '/swarms' },
-        { icon: Brain, label: 'Memory', href: '/memory' },
+        { icon: Brain, label: 'Memories', href: '/memory' },
         { icon: FolderKanban, label: 'Projects', href: '/projects' },
       ]
     },
