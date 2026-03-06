@@ -98,7 +98,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
     return (
     <div 
         className={cn(
-          "group transition-all border rounded-[32px] p-4 flex items-center justify-between",
+          "group transition-all border rounded-2xl p-4 flex items-center justify-between",
           theme === 'dark' ? "bg-slate-900 border-slate-800 hover:bg-slate-900/60" : "bg-white border-slate-100 hover:bg-slate-50/50 shadow-sm"
         )}
       >
@@ -170,7 +170,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
   return (
     <div
       className={cn(
-        "group relative rounded-[48px] p-10 transition-all border shadow-2xl flex flex-col h-full overflow-hidden",
+        "group relative rounded-2xl p-10 transition-all border shadow-2xl flex flex-col h-full overflow-hidden",
         theme === 'dark' 
           ? "bg-slate-950/40 border-slate-900/60 hover:bg-slate-950/60 hover:border-indigo-500/20" 
           : "bg-white border-slate-100 hover:border-indigo-100 shadow-slate-200/40 hover:shadow-indigo-500/5"
@@ -237,7 +237,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
             onClick={handleImport}
             disabled={isImported}
             className={cn(
-              "flex items-center gap-3 px-8 py-4 rounded-[20px] text-[10px] font-black uppercase tracking-[0.2em] transition-all relative overflow-hidden active:scale-95 shadow-xl",
+              "flex items-center gap-3 px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all relative overflow-hidden active:scale-95 shadow-xl",
               isImported 
                 ? (theme === 'dark' ? "bg-slate-900 text-slate-800 border-slate-800 cursor-not-allowed" : "bg-slate-100 text-slate-300 border border-slate-200 cursor-not-allowed shadow-none") 
                 : "bg-indigo-600 text-white shadow-indigo-600/30 hover:bg-indigo-500"

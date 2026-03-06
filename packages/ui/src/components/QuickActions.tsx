@@ -21,7 +21,7 @@ export const QuickActions = () => {
         <button 
           key={action.label} 
           className={cn(
-            "group p-8 rounded-[40px] border transition-all hover:scale-105 active:scale-95 space-y-5 text-left shadow-xl overflow-hidden relative",
+            "group p-8 rounded-2xl border transition-all hover:scale-105 active:scale-95 space-y-5 text-left shadow-xl overflow-hidden relative",
             theme === 'dark' 
               ? "bg-slate-900/40 border-slate-800/60 shadow-none hover:bg-slate-900 hover:border-indigo-500/30" 
               : "bg-white border-slate-100 shadow-slate-200/40 hover:border-indigo-200 hover:shadow-2xl"

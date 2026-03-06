@@ -101,7 +101,7 @@ export const Features = () => {
         </div>
 
         {/* Visual Showcase (The 6th Section part) */}
-        <div className="mt-24 p-12 glass-panel card-glow rounded-[3rem] border-[#8C00FF]/10 dark:border-[#8C00FF]/20 bg-white/80 dark:bg-[#8C00FF]/5 flex flex-col lg:flex-row items-center gap-16 overflow-hidden relative shadow-2xl shadow-slate-200/60 dark:shadow-none">
+        <div className="mt-24 p-12 glass-panel card-glow rounded-2xl border-[#8C00FF]/10 dark:border-[#8C00FF]/20 bg-white/80 dark:bg-[#8C00FF]/5 flex flex-col lg:flex-row items-center gap-16 overflow-hidden relative shadow-2xl shadow-slate-200/60 dark:shadow-none">
            {/* Background Grid */}
            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
            

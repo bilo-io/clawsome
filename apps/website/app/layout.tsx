@@ -11,9 +11,36 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "ClawSome | Autonomous AI Operating System",
-  description: "Next-gen AI swarms and agentic workflows for modern operators.",
+  description:
+    "Next-gen AI swarms and agentic workflows for modern operators. Build, deploy, and scale autonomous agent networks with Clawsome OS.",
   icons: {
-    icon: "/clawsome-icon.svg",
+    icon: [
+      { url: "/clawsome-icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/clawsome-icon.svg",
+    shortcut: "/clawsome-icon.svg",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://clawsome.app",
+    title: "ClawSome | Autonomous AI Operating System",
+    description:
+      "Next-gen AI swarms and agentic workflows for modern operators. Build, deploy, and scale autonomous agent networks.",
+    siteName: "ClawSome",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "ClawSome — Autonomous AI Operating System",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ClawSome | Autonomous AI Operating System",
+    description: "Next-gen AI swarms and agentic workflows for modern operators.",
+    images: ["/og-image.png"],
   },
 };
 

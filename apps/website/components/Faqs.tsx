@@ -58,7 +58,7 @@ export const Faqs = () => {
               <div 
                 key={idx} 
                 className={cn(
-                  "transition-all duration-300 rounded-[2rem] border card-glow",
+                  "transition-all duration-300 rounded-xl border card-glow",
                   isOpen 
                     ? 'border-[#8C00FF]/30 bg-white dark:bg-indigo-500/5 shadow-xl shadow-slate-200/50 dark:shadow-none' 
                     : 'border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent'
@@ -95,7 +95,7 @@ export const Faqs = () => {
           })}
         </div>
 
-        <div className="mt-16 p-8 glass-panel card-glow rounded-[2.5rem] bg-[#8C00FF] text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-indigo-500/30">
+        <div className="mt-16 p-8 glass-panel card-glow rounded-2xl bg-[#8C00FF] text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-indigo-500/30">
            <div className="flex flex-col gap-2">
               <h3 className="text-xl font-black tracking-tight">Still have questions?</h3>
               <p className="text-indigo-100 font-medium">Our team is always here to help you get started with Clawsome.</p>

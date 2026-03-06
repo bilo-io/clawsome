@@ -33,7 +33,7 @@ export const SystemVitality = () => {
         <div 
           key={metric.key} 
           className={cn(
-            "p-6 rounded-[28px] border transition-all cursor-pointer group shadow-sm",
+            "p-6 rounded-2xl border transition-all cursor-pointer group shadow-sm",
             theme === 'dark' 
               ? "bg-slate-900/40 border-slate-800/50 hover:bg-slate-900/60" 
               : "bg-white border-slate-200 hover:border-indigo-300 hover:shadow-md"

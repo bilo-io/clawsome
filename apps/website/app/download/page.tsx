@@ -72,18 +72,11 @@ export default function DownloadPage() {
 
   return (
     <div className="relative pt-40 pb-32 px-8 flex flex-col items-center min-h-[90vh] isolate overflow-hidden">
-      <BackgroundVideo mounted={mounted} src={"/videos/vid-download-1-bg.mp4"} />
+      <BackgroundVideo mounted={mounted} src={"/videos/vid-space-stars.mp4"} />
 
       <div className="max-w-5xl w-full">
-         {/* Feature Header */}
-         <div className="flex flex-col items-center text-center mb-20">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="mb-8"
-            >
-              <AnimatedDownload size={120} />
-            </motion.div>
+         {/* Feature Header — title & subtitle only */}
+         <div className="flex flex-col items-center text-center mb-12">
             <h1 
               className="text-5xl md:text-6xl font-black mb-6 text-slate-900 dark:text-white leading-[1.3] overflow-visible px-12"
               style={{ fontFamily: "'Newton Howard Font', sans-serif" }}
@@ -93,10 +86,21 @@ export default function DownloadPage() {
             <p className="text-xl text-slate-700 dark:text-slate-400 max-w-2xl font-medium">
               Experience the power of a fully autonomous AI operating system on your local machine.
             </p>
-         </div>
+        </div>
+        
+        {/* Animated Download tray — between grid and alternative methods */}
+        <div className="flex justify-center mb-16">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          >
+            <AnimatedDownload size={100} />
+          </motion.div>
+        </div>
 
          {/* OS Grid */}
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 px-8">
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 px-8">
             {versions.map((v, i) => (
               <motion.div
                 key={i}
@@ -104,7 +108,7 @@ export default function DownloadPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 className={cn(
-                  "p-10 rounded-[3rem] border transition-all flex flex-col items-center text-center",
+                  "p-10 rounded-2xl border transition-all flex flex-col items-center text-center",
                   v.featured ? 'border-indigo-500/30 bg-indigo-50/20 dark:bg-indigo-500/5 neon-glow' : 'border-slate-200 dark:border-slate-800'
                 )}
               >
@@ -136,7 +140,7 @@ export default function DownloadPage() {
                      Download ({v.extension})
                    </PrimaryButton>
                  ) : (
-                   <button className="mt-10 px-6 py-4 w-full rounded-2xl font-semibold whitespace-nowrap text-sm flex flex-row items-center justify-center transition-all shadow-lg bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-800">
+                   <button className="mt-10 px-6 py-4 w-full rounded-xl font-semibold whitespace-nowrap text-sm flex flex-row items-center justify-center transition-all shadow-lg bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-800">
                       <DownloadIcon size={20} className="mr-2" />
                       <span>Download ({v.extension})</span>
                    </button>
@@ -145,10 +149,12 @@ export default function DownloadPage() {
             ))}
          </div>
 
-         {/* Alternative Methods */}
+         
+
+          {/* Alternative Methods */}
          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto">
-            <div className="p-8 glass-panel rounded-[2.5rem] flex items-start gap-6 border-indigo-500/10 transition-all hover:bg-slate-50 dark:hover:bg-slate-900/50">
-               <div className="p-4 bg-indigo-500/10 rounded-2xl">
+            <div className="p-8 glass-panel rounded-2xl flex items-start gap-6 border-indigo-500/10 transition-all hover:bg-slate-50 dark:hover:bg-slate-900/50">
+               <div className="p-4 bg-indigo-500/10 rounded-xl">
                   <Cloud size={24} className="text-indigo-500" />
                </div>
                <div className="flex flex-col gap-2">
@@ -161,8 +167,8 @@ export default function DownloadPage() {
                </div>
             </div>
 
-            <div className="p-8 glass-panel rounded-[2.5rem] flex items-start gap-6 border-indigo-500/10 transition-all hover:bg-slate-50 dark:hover:bg-slate-900/50">
-               <div className="p-4 bg-emerald-500/10 rounded-2xl">
+            <div className="p-8 glass-panel rounded-2xl flex items-start gap-6 border-indigo-500/10 transition-all hover:bg-slate-50 dark:hover:bg-slate-900/50">
+               <div className="p-4 bg-emerald-500/10 rounded-xl">
                   <Zap size={24} className="text-emerald-500" />
                </div>
                <div className="flex flex-col gap-2">

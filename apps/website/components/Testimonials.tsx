@@ -125,12 +125,12 @@ export const Testimonials = () => {
                     layout: { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
                   }}
                   className={cn(
-                    "relative w-full max-w-[360px] p-1 rounded-[3rem] shrink-0",
+                    "relative w-full max-w-[360px] p-1 rounded-2xl shrink-0",
                     isActive ? "bg-gradient-to-tr from-[#8C00FF] to-[#008FD6] shadow-[0_0_80px_rgba(140,0,255,0.3)]" : "bg-transparent"
                   )}
                 >
                   <div className={cn(
-                    "w-full h-full p-8 md:p-10 rounded-[2.9rem] flex flex-col items-center text-center transition-colors duration-700",
+                    "w-full h-full p-8 md:p-10 rounded-2xl flex flex-col items-center text-center transition-colors duration-700",
                     theme === 'dark' ? "bg-slate-900/95" : "bg-white"
                   )}>
                     <Quote className="text-indigo-500 mb-6 opacity-20" size={32} />

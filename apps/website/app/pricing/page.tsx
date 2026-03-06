@@ -71,7 +71,7 @@ export default function PricingPage() {
 
   return (
     <div className="relative pt-40 pb-32 px-8 flex flex-col items-center min-h-screen bg-white dark:bg-[#020617] transition-colors isolate overflow-hidden">
-      <BackgroundVideo mounted={mounted} src={"/videos/vid-download-2-bg.mp4"} />
+      <BackgroundVideo mounted={mounted} src={"/videos/vid-space-river.mp4"} />
       <div className="max-w-7xl w-full">
          {/* Pricing Header */}
          <div className="flex flex-col items-center text-center mb-16">
@@ -110,7 +110,7 @@ export default function PricingPage() {
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className={`p-10 rounded-[3rem] border transition-all flex flex-col relative ${plan.featured ? 'border-indigo-500/40 bg-white dark:bg-indigo-500/5 shadow-2xl shadow-indigo-500/20 dark:shadow-none neon-glow py-16' : 'border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950/20 shadow-sm'}`}
+                className={`p-10 rounded-2xl border transition-all flex flex-col relative ${plan.featured ? 'border-indigo-500/40 bg-white dark:bg-indigo-500/5 shadow-2xl shadow-indigo-500/20 dark:shadow-none neon-glow py-16' : 'border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950/20 shadow-sm'}`}
               >
                  {plan.tag && (
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1.5 bg-indigo-600 text-white text-[10px] font-black tracking-[0.2em] rounded-full shadow-lg">
@@ -149,7 +149,7 @@ export default function PricingPage() {
                     ))}
                  </div>
 
-                 <button className={`w-full py-5 rounded-[2rem] font-black text-lg transition-all shadow-xl hover:scale-105 active:scale-95 ${plan.featured ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-indigo-500/30' : 'bg-slate-900 dark:bg-white text-white dark:text-slate-950 hover:bg-black dark:hover:bg-slate-200 shadow-slate-950/20 dark:shadow-white/10'}`}>
+                 <button className={`w-full py-5 rounded-xl font-black text-lg transition-all shadow-xl hover:scale-105 active:scale-95 ${plan.featured ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-indigo-500/30' : 'bg-slate-900 dark:bg-white text-white dark:text-slate-950 hover:bg-black dark:hover:bg-slate-200 shadow-slate-950/20 dark:shadow-white/10'}`}>
                     {plan.cta}
                  </button>
               </motion.div>
@@ -157,12 +157,12 @@ export default function PricingPage() {
          </div>
 
          {/* Bottom CTA */}
-         <div className="mt-32 w-full max-w-4xl mx-auto p-12 glass-panel card-glow rounded-[3.5rem] border-indigo-500/10 dark:border-indigo-500/20 bg-slate-50 dark:bg-indigo-500/5 flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left shadow-2xl shadow-slate-200/50 dark:shadow-none">
+         <div className="mt-32 w-full max-w-4xl mx-auto p-12 glass-panel card-glow rounded-2xl border-indigo-500/10 dark:border-indigo-500/20 bg-slate-50 dark:bg-indigo-500/5 flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left shadow-2xl shadow-slate-200/50 dark:shadow-none">
             <div className="flex flex-col gap-4">
               <h3 className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">Need a custom <span className="text-indigo-500">enterprise swarm</span>?</h3>
               <p className="text-xl text-slate-700 dark:text-slate-400 font-medium">We build bespoke autonomous systems for the world's largest companies.</p>
             </div>
-            <Link href="#" className="whitespace-nowrap flex items-center gap-3 px-10 py-5 bg-slate-900 dark:bg-white text-white dark:text-black rounded-[2rem] font-black text-lg transition-all hover:scale-105 active:scale-95 group shadow-2xl shadow-slate-950/20 dark:shadow-white/10">
+            <Link href="#" className="whitespace-nowrap flex items-center gap-3 px-10 py-5 bg-slate-900 dark:bg-white text-white dark:text-black rounded-xl font-black text-lg transition-all hover:scale-105 active:scale-95 group shadow-2xl shadow-slate-950/20 dark:shadow-white/10">
                Talk to our experts
                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>

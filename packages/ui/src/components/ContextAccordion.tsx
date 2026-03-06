@@ -24,7 +24,7 @@ export const ContextAccordion: React.FC<ContextAccordionProps> = ({
 
   return (
     <div className={cn(
-      "rounded-[32px] border transition-all overflow-hidden flex flex-col group shadow-xl",
+      "rounded-2xl border transition-all overflow-hidden flex flex-col group shadow-xl",
       theme === 'dark' 
         ? "bg-slate-900/10 border-slate-800 shadow-none hover:border-slate-700/50" 
         : "bg-white border-slate-100 shadow-slate-200/50 hover:border-indigo-100"

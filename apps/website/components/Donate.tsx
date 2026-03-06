@@ -66,7 +66,7 @@ export const Donate = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group p-8 rounded-[2.5rem] border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all flex flex-col items-center gap-4 card-glow"
+                className="group p-8 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all flex flex-col items-center gap-4 card-glow"
             >
               <div className={cn("p-4 rounded-2xl group-hover:scale-110 group-hover:rotate-6 transition-transform", item.bgColor)}>
                 <item.icon size={24} className={item.color} />

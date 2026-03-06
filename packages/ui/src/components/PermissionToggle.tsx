@@ -18,7 +18,7 @@ export const PermissionToggle = () => {
 
   return (
     <div className={cn(
-      "p-8 rounded-[40px] border transition-all shadow-xl space-y-8",
+      "p-8 rounded-2xl border transition-all shadow-xl space-y-8",
       theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 shadow-none" : "bg-white border-slate-100 shadow-slate-200/40"
     )}>
       <div className="flex items-center justify-between">
@@ -70,7 +70,7 @@ export const PermissionToggle = () => {
       </div>
 
       <div className={cn(
-        "p-5 border border-dashed rounded-[24px] flex items-start gap-4 transition-all overflow-hidden relative",
+        "p-5 border border-dashed rounded-xl flex items-start gap-4 transition-all overflow-hidden relative",
         theme === 'dark' ? "bg-amber-500/5 border-amber-500/20 text-amber-500/80" : "bg-amber-50 border-amber-200 text-amber-700 shadow-inner"
       )}>
          <ShieldAlert size={18} className="shrink-0 mt-0.5" />
@@ -81,7 +81,7 @@ export const PermissionToggle = () => {
          <div className="absolute -bottom-10 -right-10 w-24 h-24 bg-amber-500/10 blur-3xl rounded-full" />
       </div>
 
-      <button className="w-full py-4 bg-rose-600 hover:bg-rose-500 text-white rounded-[24px] text-[11px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl shadow-rose-600/20 active:scale-95 flex items-center justify-center gap-3">
+      <button className="w-full py-4 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-[11px] font-black uppercase tracking-[0.3em] transition-all shadow-2xl shadow-rose-600/20 active:scale-95 flex items-center justify-center gap-3">
          <Power size={18} /> Master Kill Switch
       </button>
     </div>

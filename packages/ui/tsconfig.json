@@ -9,6 +9,7 @@
     }
   ],
   "compilerOptions": {
+    "composite": true,
     "outDir": "../../.moon/cache/types/packages/ui"
   }
 }

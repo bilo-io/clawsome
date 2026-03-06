@@ -29,17 +29,13 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const docsUrl =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3001'
-      : 'https://clawsome-docs.vercel.app';
+  const docsUrl = process.env.NEXT_PUBLIC_DOCS_URL ?? 'https://clawsome-docs.vercel.app';
 
   const navLinks = [
     { name: 'Docs', href: docsUrl, external: true },
     { name: 'Marketplace', href: '/marketplace' },
-    { name: 'Pricing', href: '/pricing' },
     { name: 'Download', href: '/download' },
-    { name: 'FAQs', href: '/#faqs' },
+    { name: 'Pricing', href: '/pricing' },
   ];
 
   return (

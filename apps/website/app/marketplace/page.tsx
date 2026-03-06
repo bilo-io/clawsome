@@ -229,7 +229,7 @@ export default function MarketplacePage() {
   const categories: Category[] = ['All', 'Skills', 'Integrations', 'Plugins', 'MCP', 'Automation', 'Models', 'Platforms'];
 
   return (
-    <main className="min-h-screen relative bg-slate-50 dark:bg-[#020617] transition-colors duration-500 overflow-hidden">
+    <main className="min-h-screen relative transition-colors duration-500 overflow-hidden">
 
       {/* Decorative Background */}
       {/* <div className="absolute inset-0 pointer-events-none">
@@ -239,7 +239,7 @@ export default function MarketplacePage() {
 
       {/* Hero Animated Background */}
       <BackgroundAnimated />
-      <BackgroundVideo mounted={mounted} src={"/videos/vid-marketplace-bg.mp4"} />
+      <BackgroundVideo mounted={mounted} src={"/videos/vid-space-river.mp4"} />
 
       <div className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto">
         {/* Flashy Top Panel */}

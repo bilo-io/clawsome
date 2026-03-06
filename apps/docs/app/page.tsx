@@ -6,7 +6,8 @@ export default function Home() {
     <div className="space-y-16 animate-in fade-in duration-700">
       <div className="space-y-6">
         <h1 className="text-5xl md:text-6xl font-black tracking-tighter bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 text-transparent bg-clip-text">
-          Clawsome Documentation
+          <span style={{ fontFamily: "'Newton Howard Font', sans-serif", fontStyle: 'italic' }}>Clawsome</span>
+          <span className="text">&nbsp;Documentation</span>
         </h1>
         <p className="text-xl dark:text-slate-400 text-slate-600 max-w-2xl leading-relaxed">
           The ultimate decentralized workflow manager and neural AI swarm architecture. Learn how to launch, configure, and scale your autonomous agents.

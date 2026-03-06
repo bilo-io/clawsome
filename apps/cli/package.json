@@ -1,0 +1,36 @@
+{
+  "name": "@clawsome/cli",
+  "version": "0.1.0",
+  "description": "Clawsome OS — Command Line Interface",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "clawsome": "dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": ["clawsome", "cli", "ai", "agents"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@clack/prompts": "^0.9.1",
+    "commander": "^12.1.0",
+    "figlet": "^1.7.0",
+    "gradient-string": "^2.0.2",
+    "picocolors": "^1.0.1",
+    "ora": "^8.1.1",
+    "chalk": "^5.3.0",
+    "boxen": "^8.0.1",
+    "open": "^10.1.0"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.5.8",
+    "@types/gradient-string": "^1.1.6",
+    "@types/node": "^20.19.37",
+    "tsx": "^4.19.1",
+    "typescript": "^5.7.3"
+  }
+}

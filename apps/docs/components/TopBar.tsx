@@ -13,8 +13,10 @@ export function TopBar() {
       <div className="flex h-16 items-center px-6 gap-4 justify-between">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/clawsome-icon.svg" alt="Clawsome" width={32} height={32} className="dark:invert-0" />
-            <span className={`font-black text-xl tracking-tight ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>Clawsome Docs</span>
+            <Image src="/clawsome-logo.svg" alt="Clawsome" width={160} height={32} className="dark:invert-0" />
+            <span className={`font-black text-xl tracking-tight ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}
+              style={{ fontFamily: "'Newton Howard Font', sans-serif", fontStyle: 'italic' }}
+            >Docs</span>
           </Link>
         </div>
         

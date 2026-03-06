@@ -102,7 +102,7 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="mt-20 w-full max-w-5xl rounded-[2.5rem] border border-slate-200 dark:border-slate-800 p-3 bg-slate-100/50 dark:bg-slate-900/50 glass-panel card-glow shadow-2xl"
+        className="mt-20 w-full max-w-5xl rounded-2xl border border-slate-200 dark:border-slate-800 p-3 bg-slate-100/50 dark:bg-slate-900/50 glass-panel card-glow shadow-2xl"
       >
         <div className="w-full h-80 md:h-[500px] bg-slate-50 dark:bg-black rounded-3xl border border-slate-200 dark:border-slate-900 flex items-center justify-center overflow-hidden relative">
           {/* Dashboard Screenshot Mockup */}

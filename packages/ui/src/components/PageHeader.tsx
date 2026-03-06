@@ -72,7 +72,7 @@ export function PageHeader({
                   animate={{ opacity: 1, x: 0, scale: 1 }}
                   exit={{ opacity: 0, x: -10, scale: 0.95 }}
                   className={cn(
-                    "absolute left-full ml-4 top-1/2 -translate-y-1/2 w-72 p-6 rounded-[24px] border shadow-2xl z-50 pointer-events-none",
+                    "absolute left-full ml-4 top-1/2 -translate-y-1/2 w-72 p-6 rounded-xl border shadow-2xl z-50 pointer-events-none",
                     theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400" : "bg-white border-slate-100 text-slate-600 shadow-slate-200/50"
                   )}
                 >
