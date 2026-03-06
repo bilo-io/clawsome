@@ -82,7 +82,6 @@ export const Sidebar = () => {
     {
       title: 'Sys',
       items: [
-        { icon: Cpu, label: 'Analytics', href: '/analytics' },
         { icon: Sliders, label: 'Config', href: '/config' },
         { icon: Plug, label: 'Integrations', href: '/integrations' },
         { icon: Settings, label: 'Settings', href: '/settings' },

@@ -24,6 +24,7 @@ import {
 import { cn } from '@/lib/utils';
 import { useUIStore } from '@/store/useUIStore';
 import Link from 'next/link';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 
 interface Task {
   id: string;
@@ -73,53 +74,43 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
   return (
     <div className="space-y-10 max-w-[1600px] mx-auto pb-20">
-      {/* Navigation & Title */}
-      <div className="flex flex-col gap-8 pb-8 border-b border-slate-500/10">
-        <Link href="/projects" className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 hover:text-indigo-500 transition-colors w-fit">
-          <ChevronLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-          Back to Projects
-        </Link>
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-               <span className="p-1 px-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 text-[9px] font-black uppercase tracking-widest">
-                  Neural Swarm Engine
-               </span>
-               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            </div>
-            <h1 className={cn(
-              "text-5xl lg:text-7xl font-black tracking-tighter uppercase",
-              theme === 'dark' ? "text-white" : "text-slate-900"
-            )}>
-              Neural Engine V2
-            </h1>
-          </div>
-
+      <DashboardResourceHeader
+        title="Neural Engine V2"
+        badge="Neural Swarm Engine"
+        statusLabel="System Status:"
+        statusValue="ACTIVE"
+        statusColor="emerald"
+        isCollection={false}
+        backLink={{ label: 'Back to Projects', href: '/projects' }}
+        renderRight={
           <div className="flex bg-slate-100 dark:bg-slate-900/50 p-1.5 rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-inner">
-             <button 
-                onClick={() => setActiveTab('tasks')}
-                className={cn(
-                  "flex items-center gap-2 px-6 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all",
-                  activeTab === 'tasks' ? "bg-white dark:bg-indigo-600 shadow-xl text-indigo-600 dark:text-white" : "text-slate-500 hover:text-indigo-400"
-                )}
+             <button
+               onClick={() => setActiveTab('tasks')}
+               className={cn(
+                 "flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95",
+                 activeTab === 'tasks'
+                   ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20"
+                   : "text-slate-500 hover:text-slate-900 dark:hover:text-slate-100"
+               )}
              >
-                <Layout size={14} />
-                Task Board
+               <Layers size={14} />
+               <span>Task Matrix</span>
              </button>
-             <button 
-                onClick={() => setActiveTab('plan')}
-                className={cn(
-                  "flex items-center gap-2 px-6 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all",
-                  activeTab === 'plan' ? "bg-white dark:bg-indigo-600 shadow-xl text-indigo-600 dark:text-white" : "text-slate-500 hover:text-indigo-400"
-                )}
+             <button
+               onClick={() => setActiveTab('plan')}
+               className={cn(
+                 "flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95",
+                 activeTab === 'plan'
+                   ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20"
+                   : "text-slate-500 hover:text-slate-900 dark:hover:text-slate-100"
+               )}
              >
-                <FileText size={14} />
-                Project Plan
+               <FileText size={14} />
+               <span>Mission Plan</span>
              </button>
           </div>
-        </div>
-      </div>
+        }
+      />
 
       <AnimatePresence mode="wait">
         {activeTab === 'tasks' ? (

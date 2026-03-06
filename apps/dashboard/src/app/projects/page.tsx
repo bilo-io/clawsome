@@ -4,30 +4,28 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Search, 
-  Plus, 
   FolderKanban, 
-  LayoutGrid, 
-  List, 
-  MoreVertical,
   ChevronRight,
   Target,
   Users,
   Clock,
-  CircleDot
+  CircleDot,
+  Search,
+  Plus
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUIStore } from '@/store/useUIStore';
-import { PageHeader } from '@/components/PageHeader';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 
 interface Project {
   id: string;
   name: string;
   type: string;
   agents: { name: string; avatar?: string }[];
-  status: 'In Progress' | 'Planned' | 'Completed';
+  status: 'wip' | 'Planned' | 'done';
   lastUpdated: string;
   taskCount: number;
+  progress: number;
 }
 
 const PROJECTS: Project[] = [
@@ -40,9 +38,10 @@ const PROJECTS: Project[] = [
       { name: 'Core-AI' },
       { name: 'Synthetix' }
     ],
-    status: 'In Progress',
+    status: 'wip',
     lastUpdated: '2h ago',
-    taskCount: 12
+    taskCount: 12,
+    progress: 65
   },
   {
     id: 'p2',
@@ -52,9 +51,10 @@ const PROJECTS: Project[] = [
       { name: 'Lore-Master' },
       { name: 'World-Builder' }
     ],
-    status: 'In Progress',
+    status: 'wip',
     lastUpdated: '5h ago',
-    taskCount: 24
+    taskCount: 24,
+    progress: 35
   },
   {
     id: 'p3',
@@ -67,7 +67,8 @@ const PROJECTS: Project[] = [
     ],
     status: 'Planned',
     lastUpdated: '1d ago',
-    taskCount: 8
+    taskCount: 8,
+    progress: 0
   },
   {
     id: 'p4',
@@ -76,9 +77,10 @@ const PROJECTS: Project[] = [
     agents: [
       { name: 'Alfred-AI' }
     ],
-    status: 'Completed',
+    status: 'done',
     lastUpdated: '3d ago',
-    taskCount: 45
+    taskCount: 45,
+    progress: 100
   },
   {
     id: 'p5',
@@ -89,9 +91,10 @@ const PROJECTS: Project[] = [
       { name: 'Data-Cruncher' },
       { name: 'Stat-Bot' }
     ],
-    status: 'In Progress',
+    status: 'wip',
     lastUpdated: '15m ago',
-    taskCount: 62
+    taskCount: 62,
+    progress: 88
   }
 ];
 
@@ -107,69 +110,27 @@ export default function ProjectsPage() {
 
   return (
     <div className="space-y-10 max-w-[1600px] mx-auto">
-      <PageHeader 
+      <DashboardResourceHeader
         title="OPERATIONAL PROJECTS"
         badge="NC-PROJECTS"
         statusLabel="Project Success Rate:"
         statusValue="94.2% (OPTIMAL)"
         statusColor="indigo"
-      >
-        <div className="flex items-center gap-4">
-          <div className="flex bg-slate-100 dark:bg-slate-900/50 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800">
-             <button 
-                onClick={() => setViewMode('grid')}
-                className={cn(
-                  "p-2 rounded-xl transition-all",
-                  viewMode === 'grid' ? "bg-white dark:bg-indigo-600 shadow-xl text-indigo-600 dark:text-white" : "text-slate-500 hover:text-indigo-400"
-                )}
-             >
-                <LayoutGrid size={18} />
-             </button>
-             <button 
-                onClick={() => setViewMode('list')}
-                className={cn(
-                  "p-2 rounded-xl transition-all",
-                  viewMode === 'list' ? "bg-white dark:bg-indigo-600 shadow-xl text-indigo-600 dark:text-white" : "text-slate-500 hover:text-indigo-400"
-                )}
-             >
-                <List size={18} />
-             </button>
-          </div>
-          <button className="flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-2xl font-bold shadow-2xl shadow-indigo-500/30 hover:scale-105 active:scale-95 transition-all">
-            <Plus size={18} />
-            Initialize Project
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        searchPlaceholder="SEARCH PROJECT REVERB..."
+        viewMode={viewMode}
+        onViewModeChange={setViewMode}
+        renderRight={
+          <button
+            onClick={() => {}}
+            className="flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-[20px] font-bold shadow-xl shadow-indigo-600/20 transition-all active:translate-y-1"
+          >
+            <Plus size={20} />
+            <span className="text-[10px] font-bold uppercase tracking-widest">Initialize Project</span>
           </button>
-        </div>
-      </PageHeader>
-
-      <section className="relative w-full group">
-        {/* High-intensity outer glow */}
-        <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-[40px] blur-2xl opacity-0 group-focus-within:opacity-20 transition duration-700" />
-        
-        {/* Border Gradient Container */}
-        <div className="relative p-[1px] rounded-[33px] bg-slate-200 dark:bg-slate-800 transition-all duration-500 group-focus-within:bg-gradient-to-r group-focus-within:from-indigo-500 group-focus-within:via-purple-500 group-focus-within:to-pink-500 group-focus-within:shadow-2xl">
-          <div className={cn(
-            "relative rounded-[32px] flex items-center transition-all duration-300",
-            theme === 'dark' ? "bg-slate-950 px-1" : "bg-white"
-          )}>
-            <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none text-slate-400 group-focus-within:text-indigo-500 transition-colors">
-              <Search size={20} />
-            </div>
-            <input 
-              type="text"
-              placeholder="SEARCH PROJECT REVERB..."
-              className={cn(
-                "w-full py-5 pl-16 pr-6 rounded-[32px] border-none focus:ring-0 font-mono text-sm tracking-widest uppercase transition-all bg-transparent",
-                theme === 'dark' 
-                  ? "text-indigo-100 placeholder:text-slate-700" 
-                  : "text-indigo-900 placeholder:text-slate-300"
-              )}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </div>
-      </section>
+        }
+      />
 
       <div className={cn(
         viewMode === 'grid' 
@@ -211,11 +172,11 @@ export default function ProjectsPage() {
                        </div>
                        <div className={cn(
                          "px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-tighter border",
-                         project.status === 'In Progress' ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20" :
+                         project.status === 'wip' ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20" :
                          project.status === 'Planned' ? "bg-amber-500/10 text-amber-500 border-amber-500/20" :
-                         "bg-slate-500/10 text-slate-500 border-slate-500/20"
+                         "bg-white/5 text-slate-400 border-white/10"
                        )}>
-                          {project.status}
+                          {project.status === 'done' ? 'done' : project.status}
                        </div>
                     </div>
 
@@ -251,6 +212,21 @@ export default function ProjectsPage() {
                              <span className={cn("text-2xl font-black font-mono", theme === 'dark' ? "text-white" : "text-black")}>
                                 {project.taskCount}
                              </span>
+                          </div>
+                       </div>
+ 
+                       <div className="space-y-2">
+                          <div className="flex justify-between text-[8px] font-black uppercase tracking-widest text-slate-500">
+                             <span>Operational Lead</span>
+                             <span>{project.progress}%</span>
+                          </div>
+                          <div className="w-full h-1 bg-slate-100 dark:bg-slate-900 rounded-full overflow-hidden">
+                             <motion.div 
+                                initial={{ width: 0 }}
+                                animate={{ width: `${project.progress}%` }}
+                                transition={{ duration: 1, ease: "circOut" }}
+                                className="h-full bg-indigo-600 shadow-[0_0_12px_rgba(79,70,229,0.4)]"
+                             />
                           </div>
                        </div>
 
@@ -289,14 +265,14 @@ export default function ProjectsPage() {
                            <h3 className={cn("text-lg font-black uppercase tracking-tight", theme === 'dark' ? "text-white" : "text-slate-900 text-slate-900")}>
                               {project.name}
                            </h3>
-                           <span className={cn(
-                             "px-2 py-0.5 rounded-lg text-[8px] font-black uppercase tracking-widest border",
-                             project.status === 'In Progress' ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20" :
-                             project.status === 'Planned' ? "bg-amber-500/10 text-amber-500 border-amber-500/20" :
-                             "bg-slate-500/10 text-slate-500 border-slate-500/20"
-                           )}>
-                              {project.status}
-                           </span>
+                            <span className={cn(
+                              "px-2 py-0.5 rounded-lg text-[8px] font-black uppercase tracking-widest border",
+                              project.status === 'wip' ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20" :
+                              project.status === 'Planned' ? "bg-amber-500/10 text-amber-500 border-amber-500/20" :
+                              "bg-white/10 text-slate-400 border-white/5"
+                            )}>
+                               {project.status === 'done' ? 'done' : project.status}
+                            </span>
                         </div>
                         <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">{project.type}</p>
                      </div>
@@ -307,10 +283,13 @@ export default function ProjectsPage() {
                            </div>
                         ))}
                      </div>
-                     <div className="flex flex-col items-end min-w-[100px]">
-                        <span className={cn("text-base font-black font-mono", theme === 'dark' ? "text-white" : "text-black")}>{project.taskCount} TASKS</span>
-                        <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">{project.lastUpdated}</span>
-                     </div>
+                      <div className="flex flex-col items-end min-w-[120px]">
+                         <span className={cn("text-base font-black font-mono", theme === 'dark' ? "text-white" : "text-black")}>{project.taskCount} TASKS</span>
+                         <div className="w-full h-1 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden my-2">
+                            <div className="h-full bg-indigo-600" style={{ width: `${project.progress}%` }} />
+                         </div>
+                         <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">{project.lastUpdated}</span>
+                      </div>
                   </div>
                 )}
               </Link>

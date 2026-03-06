@@ -4,10 +4,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Brain, 
-  Search, 
   Plus, 
-  LayoutGrid, 
-  List, 
   Youtube, 
   Link as LinkIcon, 
   FileText, 
@@ -24,6 +21,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 
 // Global Configuration
 const MAX_DOCUMENTS = 10;
@@ -120,152 +118,102 @@ export default function MemoriesPage() {
 
   return (
     <main className="space-y-12 pb-20 max-w-[1600px] mx-auto transition-colors duration-300">
-      {/* Header section consistent with dashboard */}
-      <header className={cn(
-        "flex flex-col md:flex-row md:items-end justify-between gap-8 pb-10 border-b transition-colors",
-        theme === "dark" ? "border-slate-800/50" : "border-slate-200"
-      )}>
-        <div>
-          <h1 className="text-5xl font-black tracking-tighter flex items-center gap-4 text-black dark:text-white">
-             MEMORIES <span className="font-thin opacity-30 text-slate-500">//</span> <span className="text-indigo-600 uppercase">Neural Context</span>
-          </h1>
-          <div className="flex items-center gap-6 mt-4">
-            <p className={cn(
-              "text-[10px] font-bold uppercase tracking-[0.25em] flex items-center gap-2",
-              theme === "dark" ? "text-slate-500" : "text-slate-600"
-            )}>
-              Total Context Units: <span className="text-emerald-500 flex items-center gap-2 font-black">{memories.length} Clusters</span>
-            </p>
-            <div className={cn("w-1 h-3", theme === "dark" ? "bg-slate-800" : "bg-slate-300")} />
-            <p className={cn(
-              "text-[10px] font-bold uppercase tracking-[0.25em] flex items-center gap-2",
-              theme === "dark" ? "text-slate-500" : "text-slate-600"
-            )}>
-              Storage limit: <span className="text-indigo-500 font-black">{MAX_DOCUMENTS} Docs / Memory</span>
-            </p>
-          </div>
-        </div>
-        
-        <div className="flex items-center gap-4">
-           {/* Add Data Gradient Button & Dropdown */}
+      <DashboardResourceHeader
+        title="MEMORIES"
+        badge="NC-NEURAL CONTEXT"
+        statusLabel="Context Capacity:"
+        statusValue={`${memories.length} Clusters ACTIVE`}
+        statusColor="indigo"
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        searchPlaceholder="Search context clusters..."
+        viewMode={viewMode}
+        onViewModeChange={setViewMode}
+        renderRight={
            <div className="relative">
-              <button 
+              <button
                 onClick={() => setIsAddDropdownOpen(!isAddDropdownOpen)}
-                className="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-[20px] font-black text-sm uppercase tracking-widest shadow-2xl flex items-center gap-3 active:scale-95 transition-all"
+                className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-[20px] font-bold shadow-xl shadow-indigo-600/20 transition-all active:translate-y-1"
               >
-                <Plus size={18} className="transition-transform group-hover:rotate-90" />
-                Add Data
-                <ChevronDown size={14} className={cn("transition-transform", isAddDropdownOpen && "rotate-180")} />
-                {/* Glow Overlay */}
-                <div className="absolute inset-0 rounded-[20px] bg-indigo-500 blur-xl opacity-0 group-hover:opacity-30 transition-opacity" />
+                <Plus size={20} />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Add Data to Core</span>
+                <ChevronDown className={cn("transition-transform", isAddDropdownOpen && "rotate-180")} size={16} />
               </button>
 
               <AnimatePresence>
                 {isAddDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className={cn(
-                      "absolute right-0 mt-4 w-56 rounded-3xl border shadow-2xl z-[60] overflow-hidden p-2",
-                      theme === 'dark' ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100"
-                    )}
-                  >
-                    {[
-                      { icon: LinkIcon, label: 'Link', type: 'link', color: 'text-blue-500' },
-                      { icon: Youtube, label: 'YouTube', type: 'youtube', color: 'text-red-500' },
-                      { icon: FileText, label: 'PDF Document', type: 'pdf', color: 'text-amber-500' },
-                      { icon: FileCode, label: 'Plain Text', type: 'text', color: 'text-emerald-500' },
-                    ].map((item) => (
-                      <button
-                        key={item.type}
-                        onClick={() => {
-                          setActiveModal(item.type as DataType);
-                          setIsAddDropdownOpen(false);
-                        }}
-                        className={cn(
-                          "w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-all",
-                          theme === 'dark' ? "text-slate-400 hover:bg-slate-800 hover:text-white" : "text-slate-600 hover:bg-slate-50 hover:text-black"
-                        )}
-                      >
-                        <item.icon size={18} className={item.color} />
-                        {item.label}
-                      </button>
-                    ))}
-                  </motion.div>
+                  <>
+                    <div 
+                      className="fixed inset-0 z-40"
+                      onClick={() => setIsAddDropdownOpen(false)}
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      className={cn(
+                        "absolute right-0 mt-4 w-72 rounded-[32px] border p-4 shadow-2xl z-50 overflow-hidden",
+                        theme === 'dark' ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100"
+                      )}
+                    >
+                      <div className="grid grid-cols-1 gap-2">
+                        {[
+                          { type: 'link', icon: <LinkIcon size={18} />, label: 'Web URL', desc: 'Sync live research data' },
+                          { type: 'youtube', icon: <Youtube size={18} />, label: 'YouTube Video', desc: 'Ingest visual logic' },
+                          { type: 'pdf', icon: <FileText size={18} />, label: 'PDF Document', desc: 'Parse technical specs' },
+                          { type: 'text', icon: <FileCode size={18} />, label: 'Raw Script', desc: 'Direct code injection' },
+                        ].map((item) => (
+                          <button
+                            key={item.type}
+                            onClick={() => {
+                              setActiveModal(item.type as DataType);
+                              setIsAddDropdownOpen(false);
+                            }}
+                            className={cn(
+                              "flex items-center gap-4 p-4 rounded-2xl transition-all text-left group",
+                              theme === 'dark' ? "hover:bg-slate-800" : "hover:bg-slate-50"
+                            )}
+                          >
+                            <div className="p-3 bg-indigo-500/10 text-indigo-500 rounded-xl group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                              {item.icon}
+                            </div>
+                            <div>
+                              <p className={cn("text-xs font-black uppercase tracking-widest", theme === 'dark' ? "text-white" : "text-slate-900")}>{item.label}</p>
+                              <p className="text-[10px] text-slate-500 font-medium">{item.desc}</p>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </>
                 )}
               </AnimatePresence>
            </div>
-        </div>
-      </header>
-
-      {/* Control Bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div className="relative w-full max-w-md group">
-          <Search className={cn(
-            "absolute left-5 top-1/2 -translate-y-1/2 transition-colors",
-            theme === 'dark' ? "text-slate-700 group-focus-within:text-indigo-500" : "text-slate-300 group-focus-within:text-indigo-600"
-          )} size={20} />
-          <input 
-            type="text"
-            placeholder="Search within neural memories..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className={cn(
-              "w-full pl-14 pr-6 py-5 rounded-[24px] border outline-none font-bold text-sm transition-all",
-              theme === 'dark' ? "bg-slate-950 border-slate-800 focus:border-indigo-500/50 text-white placeholder:text-slate-800" : "bg-white border-slate-100 focus:border-indigo-400 text-slate-900 placeholder:text-slate-300 shadow-sm"
-            )}
-          />
-        </div>
-
-        <div className={cn(
-          "flex p-1.5 rounded-2xl border transition-colors",
-          theme === 'dark' ? "bg-slate-950 border-slate-800" : "bg-white border-slate-100 shadow-sm"
-        )}>
-          <button 
-            onClick={() => setViewMode('grid')}
-            className={cn(
-              "p-3 rounded-xl transition-all",
-              viewMode === 'grid' 
-                ? "bg-indigo-600 text-white shadow-lg" 
-                : (theme === 'dark' ? "text-slate-600 hover:text-white" : "text-slate-400 hover:text-black")
-            )}
-          >
-            <LayoutGrid size={18} />
-          </button>
-          <button 
-            onClick={() => setViewMode('list')}
-            className={cn(
-              "p-3 rounded-xl transition-all",
-              viewMode === 'list' 
-                ? "bg-indigo-600 text-white shadow-lg" 
-                : (theme === 'dark' ? "text-slate-600 hover:text-white" : "text-slate-400 hover:text-black")
-            )}
-          >
-            <List size={18} />
-          </button>
-        </div>
-      </div>
+        }
+      />
 
       {/* Memory View Content */}
-      <AnimatePresence mode="popLayout">
-        {viewMode === 'grid' ? (
-          <motion.div 
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
-          >
-            {filteredMemories.map((memory) => (
-              <MemoryCard key={memory.id} memory={memory} theme={theme} />
-            ))}
-          </motion.div>
-        ) : (
-          <motion.div layout className="space-y-4">
-            {filteredMemories.map((memory) => (
-              <MemoryListItem key={memory.id} memory={memory} theme={theme} />
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className={cn(
+        viewMode === 'grid' ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8" : "space-y-4"
+      )}>
+        <AnimatePresence mode="popLayout">
+          {filteredMemories.map((memory) => (
+            <motion.div 
+              layout 
+              key={memory.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+            >
+              {viewMode === 'grid' ? (
+                <MemoryCard memory={memory} theme={theme} />
+              ) : (
+                <MemoryListItem memory={memory} theme={theme} />
+              )}
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
 
       {/* Modals for Add Data */}
       <AnimatePresence>
@@ -298,14 +246,9 @@ export default function MemoriesPage() {
 // Sub-components
 function MemoryCard({ memory, theme }: { memory: Memory, theme: 'light' | 'dark' }) {
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      whileHover={{ y: -5 }}
+    <div
       className={cn(
-        "group p-8 rounded-[40px] border shadow-2xl relative overflow-hidden transition-all",
+        "group p-8 rounded-[40px] border shadow-2xl relative overflow-hidden transition-all h-full",
         theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 shadow-black/40" : "bg-white border-slate-100 shadow-slate-200/50"
       )}
     >
@@ -370,19 +313,15 @@ function MemoryCard({ memory, theme }: { memory: Memory, theme: 'light' | 'dark'
 
       {/* Background Decor */}
       <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-indigo-500/5 blur-3xl rounded-full" />
-    </motion.div>
+    </div>
   );
 }
 
 function MemoryListItem({ memory, theme }: { memory: Memory, theme: 'light' | 'dark' }) {
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, x: -10 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 10 }}
+    <div
       className={cn(
-        "p-6 rounded-[28px] border transition-all flex items-center justify-between group",
+        "p-6 rounded-[28px] border transition-all flex items-center justify-between group h-full",
         theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 hover:bg-slate-900" : "bg-white border-slate-100 hover:shadow-xl shadow-slate-200/50"
       )}
     >
@@ -421,7 +360,7 @@ function MemoryListItem({ memory, theme }: { memory: Memory, theme: 'light' | 'd
           <ChevronRight size={18} />
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 }
 

@@ -48,11 +48,26 @@ import {
   Wind,
   MousePointer2,
   PenTool,
-  Workflow
+  Workflow,
+  ShieldCheck,
+  Chrome,
+  Mic,
+  Mail,
+  Clock,
+  Webhook,
+  CloudSun,
+  Music,
+  Volume2,
+  Lightbulb,
+  Moon,
+  Home,
+  Bot,
+  Smile,
+  Apple
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-type Category = 'All' | 'Skills' | 'Integrations' | 'Plugins' | 'MCP';
+type Category = 'All' | 'Skills' | 'Integrations' | 'Plugins' | 'MCP' | 'Automation' | 'Models' | 'Platforms';
 
 interface MarketplaceItem {
   id: string;
@@ -127,6 +142,50 @@ const ITEMS: MarketplaceItem[] = [
   { id: '53', name: 'MCP Google Maps', category: 'MCP', description: 'Enable agents to \'see\' and \'navigate\' through geographical data.', icon: <Globe className="w-6 h-6" />, isNew: true },
   { id: '54', name: 'MCP Notion Knowledge', category: 'MCP', description: 'Access Notion databases and pages as MCP tools.', icon: <Layers2 className="w-6 h-6" /> },
   { id: '55', name: 'MCP SQL Explorer', category: 'MCP', description: 'Turn your SQL databases into agent-ready MCP resources.', icon: <Database className="w-6 h-6" /> },
+
+  // COMMUNICATIONS & SECURE (NEW)
+  { id: '56', name: 'Signal', category: 'Integrations', description: 'Secure, end-to-end encrypted communications for your agents.', icon: <ShieldCheck className="w-6 h-6 text-blue-500" />, isPopular: true },
+  { id: '57', name: 'iMessage', category: 'Integrations', description: 'Native Apple messaging integration for seamless notification swarms.', icon: <MessageCircle className="w-6 h-6 text-blue-400" /> },
+
+  // TOOLS & AUTOMATION
+  { id: '58', name: 'Browser', category: 'Automation', description: 'Full Chrome/Chromium control and web navigation.', icon: <Chrome className="w-6 h-6 text-blue-500" />, isPopular: true },
+  { id: '59', name: 'Canvas', category: 'Automation', description: 'Visual workspace + A2UI for interactive agent collaboration.', icon: <Layout className="w-6 h-6 text-orange-500" /> },
+  { id: '60', name: 'Voice', category: 'Automation', description: 'Voice Wake + Talk Mode for hands-free agent interaction.', icon: <Mic className="w-6 h-6 text-purple-500" /> },
+  { id: '61', name: 'Gmail', category: 'Automation', description: 'Pub/Sub email triggers and automated inbox management.', icon: <Mail className="w-6 h-6 text-red-500" /> },
+  { id: '62', name: 'Cron', category: 'Automation', description: 'Powerful scheduled tasks and recurring agent workflows.', icon: <Clock className="w-6 h-6 text-amber-500" /> },
+  { id: '63', name: 'Webhooks', category: 'Automation', description: 'External triggers to initiate agent actions from any service.', icon: <Webhook className="w-6 h-6 text-emerald-500" /> },
+  { id: '64', name: '1Password', category: 'Automation', description: 'Secure credentials and vault management for agent identities.', icon: <Key className="w-6 h-6 text-blue-400" /> },
+  { id: '65', name: 'Weather', category: 'Automation', description: 'Real-time forecasts and conditions for location-aware tasks.', icon: <CloudSun className="w-6 h-6 text-yellow-500" /> },
+
+  // MUSIC & AUDIO & SMART HOME
+  { id: '66', name: 'Spotify', category: 'Integrations', description: 'Music playback control and playlist management.', icon: <Music className="w-6 h-6 text-emerald-500" /> },
+  { id: '67', name: 'Sonos', category: 'Integrations', description: 'Multi-room audio control for smart environment orchestration.', icon: <Volume2 className="w-6 h-6 text-slate-400" /> },
+  { id: '68', name: 'Shazam', category: 'Integrations', description: 'Neural song recognition and audio fingerprinting.', icon: <Zap className="w-6 h-6 text-blue-500" /> },
+  { id: '69', name: 'Philips Hue', category: 'Integrations', description: 'Smart lighting automation and scene management.', icon: <Lightbulb className="w-6 h-6 text-yellow-400" /> },
+  { id: '70', name: '8Sleep', category: 'Integrations', description: 'Biometric-driven environment tuning and sleep optimization.', icon: <Moon className="w-6 h-6 text-indigo-400" /> },
+  { id: '71', name: 'Home Assistant', category: 'Integrations', description: 'Unified home automation hub for all IoT devices.', icon: <Home className="w-6 h-6 text-blue-500" /> },
+
+  // AI MODELS
+  { id: '72', name: 'Anthropic', category: 'Models', description: 'Next-gen reasoning with Claude Pro, Max, and Opus 4.5.', icon: <Bot className="w-6 h-6 text-orange-400" />, isPopular: true },
+  { id: '73', name: 'OpenAI', category: 'Models', description: 'Industry-leading intelligence with GPT-4, GPT-5, and o1.', icon: <Cpu className="w-6 h-6 text-emerald-500" />, isPopular: true },
+  { id: '74', name: 'Google Gemini', category: 'Models', description: 'Multimodal power with Gemini 2.5 Pro and Flash.', icon: <Search className="w-6 h-6 text-blue-500" /> },
+  { id: '75', name: 'MiniMax', category: 'Models', description: 'Advanced MiniMax-M2.5 models for efficient reasoning.', icon: <Zap className="w-6 h-6 text-pink-500" /> },
+  { id: '76', name: 'xAI Grok', category: 'Models', description: 'Real-time knowledge and reasoning with Grok 3 & 4.', icon: <Sparkles className="w-6 h-6 text-slate-900 dark:text-white" /> },
+  { id: '77', name: 'Vercel AI Gateway', category: 'Models', description: 'Access hundreds of models with a single unified API key.', icon: <Network className="w-6 h-6 text-slate-900 dark:text-white" /> },
+  { id: '78', name: 'OpenRouter', category: 'Models', description: 'The ultimate unified API gateway for all LLMs.', icon: <Layers className="w-6 h-6 text-indigo-500" /> },
+  { id: '79', name: 'Mistral', category: 'Models', description: 'Mistral Large and Codestral for high-performance tasks.', icon: <Code className="w-6 h-6 text-orange-600" /> },
+  { id: '80', name: 'DeepSeek', category: 'Models', description: 'DeepSeek V3 & R1 for specialized analytical workloads.', icon: <Target className="w-6 h-6 text-blue-600" /> },
+  { id: '81', name: 'GLM', category: 'Models', description: 'ChatGLM models for multilingual and diverse interactions.', icon: <MessageSquare className="w-6 h-6 text-emerald-600" /> },
+  { id: '82', name: 'Perplexity', category: 'Models', description: 'Search-augmented AI for real-time web-grounded truth.', icon: <Globe className="w-6 h-6 text-cyan-500" /> },
+  { id: '83', name: 'Hugging Face', category: 'Models', description: 'Access to 100k+ open-source models and datasets.', icon: <Smile className="w-6 h-6 text-yellow-500" /> },
+  { id: '84', name: 'Local Models', category: 'Models', description: 'Private, on-device intelligence with Ollama and LM Studio.', icon: <HardDrive className="w-6 h-6 text-slate-400" /> },
+
+  // PLATFORMS
+  { id: '85', name: 'macOS', category: 'Platforms', description: 'Native menu bar app + Voice Wake for desktop operators.', icon: <Apple className="w-6 h-6" />, isPopular: true },
+  { id: '86', name: 'iOS', category: 'Platforms', description: 'Mobile Canvas, camera integration, and Voice Wake.', icon: <Smartphone className="w-6 h-6 text-blue-500" /> },
+  { id: '87', name: 'Android', category: 'Platforms', description: 'Full screen mirror, Canvas, and camera automation.', icon: <Smartphone className="w-6 h-6 text-emerald-500" /> },
+  { id: '88', name: 'Windows', category: 'Platforms', description: 'Deep WSL2 integration for high-performance agent runs.', icon: <Monitor className="w-6 h-6 text-blue-400" /> },
+  { id: '89', name: 'Linux', category: 'Platforms', description: 'Native kernel-level support for server-side swarms.', icon: <Terminal className="w-6 h-6 text-yellow-600" /> },
 ];
 
 function UploadCloud({ className }: { className?: string }) {
@@ -160,7 +219,7 @@ export default function MarketplacePage() {
     });
   }, [activeCategory, searchQuery]);
 
-  const categories: Category[] = ['All', 'Skills', 'Integrations', 'Plugins', 'MCP'];
+  const categories: Category[] = ['All', 'Skills', 'Integrations', 'Plugins', 'MCP', 'Automation', 'Models', 'Platforms'];
 
   return (
     <main className="min-h-screen relative bg-slate-50 dark:bg-[#020617] transition-colors duration-500 overflow-hidden">

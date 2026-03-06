@@ -7,9 +7,9 @@ import { Plus, X, Command as CommandIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const workspaces = [
-  { id: 'default', title: 'Main Terminal', type: 'system' },
-  { id: 'frontend', title: 'Frontend Dev', type: 'app' },
-  { id: 'backend', title: 'Backend Logs', type: 'app' },
+  { id: 'default', title: 'Local', type: 'system' },
+  { id: 'frontend', title: 'Cloud 1', type: 'app' },
+  { id: 'backend', title: 'Cloud 2', type: 'app' },
 ];
 
 export const WorkspaceTabs = () => {

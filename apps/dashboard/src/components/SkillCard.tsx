@@ -83,85 +83,79 @@ export const SkillCard: React.FC<SkillCardProps> = ({ skill, viewMode, isImporte
 
   if (viewMode === 'table') {
     return (
-      <motion.tr 
-        initial={{ opacity: 0, x: -10 }}
-        animate={{ opacity: 1, x: 0 }}
+    <div 
         className={cn(
-          "group transition-all border-b",
-          theme === 'dark' ? "border-slate-900 hover:bg-slate-900/40" : "border-slate-100/50 hover:bg-slate-50/50"
+          "group transition-all border rounded-[32px] p-4 flex items-center justify-between",
+          theme === 'dark' ? "bg-slate-900 border-slate-800 hover:bg-slate-900/60" : "bg-white border-slate-100 hover:bg-slate-50/50 shadow-sm"
         )}
       >
-        <td className="py-6 px-10">
-          <div className="flex items-center gap-6">
-            <div className={cn(
-               "p-3 rounded-2xl transition-all shadow-inner border group-hover:scale-110",
-               theme === 'dark' ? "bg-slate-900 text-indigo-400 border-indigo-500/10" : "bg-white text-indigo-600 border-slate-100 shadow-slate-200/40"
-            )}>
-              <Icon size={20} />
-            </div>
-            <span className={cn("text-lg font-black tracking-tighter transition-colors", theme === 'dark' ? "text-white group-hover:text-indigo-400" : "text-slate-950 group-hover:text-indigo-600")}>{skill.name}</span>
+        <div className="flex items-center gap-6 flex-1">
+          <div className={cn(
+             "p-3 rounded-2xl transition-all shadow-inner border group-hover:scale-110",
+             theme === 'dark' ? "bg-slate-950 text-indigo-400 border-indigo-500/10" : "bg-white text-indigo-600 border-slate-100 shadow-slate-200/40"
+          )}>
+            <Icon size={20} />
           </div>
-        </td>
-        <td className={cn("py-6 px-10 text-xs font-bold uppercase tracking-widest opacity-60 truncate max-w-[400px]", theme === 'light' && "text-slate-500")}>
+          <span className={cn("text-lg font-black tracking-tighter transition-colors", theme === 'dark' ? "text-white group-hover:text-indigo-400" : "text-slate-950 group-hover:text-indigo-600")}>{skill.name}</span>
+        </div>
+        
+        <div className={cn("hidden lg:block flex-[2] text-xs font-bold uppercase tracking-widest opacity-60 truncate px-4", theme === 'light' && "text-slate-500")}>
           {skill.description}
-        </td>
-        <td className="py-6 px-10 text-right">
-          <div className="flex items-center justify-end gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+        </div>
+
+        <div className="flex items-center justify-end gap-4 min-w-[200px]">
+          <button 
+            onClick={handleCopy}
+            className={cn(
+              "p-3 rounded-xl transition-all border active:scale-90",
+              theme === 'dark' ? "bg-slate-950 border-slate-800 text-slate-500 hover:text-indigo-400" : "bg-white border-slate-100 text-slate-400 hover:text-indigo-600 shadow-sm"
+            )}
+          >
+            {copied ? <Check size={18} /> : <Copy size={18} />}
+          </button>
+          
+          {skill.isMarketplace ? (
             <button 
-              onClick={handleCopy}
+              onClick={handleImport}
+              disabled={isImported}
               className={cn(
-                "p-3 rounded-xl transition-all border active:scale-90",
-                theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-500 hover:text-indigo-400" : "bg-white border-slate-100 text-slate-400 hover:text-indigo-600 shadow-sm"
+                  "flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-xl active:scale-95",
+                  isImported 
+                      ? (theme === 'dark' ? "bg-slate-900 border border-slate-800 text-slate-700 cursor-not-allowed" : "bg-slate-50 text-slate-300 border border-slate-100 cursor-not-allowed") 
+                      : "bg-indigo-600 text-white shadow-indigo-600/30 hover:bg-indigo-500"
               )}
             >
-              {copied ? <Check size={18} /> : <Copy size={18} />}
+              {isImported ? 'Added' : <><Plus size={16} /> Install</>}
             </button>
-            {skill.isMarketplace ? (
-              <button 
-                onClick={handleImport}
-                disabled={isImported}
+          ) : (
+            <div className="flex items-center gap-3">
+              <Link 
+                href={`/skills/${skill.id}`}
                 className={cn(
-                    "flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-xl active:scale-95",
-                    isImported 
-                        ? (theme === 'dark' ? "bg-slate-900 border border-slate-800 text-slate-700 cursor-not-allowed" : "bg-slate-50 text-slate-300 border border-slate-100 cursor-not-allowed") 
-                        : "bg-indigo-600 text-white shadow-indigo-600/30 hover:bg-indigo-500"
+                  "p-3 rounded-xl transition-all border active:scale-90",
+                  theme === 'dark' ? "bg-slate-950 border-slate-800 text-slate-500 hover:text-white" : "bg-white border-slate-100 text-slate-400 hover:text-slate-950 shadow-sm"
                 )}
               >
-                {isImported ? 'Added' : <><Plus size={16} /> Install</>}
+                <ChevronRight size={18} />
+              </Link>
+              <button 
+                 onClick={handleDelete}
+                 className={cn(
+                  "p-3 rounded-xl transition-all border active:scale-90",
+                  theme === 'dark' ? "bg-slate-950 border-slate-800 text-slate-500 hover:text-rose-400" : "bg-white border-slate-100 text-slate-400 hover:text-rose-600 shadow-sm"
+                 )}
+              >
+                <Trash2 size={18} />
               </button>
-            ) : (
-              <div className="flex items-center gap-3">
-                <Link 
-                  href={`/skills/${skill.id}`}
-                  className={cn(
-                    "p-3 rounded-xl transition-all border active:scale-90",
-                    theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-500 hover:text-white" : "bg-white border-slate-100 text-slate-400 hover:text-slate-950 shadow-sm"
-                  )}
-                >
-                  <ChevronRight size={18} />
-                </Link>
-                <button 
-                   onClick={handleDelete}
-                   className={cn(
-                    "p-3 rounded-xl transition-all border active:scale-90",
-                    theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-500 hover:text-rose-400" : "bg-white border-slate-100 text-slate-400 hover:text-rose-600 shadow-sm"
-                   )}
-                >
-                  <Trash2 size={18} />
-                </button>
-              </div>
-            )}
-          </div>
-        </td>
-      </motion.tr>
+            </div>
+          )}
+        </div>
+      </div>
     );
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      whileHover={{ y: -10 }}
+    <div
       className={cn(
         "group relative rounded-[48px] p-10 transition-all border shadow-2xl flex flex-col h-full overflow-hidden",
         theme === 'dark' 
@@ -254,6 +248,6 @@ export const SkillCard: React.FC<SkillCardProps> = ({ skill, viewMode, isImporte
         "absolute -bottom-20 -right-20 w-64 h-64 blur-[100px] rounded-full opacity-0 group-hover:opacity-10 transition-opacity",
         theme === 'dark' ? "bg-indigo-500" : "bg-indigo-400"
       )} />
-    </motion.div>
+    </div>
   );
 };

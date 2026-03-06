@@ -2,22 +2,19 @@
 
 import React, { useState } from 'react';
 import {
-  Search,
-  Grid,
-  List,
   ShoppingCart,
-  PackageCheck,
   Plug,
+  PackageCheck,
   Cpu,
-  Key,
+  Key
 } from 'lucide-react';
 import { useIntegrationStore } from '@/store/useIntegrationStore';
 import { useProviderStore, BUILTIN_PROVIDERS } from '@/store/useProviderStore';
 import { IntegrationCard } from '@/components/IntegrationCard';
-import { PageHeader } from '@/components/PageHeader';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useUIStore } from '@/store/useUIStore';
+import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
 
 export default function IntegrationsPage() {
   const { myIntegrations, marketplaceIntegrations, isInstalled } = useIntegrationStore();
@@ -36,159 +33,86 @@ export default function IntegrationsPage() {
 
   return (
     <div className="max-w-[1600px] mx-auto space-y-10 pb-20">
-      <PageHeader
+      <DashboardResourceHeader
         title="INTEGRATIONS"
         badge="NC-PLUGINS"
         statusLabel="Plugin Status:"
         statusValue="Sync Ready"
         statusColor="indigo"
-        className="pb-10 gap-8"
-      >
-        <div
-          className={cn(
-            'flex items-center gap-2 p-1.5 rounded-[24px] border transition-all shadow-xl',
-            theme === 'dark' ? 'bg-slate-900/60 border-slate-800' : 'bg-white border-slate-100 shadow-slate-200/40'
-          )}
-        >
-          <button
-            onClick={() => setActiveTab('my')}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        searchPlaceholder={`Search ${activeTab === 'my' ? 'installed' : 'marketplace'} integrations...`}
+        viewMode={viewMode === 'table' ? 'list' : 'grid'}
+        onViewModeChange={(mode: 'grid' | 'list') => setViewMode(mode === 'list' ? 'table' : 'grid')}
+        renderRight={
+          <div
             className={cn(
-              'flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
-              activeTab === 'my'
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20'
-                : theme === 'dark' ? 'text-slate-500 hover:text-slate-300' : 'text-slate-400 hover:text-slate-600'
+              'flex items-center gap-2 p-1.5 rounded-[24px] border transition-all shadow-xl',
+              theme === 'dark' ? 'bg-slate-900/60 border-slate-800' : 'bg-white border-slate-100 shadow-slate-200/40'
             )}
           >
-            <PackageCheck size={18} />
-            <span>INSTALLED</span>
-          </button>
-          <button
-            onClick={() => setActiveTab('marketplace')}
-            className={cn(
-              'flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
-              activeTab === 'marketplace'
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20'
-                : theme === 'dark' ? 'text-slate-500 hover:text-slate-300' : 'text-slate-400 hover:text-slate-600'
-            )}
-          >
-            <ShoppingCart size={18} />
-            <span>MARKETPLACE</span>
-          </button>
-        </div>
-      </PageHeader>
+            <button
+              onClick={() => setActiveTab('my')}
+              className={cn(
+                'flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
+                activeTab === 'my'
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20'
+                  : theme === 'dark' ? 'text-slate-500 hover:text-slate-300' : 'text-slate-400 hover:text-slate-600'
+              )}
+            >
+              <PackageCheck size={18} />
+              <span>INSTALLED</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('marketplace')}
+              className={cn(
+                'flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
+                activeTab === 'marketplace'
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20'
+                  : theme === 'dark' ? 'text-slate-500 hover:text-slate-300' : 'text-slate-400 hover:text-slate-600'
+              )}
+            >
+              <ShoppingCart size={18} />
+              <span>MARKETPLACE</span>
+            </button>
+          </div>
+        }
+      />
 
-      <div className="flex flex-col md:flex-row gap-8 items-center">
-        <div className="relative flex-1 group w-full">
-          <Search
-            size={20}
-            className={cn(
-              'absolute left-5 top-1/2 -translate-y-1/2 transition-colors',
-              theme === 'dark' ? 'text-slate-700 group-focus-within:text-indigo-400' : 'text-slate-400 group-focus-within:text-indigo-600'
-            )}
-          />
-          <input
-            type="text"
-            placeholder={`Search ${activeTab === 'my' ? 'installed' : 'marketplace'} integrations...`}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className={cn(
-              'w-full rounded-[24px] pl-14 pr-6 py-5 text-sm font-bold transition-all border outline-none shadow-xl',
-              theme === 'dark'
-                ? 'bg-slate-950 border-slate-800 text-white placeholder:text-slate-700 focus:border-indigo-500/50'
-                : 'bg-white border-slate-100 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 shadow-slate-200/40'
-            )}
-          />
-        </div>
-        <div className={cn('rounded-[20px] flex p-1.5 border shadow-xl transition-all', theme === 'dark' ? 'bg-slate-900/60 border-slate-800' : 'bg-white border-slate-100 shadow-slate-200/40')}>
-          <button
-            onClick={() => setViewMode('grid')}
-            className={cn(
-              'p-3 rounded-xl transition-all active:scale-95',
-              viewMode === 'grid'
-                ? theme === 'dark' ? 'bg-slate-800 text-indigo-400 shadow-inner' : 'bg-slate-50 text-indigo-600 border border-slate-100 shadow-inner'
-                : 'text-slate-500 hover:text-slate-300'
-            )}
-          >
-            <Grid size={22} />
-          </button>
-          <button
-            onClick={() => setViewMode('table')}
-            className={cn(
-              'p-3 rounded-xl transition-all active:scale-95',
-              viewMode === 'table'
-                ? theme === 'dark' ? 'bg-slate-800 text-indigo-400 shadow-inner' : 'bg-slate-50 text-indigo-600 border border-slate-100 shadow-inner'
-                : 'text-slate-500 hover:text-slate-300'
-            )}
-          >
-            <List size={22} />
-          </button>
-        </div>
-      </div>
-
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="popLayout" initial={false}>
         {filteredIntegrations.length > 0 ? (
           <motion.div
-            key={`${activeTab}-${viewMode}`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            {viewMode === 'grid' ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
-                {filteredIntegrations.map((integration) => (
-                  <IntegrationCard
-                    key={integration.id}
-                    integration={integration}
-                    viewMode="grid"
-                    isInstalled={isInstalled(integration.name)}
-                    source={activeTab === 'my' ? 'installed' : 'marketplace'}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div
-                className={cn(
-                  'rounded-[40px] overflow-hidden border shadow-2xl transition-all',
-                  theme === 'dark' ? 'bg-slate-950/50 border-slate-800' : 'bg-white border-slate-100 shadow-slate-200/50'
-                )}
-              >
-                <table className="w-full text-left">
-                  <thead>
-                    <tr className={cn('transition-colors', theme === 'dark' ? 'bg-slate-900/50' : 'bg-slate-50/50')}>
-                      <th className={cn('py-6 px-10 text-[10px] font-black uppercase tracking-[0.3em]', theme === 'dark' ? 'text-slate-600' : 'text-slate-400')}>
-                        Integration
-                      </th>
-                      <th className={cn('py-6 px-10 text-[10px] font-black uppercase tracking-[0.3em]', theme === 'dark' ? 'text-slate-600' : 'text-slate-400')}>
-                        Description
-                      </th>
-                      <th className={cn('py-6 px-10 text-[10px] font-black uppercase tracking-[0.3em]', theme === 'dark' ? 'text-slate-600' : 'text-slate-400')}>
-                        Status
-                      </th>
-                      <th className={cn('py-6 px-10 text-right text-[10px] font-black uppercase tracking-[0.3em]', theme === 'dark' ? 'text-slate-600' : 'text-slate-400')}>
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className={cn('divide-y', theme === 'dark' ? 'divide-slate-900' : 'divide-slate-50')}>
-                    {filteredIntegrations.map((integration) => (
-                      <IntegrationCard
-                        key={integration.id}
-                        integration={integration}
-                        viewMode="table"
-                        isInstalled={isInstalled(integration.name)}
-                        source={activeTab === 'my' ? 'installed' : 'marketplace'}
-                      />
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+            key={`${activeTab}-list`}
+            className={cn(
+              viewMode === 'grid' 
+                ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10" 
+                : "space-y-4"
             )}
+          >
+            {filteredIntegrations.map((integration) => (
+              <motion.div
+                layout
+                key={integration.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+              >
+                <IntegrationCard
+                  integration={integration}
+                  viewMode={viewMode === 'grid' ? 'grid' : 'table'}
+                  isInstalled={isInstalled(integration.name)}
+                  source={activeTab === 'my' ? 'installed' : 'marketplace'}
+                />
+              </motion.div>
+            ))}
           </motion.div>
         ) : (
           <motion.div
+            key={`${activeTab}-empty`}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             className={cn(
               'flex flex-col items-center justify-center py-40 rounded-[64px] border-2 border-dashed shadow-inner transition-colors',
               theme === 'dark' ? 'bg-slate-900/10 border-slate-800/30' : 'bg-slate-50/50 border-slate-200'
@@ -245,8 +169,8 @@ export default function IntegrationsPage() {
             </p>
           </div>
           <div className="p-8 space-y-6">
-            {providers.map((provider) => {
-              const option = BUILTIN_PROVIDERS.find((p) => p.id === provider.providerId);
+            {providers.map((provider: any) => {
+              const option = BUILTIN_PROVIDERS.find((p: any) => p.id === provider.providerId);
               const models = option?.models ?? [];
               return (
                 <div
@@ -279,7 +203,7 @@ export default function IntegrationsPage() {
                             : 'bg-white border-slate-200 text-slate-900 focus:border-indigo-500'
                         )}
                       >
-                        {models.map((m) => (
+                        {models.map((m: any) => (
                           <option key={m.id} value={m.id}>
                             {m.label}
                           </option>

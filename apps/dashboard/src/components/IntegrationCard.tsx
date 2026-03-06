@@ -76,96 +76,90 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
 
   if (viewMode === 'table') {
     return (
-      <motion.tr
-        initial={{ opacity: 0, x: -10 }}
-        animate={{ opacity: 1, x: 0 }}
-        className={cn(
-          'group transition-all border-b',
-          theme === 'dark' ? 'border-slate-900 hover:bg-slate-900/40' : 'border-slate-100/50 hover:bg-slate-50/50'
-        )}
-      >
-        <td className="py-6 px-10">
-          <div className="flex items-center gap-6">
-            <div
-              className={cn(
-                'p-3 rounded-2xl transition-all shadow-inner border group-hover:scale-110',
-                theme === 'dark' ? 'bg-slate-900 text-indigo-400 border-indigo-500/10' : 'bg-white text-indigo-600 border-slate-100 shadow-slate-200/40'
-              )}
+    <div
+      className={cn(
+        'group transition-all border rounded-[32px] p-4 flex items-center justify-between',
+        theme === 'dark' ? 'bg-slate-900 border-slate-800 hover:bg-slate-900/60' : 'bg-white border-slate-100 hover:bg-slate-50/50 shadow-sm'
+      )}
+    >
+      <div className="flex items-center gap-6 flex-1">
+        <div
+          className={cn(
+            'p-3 rounded-2xl transition-all shadow-inner border group-hover:scale-110',
+            theme === 'dark' ? 'bg-slate-950 text-indigo-400 border-indigo-500/10' : 'bg-white text-indigo-600 border-slate-100 shadow-slate-200/40'
+          )}
+        >
+          <Icon size={20} />
+        </div>
+        <span className={cn('text-lg font-black tracking-tighter transition-colors', theme === 'dark' ? 'text-white group-hover:text-indigo-400' : 'text-slate-950 group-hover:text-indigo-600')}>
+          {integration.name}
+        </span>
+      </div>
+
+      <div className={cn('hidden lg:block flex-[2] text-xs font-bold uppercase tracking-widest opacity-60 truncate px-4', theme === 'light' && 'text-slate-500')}>
+        {integration.description}
+      </div>
+
+      <div className="flex items-center gap-6 min-w-[300px] justify-end">
+        {source === 'installed' ? (
+          <span className={cn('text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full border', status.className)}>
+            {status.label}
+          </span>
+        ) : null}
+
+        <div className="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+          {source === 'marketplace' && !isInstalled ? (
+            <button
+              onClick={handleAdd}
+              className="flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest bg-indigo-600 text-white shadow-indigo-600/30 hover:bg-indigo-500 transition-all active:scale-95"
             >
-              <Icon size={20} />
-            </div>
-            <span className={cn('text-lg font-black tracking-tighter', theme === 'dark' ? 'text-white' : 'text-slate-950')}>
-              {integration.name}
+              <Plus size={16} /> Add
+            </button>
+          ) : source === 'marketplace' && isInstalled ? (
+            <span className={cn('text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl', theme === 'dark' ? 'bg-slate-800 text-slate-500' : 'bg-slate-100 text-slate-400')}>
+              Added
             </span>
-          </div>
-        </td>
-        <td className={cn('py-6 px-10 text-xs font-bold uppercase tracking-widest opacity-60 truncate max-w-[300px]', theme === 'light' && 'text-slate-500')}>
-          {integration.description}
-        </td>
-        <td className="py-6 px-10">
-          {source === 'installed' ? (
-            <span className={cn('text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full border', status.className)}>
-              {status.label}
-            </span>
-          ) : null}
-        </td>
-        <td className="py-6 px-10 text-right">
-          <div className="flex items-center justify-end gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
-            {source === 'marketplace' && !isInstalled ? (
+          ) : source === 'installed' && integration.status === 'pending' ? (
+            <>
               <button
-                onClick={handleAdd}
-                className="flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest bg-indigo-600 text-white shadow-indigo-600/30 hover:bg-indigo-500 transition-all active:scale-95"
+                onClick={handleConfigure}
+                className={cn(
+                  'flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
+                  theme === 'dark' ? 'bg-slate-950 border border-slate-800 text-amber-400 hover:text-white' : 'bg-amber-50 border border-amber-200 text-amber-600 hover:bg-amber-100'
+                )}
               >
-                <Plus size={16} /> Add
+                <Settings size={16} /> Configure
               </button>
-            ) : source === 'marketplace' && isInstalled ? (
-              <span className={cn('text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl', theme === 'dark' ? 'bg-slate-800 text-slate-500' : 'bg-slate-100 text-slate-400')}>
-                Added
-              </span>
-            ) : source === 'installed' && integration.status === 'pending' ? (
-              <>
-                <button
-                  onClick={handleConfigure}
-                  className={cn(
-                    'flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
-                    theme === 'dark' ? 'bg-slate-900 border border-slate-800 text-amber-400 hover:text-white' : 'bg-amber-50 border border-amber-200 text-amber-600 hover:bg-amber-100'
-                  )}
-                >
-                  <Settings size={16} /> Configure
-                </button>
-                <button onClick={handleDisconnect} className="p-3 rounded-xl border transition-all active:scale-90 text-slate-400 hover:text-rose-500" title="Remove">
-                  <Trash2 size={18} />
-                </button>
-              </>
-            ) : source === 'installed' ? (
-              <>
-                <button
-                  onClick={handleToggleActive}
-                  className={cn(
-                    'flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
-                    integration.status === 'active'
-                      ? theme === 'dark' ? 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400' : 'bg-slate-50 border border-slate-200 text-slate-500 hover:text-rose-600'
-                      : 'bg-emerald-600 text-white shadow-emerald-600/30 hover:bg-emerald-500'
-                  )}
-                >
-                  {integration.status === 'active' ? <><PowerOff size={16} /> Disable</> : <><Power size={16} /> Enable</>}
-                </button>
-                <button onClick={handleDisconnect} className="p-3 rounded-xl border transition-all active:scale-90 text-slate-400 hover:text-rose-500" title="Remove">
-                  <Trash2 size={18} />
-                </button>
-              </>
-            ) : null}
-          </div>
-        </td>
-      </motion.tr>
+              <button onClick={handleDisconnect} className="p-3 rounded-xl border transition-all active:scale-90 text-slate-400 hover:text-rose-500" title="Remove">
+                <Trash2 size={18} />
+              </button>
+            </>
+          ) : source === 'installed' ? (
+            <>
+              <button
+                onClick={handleToggleActive}
+                className={cn(
+                  'flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
+                  integration.status === 'active'
+                    ? theme === 'dark' ? 'bg-slate-950 border border-slate-800 text-slate-400 hover:text-rose-400' : 'bg-slate-50 border border-slate-200 text-slate-500 hover:text-rose-600'
+                    : 'bg-emerald-600 text-white shadow-emerald-600/30 hover:bg-emerald-500'
+                )}
+              >
+                {integration.status === 'active' ? <><PowerOff size={16} /> Disable</> : <><Power size={16} /> Enable</>}
+              </button>
+              <button onClick={handleDisconnect} className="p-3 rounded-xl border transition-all active:scale-90 text-slate-400 hover:text-rose-500" title="Remove">
+                <Trash2 size={18} />
+              </button>
+            </>
+          ) : null}
+        </div>
+      </div>
+    </div>
     );
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      whileHover={{ y: -10 }}
+    <div
       className={cn(
         'group relative rounded-[48px] p-10 transition-all border shadow-2xl flex flex-col h-full overflow-hidden',
         theme === 'dark'
@@ -240,6 +234,6 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
           </>
         ) : null}
       </div>
-    </motion.div>
+    </div>
   );
 }

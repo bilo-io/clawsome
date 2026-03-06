@@ -20,9 +20,7 @@ export const AgentCard: React.FC<AgentCardProps> = ({ agent, viewMode, onDelete 
 
   if (viewMode === 'table') {
     return (
-      <motion.tr 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
+      <tr 
         className={cn(
           "group border-b transition-colors",
           theme === 'dark' ? "border-slate-900 hover:bg-slate-900/30" : "border-slate-100 hover:bg-slate-50"
@@ -76,15 +74,12 @@ export const AgentCard: React.FC<AgentCardProps> = ({ agent, viewMode, onDelete 
             </button>
           </div>
         </td>
-      </motion.tr>
+      </tr>
     );
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      whileHover={{ y: -6 }}
+    <div
       className={cn(
         "group relative rounded-[40px] p-8 transition-all border shadow-xl flex flex-col h-full",
         theme === 'dark' 
@@ -163,6 +158,6 @@ export const AgentCard: React.FC<AgentCardProps> = ({ agent, viewMode, onDelete 
         "absolute inset-0 rounded-[40px] opacity-0 transition-opacity bg-indigo-500/5 blur-3xl pointer-events-none -z-10",
         "group-hover:opacity-100"
       )} />
-    </motion.div>
+    </div>
   );
 };
