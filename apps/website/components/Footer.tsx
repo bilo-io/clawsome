@@ -61,12 +61,12 @@ export const Footer = () => {
               <a 
                 key={social.id} 
                 href={social.href} 
-                className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-indigo-500 hover:border-indigo-500/50 transition-all flex items-center justify-center group"
+                className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-[#8C00FF] hover:border-indigo-500/50 transition-all flex items-center justify-center group"
                 target="_blank"
                 rel="noreferrer"
               >
                 <div 
-                  className="w-5 h-5 bg-slate-400 dark:bg-slate-600 group-hover:bg-gradient-to-tr group-hover:from-indigo-500 group-hover:to-purple-500 transition-colors"
+                  className="w-5 h-5 bg-slate-400 dark:bg-slate-600 group-hover:bg-gradient-to-tr group-hover:from-[#8C00FF] group-hover:to-[#008FD6] transition-colors"
                   style={{
                     maskImage: `url(/images/org/icon-${social.id}.svg)`,
                     WebkitMaskImage: `url(/images/org/icon-${social.id}.svg)`,
@@ -93,7 +93,7 @@ export const Footer = () => {
               <ul className="flex flex-col gap-4">
                 {category.links.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition-colors">
+                    <Link href={link.href} className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-[#8C00FF] transition-colors">
                       {link.name}
                     </Link>
                   </li>

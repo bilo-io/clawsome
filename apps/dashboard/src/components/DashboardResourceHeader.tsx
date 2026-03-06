@@ -151,7 +151,7 @@ export function DashboardResourceHeader({
             <div className={cn(
               "relative p-[2px] rounded-[32px] transition-all duration-300 shadow-sm",
               theme === 'dark' ? "bg-slate-800/40 shadow-none" : "bg-slate-200/50 shadow-slate-200/20",
-              "focus-within:bg-gradient-to-tr from-indigo-500 via-purple-500 to-blue-500 focus-within:scale-[1.01] focus-within:shadow-[0_48px_100px_rgba(99,102,241,0.25)]"
+              "focus-within:bg-gradient-to-tr from-[#8C00FF] to-[#008FD6] focus-within:scale-[1.01] focus-within:shadow-[0_48px_100px_rgba(140,0,255,0.15)]"
             )}>
               <div className={cn(
                 "relative rounded-[30px] flex items-center transition-all duration-700 px-6 py-1",

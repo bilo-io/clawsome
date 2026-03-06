@@ -198,7 +198,7 @@ export default function ProjectsPage() {
                                       )}
                                       title={agent.name}
                                    >
-                                      <div className="w-full h-full rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-[10px] font-black text-white">
+                                      <div className="w-full h-full rounded-full bg-gradient-to-tr from-[#8C00FF] to-[#008FD6] flex items-center justify-center text-[10px] font-black text-white">
                                          {agent.name.charAt(0)}
                                       </div>
                                    </div>
@@ -226,7 +226,7 @@ export default function ProjectsPage() {
                                 initial={{ width: 0 }}
                                 animate={{ width: `${project.progress}%` }}
                                 transition={{ duration: 1, ease: "circOut" }}
-                                className="h-full bg-indigo-600 shadow-[0_0_12px_rgba(79,70,229,0.4)]"
+                                className="h-full bg-gradient-to-r from-[#8C00FF] to-[#008FD6] shadow-[0_0_12px_rgba(140,0,255,0.3)]"
                              />
                           </div>
                        </div>
@@ -239,7 +239,7 @@ export default function ProjectsPage() {
                              <Clock size={12} />
                              {project.lastUpdated}
                           </div>
-                          <div className="flex items-center gap-1 group-hover:gap-2 transition-all text-indigo-600 font-black text-[11px] uppercase tracking-widest">
+                          <div className="flex items-center gap-1 group-hover:gap-2 transition-all text-[#8C00FF] font-black text-[11px] uppercase tracking-widest">
                              ACCESS ARCHIVE
                              <ChevronRight size={14} />
                           </div>
@@ -279,7 +279,7 @@ export default function ProjectsPage() {
                      </div>
                      <div className="flex -space-x-3">
                         {project.agents.map((agent, i) => (
-                           <div key={i} className="w-8 h-8 rounded-full border-2 border-slate-950 bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-[8px] font-black text-white">
+                           <div key={i} className="w-8 h-8 rounded-full border-2 border-slate-950 bg-gradient-to-tr from-[#8C00FF] to-[#008FD6] flex items-center justify-center text-[8px] font-black text-white">
                               {agent.name.charAt(0)}
                            </div>
                         ))}
@@ -287,7 +287,7 @@ export default function ProjectsPage() {
                       <div className="flex flex-col items-end min-w-[120px]">
                          <span className={cn("text-base font-black font-mono", theme === 'dark' ? "text-white" : "text-black")}>{project.taskCount} TASKS</span>
                          <div className="w-full h-1 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden my-2">
-                            <div className="h-full bg-indigo-600" style={{ width: `${project.progress}%` }} />
+                            <div className="h-full bg-gradient-to-r from-[#8C00FF] to-[#008FD6]" style={{ width: `${project.progress}%` }} />
                          </div>
                          <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">{project.lastUpdated}</span>
                       </div>

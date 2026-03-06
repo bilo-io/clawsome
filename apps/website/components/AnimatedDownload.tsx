@@ -26,9 +26,8 @@ export const AnimatedDownload: React.FC<AnimatedDownloadProps> = ({
       >
         <defs>
           <linearGradient id="primary-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#6366f1" />
-            <stop offset="50%" stopColor="#a855f7" />
-            <stop offset="100%" stopColor="#ec4899" />
+            <stop offset="0%" stopColor="#8C00FF" />
+            <stop offset="100%" stopColor="#008FD6" />
           </linearGradient>
         </defs>
 
@@ -38,7 +37,7 @@ export const AnimatedDownload: React.FC<AnimatedDownloadProps> = ({
             y: [0, size * 0.4, 0],
           }}
           transition={{
-            duration: 1.5,
+            duration: 2.5,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -46,14 +45,14 @@ export const AnimatedDownload: React.FC<AnimatedDownloadProps> = ({
           <motion.path
             d={`M${size / 2} 0V${size * 0.6}M${size / 2} ${size * 0.6}L${size * 0.2} ${size * 0.3}M${size / 2} ${size * 0.6}L${size * 0.8} ${size * 0.3}`}
             stroke={color}
-            strokeWidth={size * 0.12}
+            strokeWidth={size * 0.08}
             strokeLinecap="round"
             strokeLinejoin="round"
             animate={{
               opacity: [0.4, 1, 0.4],
             }}
             transition={{
-              duration: 1.5,
+              duration: 2.5,
               repeat: Infinity,
               ease: "easeInOut",
             }}
@@ -64,7 +63,7 @@ export const AnimatedDownload: React.FC<AnimatedDownloadProps> = ({
         <motion.path
           d={`M${size * 0.1} ${size * 0.9}V${size * 1.1}H${size * 0.9}V${size * 0.9}`}
           stroke={color}
-          strokeWidth={size * 0.12}
+          strokeWidth={size * 0.08}
           strokeLinecap="round"
           strokeLinejoin="round"
           animate={{
@@ -72,7 +71,7 @@ export const AnimatedDownload: React.FC<AnimatedDownloadProps> = ({
             scale: [1, 1.05, 1],
           }}
           transition={{
-            duration: 1.5,
+            duration: 2.5,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -82,7 +81,7 @@ export const AnimatedDownload: React.FC<AnimatedDownloadProps> = ({
         <motion.path
           d={`M0 ${size * 1.2}H${size}`}
           stroke={color}
-          strokeWidth={size * 0.08}
+          strokeWidth={size * 0.04}
           strokeLinecap="round"
           className="opacity-20"
         />

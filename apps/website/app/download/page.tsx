@@ -12,11 +12,15 @@ import Link from 'next/link';
 import { AnimatedDownload } from '@/components/AnimatedDownload';
 import { cn } from '@/lib/utils';
 import { PrimaryButton } from '@/components/PrimaryButton';
+import { useTheme } from 'next-themes';
 
 export default function DownloadPage() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [detectedOs, setDetectedOs] = useState<'mac' | 'windows' | 'linux' | null>(null);
 
   useEffect(() => {
+    setMounted(true);
     const ua = window.navigator.userAgent.toLowerCase();
     if (ua.indexOf('mac') !== -1) setDetectedOs('mac');
     else if (ua.indexOf('win') !== -1) setDetectedOs('windows');
@@ -66,7 +70,27 @@ export default function DownloadPage() {
   }, [detectedOs]);
 
   return (
-    <div className="pt-40 pb-32 px-8 flex flex-col items-center min-h-[90vh]">
+    <div className="relative pt-40 pb-32 px-8 flex flex-col items-center min-h-[90vh] isolate overflow-hidden">
+      {/* Background Video */}
+      {mounted && (
+        <>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover -z-30"
+          >
+            <source src="/videos/vid-hero-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Gloss/Blur Overlay */}
+          <div className={cn(
+            "absolute inset-0 -z-20 backdrop-blur-xs transition-colors duration-700",
+            theme === 'dark' ? "bg-black/60 shadow-inner" : "bg-white/30 shadow-inner"
+          )} />
+        </>
+      )}
+
       <div className="max-w-5xl w-full">
          {/* Feature Header */}
          <div className="flex flex-col items-center text-center mb-20">
@@ -105,7 +129,7 @@ export default function DownloadPage() {
                    <div 
                      className={cn(
                        "w-16 h-16 transition-transform group-hover:scale-110",
-                       v.featured ? "bg-gradient-to-tr from-indigo-500 to-purple-500" : "bg-slate-400 dark:bg-slate-600"
+                       v.featured ? "bg-gradient-to-tr from-[#8C00FF] to-[#008FD6]" : "bg-slate-400 dark:bg-slate-600"
                      )}
                      style={{
                         maskImage: `url(${v.iconPath})`,
@@ -129,7 +153,7 @@ export default function DownloadPage() {
                      Download ({v.extension})
                    </PrimaryButton>
                  ) : (
-                   <button className="mt-10 px-8 py-4 w-full rounded-2xl font-black text-sm flex flex-row items-center justify-center transition-all shadow-lg bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-800">
+                   <button className="mt-10 px-6 py-4 w-full rounded-2xl font-semibold whitespace-nowrap text-sm flex flex-row items-center justify-center transition-all shadow-lg bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-800">
                       <DownloadIcon size={20} className="mr-2" />
                       <span>Download ({v.extension})</span>
                    </button>

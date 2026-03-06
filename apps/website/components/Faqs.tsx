@@ -36,8 +36,8 @@ export const Faqs = () => {
     <section id="faqs" className="py-24 px-8 bg-slate-50/50 dark:bg-slate-950 transition-colors flex flex-col items-center">
       <div className="max-w-4xl w-full">
         <div className="flex flex-col mb-16 items-center text-center">
-          <HelpCircle size={48} className="text-indigo-500 mb-6 animate-pulse" />
-          <span className="text-xs font-black uppercase tracking-[0.4em] text-indigo-500 mb-4">
+          <HelpCircle size={48} className="text-[#8C00FF] mb-6 animate-pulse" />
+          <span className="text-xs font-black uppercase tracking-[0.4em] text-[#8C00FF] mb-4">
             Curious?
           </span>
           <h2 
@@ -60,7 +60,7 @@ export const Faqs = () => {
                 className={cn(
                   "transition-all duration-300 rounded-[2rem] border card-glow",
                   isOpen 
-                    ? 'border-indigo-500/30 bg-white dark:bg-indigo-500/5 shadow-xl shadow-slate-200/50 dark:shadow-none' 
+                    ? 'border-[#8C00FF]/30 bg-white dark:bg-indigo-500/5 shadow-xl shadow-slate-200/50 dark:shadow-none' 
                     : 'border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent'
                 )}
               >
@@ -68,10 +68,10 @@ export const Faqs = () => {
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
                   className="w-full flex items-center justify-between p-7 text-left group"
                 >
-                  <span className={`text-xl font-black tracking-tight transition-colors ${isOpen ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-900 dark:text-white'}`}>
+                  <span className={`text-xl font-black tracking-tight transition-colors ${isOpen ? 'text-[#8C00FF] dark:text-[#8C00FF]' : 'text-slate-900 dark:text-white'}`}>
                     {faq.question}
                   </span>
-                  <div className={`p-2 rounded-full transition-all ${isOpen ? 'bg-indigo-600 text-white rotate-180 shadow-lg shadow-indigo-500/20' : 'bg-slate-100 dark:bg-slate-900 text-slate-500 group-hover:bg-indigo-50 group-hover:text-white'}`}>
+                  <div className={`p-2 rounded-full transition-all ${isOpen ? 'bg-[#8C00FF] text-white rotate-180 shadow-lg shadow-indigo-500/20' : 'bg-slate-100 dark:bg-slate-900 text-slate-500 group-hover:bg-indigo-50 group-hover:text-white'}`}>
                     <ChevronDown size={20} />
                   </div>
                 </button>
@@ -95,7 +95,7 @@ export const Faqs = () => {
           })}
         </div>
 
-        <div className="mt-16 p-8 glass-panel card-glow rounded-[2.5rem] bg-indigo-600 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-indigo-500/30">
+        <div className="mt-16 p-8 glass-panel card-glow rounded-[2.5rem] bg-[#8C00FF] text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-indigo-500/30">
            <div className="flex flex-col gap-2">
               <h3 className="text-xl font-black tracking-tight">Still have questions?</h3>
               <p className="text-indigo-100 font-medium">Our team is always here to help you get started with Clawsome.</p>

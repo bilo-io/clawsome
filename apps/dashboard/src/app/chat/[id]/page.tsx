@@ -271,7 +271,7 @@ export default function ChatDetailPage() {
           <div className="relative group perspective-1000">
             <div className={cn(
               "relative p-[2px] rounded-[32px] transition-all duration-700 shadow-[0_32px_80px_rgba(0,0,0,0.2)] dark:shadow-[0_48px_100px_rgba(0,0,0,0.5)]",
-              "bg-slate-200 dark:bg-slate-800/30 focus-within:bg-gradient-to-tr from-indigo-500 via-purple-500 to-blue-500 focus-within:scale-[1.01] focus-within:shadow-[0_48px_100px_rgba(99,102,241,0.25)]"
+              "bg-slate-200 dark:bg-slate-800/30 focus-within:bg-gradient-to-tr from-[#8C00FF] to-[#008FD6] focus-within:scale-[1.01] focus-within:shadow-[0_48px_100px_rgba(140,0,255,0.15)]"
             )}>
               <div className={cn(
                 "flex items-center gap-4 bg-white dark:bg-slate-950 rounded-[30px] px-8 py-5 transition-all duration-700 overflow-hidden",

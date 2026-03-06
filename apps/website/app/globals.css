@@ -21,7 +21,7 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, #6366f1, #a855f7, #ec4899);
+  background-image: linear-gradient(to right, #8C00FF, #008FD6);
   font-family: 'Newton Howard Font', sans-serif;
   font-style: italic;
   padding-right: 0.3em;
@@ -31,7 +31,7 @@ body {
 }
 
 .hero-gradient {
-  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15), transparent 50%);
+  background: radial-gradient(circle at 50% 0%, rgba(140, 0, 255, 0.15), transparent 50%);
 }
 
 .glass-panel {
@@ -63,9 +63,8 @@ body {
   padding: 1px; /* The border thickness */
   background: linear-gradient(
     to bottom right,
-    rgba(99, 102, 241, 0.2),
-    rgba(168, 85, 247, 0.2),
-    rgba(236, 72, 153, 0.2)
+    rgba(140, 0, 255, 0.2),
+    rgba(0, 143, 214, 0.2)
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -82,7 +81,7 @@ body {
   border-radius: inherit;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(99, 102, 241, 0.05),
+    rgba(140, 0, 255, 0.05),
     transparent 80%
   );
   z-index: -1;
@@ -97,7 +96,7 @@ body {
   opacity: 1;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(99, 102, 241, 0.15),
+    rgba(140, 0, 255, 0.15),
     transparent 70%
   );
   filter: blur(20px);

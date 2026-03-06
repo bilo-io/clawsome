@@ -91,7 +91,7 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
         >
           {integration.orgId ? (
             <div 
-              className="w-5 h-5 bg-gradient-to-tr from-indigo-500 to-purple-500"
+              className="w-5 h-5 bg-gradient-to-tr from-[#8C00FF] to-[#008FD6]"
               style={{
                 maskImage: `url(/images/org/icon-${integration.orgId}.svg)`,
                 WebkitMaskImage: `url(/images/org/icon-${integration.orgId}.svg)`,
@@ -192,7 +192,7 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
         >
           {integration.orgId ? (
             <div 
-              className="w-8 h-8 bg-gradient-to-tr from-indigo-500 to-purple-500"
+              className="w-8 h-8 bg-gradient-to-tr from-[#8C00FF] to-[#008FD6]"
               style={{
                 maskImage: `url(/images/org/icon-${integration.orgId}.svg)`,
                 WebkitMaskImage: `url(/images/org/icon-${integration.orgId}.svg)`,

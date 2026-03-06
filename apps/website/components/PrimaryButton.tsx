@@ -22,7 +22,7 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   icon,
   size = 'md',
 }) => {
-  const baseStyles = "relative group overflow-hidden font-black transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-white shadow-2xl";
+  const baseStyles = "relative group overflow-hidden font-semibold whitespace-nowrap transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-1.5 text-white shadow-2xl";
   
   const sizeStyles = {
     sm: "px-5 py-2 rounded-full text-sm",
@@ -30,7 +30,7 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
     lg: "px-10 py-5 rounded-[2rem] text-xl",
   };
 
-  const gradientStyles = "bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500 shadow-indigo-500/25";
+  const gradientStyles = "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] hover:brightness-110 shadow-purple-600/30";
 
   const content = (
     <>

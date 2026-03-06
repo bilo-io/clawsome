@@ -134,7 +134,7 @@ export default function MemoriesPage() {
            <div className="relative">
               <button
                 onClick={() => setIsAddDropdownOpen(!isAddDropdownOpen)}
-                className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-[20px] font-bold shadow-xl shadow-indigo-600/20 transition-all active:translate-y-1"
+                className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] hover:opacity-90 text-white rounded-[20px] font-bold shadow-xl shadow-purple-600/20 transition-all active:translate-y-1"
               >
                 <Plus size={20} />
                 <span className="text-[10px] font-bold uppercase tracking-widest">Add Data to Core</span>
@@ -513,7 +513,7 @@ function AddDataModal({ type, onClose, onSubmit, theme }: ModalProps) {
             </button>
             <button
               type="submit"
-              className="flex-[2] px-8 py-4 rounded-[20px] bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold uppercase tracking-widest text-[11px] shadow-xl hover:opacity-90 transition-all active:translate-y-1"
+              className="flex-[2] px-8 py-4 rounded-[20px] bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white font-bold uppercase tracking-widest text-[11px] shadow-xl hover:opacity-90 transition-all active:translate-y-1"
             >
               Initiate Ingestion
             </button>

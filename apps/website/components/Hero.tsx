@@ -28,7 +28,7 @@ export const Hero = () => {
             playsInline
             className="absolute inset-0 w-full h-full object-cover -z-30"
           >
-            <source src="/videos/vid-hero-bg.mp4" type="video/mp4" />
+            <source src="/videos/vid-galaxy-bg.mp4" type="video/mp4" />
           </video>
           {/* Gloss/Blur Overlay */}
           <div className={cn(
@@ -102,7 +102,7 @@ export const Hero = () => {
           href="/download" 
           icon={<Terminal size={20} />}
         >
-          It's Clawsome
+          It's ClawSome
         </PrimaryButton>
         <button className="flex items-center gap-3 px-8 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-3xl font-black text-lg transition-all hover:border-indigo-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 active:scale-95 group">
           <div className="p-1 px-1 bg-indigo-500/10 rounded-full group-hover:bg-indigo-500/20 transition-colors">

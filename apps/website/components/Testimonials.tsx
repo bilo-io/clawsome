@@ -126,7 +126,7 @@ export const Testimonials = () => {
                   }}
                   className={cn(
                     "relative w-full max-w-[360px] p-1 rounded-[3rem] shrink-0",
-                    isActive ? "bg-gradient-to-tr from-indigo-500 via-purple-500 to-blue-500 shadow-[0_0_80px_rgba(99,102,241,0.5)]" : "bg-transparent"
+                    isActive ? "bg-gradient-to-tr from-[#8C00FF] to-[#008FD6] shadow-[0_0_80px_rgba(140,0,255,0.3)]" : "bg-transparent"
                   )}
                 >
                   <div className={cn(
@@ -153,7 +153,7 @@ export const Testimonials = () => {
                     </p>
 
                     <div className="flex items-center gap-4 mt-auto">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-black text-sm border-2 border-white dark:border-slate-800 shadow-lg transition-transform group-hover:scale-110">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#8C00FF] to-[#008FD6] flex items-center justify-center text-white font-black text-sm border-2 border-white dark:border-slate-800 shadow-lg transition-transform group-hover:scale-110">
                         {testimonial.avatar}
                       </div>
                       <div className="flex flex-col items-start">

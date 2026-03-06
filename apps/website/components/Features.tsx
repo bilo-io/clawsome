@@ -21,7 +21,7 @@ export const Features = () => {
       icon: Bot,
       title: 'Autonomous Browsers',
       description: 'Agents that browse the web just like you, navigating complex UIs and extracting actionable data.',
-      color: 'bg-indigo-500',
+      color: 'bg-[#8C00FF]',
     },
     {
       icon: BrainCircuit,
@@ -60,7 +60,7 @@ export const Features = () => {
       <div className="max-w-7xl w-full">
         {/* Header */}
         <div className="flex flex-col mb-20">
-          <span className="text-xs font-black uppercase tracking-[0.4em] text-indigo-500 mb-4">
+          <span className="text-xs font-black uppercase tracking-[0.4em] text-[#8C00FF] mb-4">
             Core capabilities
           </span>
           <h2 
@@ -83,7 +83,7 @@ export const Features = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group p-8 glass-panel card-glow rounded-[2rem] hover:border-indigo-500/50 hover:bg-white dark:hover:bg-slate-900/50 transition-all flex flex-col gap-6 shadow-sm hover:shadow-xl shadow-slate-200/50 dark:shadow-none"
+              className="group p-8 glass-panel card-glow rounded-[2rem] hover:border-[#8C00FF]/50 hover:bg-white dark:hover:bg-slate-900/50 transition-all flex flex-col gap-6 shadow-sm hover:shadow-xl shadow-slate-200/50 dark:shadow-none"
             >
               <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-indigo-500/10 transition-transform group-hover:scale-110 group-hover:rotate-3", feature.color)}>
                 <feature.icon size={28} />
@@ -101,16 +101,16 @@ export const Features = () => {
         </div>
 
         {/* Visual Showcase (The 6th Section part) */}
-        <div className="mt-24 p-12 glass-panel card-glow rounded-[3rem] border-indigo-500/10 dark:border-indigo-500/20 bg-white/80 dark:bg-indigo-500/5 flex flex-col lg:flex-row items-center gap-16 overflow-hidden relative shadow-2xl shadow-slate-200/60 dark:shadow-none">
+        <div className="mt-24 p-12 glass-panel card-glow rounded-[3rem] border-[#8C00FF]/10 dark:border-[#8C00FF]/20 bg-white/80 dark:bg-[#8C00FF]/5 flex flex-col lg:flex-row items-center gap-16 overflow-hidden relative shadow-2xl shadow-slate-200/60 dark:shadow-none">
            {/* Background Grid */}
            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
            
            <div className="flex-1 z-10">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-indigo-500/10 rounded-xl">
-                  <Cpu size={24} className="text-indigo-500" />
+                <div className="p-2 bg-[#8C00FF]/10 rounded-xl">
+                  <Cpu size={24} className="text-[#8C00FF]" />
                 </div>
-                <span className="text-xs font-black uppercase tracking-[0.3em] text-indigo-500">
+                <span className="text-xs font-black uppercase tracking-[0.3em] text-[#8C00FF]">
                   Performance metrics
                 </span>
               </div>
@@ -129,18 +129,18 @@ export const Features = () => {
                    { label: 'Latency', value: '142ms' },
                    { label: 'Agent Throughput', value: '50k+ Ops/sec' }
                  ].map((stat, i) => (
-                   <div key={i} className="flex items-center justify-between py-3 border-b border-indigo-500/10 last:border-0">
+                   <div key={i} className="flex items-center justify-between py-3 border-b border-[#8C00FF]/10 last:border-0">
                       <span className="text-slate-500 dark:text-slate-600 font-bold uppercase text-[10px] tracking-widest">{stat.label}</span>
-                      <span className="text-indigo-500 font-black text-xl font-mono">{stat.value}</span>
+                      <span className="text-[#8C00FF] font-black text-xl font-mono">{stat.value}</span>
                    </div>
                  ))}
               </div>
            </div>
 
            <div className="flex-1 w-full flex items-center justify-center z-10 relative">
-              <div className="w-full aspect-square max-w-[400px] border border-indigo-500/20 dark:border-indigo-500/30 rounded-full flex items-center justify-center p-8 animate-spin-slow">
+              <div className="w-full aspect-square max-w-[400px] border border-[#8C00FF]/20 dark:border-indigo-500/30 rounded-full flex items-center justify-center p-8 animate-spin-slow">
                  <div className="w-full aspect-square border border-purple-500/10 dark:border-purple-500/20 rounded-full flex items-center justify-center p-8 animate-reverse-spin-slow">
-                    <Globe size={120} className="text-indigo-500/30 dark:text-indigo-500/40" />
+                    <Globe size={120} className="text-[#8C00FF]/30 dark:text-[#8C00FF]/40" />
                  </div>
               </div>
               {/* Floating Icons */}
@@ -148,7 +148,7 @@ export const Features = () => {
                 <Zap className="text-amber-500" />
               </div>
               <div className="absolute bottom-20 right-0 p-4 glass-panel rounded-2xl shadow-xl animate-bounce-slow delay-700 bg-white dark:bg-slate-900/80">
-                <BrainCircuit className="text-indigo-500" />
+                <BrainCircuit className="text-[#8C00FF]" />
               </div>
            </div>
         </div>

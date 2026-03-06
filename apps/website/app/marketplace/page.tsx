@@ -269,10 +269,10 @@ export default function MarketplacePage() {
           >
             <div className="relative group w-full">
               {/* High-intensity outer glow */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-[40px] blur-3xl opacity-0 group-focus-within:opacity-20 dark:group-focus-within:opacity-30 transition duration-700" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] rounded-[40px] blur-3xl opacity-0 group-focus-within:opacity-20 dark:group-focus-within:opacity-30 transition duration-700" />
               
               {/* Border Gradient Container */}
-              <div className="relative p-[1px] rounded-[26px] bg-slate-200 dark:bg-slate-800 transition-all duration-500 group-focus-within:bg-gradient-to-r group-focus-within:from-indigo-500 group-focus-within:via-purple-500 group-focus-within:to-pink-500 group-focus-within:shadow-2xl shadow-indigo-500/10">
+              <div className="relative p-[1px] rounded-[26px] bg-slate-200 dark:bg-slate-800 transition-all duration-500 group-focus-within:bg-gradient-to-r group-focus-within:from-[#8C00FF] group-focus-within:to-[#008FD6] group-focus-within:shadow-2xl shadow-purple-600/10">
                 <div className="relative glass-panel rounded-[25px] flex items-center px-6 py-4 transition-all duration-300 bg-white dark:bg-slate-900/95 group-focus-within:bg-white dark:group-focus-within:bg-slate-950 group-focus-within:scale-[1.005]">
                   <Search className="w-6 h-6 text-slate-400 group-focus-within:text-indigo-500 transition-colors mr-4" />
                   <input 
