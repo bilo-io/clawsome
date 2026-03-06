@@ -51,8 +51,6 @@ import {
   Workflow
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
 
 type Category = 'All' | 'Skills' | 'Integrations' | 'Plugins' | 'MCP';
 
@@ -166,7 +164,6 @@ export default function MarketplacePage() {
 
   return (
     <main className="min-h-screen relative bg-slate-50 dark:bg-[#020617] transition-colors duration-500 overflow-hidden">
-      <Navbar />
 
       {/* Decorative Background */}
       <div className="absolute inset-0 pointer-events-none">

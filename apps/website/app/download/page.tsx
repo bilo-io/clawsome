@@ -52,10 +52,13 @@ export default function DownloadPage() {
             >
               <DownloadIcon size={48} className="text-white" />
             </motion.div>
-            <h1 className="text-5xl md:text-6xl font-black tracking-tighter mb-6 text-slate-900 dark:text-white">
-              Launch the <span className="gradient-text">ClawSome Terminal</span>
+            <h1 
+              className="text-5xl md:text-6xl font-black mb-6 text-slate-900 dark:text-white leading-[1.3] overflow-visible px-12"
+              style={{ fontFamily: "'Newton Howard Font', sans-serif" }}
+            >
+              <span className="not-italic">Launch the</span> <span className="gradient-text">ClawSome Terminal</span>
             </h1>
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl font-medium">
+            <p className="text-xl text-slate-700 dark:text-slate-400 max-w-2xl font-medium">
               Experience the power of a fully autonomous AI operating system on your local machine.
             </p>
          </div>
