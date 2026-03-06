@@ -7,3 +7,7 @@
 **/*/node_modules
 **/*/dist
 
+.clawsome.json
+.clawsome.pid
+
+.DS_Store
