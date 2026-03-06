@@ -1,0 +1,404 @@
+[
+  {
+    "id": "1",
+    "name": "Neural Reasoning Engine",
+    "category": "Skills",
+    "description": "Deep logical analysis capability for complex problem-solving.",
+    "iconName": "BrainCircuit",
+    "isPopular": true
+  },
+  {
+    "id": "2",
+    "name": "Contextual Memory Matrix",
+    "category": "Skills",
+    "description": "Enhanced long-term context retention for lengthy coding sessions.",
+    "iconName": "HardDrive"
+  },
+  {
+    "id": "3",
+    "name": "Recursive Debugger",
+    "category": "Skills",
+    "description": "Self-correcting code analysis and bug fixing in real-time.",
+    "iconName": "Target",
+    "isNew": true
+  },
+  {
+    "id": "4",
+    "name": "Multi-Agent Orchestrator",
+    "category": "Skills",
+    "description": "Coordinate complex swarms of AI agents with precision.",
+    "iconName": "Workflow",
+    "isPopular": true
+  },
+  {
+    "id": "5",
+    "name": "Semantic Code Search",
+    "category": "Skills",
+    "description": "Find logic patterns across your codebase, not just strings.",
+    "iconName": "Search"
+  },
+  {
+    "id": "6",
+    "name": "Automated Refactoring",
+    "category": "Skills",
+    "description": "Instant code architectural improvements and cleanup.",
+    "iconName": "Code"
+  },
+  {
+    "id": "7",
+    "name": "Doc-Gen Specialist",
+    "category": "Skills",
+    "description": "Lightning-fast technical documentation from your source code.",
+    "iconName": "FileCode"
+  },
+  {
+    "id": "8",
+    "name": "Security Vulnerability Scanner",
+    "category": "Skills",
+    "description": "Proactive threat detection and security auditing.",
+    "iconName": "Shield",
+    "isPopular": true
+  },
+  {
+    "id": "9",
+    "name": "Performance Profiling",
+    "category": "Skills",
+    "description": "Deep-dive system bottleneck analysis and optimization.",
+    "iconName": "Activity"
+  },
+  {
+    "id": "10",
+    "name": "Unit Test Generator",
+    "category": "Skills",
+    "description": "Comprehensive test coverage generation for all functions.",
+    "iconName": "Settings"
+  },
+  {
+    "id": "11",
+    "name": "Dependency Map Visualizer",
+    "category": "Skills",
+    "description": "Visualize and manage complex project dependency graphs.",
+    "iconName": "Layers"
+  },
+  {
+    "id": "12",
+    "name": "Language Translator",
+    "category": "Skills",
+    "description": "Polyglot assistant fluent in 100+ programming languages.",
+    "iconName": "Globe"
+  },
+  {
+    "id": "13",
+    "name": "Regex Wizard",
+    "category": "Skills",
+    "description": "Master complex string manipulations with neural assistance.",
+    "iconName": "Wand2"
+  },
+  {
+    "id": "14",
+    "name": "Database Schema Designer",
+    "category": "Skills",
+    "description": "Optimized data architecture design and migration tools.",
+    "iconName": "DatabaseZap"
+  },
+  {
+    "id": "15",
+    "name": "API Request Optimizer",
+    "category": "Skills",
+    "description": "Minimize latency and maximize throughput for your endpoints.",
+    "iconName": "Zap"
+  },
+  {
+    "id": "16",
+    "name": "Cloud Infra Architect",
+    "category": "Skills",
+    "description": "Design serverless and K8s setups with AI-driven best practices.",
+    "iconName": "Cloud"
+  },
+  {
+    "id": "17",
+    "name": "Framework Porter",
+    "category": "Skills",
+    "description": "Seamlessly port code between React, Vue, and Svelte.",
+    "iconName": "Layout",
+    "isNew": true
+  },
+  {
+    "id": "18",
+    "name": "TypeScript Migration",
+    "category": "Skills",
+    "description": "Elevate legacy JavaScript to strict, safe TypeScript.",
+    "iconName": "FileCode"
+  },
+  {
+    "id": "19",
+    "name": "Legacy Modernizer",
+    "category": "Skills",
+    "description": "Breathe life into outdated repositories and technical debt.",
+    "iconName": "Cpu"
+  },
+  {
+    "id": "20",
+    "name": "Personality Tuner",
+    "category": "Skills",
+    "description": "Customize your AI agent's voice, tone, and behavior.",
+    "iconName": "MessageSquare"
+  },
+  {
+    "id": "21",
+    "name": "GitHub Synapse",
+    "category": "Integrations",
+    "description": "Deep integration with Pull Requests, Issues, and Actions.",
+    "iconName": "Github",
+    "isPopular": true
+  },
+  {
+    "id": "22",
+    "name": "Discord Hive",
+    "category": "Integrations",
+    "description": "Real-time agent communication within your community server.",
+    "iconName": "MessageCircle"
+  },
+  {
+    "id": "23",
+    "name": "Slack Nerve Center",
+    "category": "Integrations",
+    "description": "Execute commands and receive updates directly in Slack.",
+    "iconName": "Zap"
+  },
+  {
+    "id": "24",
+    "name": "Linear Sync Flow",
+    "category": "Integrations",
+    "description": "Automated task tracking and progress synchronization.",
+    "iconName": "Target"
+  },
+  {
+    "id": "25",
+    "name": "MCP Cyber-Link",
+    "category": "Integrations",
+    "description": "Universal Model Context Protocol bridge for all agents.",
+    "iconName": "Network",
+    "isPopular": true
+  },
+  {
+    "id": "26",
+    "name": "Notion Knowledge Base",
+    "category": "Integrations",
+    "description": "Bi-directional sync between docs and codebases.",
+    "iconName": "Layers2"
+  },
+  {
+    "id": "27",
+    "name": "PostgreSQL Bridge",
+    "category": "Integrations",
+    "description": "Direct neural SQL querying and schema administration.",
+    "iconName": "Database"
+  },
+  {
+    "id": "28",
+    "name": "AWS Cloud Hub",
+    "category": "Integrations",
+    "description": "Zero-config management of EC2, S3, and Lambda.",
+    "iconName": "Cloud"
+  },
+  {
+    "id": "29",
+    "name": "GCP Connector",
+    "category": "Integrations",
+    "description": "Seamlessly manage Google Cloud resources and IAM.",
+    "iconName": "Cloud"
+  },
+  {
+    "id": "30",
+    "name": "Azure Enterprise",
+    "category": "Integrations",
+    "description": "Enterprise-grade Microsoft Azure infrastructure tools.",
+    "iconName": "Cloud"
+  },
+  {
+    "id": "31",
+    "name": "Stripe Gateway",
+    "category": "Integrations",
+    "description": "Neural-powered billing and payment logic integration.",
+    "iconName": "CreditCard"
+  },
+  {
+    "id": "32",
+    "name": "Sentry Watchtower",
+    "category": "Integrations",
+    "description": "Automated error triaging and self-healing bug fixes.",
+    "iconName": "Eye",
+    "isNew": true
+  },
+  {
+    "id": "33",
+    "name": "Datadog Metrics",
+    "category": "Integrations",
+    "description": "Visual observability and real-time dashboard sync.",
+    "iconName": "Activity"
+  },
+  {
+    "id": "34",
+    "name": "Firebase Realtime",
+    "category": "Integrations",
+    "description": "Fast, synchronized data for web and mobile apps.",
+    "iconName": "Zap"
+  },
+  {
+    "id": "35",
+    "name": "Supabase Edge",
+    "category": "Integrations",
+    "description": "Native support for Supabase Auth and Edge functions.",
+    "iconName": "DatabaseZap"
+  },
+  {
+    "id": "36",
+    "name": "Twilio Cell-Link",
+    "category": "Integrations",
+    "description": "SMS, Voice, and WhatsApp neural automation.",
+    "iconName": "Smartphone"
+  },
+  {
+    "id": "37",
+    "name": "Netlify Deployer",
+    "category": "Integrations",
+    "description": "Continuous delivery automation for modern web apps.",
+    "iconName": "UploadCloud"
+  },
+  {
+    "id": "38",
+    "name": "Vercel Edge Hub",
+    "category": "Integrations",
+    "description": "Optimize and deploy Next.js apps with one command.",
+    "iconName": "Zap",
+    "isPopular": true
+  },
+  {
+    "id": "39",
+    "name": "K8s Cluster Master",
+    "category": "Integrations",
+    "description": "Visual orchestration and scaling of Kubernetes clusters.",
+    "iconName": "Container"
+  },
+  {
+    "id": "40",
+    "name": "Docker Forge",
+    "category": "Integrations",
+    "description": "Automated containerization and image management.",
+    "iconName": "Box"
+  },
+  {
+    "id": "41",
+    "name": "Omni-Workflow Max",
+    "category": "Plugins",
+    "description": "One-click full-stack project scaffolding and setup.",
+    "iconName": "Workflow",
+    "isPopular": true
+  },
+  {
+    "id": "42",
+    "name": "Quantum Speed-Code",
+    "category": "Plugins",
+    "description": "Predictive neural code generation at 10x speeds.",
+    "iconName": "Zap",
+    "isNew": true
+  },
+  {
+    "id": "43",
+    "name": "Ethereal Live-Docs",
+    "category": "Plugins",
+    "description": "Floating live documentation that follows your cursor.",
+    "iconName": "FileCode"
+  },
+  {
+    "id": "44",
+    "name": "Cyber-Security Shield",
+    "category": "Plugins",
+    "description": "Real-time intrusion detection and behavioral blocking.",
+    "iconName": "Shield",
+    "isPopular": true
+  },
+  {
+    "id": "45",
+    "name": "Data-Vault Secret",
+    "category": "Plugins",
+    "description": "End-to-end encrypted secrets and environment variables.",
+    "iconName": "Lock"
+  },
+  {
+    "id": "46",
+    "name": "Auto-Scale Prophet",
+    "category": "Plugins",
+    "description": "Predictive infrastructure scaling based on traffic.",
+    "iconName": "Wind"
+  },
+  {
+    "id": "47",
+    "name": "Stitch Loop UI",
+    "category": "Plugins",
+    "description": "Real-time frontend component prototyping and testing.",
+    "iconName": "Layout",
+    "isPopular": true
+  },
+  {
+    "id": "48",
+    "name": "Aesthetic Refiner",
+    "category": "Plugins",
+    "description": "Automated UI polish, spacing, and design consistency.",
+    "iconName": "PenTool"
+  },
+  {
+    "id": "49",
+    "name": "Ghost-Writer AI",
+    "category": "Plugins",
+    "description": "Generative technical writing for blogs and changelogs.",
+    "iconName": "MessageSquare"
+  },
+  {
+    "id": "50",
+    "name": "Nightshade Terminal",
+    "category": "Plugins",
+    "description": "A custom, neural-enhanced CLI theme for pro developers.",
+    "iconName": "Terminal",
+    "isNew": true
+  },
+  {
+    "id": "51",
+    "name": "MCP Slack Bridge",
+    "category": "MCP",
+    "description": "Expose Slack channels as MCP resources for your agents.",
+    "iconName": "MessageSquare",
+    "isPopular": true
+  },
+  {
+    "id": "52",
+    "name": "MCP GitHub Context",
+    "category": "MCP",
+    "description": "Seamlessly link GitHub repositories as agent context.",
+    "iconName": "Github",
+    "isPopular": true
+  },
+  {
+    "id": "53",
+    "name": "MCP Google Maps",
+    "category": "MCP",
+    "description": "Enable agents to 'see' and 'navigate' through geographical data.",
+    "iconName": "Globe",
+    "isNew": true
+  },
+  {
+    "id": "54",
+    "name": "MCP Notion Knowledge",
+    "category": "MCP",
+    "description": "Access Notion databases and pages as MCP tools.",
+    "iconName": "Layers2"
+  },
+  {
+    "id": "55",
+    "name": "MCP SQL Explorer",
+    "category": "MCP",
+    "description": "Turn your SQL databases into agent-ready MCP resources.",
+    "iconName": "Database"
+  }
+]

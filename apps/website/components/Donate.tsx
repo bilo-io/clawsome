@@ -20,12 +20,15 @@ export const Donate = () => {
           <Heart size={48} className="text-rose-500 fill-rose-500 animate-pulse" />
         </motion.div>
 
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white md:max-w-2xl tracking-tighter mb-8 leading-[1.1]">
-          Support our <span className="text-indigo-500">Open Source</span> mission
+        <h2 
+          className="text-4xl md:text-5xl lg:text-6xl font-black text-white md:max-w-2xl mb-8 leading-[1.3] overflow-visible px-12"
+          style={{ fontFamily: "'Newton Howard Font', sans-serif" }}
+        >
+          <span className="not-italic">Support our</span> <span className="gradient-text">Open Source</span> mission
         </h2>
         
         <p className="text-xl text-slate-400 max-w-2xl mb-16 font-medium leading-relaxed">
-          Nightclaw is built by a small team of engineers dedicated to the future of autonomous agents. Every contribution helps us maintain the core OS and keep it free for everyone.
+          Clawsome is built by a small team of engineers dedicated to the future of autonomous agents. Every contribution helps us maintain the core OS and keep it free for everyone.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-3xl">
@@ -43,7 +46,7 @@ export const Donate = () => {
               amount: "Monthly",
               color: "text-indigo-400",
               bgColor: "bg-indigo-400/10",
-              link: "https://github.com/sponsors/nightclaw",
+              link: "https://github.com/sponsors/clawsome",
             },
             {
               icon: Github,
@@ -51,7 +54,7 @@ export const Donate = () => {
               amount: "Free",
               color: "text-white",
               bgColor: "bg-white/10",
-              link: "https://github.com/nightclaw/nightclaw",
+              link: "https://github.com/clawsome/clawsome",
             }
           ].map((item, idx) => (
             <motion.a
@@ -63,7 +66,7 @@ export const Donate = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group p-8 rounded-[2.5rem] border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all flex flex-col items-center gap-4"
+                className="group p-8 rounded-[2.5rem] border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all flex flex-col items-center gap-4 card-glow"
             >
               <div className={cn("p-4 rounded-2xl group-hover:scale-110 group-hover:rotate-6 transition-transform", item.bgColor)}>
                 <item.icon size={24} className={item.color} />

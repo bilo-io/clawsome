@@ -80,7 +80,7 @@ export const AILab = () => {
             )}>
                <div className="flex gap-2">
                  <span className={theme === 'dark' ? "text-slate-600" : "text-slate-400"}>[01:25:01]</span>
-                 <span>SCANNING WORKSPACE: /Users/bilolwabona/BiloDev/nightclaw</span>
+                 <span>SCANNING WORKSPACE: /Users/bilolwabona/BiloDev/clawsome</span>
                </div>
                <div className="flex gap-2 text-emerald-500 font-bold">
                  <span className={theme === 'dark' ? "text-slate-600" : "text-slate-400"}>[01:25:04]</span>

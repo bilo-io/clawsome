@@ -80,7 +80,7 @@ export const Sidebar = () => {
       ]
     },
     {
-      title: 'System',
+      title: 'Sys',
       items: [
         { icon: Cpu, label: 'Analytics', href: '/analytics' },
         { icon: Sliders, label: 'Config', href: '/config' },
@@ -100,10 +100,10 @@ export const Sidebar = () => {
       )}
     >
       <div className={cn(
-        "p-6 flex items-center justify-between border-b",
+        "p-6 border-b",
         theme === 'dark' ? "border-slate-900 bg-black/20" : "border-slate-100 bg-slate-50/50"
       )}>
-        <Link href="/" className="flex items-center overflow-hidden group">
+        <Link href="/" className="flex items-center overflow-hidden">
           <AnimatePresence mode="wait">
             {isSidebarExpanded ? (
               <motion.img
@@ -113,30 +113,26 @@ export const Sidebar = () => {
                 exit={{ opacity: 0, x: -10 }}
                 src="/clawsome-logo.svg"
                 alt="Clawsome"
-                className="h-8 w-auto dark:invert"
+                className="h-8 w-auto"
               />
             ) : (
-              <motion.img
-                key="mini-logo"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                src="/clawsome-icon.svg"
-                alt="Clawsome"
-                className="h-8 w-8 dark:invert"
-              />
+              <motion.div
+                key="mini-logo-container"
+                className="w-full flex justify-center"
+              >
+                <motion.img
+                  key="mini-logo"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  src="/clawsome-icon.svg"
+                  alt="Clawsome"
+                  className="h-8 w-8"
+                />
+              </motion.div>
             )}
           </AnimatePresence>
         </Link>
-        <button 
-          onClick={toggleSidebar}
-          className={cn(
-            "p-1 rounded-md transition-colors",
-            theme === 'dark' ? "hover:bg-slate-900 text-slate-500" : "hover:bg-slate-200 text-slate-400"
-          )}
-        >
-          {isSidebarExpanded ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
-        </button>
       </div>
 
       <nav className="flex-1 overflow-y-auto py-4 space-y-4 no-scrollbar px-4">
@@ -273,9 +269,9 @@ export const Sidebar = () => {
         theme === 'dark' ? "border-slate-900 bg-black/20" : "border-slate-100 bg-slate-50/50"
       )}>
         <div className={cn(
-          "p-4 rounded-2xl transition-all",
+          "mb-4 p-4 rounded-2xl transition-all",
           theme === 'dark' ? "bg-slate-900/50 border border-slate-800" : "bg-white border border-slate-200 shadow-sm",
-          isSidebarExpanded ? 'opacity-100' : 'opacity-0 scale-95 pointer-events-none'
+          isSidebarExpanded ? 'opacity-100' : 'opacity-0 scale-95 pointer-events-none absolute'
         )}>
           <div className="flex items-center gap-3">
              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 border border-white/10" />
@@ -285,6 +281,23 @@ export const Sidebar = () => {
              </div>
           </div>
         </div>
+
+        <button 
+          onClick={toggleSidebar}
+          className={cn(
+            "w-full flex items-center justify-center p-2 rounded-xl border transition-all hover:scale-[1.02] active:scale-95",
+            theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400 hover:text-white" : "bg-white border-slate-200 text-slate-500 hover:text-indigo-600"
+          )}
+        >
+          {isSidebarExpanded ? (
+            <div className="flex items-center gap-2">
+              <ChevronLeft size={18} />
+              <span className="text-[10px] font-black uppercase tracking-widest">Collapse Sidebar</span>
+            </div>
+          ) : (
+            <ChevronRight size={18} />
+          )}
+        </button>
       </div>
     </aside>
   );

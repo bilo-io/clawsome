@@ -10,7 +10,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Nightclaw | Autonomous AI Operating System",
+  title: "ClawSome | Autonomous AI Operating System",
   description: "Next-gen AI swarms and agentic workflows for modern operators.",
   icons: {
     icon: "/clawsome-icon.svg",

@@ -66,7 +66,7 @@ export default function PricingPage() {
       <div className="max-w-7xl w-full">
          {/* Pricing Header */}
          <div className="flex flex-col items-center text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-black tracking-tighter mb-6 dark:text-white">
+            <h1 className="text-5xl md:text-6xl font-black tracking-tighter mb-6 text-slate-900 dark:text-white">
                Pricing for the <span className="gradient-text">Agentic Era</span>
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl font-medium mb-12">
@@ -111,14 +111,14 @@ export default function PricingPage() {
                        <plan.icon size={28} />
                     </div>
                     <div className="flex flex-col">
-                       <h2 className="text-2xl font-black dark:text-white uppercase tracking-tighter">{plan.name}</h2>
+                       <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">{plan.name}</h2>
                        <p className="text-[10px] font-black tracking-widest text-slate-500 dark:text-slate-500">POWERING YOUR SWARM</p>
                     </div>
                  </div>
 
                  <div className="flex items-baseline gap-1 mb-6">
-                    <span className="text-4xl font-black dark:text-white">$</span>
-                    <span className="text-6xl font-black dark:text-white tracking-tighter">{plan.price}</span>
+                    <span className="text-4xl font-black text-slate-900 dark:text-white">$</span>
+                    <span className="text-6xl font-black text-slate-900 dark:text-white tracking-tighter">{plan.price}</span>
                     <span className="text-slate-500 font-bold">/mo</span>
                  </div>
 
@@ -147,7 +147,7 @@ export default function PricingPage() {
          {/* Bottom CTA */}
          <div className="mt-32 w-full max-w-4xl mx-auto p-12 glass-panel rounded-[3.5rem] border-indigo-500/20 bg-indigo-500/5 flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
             <div className="flex flex-col gap-4">
-              <h3 className="text-3xl font-black dark:text-white tracking-tighter">Need a custom <span className="text-indigo-500">enterprise swarm</span>?</h3>
+              <h3 className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">Need a custom <span className="text-indigo-500">enterprise swarm</span>?</h3>
               <p className="text-xl text-slate-600 dark:text-slate-400 font-medium">We build bespoke autonomous systems for the world's largest companies.</p>
             </div>
             <Link href="#" className="whitespace-nowrap flex items-center gap-3 px-10 py-5 bg-slate-900 dark:bg-white text-white dark:text-black rounded-[2rem] font-black text-lg transition-all hover:scale-105 active:scale-95 group shadow-2xl shadow-slate-950/20 dark:shadow-white/10">

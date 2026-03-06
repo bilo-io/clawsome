@@ -54,7 +54,7 @@ import { cn } from '@/lib/utils';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 
-type Category = 'All' | 'Skills' | 'Integrations' | 'Plugins';
+type Category = 'All' | 'Skills' | 'Integrations' | 'Plugins' | 'MCP';
 
 interface MarketplaceItem {
   id: string;
@@ -122,6 +122,13 @@ const ITEMS: MarketplaceItem[] = [
   { id: '48', name: 'Aesthetic Refiner', category: 'Plugins', description: 'Automated UI polish, spacing, and design consistency.', icon: <PenTool className="w-6 h-6" /> },
   { id: '49', name: 'Ghost-Writer AI', category: 'Plugins', description: 'Generative technical writing for blogs and changelogs.', icon: <MessageSquare className="w-6 h-6" /> },
   { id: '50', name: 'Nightshade Terminal', category: 'Plugins', description: 'A custom, neural-enhanced CLI theme for pro developers.', icon: <Terminal className="w-6 h-6" />, isNew: true },
+  
+  // MCP (5)
+  { id: '51', name: 'MCP Slack Bridge', category: 'MCP', description: 'Expose Slack channels as MCP resources for your agents.', icon: <MessageSquare className="w-6 h-6" />, isPopular: true },
+  { id: '52', name: 'MCP GitHub Context', category: 'MCP', description: 'Seamlessly link GitHub repositories as agent context.', icon: <Github className="w-6 h-6" />, isPopular: true },
+  { id: '53', name: 'MCP Google Maps', category: 'MCP', description: 'Enable agents to \'see\' and \'navigate\' through geographical data.', icon: <Globe className="w-6 h-6" />, isNew: true },
+  { id: '54', name: 'MCP Notion Knowledge', category: 'MCP', description: 'Access Notion databases and pages as MCP tools.', icon: <Layers2 className="w-6 h-6" /> },
+  { id: '55', name: 'MCP SQL Explorer', category: 'MCP', description: 'Turn your SQL databases into agent-ready MCP resources.', icon: <Database className="w-6 h-6" /> },
 ];
 
 function UploadCloud({ className }: { className?: string }) {
@@ -155,7 +162,7 @@ export default function MarketplacePage() {
     });
   }, [activeCategory, searchQuery]);
 
-  const categories: Category[] = ['All', 'Skills', 'Integrations', 'Plugins'];
+  const categories: Category[] = ['All', 'Skills', 'Integrations', 'Plugins', 'MCP'];
 
   return (
     <main className="min-h-screen relative bg-slate-50 dark:bg-[#020617] transition-colors duration-500 overflow-hidden">
@@ -168,8 +175,8 @@ export default function MarketplacePage() {
 
       {/* Hero Animated Background */}
       <div className="absolute top-0 left-0 right-0 h-[600px] pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/10 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute top-[20%] right-[-5%] w-[30%] h-[30%] bg-purple-500/10 blur-[100px] rounded-full animate-pulse delay-700" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/5 dark:bg-indigo-500/10 blur-[120px] rounded-full animate-pulse" />
+        <div className="absolute top-[20%] right-[-5%] w-[30%] h-[30%] bg-purple-500/5 dark:bg-purple-500/10 blur-[100px] rounded-full animate-pulse delay-700" />
       </div>
 
       <div className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto">
@@ -189,11 +196,11 @@ export default function MarketplacePage() {
               <Sparkles className="w-4 h-4 text-indigo-500 animate-pulse" />
               <span className="text-xs font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.2em]">The Neural Marketplace</span>
             </motion.div>
-            <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[0.9]">
+            <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[0.9] text-slate-900 dark:text-white">
               Infinite <br />
               <span className="gradient-text italic">Capabilities.</span>
             </h1>
-            <p className="text-slate-600 dark:text-slate-400 text-lg md:text-2xl max-w-3xl mx-auto font-medium leading-relaxed">
+            <p className="text-slate-700 dark:text-slate-400 text-lg md:text-2xl max-w-3xl mx-auto font-medium leading-relaxed">
               Unlock the full potential of your autonomous agents with our curated library of 50+ elite skills, integrations, and plugins.
             </p>
           </motion.div>
@@ -202,23 +209,28 @@ export default function MarketplacePage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="mt-12 max-w-2xl mx-auto"
+            className="mt-12 max-w-2xl mx-auto w-full px-4"
           >
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-500" />
-              <div className="relative glass-panel rounded-2xl flex items-center px-4 py-3 shadow-2xl">
-                <Search className="w-6 h-6 text-slate-400 mr-3" />
-                <input 
-                  type="text"
-                  placeholder="Search for skills, plugins, or tools..."
-                  className="bg-transparent border-none focus:ring-0 w-full text-slate-900 dark:text-white font-medium placeholder:text-slate-400"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-400 font-mono">
-                  <Command className="w-3 h-3" />
-                  <span>K</span>
-                </kbd>
+            <div className="relative group w-full">
+              {/* High-intensity outer glow */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-[40px] blur-3xl opacity-0 group-focus-within:opacity-20 dark:group-focus-within:opacity-30 transition duration-700" />
+              
+              {/* Border Gradient Container */}
+              <div className="relative p-[1px] rounded-[26px] bg-slate-200 dark:bg-slate-800 transition-all duration-500 group-focus-within:bg-gradient-to-r group-focus-within:from-indigo-500 group-focus-within:via-purple-500 group-focus-within:to-pink-500 group-focus-within:shadow-2xl shadow-indigo-500/10">
+                <div className="relative glass-panel rounded-[25px] flex items-center px-6 py-4 transition-all duration-300 bg-white dark:bg-slate-900/95 group-focus-within:bg-white dark:group-focus-within:bg-slate-950 group-focus-within:scale-[1.005]">
+                  <Search className="w-6 h-6 text-slate-400 group-focus-within:text-indigo-500 transition-colors mr-4" />
+                  <input 
+                    type="text"
+                    placeholder="Search for skills, plugins, or tools..."
+                    className="bg-transparent border-none focus:ring-0 w-full text-slate-900 dark:text-white font-bold text-lg placeholder:text-slate-400 block outline-none"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  <kbd className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 text-xs text-slate-400 font-mono group-focus-within:border-indigo-500/30 group-focus-within:text-indigo-400 transition-colors">
+                    <span className="text-xs">⌘</span>
+                    <span>K</span>
+                  </kbd>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -237,7 +249,7 @@ export default function MarketplacePage() {
                 "px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300",
                 activeCategory === category 
                   ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 scale-105" 
-                  : "bg-white dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
+                  : "bg-white dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 shadow-sm"
               )}
             >
               {category}
@@ -268,7 +280,7 @@ export default function MarketplacePage() {
                   className="group relative h-full"
                 >
                   <div className="absolute -inset-px bg-gradient-to-b from-indigo-500/20 to-purple-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative h-full glass-panel rounded-2xl p-6 flex flex-col items-start gap-4 transition-all duration-300 group-hover:shadow-2xl group-hover:border-indigo-500/30">
+                  <div className="relative h-full glass-panel rounded-2xl p-6 flex flex-col items-start gap-4 transition-all duration-300 group-hover:shadow-2xl group-hover:border-indigo-500/30 bg-white/80 dark:bg-slate-900/50 shadow-sm shadow-slate-200/50 dark:shadow-none">
                     <div className="flex items-center justify-between w-full">
                       <div className="p-3 bg-slate-100 dark:bg-slate-800 rounded-xl group-hover:bg-indigo-500 group-hover:text-white transition-colors duration-300">
                         {item.icon}
@@ -288,16 +300,16 @@ export default function MarketplacePage() {
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-black dark:text-white mb-2 group-hover:text-indigo-500 transition-colors">
+                      <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2 group-hover:text-indigo-500 transition-colors">
                         {item.name}
                       </h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 font-medium">
+                      <p className="text-sm text-slate-700 dark:text-slate-400 line-clamp-2 font-medium">
                         {item.description}
                       </p>
                     </div>
 
-                    <div className="mt-auto pt-4 flex items-center justify-between w-full border-t border-slate-200/50 dark:border-slate-800/50">
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <div className="mt-auto pt-4 flex items-center justify-between w-full border-t border-slate-200 dark:border-slate-800/50">
+                      <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
                         {item.category}
                       </span>
                       <button className="p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-slate-100 dark:hover:bg-slate-800">
@@ -319,14 +331,12 @@ export default function MarketplacePage() {
               <div className="inline-flex p-6 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 mb-6">
                 <Search className="w-12 h-12" />
               </div>
-              <h2 className="text-2xl font-bold dark:text-white mb-2">No items found</h2>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">No items found</h2>
               <p className="text-slate-500">Try adjusting your search or category filters.</p>
             </motion.div>
           )}
         </section>
       </div>
-
-      <Footer />
     </main>
   );
 }

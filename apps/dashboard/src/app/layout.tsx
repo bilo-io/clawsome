@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={theme}>
       <head>
-        <title>Nightclaw AI Dashboard</title>
+        <title>Clawsome AI Dashboard</title>
         <meta name="description" content="Advanced Terminal AI Orchestrator" />
         <link rel="icon" href="/clawsome-icon.svg" type="image/svg+xml" />
       </head>

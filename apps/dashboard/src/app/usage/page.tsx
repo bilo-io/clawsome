@@ -62,12 +62,11 @@ const USAGE_DATA = {
     { name: 'Sat', tokens: 12000, cost: 4.2 },
     { name: 'Sun', tokens: 8500, cost: 2.8 },
   ],
-  '30d': [
-    { name: 'Week 1', tokens: 280000, cost: 85.2 },
-    { name: 'Week 2', tokens: 310000, cost: 94.8 },
-    { name: 'Week 3', tokens: 245000, cost: 72.5 },
-    { name: 'Week 4', tokens: 290000, cost: 88.4 },
-  ],
+  '30d': Array.from({ length: 30 }, (_, i) => ({
+    name: `Mar ${i + 1}`,
+    tokens: 35000 + Math.floor(Math.random() * 20000),
+    cost: 8.5 + Math.random() * 5
+  })),
   '90d': [
     { name: 'Jan', tokens: 1200000, cost: 345.2 },
     { name: 'Feb', tokens: 1450000, cost: 412.8 },
@@ -86,7 +85,7 @@ const MODEL_USAGE = [
 export default function UsagePage() {
   const { theme } = useUIStore();
   const [range, setRange] = useState<keyof typeof USAGE_DATA>('24h');
-  const [chartType, setChartType] = useState<'bar' | 'line'>('bar');
+  const [chartType, setChartType] = useState<'bar' | 'line'>('line');
   const [modelView, setModelView] = useState<'list' | 'pie'>('list');
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -217,17 +216,6 @@ export default function UsagePage() {
                 theme === 'light' && "bg-slate-50 border-slate-100"
               )}>
                 <button
-                  onClick={() => setChartType('bar')}
-                  className={cn(
-                    "p-2 rounded-lg transition-all",
-                    chartType === 'bar' 
-                      ? (theme === 'dark' ? "bg-slate-800 text-indigo-400 shadow-sm" : "bg-white text-indigo-600 shadow-sm border border-slate-100") 
-                      : "text-slate-500 hover:text-slate-300"
-                  )}
-                >
-                  <BarChartIcon size={16} />
-                </button>
-                <button
                   onClick={() => setChartType('line')}
                   className={cn(
                     "p-2 rounded-lg transition-all",
@@ -237,6 +225,17 @@ export default function UsagePage() {
                   )}
                 >
                   <ChartLine size={16} />
+                </button>
+                <button
+                  onClick={() => setChartType('bar')}
+                  className={cn(
+                    "p-2 rounded-lg transition-all",
+                    chartType === 'bar' 
+                      ? (theme === 'dark' ? "bg-slate-800 text-indigo-400 shadow-sm" : "bg-white text-indigo-600 shadow-sm border border-slate-100") 
+                      : "text-slate-500 hover:text-slate-300"
+                  )}
+                >
+                  <BarChartIcon size={16} />
                 </button>
               </div>
               <h2 className={cn("text-lg font-bold tracking-tight", theme === 'dark' ? "text-white" : "text-slate-950")}>Consumption Velocity</h2>

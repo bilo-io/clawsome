@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
 const workspaces = [
-  { id: '1', icon: Briefcase, name: 'Nightclaw Core', path: '~/BiloDev/nightclaw', status: 'Active', color: 'indigo' },
+  { id: '1', icon: Briefcase, name: 'ClawSome Core', path: '~/BiloDev/clawsome', status: 'Active', color: 'indigo' },
   { id: '2', icon: Globe, name: 'Cloud Infra', path: '~/cloud-configs', status: 'Idle', color: 'emerald' },
   { id: '3', icon: User, name: 'Personal Lab', path: '~/playground', status: 'Idle', color: 'amber' },
   { id: '4', icon: GraduationCap, name: 'Training AI', path: '~/datasets/v1', status: 'In Progress', color: 'rose' },

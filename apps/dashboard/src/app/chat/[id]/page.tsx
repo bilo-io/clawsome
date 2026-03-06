@@ -33,7 +33,7 @@ interface Message {
 
 const INITIAL_CONVERSATION: Message[] = [
   { id: '1', role: 'user', content: "Hello NC-01, can you analyze the current workspace?" },
-  { id: '2', role: 'assistant', content: "NC-01 on-line. Scanning workspace: `/Users/bilolwabona/BiloDev/nightclaw`... I detected 3 apps and 2 libraries. The core project uses Bun and Moon v2 for orchestration." },
+  { id: '2', role: 'assistant', content: "NC-01 on-line. Scanning workspace: `/Users/bilolwabona/BiloDev/clawsome`... I detected 3 apps and 2 libraries. The core project uses Bun and Moon v2 for orchestration." },
   { id: '3', role: 'user', content: "Great. Can you breakdown the security protocols currently active?" },
   { id: '4', role: 'assistant', content: "Initiating security audit. Current sandbox depth: **level 3**. Filesystem access: Restricted to current project root. Container isolation: Virtualized via `NC-SandBox`. Neural Link encryption: AES-256." },
   { id: '5', role: 'user', content: "How is the token consumption looking for the last 24h?" },

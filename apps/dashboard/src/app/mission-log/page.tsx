@@ -66,12 +66,12 @@ export default function MissionLogPage() {
          </div>
          
          <div className={cn(
-           "p-6 font-mono text-[13px] space-y-4 max-h-[60vh] overflow-y-auto no-scrollbar",
+           "p-4 font-mono text-[12px] space-y-1 max-h-[60vh] overflow-y-auto no-scrollbar",
            theme === 'dark' ? "bg-slate-950" : "bg-white"
          )}>
             {logs.map((log, i) => (
               <div key={i} className={cn(
-                "flex gap-10 group p-2 rounded-xl transition-all border border-transparent",
+                "flex gap-10 group p-1.5 rounded-xl transition-all border border-transparent",
                 theme === 'dark' ? "hover:bg-slate-900/40 hover:border-indigo-500/10" : "hover:bg-slate-50 hover:border-indigo-100"
               )}>
                 <span className={cn("w-20 tabular-nums font-bold opacity-40", theme === 'light' && "text-slate-400")}>{log.time}</span>

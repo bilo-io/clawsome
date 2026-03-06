@@ -56,18 +56,21 @@ export const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-24 px-8 bg-white dark:bg-slate-950 transition-colors flex flex-col items-center">
+    <section id="features" className="py-24 px-8 bg-slate-50/50 dark:bg-slate-950 transition-colors flex flex-col items-center">
       <div className="max-w-7xl w-full">
         {/* Header */}
         <div className="flex flex-col mb-20">
           <span className="text-xs font-black uppercase tracking-[0.4em] text-indigo-500 mb-4">
             Core capabilities
           </span>
-          <h2 className="text-4xl md:text-5xl font-black md:max-w-2xl tracking-tighter mb-4 dark:text-white">
-            Everything you need to <span className="gradient-text">scale your operations</span>
+          <h2 
+            className="text-4xl md:text-5xl font-black md:max-w-2xl mb-4 text-slate-900 dark:text-white leading-[1.3] overflow-visible px-12"
+            style={{ fontFamily: "'Newton Howard Font', sans-serif" }}
+          >
+            <span className="not-italic">Everything you need to</span> <span className="gradient-text">scale your operations</span>
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-xl font-medium">
-            Nightclaw provides the infrastructure to build, deploy, and manage production-grade AI agent networks.
+          <p className="text-lg text-slate-700 dark:text-slate-400 max-w-xl font-medium">
+            ClawSome provides the infrastructure to build, deploy, and manage production-grade AI agent networks.
           </p>
         </div>
 
@@ -80,16 +83,16 @@ export const Features = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group p-8 glass-panel rounded-[2rem] hover:border-indigo-500/50 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all flex flex-col gap-6"
+              className="group p-8 glass-panel card-glow rounded-[2rem] hover:border-indigo-500/50 hover:bg-white dark:hover:bg-slate-900/50 transition-all flex flex-col gap-6 shadow-sm hover:shadow-xl shadow-slate-200/50 dark:shadow-none"
             >
               <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-indigo-500/10 transition-transform group-hover:scale-110 group-hover:rotate-3", feature.color)}>
                 <feature.icon size={28} />
               </div>
               <div className="flex flex-col gap-2">
-                <h3 className="text-xl font-black tracking-tight dark:text-white">
+                <h3 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">
                   {feature.title}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                <p className="text-slate-700 dark:text-slate-400 font-medium leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -98,7 +101,7 @@ export const Features = () => {
         </div>
 
         {/* Visual Showcase (The 6th Section part) */}
-        <div className="mt-24 p-12 glass-panel rounded-[3rem] border-indigo-500/20 bg-indigo-500/5 flex flex-col lg:flex-row items-center gap-16 overflow-hidden relative">
+        <div className="mt-24 p-12 glass-panel card-glow rounded-[3rem] border-indigo-500/10 dark:border-indigo-500/20 bg-white/80 dark:bg-indigo-500/5 flex flex-col lg:flex-row items-center gap-16 overflow-hidden relative shadow-2xl shadow-slate-200/60 dark:shadow-none">
            {/* Background Grid */}
            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
            
@@ -111,10 +114,13 @@ export const Features = () => {
                   Performance metrics
                 </span>
               </div>
-              <h3 className="text-3xl md:text-4xl font-black mb-6 tracking-tighter dark:text-white">
-                Near-instant automation <span className="gradient-text">at the edge</span>
+              <h3 
+                className="text-3xl md:text-4xl font-black mb-6 text-slate-900 dark:text-white leading-[1.3] overflow-visible px-12"
+                style={{ fontFamily: "'Newton Howard Font', sans-serif" }}
+              >
+                <span className="not-italic">Near-instant automation</span> <span className="gradient-text">at the edge</span>
               </h3>
-              <p className="text-slate-600 dark:text-slate-400 font-medium text-lg leading-relaxed mb-8">
+              <p className="text-slate-700 dark:text-slate-400 font-medium text-lg leading-relaxed mb-8">
                 Run swarms on our distributed GPU network. Achieve sub-second response times for complex web navigations and reasoning tasks.
               </p>
               <div className="flex flex-col gap-4">
@@ -124,7 +130,7 @@ export const Features = () => {
                    { label: 'Agent Throughput', value: '50k+ Ops/sec' }
                  ].map((stat, i) => (
                    <div key={i} className="flex items-center justify-between py-3 border-b border-indigo-500/10 last:border-0">
-                      <span className="text-slate-500 font-bold uppercase text-[10px] tracking-widest">{stat.label}</span>
+                      <span className="text-slate-500 dark:text-slate-600 font-bold uppercase text-[10px] tracking-widest">{stat.label}</span>
                       <span className="text-indigo-500 font-black text-xl font-mono">{stat.value}</span>
                    </div>
                  ))}
@@ -132,16 +138,16 @@ export const Features = () => {
            </div>
 
            <div className="flex-1 w-full flex items-center justify-center z-10 relative">
-              <div className="w-full aspect-square max-w-[400px] border border-indigo-500/30 rounded-full flex items-center justify-center p-8 animate-spin-slow">
-                 <div className="w-full aspect-square border border-purple-500/20 rounded-full flex items-center justify-center p-8 animate-reverse-spin-slow">
-                    <Globe size={120} className="text-indigo-500/40" />
+              <div className="w-full aspect-square max-w-[400px] border border-indigo-500/20 dark:border-indigo-500/30 rounded-full flex items-center justify-center p-8 animate-spin-slow">
+                 <div className="w-full aspect-square border border-purple-500/10 dark:border-purple-500/20 rounded-full flex items-center justify-center p-8 animate-reverse-spin-slow">
+                    <Globe size={120} className="text-indigo-500/30 dark:text-indigo-500/40" />
                  </div>
               </div>
               {/* Floating Icons */}
-              <div className="absolute top-10 left-10 p-4 glass-panel rounded-2xl shadow-xl animate-bounce-slow">
+              <div className="absolute top-10 left-10 p-4 glass-panel rounded-2xl shadow-xl animate-bounce-slow bg-white dark:bg-slate-900/80">
                 <Zap className="text-amber-500" />
               </div>
-              <div className="absolute bottom-20 right-0 p-4 glass-panel rounded-2xl shadow-xl animate-bounce-slow delay-700">
+              <div className="absolute bottom-20 right-0 p-4 glass-panel rounded-2xl shadow-xl animate-bounce-slow delay-700 bg-white dark:bg-slate-900/80">
                 <BrainCircuit className="text-indigo-500" />
               </div>
            </div>

@@ -55,7 +55,7 @@ export const Navbar = () => {
           <img 
             src="/clawsome-logo.svg" 
             alt="Clawsome" 
-            className="h-8 w-auto transition-transform group-hover:scale-105 active:scale-95 dark:invert" 
+            className="h-8 w-auto transition-transform group-hover:scale-105 active:scale-95" 
           />
         </Link>
 

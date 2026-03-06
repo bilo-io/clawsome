@@ -21,9 +21,23 @@ export const Hero = () => {
       >
         <Sparkles size={14} className="text-indigo-500 group-hover:animate-spin-slow" />
         <span className="text-xs font-black uppercase tracking-[0.2em] text-indigo-500">
-          Nightclaw OS: v2.0 is now live
+          <strong>v1.0</strong> live
         </span>
         <ChevronRight size={14} className="text-indigo-400 group-hover:translate-x-1 transition-transform" />
+      </motion.div>
+
+      {/* Logo */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.05 }}
+        className="mb-8"
+      >
+        <img 
+          src="/clawsome-logo.svg" 
+          alt="Clawsome Logo" 
+          className="h-16 md:h-20 w-auto"
+        />
       </motion.div>
 
       {/* Headline */}
@@ -31,9 +45,10 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="text-5xl md:text-7xl lg:text-8xl font-black md:max-w-4xl tracking-tighter mb-8 leading-[1.1] dark:text-white"
+        className="text-4xl md:text-6xl lg:text-7xl font-black md:max-w-5xl mb-12 leading-[1.3] text-slate-900 dark:text-white px-4 overflow-visible text-center"
+        style={{ fontFamily: "'Newton Howard Font', sans-serif" }}
       >
-        Automate the web with <span className="gradient-text">autonomous swarms</span>
+        <span className="not-italic inline-block mb-2">Automate the web with</span> <span className="gradient-text">autonomous swarms</span>
       </motion.h1>
 
       {/* Subheadline */}
@@ -43,7 +58,7 @@ export const Hero = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mb-12 font-medium"
       >
-        Deploy intelligent agents that browse, click, and process information. Nightclaw is the first OS built for agentic workflows at scale.
+        Deploy intelligent agents that browse, click, and process information. Clawsome is the first OS built for agentic workflows at scale.
       </motion.p>
 
       {/* CTAs */}
@@ -58,7 +73,7 @@ export const Hero = () => {
           className="group flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-3xl font-black text-lg shadow-2xl shadow-indigo-500/30 transition-all hover:scale-105 active:scale-95"
         >
           <Terminal size={20} className="group-hover:rotate-12 transition-transform" />
-          Get Nightclaw Free
+          Get Clawsome Free
         </Link>
         <button className="flex items-center gap-3 px-8 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-3xl font-black text-lg transition-all hover:border-indigo-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 active:scale-95 group">
           <div className="p-1 px-1 bg-indigo-500/10 rounded-full group-hover:bg-indigo-500/20 transition-colors">
@@ -73,7 +88,7 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="mt-20 w-full max-w-5xl rounded-[2.5rem] border border-slate-200 dark:border-slate-800 p-3 bg-slate-100/50 dark:bg-slate-900/50 glass-panel shadow-2xl"
+        className="mt-20 w-full max-w-5xl rounded-[2.5rem] border border-slate-200 dark:border-slate-800 p-3 bg-slate-100/50 dark:bg-slate-900/50 glass-panel card-glow shadow-2xl"
       >
         <div className="w-full h-80 md:h-[500px] bg-slate-50 dark:bg-black rounded-3xl border border-slate-200 dark:border-slate-900 flex items-center justify-center overflow-hidden relative">
           {/* Dashboard Screenshot Mockup */}

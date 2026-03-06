@@ -39,7 +39,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="w-full bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors py-20 px-8">
+    <footer className="w-full bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors py-20 px-8">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 md:gap-8 justify-between">
         {/* Brand Info */}
         <div className="flex flex-col gap-6 md:max-w-xs">
@@ -47,7 +47,7 @@ export const Footer = () => {
             <img 
               src="/clawsome-logo.svg" 
               alt="Clawsome" 
-              className="h-10 w-auto dark:invert" 
+              className="h-10 w-auto" 
             />
           </Link>
           <p className="text-slate-600 dark:text-slate-400 font-medium">
@@ -85,11 +85,11 @@ export const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-slate-200 dark:border-slate-900 flex flex-col md:flex-row gap-4 items-center justify-between text-sm text-slate-500">
-        <p>© {currentYear} Nightclaw AI, Inc. All rights reserved.</p>
+        <p>© {currentYear} Clawsome AI, Inc. All rights reserved.</p>
         <div className="flex items-center gap-1.5">
           <span>Built with</span>
           <Heart size={14} className="text-rose-500 fill-rose-500 animate-pulse" />
-          <span>by the Nightclaw Team</span>
+          <span>by the Clawsome Team</span>
         </div>
       </div>
     </footer>

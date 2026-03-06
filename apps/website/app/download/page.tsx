@@ -52,8 +52,8 @@ export default function DownloadPage() {
             >
               <DownloadIcon size={48} className="text-white" />
             </motion.div>
-            <h1 className="text-5xl md:text-6xl font-black tracking-tighter mb-6 dark:text-white">
-              Launch the <span className="gradient-text">Nightclaw Terminal</span>
+            <h1 className="text-5xl md:text-6xl font-black tracking-tighter mb-6 text-slate-900 dark:text-white">
+              Launch the <span className="gradient-text">ClawSome Terminal</span>
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl font-medium">
               Experience the power of a fully autonomous AI operating system on your local machine.
@@ -71,7 +71,7 @@ export default function DownloadPage() {
                 className={`p-10 rounded-[3rem] border transition-all flex flex-col items-center text-center ${v.featured ? 'border-indigo-500/30 bg-indigo-50/20 dark:bg-indigo-500/5 neon-glow' : 'border-slate-200 dark:border-slate-800'}`}
               >
                  <v.icon size={48} className={v.featured ? 'text-indigo-500' : 'text-slate-400 dark:text-slate-600'} />
-                 <h2 className="mt-8 text-2xl font-black dark:text-white">{v.os}</h2>
+                 <h2 className="mt-8 text-2xl font-black text-slate-900 dark:text-white">{v.os}</h2>
                  <p className="mt-2 text-slate-500 font-bold uppercase text-[10px] tracking-widest">{v.version} — {v.size}</p>
                  <button className={`mt-10 px-8 py-4 w-full rounded-2xl font-black text-sm transition-all shadow-lg ${v.featured ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-indigo-500/20 hover:scale-105 active:scale-95' : 'bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-800'}`}>
                     Download Installer
@@ -87,8 +87,8 @@ export default function DownloadPage() {
                   <Cloud size={24} className="text-indigo-500" />
                </div>
                <div className="flex flex-col gap-2">
-                  <h3 className="text-xl font-black dark:text-white">Cloud IDE</h3>
-                  <p className="text-slate-600 dark:text-slate-400 font-medium">Run Nightclaw in our managed cloud environment. No installation required.</p>
+                   <h3 className="text-xl font-black text-slate-900 dark:text-white">Cloud IDE</h3>
+              <p className="text-slate-600 dark:text-slate-400 font-medium">Run Clawsome in our managed cloud environment. No installation required.</p>
                   <Link href="/login" className="mt-2 flex items-center gap-2 text-indigo-500 font-bold text-sm group">
                      Open in Browser
                      <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -101,8 +101,8 @@ export default function DownloadPage() {
                   <Zap size={24} className="text-emerald-500" />
                </div>
                <div className="flex flex-col gap-2">
-                  <h3 className="text-xl font-black dark:text-white">Nightclaw CLI</h3>
-                  <p className="text-slate-600 dark:text-slate-400 font-medium font-mono text-sm px-3 py-1 bg-slate-100 dark:bg-black rounded-lg w-fit">npm i -g @nightclaw/cli</p>
+                   <h3 className="text-xl font-black text-slate-900 dark:text-white">Clawsome CLI</h3>
+                  <p className="text-slate-600 dark:text-slate-400 font-medium font-mono text-sm px-3 py-1 bg-slate-100 dark:bg-black rounded-lg w-fit">npm i -g @clawsome/cli</p>
                   <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">FOR POWER OPERATORS</p>
                </div>
             </div>

@@ -26,7 +26,7 @@ export const CommandModal = () => {
 
   const results = [
     { icon: Terminal, label: 'Run: bun run server.ts', category: 'Commands' },
-    { icon: FileText, label: '001_nightclaw_project_bootstrap.md', category: 'Files' },
+    { icon: FileText, label: '001_clawsome_project_bootstrap.md', category: 'Files' },
     { icon: HelpCircle, label: 'How to configure Moon v2?', category: 'AI Help' },
   ];
 
