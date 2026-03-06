@@ -1,16 +1,46 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Command, Terminal, Sparkles, ChevronRight, Play } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { cn } from '@/lib/utils';
+import { PrimaryButton } from '@/components/PrimaryButton';
 
 export const Hero = () => {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <section className="relative pt-32 pb-20 px-8 overflow-hidden min-h-[90vh] flex flex-col justify-center items-center text-center">
+    <section className="relative pt-32 pb-20 px-8 overflow-hidden min-h-[90vh] flex flex-col justify-center items-center text-center isolate">
+      {/* Background Video */}
+      {mounted && (
+        <>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover -z-30"
+          >
+            <source src="/videos/vid-hero-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Gloss/Blur Overlay */}
+          <div className={cn(
+            "absolute inset-0 -z-20 backdrop-blur-xs transition-colors duration-700",
+            theme === 'dark' ? "bg-black/60 shadow-inner" : "bg-white/30 shadow-inner"
+          )} />
+        </>
+      )}
+
       {/* Background Orbs */}
-      <div className="absolute top-1/4 -right-1/4 w-[500px] h-[500px] bg-indigo-500/10 blur-[120px] rounded-full -z-10" />
-      <div className="absolute -bottom-1/4 -left-1/4 w-[500px] h-[500px] bg-purple-500/10 blur-[120px] rounded-full -z-10" />
+      <div className="absolute top-1/4 -right-1/4 w-[500px] h-[500px] bg-indigo-500/20 blur-[120px] rounded-full -z-10 animate-pulse" />
+      <div className="absolute -bottom-1/4 -left-1/4 w-[500px] h-[500px] bg-purple-500/20 blur-[120px] rounded-full -z-10 animate-pulse delay-700" />
 
       {/* Badge */}
       <motion.div
@@ -48,7 +78,7 @@ export const Hero = () => {
         className="text-4xl md:text-6xl lg:text-7xl font-black md:max-w-5xl mb-12 leading-[1.3] text-slate-900 dark:text-white px-4 overflow-visible text-center"
         style={{ fontFamily: "'Newton Howard Font', sans-serif" }}
       >
-        <span className="not-italic inline-block mb-2">Scale with</span><br /><span className="gradient-text">ai agent swarms</span>
+        <span className="not-italic inline-block mb-2">Scale with custom</span><br /><span className="gradient-text">ai agent swarms</span>
       </motion.h1>
 
       {/* Subheadline */}
@@ -68,13 +98,12 @@ export const Hero = () => {
         transition={{ duration: 0.5, delay: 0.3 }}
         className="flex flex-col sm:flex-row items-center gap-6"
       >
-        <Link 
+        <PrimaryButton 
           href="/download" 
-          className="group flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-3xl font-black text-lg shadow-2xl shadow-indigo-500/30 transition-all hover:scale-105 active:scale-95"
+          icon={<Terminal size={20} />}
         >
-          <Terminal size={20} className="group-hover:rotate-12 transition-transform" />
-          That's Clawsome
-        </Link>
+          It's Clawsome
+        </PrimaryButton>
         <button className="flex items-center gap-3 px-8 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-3xl font-black text-lg transition-all hover:border-indigo-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 active:scale-95 group">
           <div className="p-1 px-1 bg-indigo-500/10 rounded-full group-hover:bg-indigo-500/20 transition-colors">
             <Play size={16} className="text-indigo-500 fill-indigo-500" />

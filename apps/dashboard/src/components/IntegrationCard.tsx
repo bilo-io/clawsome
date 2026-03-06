@@ -85,11 +85,27 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
       <div className="flex items-center gap-6 flex-1">
         <div
           className={cn(
-            'p-3 rounded-2xl transition-all shadow-inner border group-hover:scale-110',
+            'relative p-3 rounded-2xl transition-all shadow-inner border group-hover:scale-110 flex items-center justify-center',
             theme === 'dark' ? 'bg-slate-950 text-indigo-400 border-indigo-500/10' : 'bg-white text-indigo-600 border-slate-100 shadow-slate-200/40'
           )}
         >
-          <Icon size={20} />
+          {integration.orgId ? (
+            <div 
+              className="w-5 h-5 bg-gradient-to-tr from-indigo-500 to-purple-500"
+              style={{
+                maskImage: `url(/images/org/icon-${integration.orgId}.svg)`,
+                WebkitMaskImage: `url(/images/org/icon-${integration.orgId}.svg)`,
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                WebkitMaskPosition: 'center'
+              }}
+            />
+          ) : (
+            <Icon size={20} />
+          )}
         </div>
         <span className={cn('text-lg font-black tracking-tighter transition-colors', theme === 'dark' ? 'text-white group-hover:text-indigo-400' : 'text-slate-950 group-hover:text-indigo-600')}>
           {integration.name}
@@ -170,11 +186,27 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
       <div className="flex justify-between items-start mb-6 relative z-10">
         <div
           className={cn(
-            'p-5 rounded-[24px] transition-all shadow-inner border group-hover:scale-110',
+            'relative p-5 rounded-[24px] transition-all shadow-inner border group-hover:scale-110 flex items-center justify-center',
             theme === 'dark' ? 'bg-slate-900 text-indigo-400 border-indigo-500/20' : 'bg-slate-50 text-indigo-600 border-slate-100'
           )}
         >
-          <Icon size={32} />
+          {integration.orgId ? (
+            <div 
+              className="w-8 h-8 bg-gradient-to-tr from-indigo-500 to-purple-500"
+              style={{
+                maskImage: `url(/images/org/icon-${integration.orgId}.svg)`,
+                WebkitMaskImage: `url(/images/org/icon-${integration.orgId}.svg)`,
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                WebkitMaskPosition: 'center'
+              }}
+            />
+          ) : (
+            <Icon size={32} />
+          )}
         </div>
         {source === 'installed' && (
           <span className={cn('text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full border', status.className)}>

@@ -4,9 +4,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, Menu, X, ArrowRight, Sun, Moon } from 'lucide-react';
+import { Zap, Menu, X, ArrowRight, Sun, Moon, Rocket } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
+import { PrimaryButton } from '@/components/PrimaryButton';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -89,13 +90,13 @@ export const Navbar = () => {
           <Link href="/login" className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-indigo-500 transition-colors">
             Log in
           </Link>
-          <Link 
+          <PrimaryButton 
             href="/download" 
-            className="group flex items-center gap-2 px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full text-sm font-bold shadow-lg shadow-indigo-500/20 transition-all hover:scale-105 active:scale-95"
+            size="sm"
+            icon={<Rocket size={16} />}
           >
-            Launch Terminal
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
+            Let's Go
+          </PrimaryButton>
         </div>
 
         {/* Mobile Toggle */}
@@ -137,13 +138,13 @@ export const Navbar = () => {
               </button>
             </div>
             <div className="h-px bg-slate-200 dark:bg-slate-800 my-2" />
-            <Link 
+            <PrimaryButton 
               href="/download" 
-              className="w-full flex items-center justify-center gap-2 py-4 bg-indigo-600 text-white rounded-2xl font-bold"
+              className="w-full"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Get Started
-            </Link>
+            </PrimaryButton>
           </motion.div>
         )}
       </AnimatePresence>

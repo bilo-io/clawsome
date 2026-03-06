@@ -1,44 +1,69 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Download as DownloadIcon, 
-  Terminal, 
-  Apple, 
-  Monitor, 
-  Cloud,
   ChevronRight,
   Zap,
-  Globe
+  Cloud
 } from 'lucide-react';
 import Link from 'next/link';
+import { AnimatedDownload } from '@/components/AnimatedDownload';
+import { cn } from '@/lib/utils';
+import { PrimaryButton } from '@/components/PrimaryButton';
 
 export default function DownloadPage() {
-  const versions = [
+  const [detectedOs, setDetectedOs] = useState<'mac' | 'windows' | 'linux' | null>(null);
+
+  useEffect(() => {
+    const ua = window.navigator.userAgent.toLowerCase();
+    if (ua.indexOf('mac') !== -1) setDetectedOs('mac');
+    else if (ua.indexOf('win') !== -1) setDetectedOs('windows');
+    else if (ua.indexOf('linux') !== -1) setDetectedOs('linux');
+  }, []);
+
+  const allVersions = [
     {
+      id: 'mac',
       os: "MacOS",
-      icon: Apple,
+      iconPath: "/images/org/icon-apple.svg",
       version: "v2.0.4-stable",
       size: "84MB",
       link: "#",
       featured: true,
+      extension: '.dmg'
     },
     {
+      id: 'windows',
       os: "Windows",
-      icon: Monitor,
+      iconPath: "/images/org/icon-windows.svg",
       version: "v2.0.4-stable",
       size: "92MB",
       link: "#",
+      extension: '.exe'
     },
     {
+      id: 'linux',
       os: "Linux",
-      icon: Terminal,
+      iconPath: "/images/org/icon-linux.svg",
       version: "v2.0.4-beta",
       size: "76MB",
       link: "#",
+      extension: '.pkg'
     }
   ];
+
+  // Reorder so detected OS is in center (index 1)
+  const versions = useMemo(() => {
+    if (!detectedOs) return allVersions;
+    const detected = allVersions.find(v => v.id === detectedOs);
+    const others = allVersions.filter(v => v.id !== detectedOs);
+    if (!detected) return allVersions;
+    
+    // Put detected in center, others on sides
+    return [others[0], detected, others[1]];
+  }, [detectedOs]);
 
   return (
     <div className="pt-40 pb-32 px-8 flex flex-col items-center min-h-[90vh]">
@@ -48,15 +73,15 @@ export default function DownloadPage() {
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="p-4 bg-indigo-500 rounded-3xl shadow-2xl shadow-indigo-500/20 mb-8"
+              className="mb-8"
             >
-              <DownloadIcon size={48} className="text-white" />
+              <AnimatedDownload size={120} />
             </motion.div>
             <h1 
               className="text-5xl md:text-6xl font-black mb-6 text-slate-900 dark:text-white leading-[1.3] overflow-visible px-12"
               style={{ fontFamily: "'Newton Howard Font', sans-serif" }}
             >
-              <span className="not-italic">Launch the</span> <span className="gradient-text">ClawSome Terminal</span>
+              <span className="not-italic">Just click</span><br /><span className="gradient-text">Download</span>
             </h1>
             <p className="text-xl text-slate-700 dark:text-slate-400 max-w-2xl font-medium">
               Experience the power of a fully autonomous AI operating system on your local machine.
@@ -71,14 +96,44 @@ export default function DownloadPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className={`p-10 rounded-[3rem] border transition-all flex flex-col items-center text-center ${v.featured ? 'border-indigo-500/30 bg-indigo-50/20 dark:bg-indigo-500/5 neon-glow' : 'border-slate-200 dark:border-slate-800'}`}
+                className={cn(
+                  "p-10 rounded-[3rem] border transition-all flex flex-col items-center text-center",
+                  v.featured ? 'border-indigo-500/30 bg-indigo-50/20 dark:bg-indigo-500/5 neon-glow' : 'border-slate-200 dark:border-slate-800'
+                )}
               >
-                 <v.icon size={48} className={v.featured ? 'text-indigo-500' : 'text-slate-400 dark:text-slate-600'} />
+                 <div className="relative group">
+                   <div 
+                     className={cn(
+                       "w-16 h-16 transition-transform group-hover:scale-110",
+                       v.featured ? "bg-gradient-to-tr from-indigo-500 to-purple-500" : "bg-slate-400 dark:bg-slate-600"
+                     )}
+                     style={{
+                        maskImage: `url(${v.iconPath})`,
+                        WebkitMaskImage: `url(${v.iconPath})`,
+                        maskSize: 'contain',
+                        WebkitMaskSize: 'contain',
+                        maskRepeat: 'no-repeat',
+                        WebkitMaskRepeat: 'no-repeat',
+                        maskPosition: 'center',
+                        WebkitMaskPosition: 'center'
+                     }}
+                   />
+                 </div>
                  <h2 className="mt-8 text-2xl font-black text-slate-900 dark:text-white">{v.os}</h2>
                  <p className="mt-2 text-slate-500 font-bold uppercase text-[10px] tracking-widest">{v.version} — {v.size}</p>
-                 <button className={`mt-10 px-8 py-4 w-full rounded-2xl font-black text-sm transition-all shadow-lg ${v.featured ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-indigo-500/20 hover:scale-105 active:scale-95' : 'bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-800'}`}>
-                    Download Installer
-                 </button>
+                 {v.featured ? (
+                   <PrimaryButton 
+                     className="mt-10 w-full"
+                     icon={<DownloadIcon size={20} />}
+                   >
+                     Download ({v.extension})
+                   </PrimaryButton>
+                 ) : (
+                   <button className="mt-10 px-8 py-4 w-full rounded-2xl font-black text-sm flex flex-row items-center justify-center transition-all shadow-lg bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-800">
+                      <DownloadIcon size={20} className="mr-2" />
+                      <span>Download ({v.extension})</span>
+                   </button>
+                 )}
               </motion.div>
             ))}
          </div>

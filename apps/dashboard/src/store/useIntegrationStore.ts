@@ -7,6 +7,7 @@ export interface Integration {
   id: string;
   name: string;
   icon: string;
+  orgId?: string;
   description: string;
   status: IntegrationStatus;
   isMarketplace?: boolean;
@@ -23,12 +24,12 @@ interface IntegrationState {
 }
 
 const MARKETPLACE_INTEGRATIONS: Omit<Integration, 'status'>[] = [
-  { id: 'slack', name: 'Slack', icon: 'MessageSquare', description: 'Send and receive messages, manage channels.', isMarketplace: true },
-  { id: 'discord', name: 'Discord', icon: 'MessageCircle', description: 'Send and receive messages on Discord.', isMarketplace: true },
-  { id: 'telegram', name: 'Telegram', icon: 'Send', description: 'Send and receive messages on Telegram.', isMarketplace: true },
-  { id: 'github', name: 'GitHub', icon: 'Github', description: 'Repos, issues, PRs, and workflows.', isMarketplace: true },
+  { id: 'slack', name: 'Slack', icon: 'MessageSquare', orgId: 'slack', description: 'Send and receive messages, manage channels.', isMarketplace: true },
+  { id: 'discord', name: 'Discord', icon: 'MessageCircle', orgId: 'discord', description: 'Send and receive messages on Discord.', isMarketplace: true },
+  { id: 'telegram', name: 'Telegram', icon: 'Send', orgId: 'telegram', description: 'Send and receive messages on Telegram.', isMarketplace: true },
+  { id: 'github', name: 'GitHub', icon: 'Github', orgId: 'github', description: 'Repos, issues, PRs, and workflows.', isMarketplace: true },
   { id: 'linear', name: 'Linear', icon: 'LayoutList', description: 'Issues, cycles, and project tracking.', isMarketplace: true },
-  { id: 'notion', name: 'Notion', icon: 'FileText', description: 'Pages, databases, and wikis.', isMarketplace: true },
+  { id: 'notion', name: 'Notion', icon: 'FileText', orgId: 'notion', description: 'Pages, databases, and wikis.', isMarketplace: true },
 ];
 
 const marketplaceWithStatus: Integration[] = MARKETPLACE_INTEGRATIONS.map((i) => ({ ...i, status: 'inactive' as const }));
@@ -37,8 +38,8 @@ export const useIntegrationStore = create<IntegrationState>()(
   persist(
     (set, get) => ({
       myIntegrations: [
-        { id: 'discord-default', name: 'Discord', icon: 'MessageCircle', description: 'Send and receive messages on Discord.', status: 'active', isMarketplace: false },
-        { id: 'github-default', name: 'GitHub', icon: 'Github', description: 'Repos, issues, PRs, and workflows.', status: 'active', isMarketplace: false },
+        { id: 'discord-default', name: 'Discord', icon: 'MessageCircle', orgId: 'discord', description: 'Send and receive messages on Discord.', status: 'active', isMarketplace: false },
+        { id: 'github-default', name: 'GitHub', icon: 'Github', orgId: 'github', description: 'Repos, issues, PRs, and workflows.', status: 'active', isMarketplace: false },
       ],
       marketplaceIntegrations: marketplaceWithStatus,
       addIntegration: (id) => {

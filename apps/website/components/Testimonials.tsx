@@ -94,7 +94,7 @@ export const Testimonials = () => {
             className="text-4xl md:text-5xl font-black md:max-w-2xl mb-4 text-slate-900 dark:text-white leading-[1.3] overflow-visible px-12"
             style={{ fontFamily: "'Newton Howard Font', sans-serif" }}
           >
-            <span className="not-italic">Built for those who</span> <span className="gradient-text">move fast</span>
+            <span className="not-italic">Built for you to</span> <span className="gradient-text">move fast</span>
           </h2>
           <p className="text-lg text-slate-700 dark:text-slate-400 max-w-xl font-medium">
             Join 5,000+ companies and innovators scaling their operations with Clawsome.
@@ -110,24 +110,28 @@ export const Testimonials = () => {
 
               return (
                 <motion.div
-                  key={`${index}-${offset}`}
-                  initial={{ opacity: 0, scale: 0.8, x: offset * 100 }}
+                  key={testimonial.name}
+                  layout
+                  initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ 
-                    opacity: isActive ? 1 : 0.4, 
-                    scale: isActive ? 1 : 0.85,
-                    x: 0,
-                    zIndex: isActive ? 10 : 0
+                    opacity: isActive ? 1 : 0.3, 
+                    scale: isActive ? 1 : 0.8,
+                    zIndex: isActive ? 10 : 0,
+                    filter: isActive ? "grayscale(0%)" : "grayscale(100%) blur(2px)"
                   }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    ease: [0.4, 0, 0.2, 1], // Standard easing
+                    layout: { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
+                  }}
                   className={cn(
-                    "relative w-full max-w-[380px] p-1 rounded-[3rem] transition-all duration-500 shrink-0",
-                    isActive ? "bg-gradient-to-tr from-indigo-500 via-purple-500 to-blue-500 shadow-[0_0_60px_rgba(99,102,241,0.4)]" : "bg-transparent"
+                    "relative w-full max-w-[360px] p-1 rounded-[3rem] shrink-0",
+                    isActive ? "bg-gradient-to-tr from-indigo-500 via-purple-500 to-blue-500 shadow-[0_0_80px_rgba(99,102,241,0.5)]" : "bg-transparent"
                   )}
                 >
                   <div className={cn(
-                    "w-full h-full p-8 md:p-10 rounded-[2.9rem] flex flex-col items-center text-center",
-                    theme === 'dark' ? "bg-slate-900/90" : "bg-white",
-                    !isActive && "grayscale opacity-50"
+                    "w-full h-full p-8 md:p-10 rounded-[2.9rem] flex flex-col items-center text-center transition-colors duration-700",
+                    theme === 'dark' ? "bg-slate-900/95" : "bg-white"
                   )}>
                     <Quote className="text-indigo-500 mb-6 opacity-20" size={32} />
                     
@@ -149,7 +153,7 @@ export const Testimonials = () => {
                     </p>
 
                     <div className="flex items-center gap-4 mt-auto">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-black text-sm border-2 border-white dark:border-slate-800 shadow-lg">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-black text-sm border-2 border-white dark:border-slate-800 shadow-lg transition-transform group-hover:scale-110">
                         {testimonial.avatar}
                       </div>
                       <div className="flex flex-col items-start">
