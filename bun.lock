@@ -10,6 +10,7 @@
       "version": "0.1.0",
       "dependencies": {
         "@antigravity/core": "workspace:*",
+        "@clawsome/ui": "workspace:*",
         "@monaco-editor/react": "^4.7.0",
         "@tailwindcss/typography": "^0.5.19",
         "clsx": "^2.1.1",
@@ -29,6 +30,29 @@
         "@types/react": "^19",
         "@types/react-dom": "^19",
         "@types/recharts": "^1.8.29",
+        "eslint": "^9",
+        "eslint-config-next": "16.1.6",
+        "tailwindcss": "^4",
+        "typescript": "^5",
+      },
+    },
+    "apps/docs": {
+      "name": "@clawsome/docs",
+      "version": "0.1.0",
+      "dependencies": {
+        "@clawsome/ui": "workspace:*",
+        "highlight.js": "^11.11.1",
+        "lucide-react": "^0.577.0",
+        "next": "16.1.6",
+        "react": "19.2.3",
+        "react-dom": "19.2.3",
+      },
+      "devDependencies": {
+        "@tailwindcss/postcss": "^4",
+        "@types/highlight.js": "^10.1.0",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
         "eslint": "^9",
         "eslint-config-next": "16.1.6",
         "tailwindcss": "^4",
@@ -60,6 +84,7 @@
       "version": "0.1.0",
       "dependencies": {
         "@antigravity/core": "workspace:*",
+        "@clawsome/ui": "workspace:*",
         "clsx": "^2.1.1",
         "framer-motion": "^12.35.0",
         "lucide-react": "latest",
@@ -91,8 +116,13 @@
       "name": "@clawsome/ui",
       "version": "0.1.0",
       "dependencies": {
+        "clsx": "^2.1.1",
+        "framer-motion": "^12.0.0",
+        "lucide-react": "latest",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
+        "recharts": "^2.15.0",
+        "tailwind-merge": "^3.0.0",
       },
       "devDependencies": {
         "@eslint/js": "^9.17.0",
@@ -168,6 +198,8 @@
     "@clack/prompts": ["@clack/prompts@1.1.0", "", { "dependencies": { "@clack/core": "1.1.0", "sisteransi": "^1.0.5" } }, "sha512-pkqbPGtohJAvm4Dphs2M8xE29ggupihHdy1x84HNojZuMtFsHiUlRvqD24tM2+XmI+61LlfNceM3Wr7U5QES5g=="],
 
     "@clawsome/dashboard": ["@clawsome/dashboard@workspace:apps/dashboard"],
+
+    "@clawsome/docs": ["@clawsome/docs@workspace:apps/docs"],
 
     "@clawsome/gateway": ["@clawsome/gateway@workspace:apps/gateway"],
 
@@ -484,6 +516,8 @@
     "@types/gradient-string": ["@types/gradient-string@1.1.6", "", { "dependencies": { "@types/tinycolor2": "*" } }, "sha512-LkaYxluY4G5wR1M4AKQUal2q61Di1yVVCw42ImFTuaIoQVgmV0WP1xUaLB8zwb47mp82vWTpePI9JmrjEnJ7nQ=="],
 
     "@types/hast": ["@types/hast@3.0.4", "", { "dependencies": { "@types/unist": "*" } }, "sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ=="],
+
+    "@types/highlight.js": ["@types/highlight.js@10.1.0", "", { "dependencies": { "highlight.js": "*" } }, "sha512-77hF2dGBsOgnvZll1vymYiNUtqJ8cJfXPD6GG/2M0aLRc29PkvB7Au6sIDjIEFcSICBhCh2+Pyq6WSRS7LUm6A=="],
 
     "@types/json-schema": ["@types/json-schema@7.0.15", "", {}, "sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA=="],
 
@@ -876,6 +910,8 @@
     "hermes-estree": ["hermes-estree@0.25.1", "", {}, "sha512-0wUoCcLp+5Ev5pDW2OriHC2MJCbwLwuRx+gAqMTOkGKJJiBCLjtrvy4PWUGn6MIVefecRpzoOZ/UV6iGdOr+Cw=="],
 
     "hermes-parser": ["hermes-parser@0.25.1", "", { "dependencies": { "hermes-estree": "0.25.1" } }, "sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA=="],
+
+    "highlight.js": ["highlight.js@11.11.1", "", {}, "sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w=="],
 
     "html-url-attributes": ["html-url-attributes@3.0.1", "", {}, "sha512-ol6UPyBWqsrO6EJySPz2O7ZSr856WDrEzM5zMqp+FJJLGMW35cLYmmZnl0vztAZxRUoNZJFTCohfjuIJ8I4QBQ=="],
 

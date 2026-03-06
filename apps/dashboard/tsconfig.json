@@ -43,6 +43,9 @@
   "references": [
     {
       "path": "../../packages/core"
+    },
+    {
+      "path": "../../packages/ui"
     }
   ]
 }

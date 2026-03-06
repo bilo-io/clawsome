@@ -18,6 +18,7 @@ import {
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
 import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
+import { TestComponent } from "@clawsome/ui";
 
 export default function SettingsPage() {
   const { theme, setTheme, glowIntensity, setGlowIntensity } = useUIStore();
@@ -184,6 +185,8 @@ export default function SettingsPage() {
                  <p className="text-[10px] uppercase font-bold tracking-widest text-slate-500/60">More configuration nodes will manifest as your workforce scales.</p>
               </div>
            </div>
+
+           <TestComponent />
         </div>
       </div>
     </main>
