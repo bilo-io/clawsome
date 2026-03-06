@@ -1,3 +1,5 @@
+'use client';
+
 import { PageHeader, ContextAccordion, SkillCard, AgentCard, CodeBlock, SegmentedControl, SlideToConfirm, PermissionToggle, QuickActions, SystemVitality } from "@clawsome/ui";
 
 export default function ComponentsPage() {
