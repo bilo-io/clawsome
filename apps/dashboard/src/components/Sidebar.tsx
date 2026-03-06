@@ -49,7 +49,7 @@ export const Sidebar = () => {
     theme
   } = useUIStore();
 
-  const [openCategories, setOpenCategories] = useState<string[]>(['AI', 'OPS', 'System']);
+  const [openCategories, setOpenCategories] = useState<string[]>(['AI', 'OPS', 'Sys']);
 
   const toggleCategory = (title: string) => {
     setOpenCategories(prev => 

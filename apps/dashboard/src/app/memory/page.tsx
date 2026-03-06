@@ -44,6 +44,22 @@ interface Memory {
   lastUpdated: string;
 }
 
+const YoutubeIcon = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size}>
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+  </svg>
+);
+
+const PDFIcon = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width={size} height={size}>
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <path d="M9 15h.01" />
+    <path d="M12 15h.01" />
+    <path d="M15 15h.01" />
+  </svg>
+);
+
 export default function MemoriesPage() {
   const { theme } = useUIStore();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -153,16 +169,16 @@ export default function MemoriesPage() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       className={cn(
-                        "absolute right-0 mt-4 w-72 rounded-full border p-4 shadow-2xl z-50 overflow-hidden",
+                        "absolute right-0 mt-4 w-72 rounded-xl border p-2 shadow-2xl z-50 overflow-hidden",
                         theme === 'dark' ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100"
                       )}
                     >
                       <div className="grid grid-cols-1 gap-2">
                         {[
-                          { type: 'link', icon: <LinkIcon size={18} />, label: 'Web URL', desc: 'Sync live research data' },
-                          { type: 'youtube', icon: <Youtube size={18} />, label: 'YouTube Video', desc: 'Ingest visual logic' },
-                          { type: 'pdf', icon: <FileText size={18} />, label: 'PDF Document', desc: 'Parse technical specs' },
-                          { type: 'text', icon: <FileCode size={18} />, label: 'Raw Script', desc: 'Direct code injection' },
+                          { type: 'link', icon: <LinkIcon size={18} />, label: 'Web URL', desc: 'Sync live research data', color: '#3B82F6', bgColor: 'rgba(59, 130, 246, 0.1)' },
+                          { type: 'youtube', icon: <YoutubeIcon />, label: 'YouTube Video', desc: 'Ingest visual logic', color: '#FF0000', bgColor: 'rgba(255, 0, 0, 0.1)' },
+                          { type: 'pdf', icon: <PDFIcon />, label: 'PDF Document', desc: 'Parse technical specs', color: '#EF4444', bgColor: 'rgba(239, 68, 68, 0.1)' },
+                          { type: 'text', icon: <FileCode size={18} />, label: 'Raw Script', desc: 'Direct code injection', color: '#10B981', bgColor: 'rgba(16, 185, 129, 0.1)' },
                         ].map((item) => (
                           <button
                             key={item.type}
@@ -171,16 +187,22 @@ export default function MemoriesPage() {
                               setIsAddDropdownOpen(false);
                             }}
                             className={cn(
-                              "flex items-center gap-4 p-4 rounded-full transition-all text-left group",
+                              "flex items-center gap-4 p-3 rounded-lg transition-all text-left group",
                               theme === 'dark' ? "hover:bg-slate-800" : "hover:bg-slate-50"
                             )}
                           >
-                            <div className="p-3 bg-indigo-500/10 text-indigo-500 rounded-full group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                            <div 
+                              className="p-2.5 rounded-lg transition-all flex items-center justify-center"
+                              style={{ 
+                                backgroundColor: item.bgColor, 
+                                color: item.color 
+                              }}
+                            >
                               {item.icon}
                             </div>
                             <div>
                               <p className={cn("text-xs font-black uppercase tracking-widest", theme === 'dark' ? "text-white" : "text-slate-900")}>{item.label}</p>
-                              <p className="text-[10px] text-slate-500 font-medium">{item.desc}</p>
+                              <p className="text-[10px] text-slate-500 font-medium leading-tight mt-0.5">{item.desc}</p>
                             </div>
                           </button>
                         ))}
@@ -289,8 +311,8 @@ function MemoryCard({ memory, theme }: { memory: Memory, theme: 'light' | 'dark'
                   doc.type === 'pdf' ? 'text-amber-500' :
                   doc.type === 'link' ? 'text-blue-500' : 'text-emerald-500'
                 )}>
-                   {doc.type === 'youtube' && <Youtube size={14} />}
-                   {doc.type === 'pdf' && <FileText size={14} />}
+                   {doc.type === 'youtube' && <YoutubeIcon size={14} />}
+                   {doc.type === 'pdf' && <PDFIcon size={14} />}
                    {doc.type === 'link' && <LinkIcon size={14} />}
                    {doc.type === 'text' && <FileCode size={14} />}
                 </div>
@@ -347,8 +369,8 @@ function MemoryListItem({ memory, theme }: { memory: Memory, theme: 'light' | 'd
                 "w-8 h-8 rounded-full border-2 flex items-center justify-center overflow-hidden",
                 theme === 'dark' ? "bg-slate-950 border-slate-900 shadow-xl" : "bg-white border-slate-50 shadow-sm"
               )}>
-                 {doc.type === 'youtube' && <Youtube size={14} className="text-red-500" />}
-                 {doc.type === 'pdf' && <FileText size={14} className="text-amber-500" />}
+                 {doc.type === 'youtube' && <YoutubeIcon size={14} />}
+                 {doc.type === 'pdf' && <PDFIcon size={14} />}
                  {doc.type === 'link' && <LinkIcon size={14} className="text-blue-500" />}
                  {doc.type === 'text' && <FileCode size={14} className="text-emerald-500" />}
               </div>
@@ -377,9 +399,9 @@ function AddDataModal({ type, onClose, onSubmit, theme }: ModalProps) {
   const [content, setContent] = useState('');
   
   const iconMap = {
-    youtube: <Youtube size={28} className="text-red-500" />,
+    youtube: <YoutubeIcon size={28} />,
     link: <LinkIcon size={28} className="text-blue-500" />,
-    pdf: <FileText size={28} className="text-amber-500" />,
+    pdf: <PDFIcon size={28} />,
     text: <FileCode size={28} className="text-emerald-500" />
   };
 

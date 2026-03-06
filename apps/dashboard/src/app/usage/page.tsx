@@ -36,6 +36,7 @@ import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
+import { SegmentedControl } from '@/components/SegmentedControl';
 
 const USAGE_DATA = {
   '1h': [
@@ -110,35 +111,27 @@ export default function UsagePage() {
         statusColor="indigo"
         isCollection={false}
         renderRight={
-          <div className="flex items-center gap-4">
-            <div className={cn(
-              "p-1.5 rounded-2xl border flex items-center shadow-xl transition-all",
-              theme === 'dark' ? "bg-slate-900/60 border-slate-800 shadow-none" : "bg-white border-slate-100 shadow-slate-200/40"
-            )}>
-              {(['1h', '24h', '7d', '30d', '90d'] as const).map((r) => (
-                <button
-                  key={r}
-                  onClick={() => setRange(r)}
-                  className={cn(
-                    "px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all",
-                    range === r
-                      ? "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20"
-                      : (theme === 'dark' ? "text-slate-500 hover:text-slate-300" : "text-slate-500 hover:text-slate-950")
-                  )}
-                >
-                  {r}
-                </button>
-              ))}
+          <div className="flex items-center gap-4 h-[56px]">
+            <SegmentedControl 
+              options={['1h', '24h', '7d', '30d', '90d']}
+              value={range}
+              onChange={(val) => setRange(val as any)}
+              className="min-w-[300px]"
+            />
+            
+            <div className="relative p-[1px] rounded-full bg-gradient-to-tr from-[#8C00FF] to-[#008FD6] group/refresh h-full aspect-square">
+              <button
+                onClick={refreshUsage}
+                className={cn(
+                  "w-full h-full rounded-full flex items-center justify-center transition-all",
+                  theme === 'dark' ? "bg-slate-950 text-slate-500 group-hover/refresh:text-white" : "bg-white text-slate-600 group-hover/refresh:text-white",
+                  "group-hover/refresh:bg-gradient-to-tr group-hover/refresh:from-[#8C00FF] group-hover/refresh:to-[#008FD6]",
+                  "focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:shadow-[0_0_20px_rgba(140,0,255,0.4)]"
+                )}
+              >
+                <RefreshCw size={20} className={cn("transition-transform duration-500", isRefreshing && "animate-spin")} />
+              </button>
             </div>
-            <button
-              onClick={refreshUsage}
-              className={cn(
-                "p-4 rounded-xl border transition-all shadow-sm active:scale-95 group",
-                theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-500 hover:text-white" : "bg-white border-slate-100 text-slate-600 hover:text-indigo-600"
-              )}
-            >
-              <RefreshCw size={20} className={cn("transition-transform duration-500", isRefreshing && "animate-spin")} />
-            </button>
           </div>
         }
       />

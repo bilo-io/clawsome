@@ -10,6 +10,7 @@ import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { DashboardResourceHeader } from '@/components/DashboardResourceHeader';
+import { SegmentedControl } from '@/components/SegmentedControl';
 
 const resourceData = [
   { name: '00:00', cpu: 45, mem: 60, cost: 2.1 },
@@ -22,6 +23,7 @@ const resourceData = [
 
 export default function AnalyticsPage() {
   const { theme } = useUIStore();
+  const [range, setRange] = React.useState('24H');
   
   return (
     <main className="space-y-10 pb-20 max-w-[1600px] mx-auto">
@@ -34,25 +36,82 @@ export default function AnalyticsPage() {
         statusColor="indigo"
         isCollection={false}
         renderRight={
-          <div className="flex items-center gap-4">
-            <div className={cn(
-              "px-6 py-3 rounded-2xl border flex flex-col items-end shadow-xl",
-              theme === 'dark' ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100 shadow-slate-200/40"
-            )}>
-                <span className={cn("text-[10px] font-black uppercase tracking-widest", theme === 'dark' ? "text-slate-500" : "text-slate-400")}>Efficiency Rating</span>
-                <span className="text-2xl font-black text-emerald-500 tracking-tighter">92.4%</span>
-            </div>
+          <div className="flex items-center gap-4 h-[56px]">
+             <SegmentedControl 
+               options={['24H', '7D', '30D', 'ALL']}
+               value={range}
+               onChange={setRange}
+               className="min-w-[280px]"
+             />
+             
+             <div className="relative p-[1px] rounded-full bg-gradient-to-tr from-[#8C00FF] to-[#008FD6] group/zap h-full aspect-square">
+               <button
+                 className={cn(
+                   "w-full h-full rounded-full flex items-center justify-center transition-all",
+                   theme === 'dark' ? "bg-slate-950 text-slate-500 group-hover/zap:text-white" : "bg-white text-slate-600 group-hover/zap:text-white",
+                   "group-hover/zap:bg-gradient-to-tr group-hover/zap:from-[#8C00FF] group-hover/zap:to-[#008FD6]",
+                   "focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:shadow-[0_0_20px_rgba(140,0,255,0.4)]"
+                 )}
+               >
+                 <Zap size={20} className="group-hover/zap:animate-pulse" />
+               </button>
+             </div>
           </div>
         }
       />
+
+      {/* Stats Cards - Compact Style - Moved Above Charts */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+         {[
+           { label: 'Token Throughput', value: '42.8k', sub: '/min', icon: Zap, color: 'text-amber-500', bgColor: 'bg-amber-500/10' },
+           { label: 'Active Runtimes', value: '12', sub: 'INSTANCES', icon: Cpu, color: 'text-indigo-500', bgColor: 'bg-indigo-500/10' },
+           { label: 'Latency (Avg)', value: '142', sub: 'MS', icon: TrendingUp, color: 'text-emerald-500', bgColor: 'bg-emerald-500/10' },
+           { label: 'Distribution', value: '8', sub: 'REGIONS', icon: PieChart, color: 'text-rose-500', bgColor: 'bg-rose-500/10' },
+         ].map((stat, i) => (
+           <motion.div 
+             initial={{ opacity: 0, y: 10 }}
+             animate={{ opacity: 1, y: 0 }}
+             transition={{ delay: i * 0.05 }}
+             key={stat.label} 
+             className={cn(
+               "p-5 rounded-[28px] border transition-all group overflow-hidden relative glass",
+               theme === 'dark' ? "border-slate-800/60" : "border-slate-100"
+             )}
+           >
+              <div className="flex justify-between items-start mb-4">
+                 <div className={cn("p-2.5 rounded-xl bg-opacity-10", stat.color.replace('text', 'bg'))}>
+                    <stat.icon size={20} className={stat.color} />
+                 </div>
+                 <div className={cn(
+                   "text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest",
+                   theme === 'dark' ? "bg-slate-800 text-slate-500" : "bg-slate-100 text-slate-400"
+                 )}>
+                   LIVE
+                 </div>
+              </div>
+              <div className="space-y-1 relative z-10">
+                <h3 className={cn("text-[9px] font-black uppercase tracking-[0.2em]", theme === 'dark' ? "text-slate-600" : "text-slate-400")}>{stat.label}</h3>
+                <div className="flex items-baseline gap-1.5">
+                   <span className={cn("text-3xl font-black tracking-tighter", theme === 'dark' ? "text-white" : "text-slate-950")}>{stat.value}</span>
+                   <span className={cn("text-[10px] font-mono font-bold opacity-40 uppercase", theme === 'dark' ? "text-slate-400" : "text-slate-500")}>{stat.sub}</span>
+                </div>
+              </div>
+              
+              <div className={cn(
+                "absolute -bottom-10 -right-10 w-24 h-24 blur-3xl rounded-full opacity-0 group-hover:opacity-20 transition-opacity",
+                stat.bgColor.replace('text-', 'bg-')
+              )} />
+           </motion.div>
+         ))}
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
          <motion.section 
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
            className={cn(
-             "p-8 rounded-[40px] border shadow-xl space-y-8",
-             theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 shadow-none" : "bg-white border-slate-100 shadow-slate-200/40"
+             "p-8 rounded-[40px] border shadow-xl space-y-8 glass",
+             theme === 'dark' ? "border-slate-800/60" : "border-slate-100 shadow-slate-200/40"
            )}
          >
             <div className="flex items-center justify-between">
@@ -96,8 +155,8 @@ export default function AnalyticsPage() {
            animate={{ opacity: 1, y: 0 }}
            transition={{ delay: 0.1 }}
            className={cn(
-             "p-8 rounded-[40px] border shadow-xl space-y-8",
-             theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 shadow-none" : "bg-white border-slate-100 shadow-slate-200/40"
+             "p-8 rounded-[40px] border shadow-xl space-y-8 glass",
+             theme === 'dark' ? "border-slate-800/60" : "border-slate-100 shadow-slate-200/40"
            )}
          >
             <div className="flex items-center justify-between">
@@ -129,43 +188,6 @@ export default function AnalyticsPage() {
                </ResponsiveContainer>
             </div>
          </motion.section>
-      </div>
-
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-         {[
-           { label: 'Token Throughput', value: '42.8k', unit: '/min', icon: Zap, color: 'text-amber-500', bgColor: 'bg-amber-500/10' },
-           { label: 'Active Runtimes', value: '12', unit: 'INSTANCES', icon: Cpu, color: 'text-indigo-500', bgColor: 'bg-indigo-500/10' },
-           { label: 'Latency (Avg)', value: '142', unit: 'MS', icon: TrendingUp, color: 'text-emerald-500', bgColor: 'bg-emerald-500/10' },
-           { label: 'Distribution', value: '8', unit: 'REGIONS', icon: PieChart, color: 'text-rose-500', bgColor: 'bg-rose-500/10' },
-         ].map((stat, i) => (
-           <motion.div 
-             initial={{ opacity: 0, scale: 0.9 }}
-             animate={{ opacity: 1, scale: 1 }}
-             transition={{ delay: 0.2 + i * 0.05 }}
-             key={stat.label} 
-             className={cn(
-               "p-8 rounded-[32px] border transition-all shadow-xl group overflow-hidden relative",
-               theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 shadow-none" : "bg-white border-slate-100 shadow-slate-200/40 hover:border-indigo-100"
-             )}
-           >
-              <div className={cn("p-3 w-fit rounded-2xl mb-6 shadow-inner border border-transparent group-hover:scale-110 transition-transform", stat.bgColor, theme === 'light' && "border-slate-100")}>
-                <stat.icon size={26} className={stat.color} />
-              </div>
-              <div className="relative z-10">
-                <span className={cn("block text-4xl font-black tracking-tighter mb-2", theme === 'dark' ? "text-white" : "text-slate-950")}>{stat.value}</span>
-                <div className="flex items-center justify-between">
-                   <span className={cn("text-[10px] font-black uppercase tracking-[0.2em]", theme === 'dark' ? "text-slate-600" : "text-slate-500")}>{stat.label}</span>
-                   <span className={cn("text-[10px] font-mono font-black", theme === 'dark' ? "text-slate-700" : "text-indigo-600/60")}>{stat.unit}</span>
-                </div>
-              </div>
-              
-              {/* Subtle ambient light */}
-              <div className={cn(
-                "absolute -bottom-10 -right-10 w-24 h-24 blur-3xl rounded-full opacity-0 group-hover:opacity-20 transition-opacity",
-                stat.bgColor.replace('/10', '')
-              )} />
-           </motion.div>
-         ))}
       </div>
     </main>
   );

@@ -1,5 +1,5 @@
 {
-  "name": "clawsum-monorepo",
+  "name": "@clawsome/monorepo",
   "private": true,
   "workspaces": [
     "apps/*",

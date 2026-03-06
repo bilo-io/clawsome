@@ -1,12 +1,15 @@
 # apps/dashboard/moon.yml
 $schema: 'https://moonrepo.dev/schemas/project.json'
-
-project:
-  type: 'application'
+type: 'application'
 stack: 'frontend'
 
+project:
+  name: 'ClawSome Dashboard'
+  description: 'ClawSome Dashboard to manage your AI swarm'
 dependsOn:
   - 'core'
+  - 'ui'
+
 
 tasks:
   dev:

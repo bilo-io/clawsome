@@ -2,16 +2,74 @@
 'use client';
 
 import React from 'react';
-import { Briefcase, User, GraduationCap, Globe, Plus, MapPin, ChevronRight } from 'lucide-react';
+import { Briefcase, User, GraduationCap, Globe, Plus, MapPin, ChevronRight, Zap } from 'lucide-react';
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const workspaces = [
-  { id: '1', icon: Briefcase, name: 'ClawSome Core', path: '~/BiloDev/clawsome', status: 'Active', color: 'indigo' },
-  { id: '2', icon: Globe, name: 'Cloud Infra', path: '~/cloud-configs', status: 'Idle', color: 'emerald' },
-  { id: '3', icon: User, name: 'Personal Lab', path: '~/playground', status: 'Idle', color: 'amber' },
-  { id: '4', icon: GraduationCap, name: 'Training AI', path: '~/datasets/v1', status: 'In Progress', color: 'rose' },
+  { 
+    id: '1', 
+    icon: Briefcase, 
+    name: 'ClawSome Core', 
+    path: '~/BiloDev/clawsome', 
+    status: 'Active', 
+    color: 'indigo',
+    agents: [
+      { id: 'a1', color: 'bg-[#8C00FF]' },
+      { id: 'a2', color: 'bg-[#008FD6]' },
+      { id: 'a3', color: 'bg-emerald-500' }
+    ]
+  },
+  { 
+    id: '2', 
+    icon: Globe, 
+    name: 'Cloud Infra', 
+    path: '~/cloud-configs', 
+    status: 'Idle', 
+    color: 'emerald',
+    agents: [
+      { id: 'a4', color: 'bg-emerald-400' },
+      { id: 'a5', color: 'bg-indigo-400' }
+    ]
+  },
+  { 
+    id: '3', 
+    icon: User, 
+    name: 'Personal Lab', 
+    path: '~/playground', 
+    status: 'Idle', 
+    color: 'amber',
+    agents: [
+      { id: 'a6', color: 'bg-amber-400' }
+    ]
+  },
+  { 
+    id: '4', 
+    icon: GraduationCap, 
+    name: 'Training AI', 
+    path: '~/datasets/v1', 
+    status: 'In Progress', 
+    color: 'rose',
+    agents: [
+      { id: 'a7', color: 'bg-rose-400' },
+      { id: 'a8', color: 'bg-slate-400' },
+      { id: 'a9', color: 'bg-indigo-400' },
+      { id: 'a10', color: 'bg-emerald-400' }
+    ]
+  },
+  { 
+    id: '5', 
+    icon: Zap, 
+    name: 'Protocol X', 
+    path: '~/protocols/x', 
+    status: 'Active', 
+    color: 'indigo',
+    agents: [
+      { id: 'a11', color: 'bg-[#8C00FF]' },
+      { id: 'a12', color: 'bg-amber-500' }
+    ]
+  },
 ];
 
 const getColorClasses = (color: string, theme: 'light' | 'dark') => {
@@ -31,7 +89,7 @@ export const WorkspaceGallery = ({ viewMode = 'grid' }: { viewMode?: 'grid' | 'l
   return (
     <div className={cn(
       "grid gap-8 transition-all duration-500",
-      viewMode === 'grid' ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"
+      viewMode === 'grid' ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1"
     )}>
       <AnimatePresence mode="popLayout">
         {workspaces.map((ws) => (
@@ -46,9 +104,11 @@ export const WorkspaceGallery = ({ viewMode = 'grid' }: { viewMode?: 'grid' | 'l
               opacity: { duration: 0.3 }
             }}
             className={cn(
-              "group border transition-all cursor-pointer relative overflow-hidden shadow-xl",
-              viewMode === 'grid' ? "p-8 rounded-[40px]" : "p-4 pr-8 rounded-[24px] flex items-center justify-between",
-              theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 hover:bg-slate-900 shadow-none" : "bg-white border-slate-100 shadow-slate-200/40 hover:border-indigo-100"
+              "group transition-all cursor-pointer relative overflow-hidden transition-all border shadow-xl flex flex-col",
+              viewMode === 'grid' ? "p-8 rounded-[40px]" : "p-4 pr-8 rounded-[24px] flex-row items-center justify-between",
+              theme === 'dark' 
+                ? "bg-slate-900/40 border-slate-800/60 shadow-none hover:bg-slate-900 hover:border-indigo-500/30" 
+                : "bg-white border-slate-100 shadow-slate-200/40 hover:border-indigo-200 hover:shadow-2xl"
             )}
           >
             <div className={cn("flex items-center", viewMode === 'grid' ? "flex-col items-start" : "gap-6")}>
@@ -81,20 +141,44 @@ export const WorkspaceGallery = ({ viewMode = 'grid' }: { viewMode?: 'grid' | 'l
               </div>
             </div>
 
-            <div className={cn("flex items-center gap-8", viewMode === 'grid' ? "mt-4" : "")}>
-              <span className={cn(
-                "text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full border shadow-sm",
-                ws.status === 'Active' 
-                  ? (theme === 'dark' ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" : "text-emerald-600 bg-emerald-50 border-emerald-200") 
-                  : (theme === 'dark' ? "text-slate-500 bg-slate-950 border-slate-800" : "text-slate-400 bg-slate-50 border-slate-200")
-              )}>
-                {ws.status}
-              </span>
-              <ChevronRight size={viewMode === 'grid' ? 24 : 18} className={cn(
-                "transition-all",
-                viewMode === 'grid' ? "absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-2" : "",
-                theme === 'dark' ? "text-slate-700" : "text-slate-200"
-              )} />
+            <div className={cn("flex", viewMode === 'grid' ? "flex-col gap-4 mt-8" : "items-center gap-8")}>
+               {/* Stacked Avatars */}
+               <div className="flex -space-x-3 items-center">
+                  {ws.agents.map((agent) => (
+                    <div 
+                      key={agent.id}
+                      className={cn(
+                        "w-8 h-8 rounded-full border-2 shadow-sm transition-transform hover:scale-125 hover:z-20",
+                        agent.color,
+                        theme === 'dark' ? "border-slate-900" : "border-white"
+                      )}
+                    />
+                  ))}
+                  {ws.agents.length > 3 && (
+                    <div className={cn(
+                      "w-8 h-8 rounded-full border-2 flex items-center justify-center text-[10px] font-black",
+                      theme === 'dark' ? "bg-slate-800 border-slate-900 text-slate-400" : "bg-slate-100 border-white text-slate-600"
+                    )}>
+                      +{ws.agents.length - 3}
+                    </div>
+                  )}
+               </div>
+
+               <div className="flex items-center gap-8">
+                  <span className={cn(
+                    "text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full border shadow-sm",
+                    ws.status === 'Active' 
+                      ? (theme === 'dark' ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" : "text-emerald-600 bg-emerald-50 border-emerald-200") 
+                      : (theme === 'dark' ? "text-slate-500 bg-slate-950 border-slate-800" : "text-slate-400 bg-slate-50 border-slate-200")
+                  )}>
+                    {ws.status}
+                  </span>
+                  <ChevronRight size={viewMode === 'grid' ? 24 : 18} className={cn(
+                    "transition-all",
+                    viewMode === 'grid' ? "absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-2" : "",
+                    theme === 'dark' ? "text-slate-700" : "text-slate-200"
+                  )} />
+               </div>
             </div>
 
             {viewMode === 'grid' && (
@@ -130,7 +214,7 @@ export const WorkspaceGallery = ({ viewMode = 'grid' }: { viewMode?: 'grid' | 'l
            theme === 'dark' ? "text-slate-600 group-hover:text-indigo-400" : "text-slate-500 group-hover:text-indigo-600",
            viewMode === 'grid' ? "text-[11px]" : "text-[10px]"
           )}>
-           Initialize Workspace
+           Initialize Swarm
           </span>
       </motion.button>
     </div>

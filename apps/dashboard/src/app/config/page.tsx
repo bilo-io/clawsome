@@ -140,17 +140,17 @@ export default function ConfigPage() {
             <button 
               onClick={() => handleSave()}
               className={cn(
-                "px-6 py-3 rounded-2xl border font-bold uppercase tracking-widest text-[11px] flex items-center gap-2 transition-all active:scale-95",
-                theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400 hover:text-white" : "bg-white border-slate-200 text-slate-500 hover:text-indigo-600 shadow-sm"
+                "px-6 py-3 rounded-full border font-bold uppercase tracking-widest text-[11px] flex items-center gap-2 transition-all active:scale-95",
+                theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400 hover:text-white" : "bg-white border-slate-100 text-slate-400 hover:text-indigo-600 shadow-sm"
               )}
             >
-              <Save size={16} /> Save Changes
+              <Save size={16} /> Save
             </button>
             <button 
               onClick={handlePublish}
-              className="px-6 py-3 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white rounded-2xl font-bold uppercase tracking-widest text-[11px] flex items-center gap-2 shadow-xl shadow-purple-600/20 active:scale-95 transition-all"
+              className="px-6 py-3 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white rounded-full font-bold uppercase tracking-widest text-[11px] flex items-center gap-2 shadow-xl shadow-purple-600/20 active:scale-95 transition-all"
             >
-              <Send size={16} /> Publish to Dist
+              <Send size={16} /> Publish
             </button>
           </div>
         }
@@ -158,11 +158,11 @@ export default function ConfigPage() {
 
       {/* Control Bar */}
       <div className="flex items-center justify-between">
-         <div className={cn("p-1.5 rounded-2xl border flex transition-colors", theme === 'dark' ? "bg-slate-950 border-slate-800" : "bg-white border-slate-100 shadow-sm")}>
+         <div className={cn("p-1.5 rounded-full border flex transition-colors", theme === 'dark' ? "bg-slate-950 border-slate-800" : "bg-white border-slate-100 shadow-sm")}>
             <button 
               onClick={() => setViewMode('form')}
               className={cn(
-                "px-6 py-2.5 rounded-xl transition-all text-xs font-black uppercase tracking-widest flex items-center gap-2",
+                "px-6 py-2.5 rounded-full transition-all text-xs font-black uppercase tracking-widest flex items-center gap-2",
                 viewMode === 'form' 
                   ? "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20" 
                   : (theme === 'dark' ? "text-slate-600 hover:text-white" : "text-slate-400 hover:text-black")
@@ -176,7 +176,7 @@ export default function ConfigPage() {
                 setJsonInput(JSON.stringify(config, null, 4));
               }}
               className={cn(
-                "px-6 py-2.5 rounded-xl transition-all text-xs font-black uppercase tracking-widest flex items-center gap-2",
+                "px-6 py-2.5 rounded-full transition-all text-xs font-black uppercase tracking-widest flex items-center gap-2",
                 viewMode === 'json' 
                   ? "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20" 
                   : (theme === 'dark' ? "text-slate-600 hover:text-white" : "text-slate-400 hover:text-black")
