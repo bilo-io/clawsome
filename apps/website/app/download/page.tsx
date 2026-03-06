@@ -13,6 +13,7 @@ import { AnimatedDownload } from '@/components/AnimatedDownload';
 import { cn } from '@/lib/utils';
 import { PrimaryButton } from '@/components/PrimaryButton';
 import { useTheme } from 'next-themes';
+import BackgroundVideo from '@/components/BackgroundVideo';
 
 export default function DownloadPage() {
   const { theme } = useTheme();
@@ -71,25 +72,7 @@ export default function DownloadPage() {
 
   return (
     <div className="relative pt-40 pb-32 px-8 flex flex-col items-center min-h-[90vh] isolate overflow-hidden">
-      {/* Background Video */}
-      {mounted && (
-        <>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover -z-30"
-          >
-            <source src="/videos/vid-hero-bg.mp4" type="video/mp4" />
-          </video>
-          {/* Gloss/Blur Overlay */}
-          <div className={cn(
-            "absolute inset-0 -z-20 backdrop-blur-xs transition-colors duration-700",
-            theme === 'dark' ? "bg-black/60 shadow-inner" : "bg-white/30 shadow-inner"
-          )} />
-        </>
-      )}
+      <BackgroundVideo mounted={mounted} src={"/videos/vid-download-1-bg.mp4"} />
 
       <div className="max-w-5xl w-full">
          {/* Feature Header */}

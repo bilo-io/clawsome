@@ -136,22 +136,25 @@ export default function LogsPage() {
             )}>
                 <Filter size={16} /> SET VERBOSITY
             </button>
-            <button className="px-6 py-3 bg-indigo-600 rounded-2xl text-[10px] font-bold text-white uppercase tracking-widest transition-all hover:bg-indigo-500 shadow-lg shadow-indigo-600/20 active:scale-95 flex items-center gap-2">
+            <button className="px-6 py-3 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] rounded-2xl text-[10px] font-bold text-white uppercase tracking-widest transition-all shadow-lg shadow-purple-600/20 active:scale-95 flex items-center gap-2">
                 <Bell size={16} /> ALERTS (2)
             </button>
           </div>
         }
       />
 
-      <div className="space-y-4">
-        {viewMode === 'list' ? (
+      <div className={cn(
+        "transition-all duration-500",
+        viewMode === 'grid' ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "space-y-4"
+      )}>
+        {viewMode === 'list' && (
           <div className={cn(
-            "rounded-[32px] border overflow-hidden shadow-2xl transition-all",
-            theme === 'dark' ? "bg-slate-950 border-slate-900" : "bg-white border-slate-100 shadow-slate-200/40"
+            "rounded-t-[32px] border-x border-t overflow-hidden transition-all",
+            theme === 'dark' ? "bg-slate-900/50 border-slate-900" : "bg-slate-50/50 border-slate-100"
           )}>
             <div className={cn(
-              "p-5 border-b flex items-center justify-between text-[11px] font-black uppercase tracking-widest px-8",
-              theme === 'dark' ? "bg-slate-900/50 border-slate-800 text-slate-500" : "bg-slate-50/50 border-slate-100 text-slate-400"
+              "p-5 flex items-center justify-between text-[11px] font-black uppercase tracking-widest px-8",
+              theme === 'dark' ? "text-slate-500" : "text-slate-400"
             )}>
               <div className="flex items-center gap-10">
                 <span className="w-24">Timestamp</span>
@@ -160,13 +163,25 @@ export default function LogsPage() {
               </div>
               <span className="flex-1 text-right">Event Description</span>
             </div>
-            
-            <div className={cn(
-              "font-mono text-[12px] divide-y",
-              theme === 'dark' ? "bg-slate-950 divide-slate-900" : "bg-white divide-slate-100"
-            )}>
-              {filteredLogs.map((log) => (
-                <div key={log.id} className="flex flex-col group">
+          </div>
+        )}
+
+        <AnimatePresence mode="popLayout">
+          {filteredLogs.map((log) => (
+            <motion.div
+              layout
+              key={log.id}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+            >
+              {viewMode === 'list' ? (
+                <div className={cn(
+                  "flex flex-col group border-x border-b first:border-t-0",
+                  theme === 'dark' ? "bg-slate-950 border-slate-900" : "bg-white border-slate-100",
+                  "last:rounded-b-[32px]"
+                )}>
                   <div 
                     onClick={() => toggleExpand(log.id)}
                     className={cn(
@@ -195,7 +210,6 @@ export default function LogsPage() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
                         <div className={cn(
@@ -240,58 +254,58 @@ export default function LogsPage() {
                     )}
                   </AnimatePresence>
                 </div>
-              ))}
-              <div className="p-8 flex items-center gap-4 text-indigo-500/50 font-black italic border-t border-slate-900/50">
-                 <span className="animate-pulse text-lg">_</span>
-                 <span className="text-[11px] uppercase tracking-[0.3em]">Awaiting incoming trace pulses...</span>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredLogs.map((log) => (
-              <motion.div
-                layout
-                key={log.id}
-                onClick={() => toggleExpand(log.id)}
-                className={cn(
-                  "p-8 rounded-[40px] border transition-all cursor-pointer group relative overflow-hidden",
-                  theme === 'dark' 
-                    ? "bg-slate-900/40 border-slate-800/60 hover:bg-slate-900/60 hover:border-indigo-500/30" 
-                    : "bg-white border-slate-100 shadow-xl shadow-slate-200/40 hover:border-indigo-100"
-                )}
-              >
-                <div className="flex justify-between items-start mb-6">
-                  <div className={cn("px-4 py-1 rounded-xl text-[10px] font-black tracking-widest", getLevelBg(log.level))}>
-                    {log.level}
+              ) : (
+                <div
+                  onClick={() => toggleExpand(log.id)}
+                  className={cn(
+                    "p-8 rounded-[40px] border transition-all cursor-pointer group relative overflow-hidden h-full",
+                    theme === 'dark' 
+                      ? "bg-slate-900/40 border-slate-800/60 hover:bg-slate-900/60 hover:border-indigo-500/30" 
+                      : "bg-white border-slate-100 shadow-xl shadow-slate-200/40 hover:border-indigo-100"
+                  )}
+                >
+                  <div className="flex justify-between items-start mb-6">
+                    <div className={cn("px-4 py-1 rounded-xl text-[10px] font-black tracking-widest", getLevelBg(log.level))}>
+                      {log.level}
+                    </div>
+                    <span className="text-[10px] font-black opacity-40 tabular-nums">{log.time}</span>
                   </div>
-                  <span className="text-[10px] font-black opacity-40 tabular-nums">{log.time}</span>
-                </div>
-                
-                <h3 className={cn("text-lg font-black tracking-tight mb-2", theme === 'dark' ? "text-white" : "text-slate-900")}>
-                  {log.module}
-                </h3>
-                <p className={cn("text-sm font-medium leading-relaxed italic", theme === 'dark' ? "text-slate-400" : "text-slate-500")}>
-                  "{log.message}"
-                </p>
+                  
+                  <h3 className={cn("text-lg font-black tracking-tight mb-2", theme === 'dark' ? "text-white" : "text-slate-900")}>
+                    {log.module}
+                  </h3>
+                  <p className={cn("text-sm font-medium leading-relaxed italic", theme === 'dark' ? "text-slate-400" : "text-slate-500")}>
+                    "{log.message}"
+                  </p>
 
-                <div className="mt-8 flex items-center justify-between">
-                   <div className="flex -space-x-2">
-                      {[1, 2, 3].map(i => (
-                        <div key={i} className={cn("w-6 h-6 rounded-full border-2", theme === 'dark' ? "bg-slate-800 border-slate-900" : "bg-slate-100 border-white")} />
-                      ))}
-                   </div>
-                   <div className="flex items-center gap-2 opacity-40 group-hover:opacity-100 transition-all">
-                      <span className="text-[9px] font-black uppercase tracking-widest">Trace Detail</span>
-                      <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                   </div>
-                </div>
+                  <div className="mt-8 flex items-center justify-between">
+                     <div className="flex -space-x-2">
+                        {[1, 2, 3].map(i => (
+                          <div key={i} className={cn("w-6 h-6 rounded-full border-2", theme === 'dark' ? "bg-slate-800 border-slate-900" : "bg-slate-100 border-white")} />
+                        ))}
+                     </div>
+                     <div className="flex items-center gap-2 opacity-40 group-hover:opacity-100 transition-all">
+                        <span className="text-[9px] font-black uppercase tracking-widest">Trace Detail</span>
+                        <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                     </div>
+                  </div>
 
-                <div className={cn(
-                  "absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity"
-                )} />
-              </motion.div>
-            ))}
+                  <div className={cn(
+                    "absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity"
+                  )} />
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </AnimatePresence>
+
+        {viewMode === 'list' && (
+          <div className={cn(
+            "p-8 flex items-center gap-4 text-indigo-500/50 font-black italic border rounded-b-[32px] border-t-0",
+            theme === 'dark' ? "bg-slate-950/20 border-slate-900" : "bg-white border-slate-100"
+          )}>
+             <span className="animate-pulse text-lg">_</span>
+             <span className="text-[11px] uppercase tracking-[0.3em]">Awaiting incoming trace pulses...</span>
           </div>
         )}
       </div>

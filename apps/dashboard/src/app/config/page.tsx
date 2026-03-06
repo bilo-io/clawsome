@@ -148,7 +148,7 @@ export default function ConfigPage() {
             </button>
             <button 
               onClick={handlePublish}
-              className="px-6 py-3 bg-indigo-600 text-white rounded-2xl font-bold uppercase tracking-widest text-[11px] flex items-center gap-2 shadow-xl shadow-indigo-600/20 active:scale-95 transition-all"
+              className="px-6 py-3 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white rounded-2xl font-bold uppercase tracking-widest text-[11px] flex items-center gap-2 shadow-xl shadow-purple-600/20 active:scale-95 transition-all"
             >
               <Send size={16} /> Publish to Dist
             </button>
@@ -164,7 +164,7 @@ export default function ConfigPage() {
               className={cn(
                 "px-6 py-2.5 rounded-xl transition-all text-xs font-black uppercase tracking-widest flex items-center gap-2",
                 viewMode === 'form' 
-                  ? "bg-indigo-600 text-white shadow-lg" 
+                  ? "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20" 
                   : (theme === 'dark' ? "text-slate-600 hover:text-white" : "text-slate-400 hover:text-black")
               )}
             >
@@ -178,7 +178,7 @@ export default function ConfigPage() {
               className={cn(
                 "px-6 py-2.5 rounded-xl transition-all text-xs font-black uppercase tracking-widest flex items-center gap-2",
                 viewMode === 'json' 
-                  ? "bg-indigo-600 text-white shadow-lg" 
+                  ? "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20" 
                   : (theme === 'dark' ? "text-slate-600 hover:text-white" : "text-slate-400 hover:text-black")
               )}
             >

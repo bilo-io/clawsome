@@ -45,7 +45,7 @@ export default function Dashboard() {
             <motion.div 
               whileHover={{ scale: 1.02 }}
               className={cn(
-                "px-5 py-2.5 rounded-[20px] border shadow-xl flex flex-col items-end min-w-[150px] transition-all relative overflow-hidden",
+                "px-5 py-2.5 rounded-full border shadow-xl flex flex-col items-end min-w-[150px] transition-all relative overflow-hidden",
                 theme === "dark" ? "bg-slate-900/40 border-slate-800/60" : "bg-white border-slate-100 shadow-slate-200/50"
               )}
             >
@@ -63,7 +63,7 @@ export default function Dashboard() {
         <div className="xl:col-span-3 space-y-16">
            <section className="space-y-10">
               <div className="flex items-center gap-4">
-                 <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 shadow-sm">
+                 <div className="p-2.5 rounded-full bg-amber-500/10 border border-amber-500/20 shadow-sm">
                     <Zap size={22} className="text-amber-500" />
                  </div>
                  <h2 className={cn("text-[11px] font-black uppercase tracking-[0.4em]", theme === "dark" ? "text-slate-500" : "text-slate-700")}>System Vitality Matrix</h2>
@@ -74,7 +74,7 @@ export default function Dashboard() {
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
               <section className="space-y-10 flex flex-col">
                 <div className="flex items-center gap-4">
-                   <div className="p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 shadow-sm">
+                   <div className="p-2.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 shadow-sm">
                       <Target size={22} className="text-indigo-600" />
                    </div>
                    <h2 className={cn("text-[11px] font-black uppercase tracking-[0.4em]", theme === "dark" ? "text-slate-500" : "text-slate-700")}>Project Pulse</h2>
@@ -85,7 +85,7 @@ export default function Dashboard() {
               </section>
               <section className="space-y-10 flex flex-col">
                  <div className="flex items-center gap-4">
-                    <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 shadow-sm">
+                    <div className="p-2.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-sm">
                        <Activity size={22} className="text-emerald-500" />
                     </div>
                     <h2 className={cn("text-[11px] font-black uppercase tracking-[0.4em]", theme === "dark" ? "text-slate-500" : "text-slate-700")}>Neural Connectivity</h2>

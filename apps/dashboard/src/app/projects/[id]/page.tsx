@@ -83,14 +83,17 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
         isCollection={false}
         backLink={{ label: 'Back to Projects', href: '/projects' }}
         renderRight={
-          <div className="flex bg-slate-100 dark:bg-slate-900/50 p-1.5 rounded-[24px] border border-slate-200 dark:border-slate-800 shadow-inner">
+          <div className={cn(
+            "flex p-1.5 rounded-[24px] border transition-all shadow-xl",
+            theme === 'dark' ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-100 shadow-slate-200/40"
+          )}>
              <button
                onClick={() => setActiveTab('tasks')}
                className={cn(
                  "flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95",
                  activeTab === 'tasks'
-                   ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20"
-                   : "text-slate-500 hover:text-slate-900 dark:hover:text-slate-100"
+                   ? "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20"
+                   : theme === 'dark' ? "text-slate-500 hover:text-slate-300" : "text-slate-400 hover:text-slate-600"
                )}
              >
                <Layers size={14} />
@@ -101,8 +104,8 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                className={cn(
                  "flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95",
                  activeTab === 'plan'
-                   ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20"
-                   : "text-slate-500 hover:text-slate-900 dark:hover:text-slate-100"
+                   ? "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20"
+                   : theme === 'dark' ? "text-slate-500 hover:text-slate-300" : "text-slate-400 hover:text-slate-600"
                )}
              >
                <FileText size={14} />
@@ -150,7 +153,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                       <TableIcon size={16} />
                     </button>
                  </div>
-                 <button className="flex items-center gap-2 px-5 py-3 bg-indigo-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-indigo-600/20 hover:scale-105 active:scale-95 transition-all">
+                 <button className="flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-purple-600/20 hover:scale-105 active:scale-95 transition-all">
                     <Plus size={16} />
                     Create Task
                  </button>
@@ -385,8 +388,8 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
                    </div>
 
                    <div className="mt-auto relative z-10">
-                      <button className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black text-[11px] tracking-[0.4em] uppercase shadow-2xl shadow-indigo-500/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3">
-                         <Zap size={16} fill="white" />
+                      <button className="w-full py-5 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white rounded-2xl font-black text-[11px] tracking-[0.4em] uppercase shadow-2xl shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 overflow-hidden group">
+                         <Zap size={16} fill="white" className="group-hover:animate-pulse" />
                          SYNC ARCHIVE
                       </button>
                    </div>

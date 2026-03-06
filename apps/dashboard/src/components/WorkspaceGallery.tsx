@@ -5,7 +5,7 @@ import React from 'react';
 import { Briefcase, User, GraduationCap, Globe, Plus, MapPin, ChevronRight } from 'lucide-react';
 import { useUIStore } from '@/store/useUIStore';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const workspaces = [
   { id: '1', icon: Briefcase, name: 'ClawSome Core', path: '~/BiloDev/clawsome', status: 'Active', color: 'indigo' },
@@ -28,125 +28,110 @@ const getColorClasses = (color: string, theme: 'light' | 'dark') => {
 export const WorkspaceGallery = ({ viewMode = 'grid' }: { viewMode?: 'grid' | 'list' }) => {
   const { theme } = useUIStore();
 
-  if (viewMode === 'list') {
-    return (
-      <div className="space-y-4">
-        {workspaces.map((ws, i) => (
-          <motion.div
-            key={ws.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.05 }}
+  return (
+    <div className={cn(
+      "grid gap-8 transition-all duration-500",
+      viewMode === 'grid' ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"
+    )}>
+      <AnimatePresence mode="popLayout">
+        {workspaces.map((ws) => (
+          <motion.div 
+            layout="position"
+            key={ws.id} 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ 
+              layout: { duration: 0.4, ease: [0.32, 0.72, 0, 1] },
+              opacity: { duration: 0.3 }
+            }}
             className={cn(
-              "group p-4 pr-8 rounded-[24px] border transition-all cursor-pointer flex items-center justify-between shadow-sm",
-              theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 hover:bg-slate-900" : "bg-white border-slate-100 hover:border-indigo-100 shadow-slate-200/20"
+              "group border transition-all cursor-pointer relative overflow-hidden shadow-xl",
+              viewMode === 'grid' ? "p-8 rounded-[40px]" : "p-4 pr-8 rounded-[24px] flex items-center justify-between",
+              theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 hover:bg-slate-900 shadow-none" : "bg-white border-slate-100 shadow-slate-200/40 hover:border-indigo-100"
             )}
           >
-            <div className="flex items-center gap-6">
-              <div className={cn("p-3 rounded-xl border transition-transform group-hover:scale-110", getColorClasses(ws.color, theme))}>
-                <ws.icon size={18} />
+            <div className={cn("flex items-center", viewMode === 'grid' ? "flex-col items-start" : "gap-6")}>
+              <div className={cn(
+                "rounded-2xl shadow-inner border transition-transform group-hover:scale-110", 
+                getColorClasses(ws.color, theme),
+                viewMode === 'grid' ? "p-4 mb-8" : "p-3"
+              )}>
+                <ws.icon size={viewMode === 'grid' ? 26 : 18} />
               </div>
-              <div>
-                <h4 className={cn("text-sm font-black tracking-tight", theme === 'dark' ? "text-slate-200" : "text-slate-950")}>{ws.name}</h4>
-                <div className="flex items-center gap-2">
-                  <p className={cn("text-[9px] font-mono font-bold uppercase tracking-tight", theme === 'dark' ? "text-slate-600" : "text-slate-400")}>{ws.path}</p>
+              
+              <div className={viewMode === 'grid' ? "" : "flex-1"}>
+                <h4 className={cn(
+                  "font-black tracking-tight transition-colors", 
+                  theme === 'dark' ? "text-slate-200 group-hover:text-white" : "text-slate-950 group-hover:text-indigo-600",
+                  viewMode === 'grid' ? "text-xl" : "text-sm"
+                )}>
+                  {ws.name}
+                </h4>
+                <div className={cn("flex items-center gap-2 mt-2 group-hover:translate-x-1 transition-transform")}>
+                  <MapPin size={12} className="text-slate-500 opacity-60" />
+                  <p className={cn(
+                    "font-mono font-bold truncate tracking-tight uppercase", 
+                    theme === 'dark' ? "text-slate-600" : "text-slate-400",
+                    viewMode === 'grid' ? "text-[10px]" : "text-[9px]"
+                  )}>
+                    {ws.path}
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-8">
+            <div className={cn("flex items-center gap-8", viewMode === 'grid' ? "mt-4" : "")}>
               <span className={cn(
-                "text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full border shadow-sm",
+                "text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full border shadow-sm",
                 ws.status === 'Active' 
                   ? (theme === 'dark' ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" : "text-emerald-600 bg-emerald-50 border-emerald-200") 
                   : (theme === 'dark' ? "text-slate-500 bg-slate-950 border-slate-800" : "text-slate-400 bg-slate-50 border-slate-200")
               )}>
                 {ws.status}
               </span>
-              <ChevronRight size={18} className={theme === 'dark' ? "text-slate-700" : "text-slate-200"} />
+              <ChevronRight size={viewMode === 'grid' ? 24 : 18} className={cn(
+                "transition-all",
+                viewMode === 'grid' ? "absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 group-hover:translate-x-2" : "",
+                theme === 'dark' ? "text-slate-700" : "text-slate-200"
+              )} />
             </div>
+
+            {viewMode === 'grid' && (
+              <div className={cn(
+                "absolute -right-10 -bottom-10 w-40 h-40 blur-[80px] rounded-full opacity-0 group-hover:opacity-20 transition-opacity",
+                ws.color === 'indigo' && 'bg-indigo-500',
+                ws.color === 'emerald' && 'bg-emerald-500',
+                ws.color === 'amber' && 'bg-amber-500',
+                ws.color === 'rose' && 'bg-rose-500'
+              )} />
+            )}
           </motion.div>
         ))}
-        
-        <motion.button
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: workspaces.length * 0.05 }}
-          className={cn(
-            "w-full p-4 rounded-[24px] border-2 border-dashed border-slate-200 dark:border-slate-800/50 hover:border-indigo-500/50 hover:bg-white dark:hover:bg-slate-950/50 transition-all flex items-center justify-center gap-4 group active:scale-95 shadow-inner",
-            theme === 'light' && "bg-slate-50/50"
-          )}
-        >
-          <Plus size={18} className={theme === 'dark' ? "text-slate-700 group-hover:text-indigo-400" : "text-slate-300 group-hover:text-indigo-600"} />
-          <span className={cn("text-[10px] font-black uppercase tracking-[0.2em]", theme === 'dark' ? "text-slate-600 group-hover:text-indigo-400" : "text-slate-500 group-hover:text-indigo-600")}>Initialize Workspace</span>
-        </motion.button>
-      </div>
-    );
-  }
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {workspaces.map((ws, i) => (
-        <motion.div 
-          key={ws.id} 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: i * 0.05 }}
-          className={cn(
-            "group p-8 rounded-[40px] border transition-all cursor-pointer relative overflow-hidden shadow-xl",
-            theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 hover:bg-slate-900 shadow-none" : "bg-white border-slate-100 shadow-slate-200/40 hover:border-indigo-100"
-          )}
-        >
-          <div className="flex items-start justify-between relative z-10">
-             <div className={cn("p-4 rounded-2xl shadow-inner border transition-transform group-hover:scale-110", getColorClasses(ws.color, theme))}>
-                <ws.icon size={26} />
-             </div>
-             <span className={cn(
-               "text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full border shadow-sm",
-               ws.status === 'Active' 
-                 ? (theme === 'dark' ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" : "text-emerald-600 bg-emerald-50 border-emerald-200") 
-                 : (theme === 'dark' ? "text-slate-500 bg-slate-950 border-slate-800" : "text-slate-400 bg-slate-50 border-slate-200")
-             )}>
-               {ws.status}
-             </span>
-          </div>
-          
-          <div className="mt-8 relative z-10">
-             <h4 className={cn("text-xl font-black tracking-tighter transition-colors", theme === 'dark' ? "text-slate-200 group-hover:text-white" : "text-slate-950 group-hover:text-indigo-600")}>{ws.name}</h4>
-             <div className="flex items-center gap-2 mt-2 group-hover:translate-x-1 transition-transform">
-                <MapPin size={12} className="text-slate-500 opacity-60" />
-                <p className={cn("text-[10px] font-mono font-bold truncate tracking-tight uppercase", theme === 'dark' ? "text-slate-600" : "text-slate-400")}>{ws.path}</p>
-             </div>
-          </div>
-
-          <div className={cn(
-            "absolute -right-10 -bottom-10 w-40 h-40 blur-[80px] rounded-full opacity-0 group-hover:opacity-20 transition-opacity",
-            ws.color === 'indigo' && 'bg-indigo-500',
-            ws.color === 'emerald' && 'bg-emerald-500',
-            ws.color === 'amber' && 'bg-amber-500',
-            ws.color === 'rose' && 'bg-rose-500'
-          )} />
-          
-          <ChevronRight size={24} className={cn("absolute bottom-8 right-8 transition-all opacity-0 group-hover:opacity-100 group-hover:translate-x-2", theme === 'dark' ? "text-slate-800" : "text-slate-100")} />
-        </motion.div>
-      ))}
+      </AnimatePresence>
       
       <motion.button 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: workspaces.length * 0.05 }}
+        layout
         className={cn(
-          "p-8 rounded-[40px] border-2 border-dashed border-slate-200 dark:border-slate-800/50 hover:border-indigo-500/50 hover:bg-white dark:hover:bg-slate-950/50 transition-all flex flex-col items-center justify-center gap-4 group active:scale-95 shadow-inner",
+          "border-2 border-dashed border-slate-200 dark:border-slate-800/50 hover:border-indigo-500/50 hover:bg-white dark:hover:bg-slate-950/50 transition-all flex group active:scale-95 shadow-inner",
+          viewMode === 'grid' ? "p-8 rounded-[40px] flex-col items-center justify-center gap-4" : "p-4 rounded-[24px] items-center justify-center gap-4",
           theme === 'light' && "bg-slate-50/50 hover:shadow-2xl hover:shadow-indigo-500/10"
         )}
       >
          <div className={cn(
-           "p-4 rounded-full transition-all group-hover:rotate-90 group-hover:scale-110",
-           theme === 'dark' ? "bg-slate-900 border border-slate-800 text-slate-500 group-hover:text-indigo-400" : "bg-white border border-slate-100 text-slate-400 group-hover:text-indigo-600 shadow-sm"
+           "rounded-full transition-all group-hover:rotate-90 group-hover:scale-110 flex items-center justify-center border",
+           theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-500 group-hover:text-indigo-400" : "bg-white border-slate-100 text-slate-400 group-hover:text-indigo-600 shadow-sm",
+           viewMode === 'grid' ? "p-4" : "p-2"
          )}>
-            <Plus size={28} />
+            <Plus size={viewMode === 'grid' ? 28 : 18} />
          </div>
-         <span className={cn("text-[11px] font-black uppercase tracking-[0.3em]", theme === 'dark' ? "text-slate-600 group-hover:text-indigo-400" : "text-slate-500 group-hover:text-indigo-600")}>Initialize Workspace</span>
+         <span className={cn(
+           "font-black uppercase tracking-[0.3em]", 
+           theme === 'dark' ? "text-slate-600 group-hover:text-indigo-400" : "text-slate-500 group-hover:text-indigo-600",
+           viewMode === 'grid' ? "text-[11px]" : "text-[10px]"
+          )}>
+           Initialize Workspace
+          </span>
       </motion.button>
     </div>
   );

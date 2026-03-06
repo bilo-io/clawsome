@@ -122,7 +122,7 @@ export default function UsagePage() {
                   className={cn(
                     "px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all",
                     range === r
-                      ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/20"
+                      ? "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20"
                       : (theme === 'dark' ? "text-slate-500 hover:text-slate-300" : "text-slate-500 hover:text-slate-950")
                   )}
                 >
@@ -479,7 +479,7 @@ export default function UsagePage() {
             </div>
             <button className={cn(
               "text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-xl transition-all",
-              theme === 'dark' ? "bg-indigo-500 text-white shadow-lg" : "bg-indigo-600 text-white shadow-lg"
+              "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20 active:scale-95"
             )}>
               Optimize Quotas
             </button>

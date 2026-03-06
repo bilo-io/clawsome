@@ -85,7 +85,7 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
       <div className="flex items-center gap-6 flex-1">
         <div
           className={cn(
-            'relative p-3 rounded-2xl transition-all shadow-inner border group-hover:scale-110 flex items-center justify-center',
+            'relative p-3 rounded-full transition-all shadow-inner border group-hover:scale-110 flex items-center justify-center',
             theme === 'dark' ? 'bg-slate-950 text-indigo-400 border-indigo-500/10' : 'bg-white text-indigo-600 border-slate-100 shadow-slate-200/40'
           )}
         >
@@ -127,12 +127,12 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
           {source === 'marketplace' && !isInstalled ? (
             <button
               onClick={handleAdd}
-              className="flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest bg-indigo-600 text-white shadow-indigo-600/30 hover:bg-indigo-500 transition-all active:scale-95"
+              className="flex items-center gap-2 px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest bg-indigo-600 text-white shadow-indigo-600/30 hover:bg-indigo-500 transition-all active:scale-95"
             >
               <Plus size={16} /> Add
             </button>
           ) : source === 'marketplace' && isInstalled ? (
-            <span className={cn('text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl', theme === 'dark' ? 'bg-slate-800 text-slate-500' : 'bg-slate-100 text-slate-400')}>
+            <span className={cn('text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full', theme === 'dark' ? 'bg-slate-800 text-slate-500' : 'bg-slate-100 text-slate-400')}>
               Added
             </span>
           ) : source === 'installed' && integration.status === 'pending' ? (
@@ -140,13 +140,13 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
               <button
                 onClick={handleConfigure}
                 className={cn(
-                  'flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
+                  'flex items-center gap-2 px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
                   theme === 'dark' ? 'bg-slate-950 border border-slate-800 text-amber-400 hover:text-white' : 'bg-amber-50 border border-amber-200 text-amber-600 hover:bg-amber-100'
                 )}
               >
                 <Settings size={16} /> Configure
               </button>
-              <button onClick={handleDisconnect} className="p-3 rounded-xl border transition-all active:scale-90 text-slate-400 hover:text-rose-500" title="Remove">
+              <button onClick={handleDisconnect} className="p-3 rounded-full border transition-all active:scale-90 text-slate-400 hover:text-rose-500" title="Remove">
                 <Trash2 size={18} />
               </button>
             </>
@@ -155,7 +155,7 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
               <button
                 onClick={handleToggleActive}
                 className={cn(
-                  'flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
+                  'flex items-center gap-2 px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
                   integration.status === 'active'
                     ? theme === 'dark' ? 'bg-slate-950 border border-slate-800 text-slate-400 hover:text-rose-400' : 'bg-slate-50 border border-slate-200 text-slate-500 hover:text-rose-600'
                     : 'bg-emerald-600 text-white shadow-emerald-600/30 hover:bg-emerald-500'
@@ -163,7 +163,7 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
               >
                 {integration.status === 'active' ? <><PowerOff size={16} /> Disable</> : <><Power size={16} /> Enable</>}
               </button>
-              <button onClick={handleDisconnect} className="p-3 rounded-xl border transition-all active:scale-90 text-slate-400 hover:text-rose-500" title="Remove">
+              <button onClick={handleDisconnect} className="p-3 rounded-full border transition-all active:scale-90 text-slate-400 hover:text-rose-500" title="Remove">
                 <Trash2 size={18} />
               </button>
             </>
@@ -186,7 +186,7 @@ export function IntegrationCard({ integration, viewMode, isInstalled, source }: 
       <div className="flex justify-between items-start mb-6 relative z-10">
         <div
           className={cn(
-            'relative p-5 rounded-[24px] transition-all shadow-inner border group-hover:scale-110 flex items-center justify-center',
+            'relative p-5 rounded-full transition-all shadow-inner border group-hover:scale-110 flex items-center justify-center',
             theme === 'dark' ? 'bg-slate-900 text-indigo-400 border-indigo-500/20' : 'bg-slate-50 text-indigo-600 border-slate-100'
           )}
         >

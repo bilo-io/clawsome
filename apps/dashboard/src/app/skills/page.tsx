@@ -49,15 +49,15 @@ export default function SkillsPage() {
         showFilter
         renderRight={
           <div className={cn(
-            "flex items-center gap-2 p-1.5 rounded-[24px] border transition-all shadow-xl",
+            "flex items-center gap-2 p-1.5 rounded-full border transition-all shadow-xl",
             theme === 'dark' ? "bg-slate-900/60 border-slate-800" : "bg-white border-slate-100 shadow-slate-200/40"
           )}>
             <button
               onClick={() => setActiveTab('my')}
               className={cn(
-                "flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95",
+                "flex items-center gap-3 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all active:scale-95",
                 activeTab === 'my' 
-                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" 
+                  ? "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20" 
                   : (theme === 'dark' ? "text-slate-500 hover:text-slate-300" : "text-slate-400 hover:text-slate-600")
               )}
             >
@@ -67,9 +67,9 @@ export default function SkillsPage() {
             <button
               onClick={() => setActiveTab('marketplace')}
               className={cn(
-                "flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95",
+                "flex items-center gap-3 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all active:scale-95",
                 activeTab === 'marketplace' 
-                  ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" 
+                  ? "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20" 
                   : (theme === 'dark' ? "text-slate-500 hover:text-slate-300" : "text-slate-400 hover:text-slate-600")
               )}
             >
@@ -135,7 +135,7 @@ export default function SkillsPage() {
             {activeTab === 'my' && !searchQuery && (
               <button
                 onClick={() => setActiveTab('marketplace')}
-                className="flex items-center gap-4 px-12 py-5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-[24px] text-[10px] font-black uppercase tracking-widest transition-all shadow-2xl shadow-indigo-600/30 active:scale-95"
+                className="flex items-center gap-4 px-12 py-5 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white rounded-[24px] text-[10px] font-black uppercase tracking-widest transition-all shadow-2xl shadow-purple-600/30 active:scale-95"
               >
                 <ShoppingCart size={20} />
                 <span>Access Marketplace</span>

@@ -48,16 +48,16 @@ export default function IntegrationsPage() {
         renderRight={
           <div
             className={cn(
-              'flex items-center gap-2 p-1.5 rounded-[24px] border transition-all shadow-xl',
+              'flex items-center gap-2 p-1.5 rounded-full border transition-all shadow-xl',
               theme === 'dark' ? 'bg-slate-900/60 border-slate-800' : 'bg-white border-slate-100 shadow-slate-200/40'
             )}
           >
             <button
               onClick={() => setActiveTab('my')}
               className={cn(
-                'flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
+                'flex items-center gap-3 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
                 activeTab === 'my'
-                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20'
+                  ? 'bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20'
                   : theme === 'dark' ? 'text-slate-500 hover:text-slate-300' : 'text-slate-400 hover:text-slate-600'
               )}
             >
@@ -67,9 +67,9 @@ export default function IntegrationsPage() {
             <button
               onClick={() => setActiveTab('marketplace')}
               className={cn(
-                'flex items-center gap-3 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
+                'flex items-center gap-3 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all active:scale-95',
                 activeTab === 'marketplace'
-                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20'
+                  ? 'bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white shadow-lg shadow-purple-600/20'
                   : theme === 'dark' ? 'text-slate-500 hover:text-slate-300' : 'text-slate-400 hover:text-slate-600'
               )}
             >
@@ -85,8 +85,8 @@ export default function IntegrationsPage() {
           <motion.div
             key={`${activeTab}-list`}
             className={cn(
-              viewMode === 'grid' 
-                ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10" 
+              viewMode === 'grid'
+                ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10"
                 : "space-y-4"
             )}
           >
@@ -138,7 +138,7 @@ export default function IntegrationsPage() {
             {activeTab === 'my' && !searchQuery && (
               <button
                 onClick={() => setActiveTab('marketplace')}
-                className="flex items-center gap-4 px-12 py-5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-[24px] text-[10px] font-black uppercase tracking-widest transition-all shadow-2xl shadow-indigo-600/30 active:scale-95"
+                className="flex items-center gap-4 px-12 py-5 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] text-white rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-2xl shadow-purple-600/30 active:scale-95"
               >
                 <ShoppingCart size={20} />
                 <span>Open Marketplace</span>
@@ -158,7 +158,7 @@ export default function IntegrationsPage() {
         >
           <div className={cn('px-8 py-6 border-b', theme === 'dark' ? 'border-slate-800' : 'border-slate-100')}>
             <div className="flex items-center gap-3 mb-2">
-              <div className={cn('p-2 rounded-xl', theme === 'dark' ? 'bg-indigo-500/10 text-indigo-400' : 'bg-indigo-50 text-indigo-600')}>
+              <div className={cn('p-2 rounded-full', theme === 'dark' ? 'bg-indigo-500/10 text-indigo-400' : 'bg-indigo-50 text-indigo-600')}>
                 <Cpu size={20} />
               </div>
               <h2 className={cn('text-lg font-black tracking-tighter', theme === 'dark' ? 'text-white' : 'text-slate-950')}>

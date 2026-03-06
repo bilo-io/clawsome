@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
@@ -66,6 +66,8 @@ import {
   Apple
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import BackgroundVideo from '@/components/BackgroundVideo';
+import BackgroundAnimated from '@/components/BackgroundAnimated';
 
 type Category = 'All' | 'Skills' | 'Integrations' | 'Plugins' | 'MCP' | 'Automation' | 'Models' | 'Platforms';
 
@@ -209,6 +211,11 @@ function UploadCloud({ className }: { className?: string }) {
 export default function MarketplacePage() {
   const [activeCategory, setActiveCategory] = useState<Category>('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const filteredItems = useMemo(() => {
     return ITEMS.filter(item => {
@@ -225,15 +232,14 @@ export default function MarketplacePage() {
     <main className="min-h-screen relative bg-slate-50 dark:bg-[#020617] transition-colors duration-500 overflow-hidden">
 
       {/* Decorative Background */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-      </div>
+      </div> */}
+
 
       {/* Hero Animated Background */}
-      <div className="absolute top-0 left-0 right-0 h-[600px] pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/5 dark:bg-indigo-500/10 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute top-[20%] right-[-5%] w-[30%] h-[30%] bg-purple-500/5 dark:bg-purple-500/10 blur-[100px] rounded-full animate-pulse delay-700" />
-      </div>
+      <BackgroundAnimated />
+      <BackgroundVideo mounted={mounted} src={"/videos/vid-marketplace-bg.mp4"} />
 
       <div className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto">
         {/* Flashy Top Panel */}
@@ -272,13 +278,13 @@ export default function MarketplacePage() {
               <div className="absolute -inset-4 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] rounded-[40px] blur-3xl opacity-0 group-focus-within:opacity-20 dark:group-focus-within:opacity-30 transition duration-700" />
               
               {/* Border Gradient Container */}
-              <div className="relative p-[1px] rounded-[26px] bg-slate-200 dark:bg-slate-800 transition-all duration-500 group-focus-within:bg-gradient-to-r group-focus-within:from-[#8C00FF] group-focus-within:to-[#008FD6] group-focus-within:shadow-2xl shadow-purple-600/10">
-                <div className="relative glass-panel rounded-[25px] flex items-center px-6 py-4 transition-all duration-300 bg-white dark:bg-slate-900/95 group-focus-within:bg-white dark:group-focus-within:bg-slate-950 group-focus-within:scale-[1.005]">
-                  <Search className="w-6 h-6 text-slate-400 group-focus-within:text-indigo-500 transition-colors mr-4" />
+              <div className="relative p-[1px] rounded-[26px] bg-gradient-to-r from-[#8C00FF] to-[#008FD6] transition-all duration-500 group-focus-within:shadow-2xl shadow-purple-600/10">
+                <div className="relative glass-panel rounded-[25px] flex items-center px-6 py-4 transition-all duration-300 bg-white/95 dark:bg-slate-900/95 group-focus-within:bg-white dark:group-focus-within:bg-slate-950 group-focus-within:scale-[1.005]">
+                  <Search className="w-6 h-6 text-slate-400 group-focus-within:text-[#008FD6] transition-colors mr-4" />
                   <input 
                     type="text"
                     placeholder="Search for skills, plugins, or tools..."
-                    className="bg-transparent border-none focus:ring-0 w-full text-slate-900 dark:text-white font-bold text-lg placeholder:text-slate-400 block outline-none"
+                    className="bg-transparent border-none focus:ring-0 focus-visible:ring-0 w-full text-slate-900 dark:text-white font-bold text-lg placeholder:text-slate-400 block outline-none focus:outline-none"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />

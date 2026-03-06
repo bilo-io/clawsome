@@ -119,7 +119,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({ skill, viewMode, isImporte
               onClick={handleImport}
               disabled={isImported}
               className={cn(
-                  "flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-xl active:scale-95",
+                  "flex items-center gap-2 px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-xl active:scale-95",
                   isImported 
                       ? (theme === 'dark' ? "bg-slate-900 border border-slate-800 text-slate-700 cursor-not-allowed" : "bg-slate-50 text-slate-300 border border-slate-100 cursor-not-allowed") 
                       : "bg-indigo-600 text-white shadow-indigo-600/30 hover:bg-indigo-500"
@@ -132,16 +132,16 @@ export const SkillCard: React.FC<SkillCardProps> = ({ skill, viewMode, isImporte
               <Link 
                 href={`/skills/${skill.id}`}
                 className={cn(
-                  "p-3 rounded-xl transition-all border active:scale-90",
+                  "p-3 rounded-full transition-all border active:scale-90",
                   theme === 'dark' ? "bg-slate-950 border-slate-800 text-slate-500 hover:text-white" : "bg-white border-slate-100 text-slate-400 hover:text-slate-950 shadow-sm"
                 )}
               >
                 <ChevronRight size={18} />
               </Link>
-              <button 
+              <button
                  onClick={handleDelete}
                  className={cn(
-                  "p-3 rounded-xl transition-all border active:scale-90",
+                  "p-3 rounded-full transition-all border active:scale-90",
                   theme === 'dark' ? "bg-slate-950 border-slate-800 text-slate-500 hover:text-rose-400" : "bg-white border-slate-100 text-slate-400 hover:text-rose-600 shadow-sm"
                  )}
               >
@@ -165,7 +165,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({ skill, viewMode, isImporte
     >
       <div className="flex justify-between items-start mb-10 relative z-10">
         <div className={cn(
-           "p-5 rounded-[24px] transition-all shadow-inner border group-hover:scale-110 group-hover:rotate-12",
+           "p-5 rounded-full transition-all shadow-inner border group-hover:scale-110 group-hover:rotate-12",
            theme === 'dark' ? "bg-slate-900 text-indigo-400 border-indigo-500/20" : "bg-slate-50 text-indigo-600 border-slate-100"
         )}>
           <Icon size={32} />
@@ -174,7 +174,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({ skill, viewMode, isImporte
           <button 
             onClick={handleCopy}
             className={cn(
-              "p-3.5 rounded-2xl transition-all border shadow-sm active:scale-90",
+              "p-3.5 rounded-full transition-all border shadow-sm active:scale-90",
               theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400 hover:text-white" : "bg-white border-slate-200 text-slate-400 hover:text-slate-900"
             )}
           >

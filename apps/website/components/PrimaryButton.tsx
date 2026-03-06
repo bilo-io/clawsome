@@ -26,8 +26,8 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   
   const sizeStyles = {
     sm: "px-5 py-2 rounded-full text-sm",
-    md: "px-8 py-4 rounded-3xl text-lg",
-    lg: "px-10 py-5 rounded-[2rem] text-xl",
+    md: "px-8 py-4 rounded-full text-lg",
+    lg: "px-10 py-5 rounded-full text-xl",
   };
 
   const gradientStyles = "bg-gradient-to-r from-[#8C00FF] to-[#008FD6] hover:brightness-110 shadow-purple-600/30";

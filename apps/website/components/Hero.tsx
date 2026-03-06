@@ -7,6 +7,7 @@ import { Command, Terminal, Sparkles, ChevronRight, Play } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { PrimaryButton } from '@/components/PrimaryButton';
+import BackgroundVideo from './BackgroundVideo';
 
 export const Hero = () => {
   const { theme } = useTheme();
@@ -19,24 +20,8 @@ export const Hero = () => {
   return (
     <section className="relative pt-32 pb-20 px-8 overflow-hidden min-h-[90vh] flex flex-col justify-center items-center text-center isolate">
       {/* Background Video */}
-      {mounted && (
-        <>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover -z-30"
-          >
-            <source src="/videos/vid-galaxy-bg.mp4" type="video/mp4" />
-          </video>
-          {/* Gloss/Blur Overlay */}
-          <div className={cn(
-            "absolute inset-0 -z-20 backdrop-blur-xs transition-colors duration-700",
-            theme === 'dark' ? "bg-black/60 shadow-inner" : "bg-white/30 shadow-inner"
-          )} />
-        </>
-      )}
+      <BackgroundVideo mounted={mounted} src="/videos/vid-galaxy-bg.mp4" />
+      
 
       {/* Background Orbs */}
       <div className="absolute top-1/4 -right-1/4 w-[500px] h-[500px] bg-indigo-500/20 blur-[120px] rounded-full -z-10 animate-pulse" />
@@ -104,7 +89,7 @@ export const Hero = () => {
         >
           It's ClawSome
         </PrimaryButton>
-        <button className="flex items-center gap-3 px-8 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-3xl font-black text-lg transition-all hover:border-indigo-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 active:scale-95 group">
+        <button className="flex items-center gap-3 px-8 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-full font-black text-lg transition-all hover:border-indigo-500/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 active:scale-95 group">
           <div className="p-1 px-1 bg-indigo-500/10 rounded-full group-hover:bg-indigo-500/20 transition-colors">
             <Play size={16} className="text-indigo-500 fill-indigo-500" />
           </div>

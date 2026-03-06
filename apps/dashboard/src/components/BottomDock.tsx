@@ -35,7 +35,7 @@ export const BottomDock = () => {
         className={cn(
           "flex items-center gap-4 p-1.5 shadow-2xl transition-colors duration-300 relative",
           theme === 'dark' ? "bg-slate-900/80 border border-slate-800" : "bg-white/80 border border-slate-200",
-          isHovered ? "rounded-[32px] pr-6" : "rounded-full"
+          isHovered ? "rounded-full pr-6" : "rounded-full"
         )}
         style={{ backdropFilter: 'blur(20px)' }}
       >
@@ -75,7 +75,7 @@ export const BottomDock = () => {
 
               {/* Theme Toggle */}
               <div className={cn(
-                "flex items-center bg-slate-800/10 rounded-2xl p-1 border transition-all duration-300",
+                "flex items-center bg-slate-800/10 rounded-full p-1 border transition-all duration-300",
                 theme === 'dark' ? "border-slate-800 bg-slate-950" : "border-slate-100 bg-slate-50"
               )}>
                 <button 
@@ -103,7 +103,7 @@ export const BottomDock = () => {
               <button 
                 onClick={toggleFocusMode}
                 className={cn(
-                  "p-2.5 rounded-xl transition-all active:scale-95 group",
+                  "p-2.5 rounded-full transition-all active:scale-95 group",
                   theme === 'dark' ? "hover:bg-slate-800 text-slate-500 hover:text-white" : "hover:bg-slate-100 text-slate-400 hover:text-slate-950"
                 )}
                 title="Focus Mode"

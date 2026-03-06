@@ -1,12 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Zap, Sparkles, Building, ChevronRight, HelpCircle } from 'lucide-react';
 import Link from 'next/link';
+import BackgroundVideo from '@/components/BackgroundVideo';
+import { useTheme } from 'next-themes';
 
 export default function PricingPage() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [isAnnual, setIsAnnual] = useState(true);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const plans = [
     {
@@ -62,7 +70,8 @@ export default function PricingPage() {
   ];
 
   return (
-    <div className="pt-40 pb-32 px-8 flex flex-col items-center min-h-screen bg-white dark:bg-[#020617] transition-colors">
+    <div className="relative pt-40 pb-32 px-8 flex flex-col items-center min-h-screen bg-white dark:bg-[#020617] transition-colors isolate overflow-hidden">
+      <BackgroundVideo mounted={mounted} src={"/videos/vid-download-2-bg.mp4"} />
       <div className="max-w-7xl w-full">
          {/* Pricing Header */}
          <div className="flex flex-col items-center text-center mb-16">

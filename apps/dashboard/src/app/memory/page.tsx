@@ -134,7 +134,7 @@ export default function MemoriesPage() {
            <div className="relative">
               <button
                 onClick={() => setIsAddDropdownOpen(!isAddDropdownOpen)}
-                className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] hover:opacity-90 text-white rounded-[20px] font-bold shadow-xl shadow-purple-600/20 transition-all active:translate-y-1"
+                className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#8C00FF] to-[#008FD6] hover:opacity-90 text-white rounded-full font-bold shadow-xl shadow-purple-600/20 transition-all active:translate-y-1"
               >
                 <Plus size={20} />
                 <span className="text-[10px] font-bold uppercase tracking-widest">Add Data to Core</span>
@@ -153,7 +153,7 @@ export default function MemoriesPage() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       className={cn(
-                        "absolute right-0 mt-4 w-72 rounded-[32px] border p-4 shadow-2xl z-50 overflow-hidden",
+                        "absolute right-0 mt-4 w-72 rounded-full border p-4 shadow-2xl z-50 overflow-hidden",
                         theme === 'dark' ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100"
                       )}
                     >
@@ -171,11 +171,11 @@ export default function MemoriesPage() {
                               setIsAddDropdownOpen(false);
                             }}
                             className={cn(
-                              "flex items-center gap-4 p-4 rounded-2xl transition-all text-left group",
+                              "flex items-center gap-4 p-4 rounded-full transition-all text-left group",
                               theme === 'dark' ? "hover:bg-slate-800" : "hover:bg-slate-50"
                             )}
                           >
-                            <div className="p-3 bg-indigo-500/10 text-indigo-500 rounded-xl group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                            <div className="p-3 bg-indigo-500/10 text-indigo-500 rounded-full group-hover:bg-indigo-500 group-hover:text-white transition-colors">
                               {item.icon}
                             </div>
                             <div>
@@ -249,16 +249,16 @@ function MemoryCard({ memory, theme }: { memory: Memory, theme: 'light' | 'dark'
   return (
     <div
       className={cn(
-        "group p-8 rounded-[40px] border shadow-2xl relative overflow-hidden transition-all h-full",
+        "group p-8 rounded-[48px] border shadow-2xl relative overflow-hidden transition-all h-full",
         theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 shadow-black/40" : "bg-white border-slate-100 shadow-slate-200/50"
       )}
     >
       <div className="flex justify-between items-start mb-8 relative z-10">
-        <div className="p-4 bg-indigo-500/10 rounded-2xl border border-indigo-500/20 text-indigo-500">
+        <div className="p-4 bg-indigo-500/10 rounded-full border border-indigo-500/20 text-indigo-500">
            <Brain size={28} />
         </div>
         <button className={cn(
-          "p-2 rounded-xl border transition-colors",
+          "p-2 rounded-full border transition-colors",
           theme === 'dark' ? "bg-slate-950 border-slate-800 text-slate-500" : "bg-slate-50 border-slate-100 text-slate-400"
         )}>
            <MoreVertical size={16} />
@@ -278,7 +278,7 @@ function MemoryCard({ memory, theme }: { memory: Memory, theme: 'light' | 'dark'
             <div 
               key={doc.id}
               className={cn(
-                "flex items-center justify-between p-3 rounded-2xl border text-sm transition-all",
+                "flex items-center justify-between p-3 rounded-full border text-sm transition-all",
                 theme === 'dark' ? "bg-slate-950 border-slate-800/50" : "bg-slate-50 border-slate-100"
               )}
             >
@@ -322,12 +322,12 @@ function MemoryListItem({ memory, theme }: { memory: Memory, theme: 'light' | 'd
   return (
     <div
       className={cn(
-        "p-6 rounded-[28px] border transition-all flex items-center justify-between group h-full",
+        "p-6 rounded-[32px] border transition-all flex items-center justify-between group h-full",
         theme === 'dark' ? "bg-slate-900/40 border-slate-800/60 hover:bg-slate-900" : "bg-white border-slate-100 hover:shadow-xl shadow-slate-200/50"
       )}
     >
       <div className="flex items-center gap-6">
-        <div className="p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20 text-indigo-500">
+        <div className="p-3 bg-indigo-500/10 rounded-full border border-indigo-500/20 text-indigo-500">
            <Brain size={20} />
         </div>
         <div>
@@ -344,7 +344,7 @@ function MemoryListItem({ memory, theme }: { memory: Memory, theme: 'light' | 'd
         <div className="flex -space-x-2">
             {memory.documents.slice(0, 3).map((doc, i) => (
               <div key={i} className={cn(
-                "w-8 h-8 rounded-lg border-2 flex items-center justify-center overflow-hidden",
+                "w-8 h-8 rounded-full border-2 flex items-center justify-center overflow-hidden",
                 theme === 'dark' ? "bg-slate-950 border-slate-900 shadow-xl" : "bg-white border-slate-50 shadow-sm"
               )}>
                  {doc.type === 'youtube' && <Youtube size={14} className="text-red-500" />}
@@ -355,7 +355,7 @@ function MemoryListItem({ memory, theme }: { memory: Memory, theme: 'light' | 'd
             ))}
         </div>
         <button className={cn(
-          "w-10 h-10 rounded-xl flex items-center justify-center border transition-all hover:scale-105",
+          "w-10 h-10 rounded-full flex items-center justify-center border transition-all hover:scale-105",
           theme === 'dark' ? "bg-slate-950 border-slate-800 text-slate-500 hover:text-white" : "bg-slate-50 border-slate-100 text-slate-400 hover:text-indigo-600 shadow-sm"
         )}>
           <ChevronRight size={18} />
@@ -412,7 +412,7 @@ function AddDataModal({ type, onClose, onSubmit, theme }: ModalProps) {
         <div className="flex justify-between items-start mb-10">
           <div className="flex items-center gap-5">
              <div className={cn(
-               "p-3 rounded-2xl shadow-lg border transition-all",
+               "p-3 rounded-full shadow-lg border transition-all",
                theme === 'dark' ? "bg-slate-950 border-slate-800" : "bg-slate-50 border-slate-100"
              )}>
                 {iconMap[type]}
@@ -429,7 +429,7 @@ function AddDataModal({ type, onClose, onSubmit, theme }: ModalProps) {
           <button 
             onClick={onClose}
             className={cn(
-              "p-3 rounded-2xl transition-all border shadow-sm",
+              "p-3 rounded-full transition-all border shadow-sm",
               theme === 'dark' 
                 ? "bg-slate-950 text-slate-500 border-slate-800 hover:text-white" 
                 : "bg-slate-50 text-slate-400 border-slate-100 hover:text-slate-900"

@@ -127,7 +127,7 @@ export const AgentCard: React.FC<AgentCardProps> = ({ agent, viewMode, onDelete 
           <button 
             onClick={() => onDelete?.(agent.id)}
             className={cn(
-              "p-3 rounded-2xl transition-all border",
+              "p-3 rounded-full transition-all border",
               theme === 'dark' ? "bg-slate-800/50 border-slate-800 text-slate-500 hover:text-rose-400" : "bg-slate-50 border-slate-100 text-slate-400 hover:text-rose-600 shadow-sm"
             )}
           >

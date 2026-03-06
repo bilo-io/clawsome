@@ -243,9 +243,21 @@ export default function ChatDetailPage() {
                 {msg.role === 'user' && (
                   <div className={cn(
                     "w-12 h-12 rounded-full flex items-center justify-center shrink-0 border-2 shadow-xl",
-                    theme === 'dark' ? "bg-slate-900 border-slate-800 text-slate-400" : "bg-white border-slate-100 text-slate-400 shadow-slate-200/40"
+                    theme === 'dark' ? "bg-slate-900 border-slate-800" : "bg-white border-slate-100 shadow-slate-200/40"
                   )}>
-                    <User size={24} />
+                    <div 
+                      className={cn("w-6 h-6", theme === 'dark' ? "bg-white" : "bg-slate-900")} 
+                      style={{ 
+                        maskImage: 'url(/clawsome-icon.svg)', 
+                        maskSize: 'contain', 
+                        maskRepeat: 'no-repeat', 
+                        maskPosition: 'center',
+                        WebkitMaskImage: 'url(/clawsome-icon.svg)',
+                        WebkitMaskSize: 'contain',
+                        WebkitMaskRepeat: 'no-repeat',
+                        WebkitMaskPosition: 'center'
+                      }}
+                    />
                   </div>
                 )}
               </motion.div>
@@ -270,15 +282,27 @@ export default function ChatDetailPage() {
         <div className="w-full max-w-[760px] pointer-events-auto">
           <div className="relative group perspective-1000">
             <div className={cn(
-              "relative p-[2px] rounded-[32px] transition-all duration-700 shadow-[0_32px_80px_rgba(0,0,0,0.2)] dark:shadow-[0_48px_100px_rgba(0,0,0,0.5)]",
-              "bg-slate-200 dark:bg-slate-800/30 focus-within:bg-gradient-to-tr from-[#8C00FF] to-[#008FD6] focus-within:scale-[1.01] focus-within:shadow-[0_48px_100px_rgba(140,0,255,0.15)]"
+              "relative p-[2px] rounded-full transition-all duration-700 shadow-[0_32px_80px_rgba(0,0,0,0.2)] dark:shadow-[0_48px_100px_rgba(0,0,0,0.5)]",
+              "bg-gradient-to-tr from-[#8C00FF]/20 to-[#008FD6]/20 focus-within:from-[#8C00FF] focus-within:to-[#008FD6] focus-within:scale-[1.01] focus-within:shadow-[0_48px_100px_rgba(140,0,255,0.15)]"
             )}>
               <div className={cn(
-                "flex items-center gap-4 bg-white dark:bg-slate-950 rounded-[30px] px-8 py-5 transition-all duration-700 overflow-hidden",
+                "flex items-center gap-4 bg-white dark:bg-slate-950 rounded-full px-8 py-5 transition-all duration-700 overflow-hidden",
                 "bg-white/95 dark:bg-slate-950/95"
               )}>
-                <div className="p-3 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400">
-                  <Sparkles size={24} className="group-focus-within:text-indigo-500 transition-colors" />
+                <div className="p-3 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center">
+                    <div 
+                      className={cn("w-6 h-6", theme === 'dark' ? "bg-slate-500" : "bg-slate-400", "group-focus-within:bg-indigo-500 transition-colors")} 
+                      style={{ 
+                        maskImage: 'url(/clawsome-icon.svg)', 
+                        maskSize: 'contain', 
+                        maskRepeat: 'no-repeat', 
+                        maskPosition: 'center',
+                        WebkitMaskImage: 'url(/clawsome-icon.svg)',
+                        WebkitMaskSize: 'contain',
+                        WebkitMaskRepeat: 'no-repeat',
+                        WebkitMaskPosition: 'center'
+                      }}
+                    />
                 </div>
                 <textarea
                   rows={1}
@@ -304,7 +328,7 @@ export default function ChatDetailPage() {
                   onClick={handleSend}
                   disabled={!inputValue.trim()}
                   className={cn(
-                    "p-4 rounded-3xl transition-all duration-500 flex items-center justify-center shadow-xl active:scale-90 disabled:opacity-30 disabled:grayscale",
+                    "p-4 rounded-full transition-all duration-500 flex items-center justify-center shadow-xl active:scale-90 disabled:opacity-30 disabled:grayscale",
                     "bg-indigo-600 text-white shadow-indigo-500/30 hover:bg-indigo-500 group-focus-within:rotate-[-5deg]"
                   )}
                 >

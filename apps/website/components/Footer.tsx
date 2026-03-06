@@ -61,7 +61,7 @@ export const Footer = () => {
               <a 
                 key={social.id} 
                 href={social.href} 
-                className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-[#8C00FF] hover:border-indigo-500/50 transition-all flex items-center justify-center group"
+                className="p-2.5 rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-[#8C00FF] hover:border-indigo-500/50 transition-all flex items-center justify-center group"
                 target="_blank"
                 rel="noreferrer"
               >

@@ -131,7 +131,7 @@ export const Navbar = () => {
               <span className="text-sm font-bold text-slate-500 uppercase tracking-widest">Appearance</span>
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="flex items-center gap-2 p-2 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 transition-colors text-slate-900 dark:text-white"
+                className="flex items-center gap-2 p-2 px-4 rounded-full bg-slate-100 dark:bg-slate-800 transition-colors text-slate-900 dark:text-white"
               >
                 {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                 <span className="text-sm font-bold capitalize">{theme}</span>

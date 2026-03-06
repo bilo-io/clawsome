@@ -140,7 +140,7 @@ export const Sidebar = () => {
           <Link
             href="/"
             className={cn(
-              "group relative flex items-center gap-3 py-2 px-3 rounded-xl cursor-pointer transition-all border",
+              "group relative flex items-center gap-3 py-2 px-3 rounded-full cursor-pointer transition-all border",
               pathname === '/' 
                 ? (theme === 'dark' ? "bg-indigo-600/10 border-indigo-500/30 text-white" : "bg-indigo-50 border-indigo-200 shadow-sm text-indigo-700") 
                 : (theme === 'dark' ? "hover:bg-slate-900 border-transparent hover:border-slate-800 text-slate-400 hover:text-white" : "hover:bg-slate-50 border-transparent hover:border-slate-200 text-slate-600 hover:text-slate-950")
@@ -208,7 +208,7 @@ export const Sidebar = () => {
                           key={item.href}
                           href={item.href}
                           className={cn(
-                            "group relative flex items-center gap-3 py-2 px-3 rounded-xl cursor-pointer transition-all border",
+                            "group relative flex items-center gap-3 py-2 px-3 rounded-full cursor-pointer transition-all border",
                             isActive 
                               ? (theme === 'dark' ? "bg-indigo-600/10 border-indigo-500/30 text-white" : "bg-indigo-50 border-indigo-200 shadow-sm text-indigo-700") 
                               : (theme === 'dark' ? "hover:bg-slate-900 border-transparent hover:border-slate-800 text-slate-400 hover:text-white" : "hover:bg-slate-50 border-transparent hover:border-slate-200 text-slate-600 hover:text-slate-950")
@@ -247,7 +247,7 @@ export const Sidebar = () => {
                           {/* Glow Overlay */}
                           <div 
                             className={cn(
-                              "absolute inset-0 rounded-xl opacity-0 transition-opacity blur-md -z-10",
+                              "absolute inset-0 rounded-full opacity-0 transition-opacity blur-md -z-10",
                               isActive ? "opacity-10" : "group-hover:opacity-10",
                               theme === 'dark' ? "bg-indigo-500" : "bg-indigo-400"
                             )}
